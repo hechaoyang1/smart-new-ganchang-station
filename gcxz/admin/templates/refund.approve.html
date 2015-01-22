@@ -1,0 +1,66 @@
+{include file="header.html"}
+<div class="info">
+  <form method="post" action="index.php?app=refund&act=do_approve" id="user_form">
+  <!-- {if $data} -->
+  <input type="hidden" name="id" value="{$data.id}">
+  <input type="hidden" name="cur" value="{$cur}">
+  <!-- {/if} -->
+    <table class="infoTable">
+      <tr>
+      	<th class="paddingT15">订单号:</th>
+      	<td>{$data.order_sn}</td>
+      </tr>
+       <tr>
+      	<th class="paddingT15">退款金额:</th>
+      	<td>{$data.amount}</td>
+      </tr>
+      <tr>
+      	<th class="paddingT15">买家:</th>
+      	<td>{$data.buyer_name}</td>
+      </tr>
+      <tr>
+      	<th class="paddingT15">来源:</th>
+      	<td>{$data.type_text}</td>
+      </tr>
+      <tr>
+      	<th class="paddingT15">申请理由:</th>
+      	<td>{$data.info}</td>
+      </tr>
+      <tr>
+      	<th class="paddingT15">卖家:</th>
+      	<td>{$data.seller_name}</td>
+      </tr>
+      
+      <tr>
+	      <th class="paddingT15">处理结果:</th>
+	      <td class="paddingT15 wordSpacing5"><p>
+            <label>
+            <input type="radio" name="approve" value="1" checked="checked" />审批通过</label>
+            <label>
+            <input type="radio" name="approve" value="2" />关闭申请</label>
+          </p></td>
+      </tr>
+      <tr>
+        <th class="paddingT15">理由:</th>
+        <td class="paddingT15 wordSpacing5">
+        	<textarea name="remark"></textarea>
+        </td>
+      </tr>
+      <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="reset" value="{$lang.reset}" />            </td>
+        </tr>
+       <tr>
+      	<th class="paddingT15">历史记录:</th>
+      	<td><p>
+      	 <!--{foreach from=$data.log item=vo}-->
+      	 	<p><span>{$vo.time|date:Y-m-d H:i:s}</span>&nbsp;&nbsp;<span>{$vo.name}</span>&nbsp;&nbsp;<span>{$vo.mark}</span></p>
+      	 <!--{/foreach}-->
+      	</p></td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

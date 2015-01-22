@@ -1,0 +1,79 @@
+<h4 class="add_title">
+	<b class="ico">请选择支付方式</b>
+</h4>
+<div class="payment_list">
+	<!-- <ul class="receive_add" pay_id="payment_id">
+		<li class="radio"><input type="radio" name="payment_id" value="1" /></li>
+		<li class="fashion">在线支付</li>
+	</ul>
+	<ul class="receive_add" shipping_id="payment_id">
+		<li class="radio"><input type="radio" name="payment_id" value="2" /></li>
+		<li class="fashion">货到付款</li>
+	</ul> -->
+	<dl class="defray">
+		<dd>
+			<p class="radio">
+				<input type="radio" id="payment_1" name="payment_code" value="allinpay"
+					checked>
+			</p>
+			<p class="logo">
+				<label for="payment_allinpay"><img alt="在线支付" title="在线支付"
+					src="{$site_url}/includes/payments/alipay/logo.gif"
+					width="125" height="47"></label>
+			</p>
+			<p class="explain"></p>
+		</dd>
+	</dl>
+	<dl class="defray">
+		<dd>
+			<p class="radio">
+				<input type="radio" id="payment_2" name="payment_code" value="cod"
+					onclick="checkOrder()">
+			</p>
+			<p class="logo">
+				<label for="payment_cod"><img alt="货到付款-" title="货到付款-"
+					src="{$site_url}/includes/payments/cod/logo.gif"
+					width="125" height="47"></label>
+			</p>
+			<p class="explain"></p>
+		</dd>
+	</dl>
+</div>
+
+<script>
+
+	function clickYes() {
+		$('#payment_1')[0].checked = true;
+		DialogManager.close('show_goods');
+	}
+	function clickNo() {
+		window.location.href="index.php?app=cart";
+	}
+	function checkOrder() {
+		$.get(REAL_SITE_URL + '/index.php?app=order&act=checkGoodsPayment', {
+			store_id : '{$smarty.get.store_id}'
+		}, function(data) {
+			if (data.status == 1) {
+				var text = '以下商品不支持货到付款<br/>';
+				for(var i in data.goods){
+					var good = data.goods[i];
+					text += '&nbsp;&nbsp;&nbsp;&nbsp;'+good[1]+'<br/>';
+				}
+				var d = DialogManager.create('show_goods');
+				$('.dialog_close_button').remove();
+				d.setWidth(400);
+				d.setTitle('提示');
+				d.setContents('message', {
+					type : 'confirm',
+					text : text,
+					yes_button_name : '在线支付',
+					onClickYes : clickYes,
+					no_button_name : '返回购物车',
+					onClickNo : clickNo,
+
+				});
+				d.show('center');
+			}
+		}, 'json');
+	}
+</script>

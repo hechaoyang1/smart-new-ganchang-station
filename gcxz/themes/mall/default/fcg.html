@@ -1,0 +1,118 @@
+{include file=header.new.html}
+{include file=top.html}
+<link rel="stylesheet" type="text/css" href="{res file=css/channel.css}">
+<div id="wrapMain">
+	<!-- contents -->
+	<div id="container"
+		style="position: relative; background: #FFF; overflow: hidden; height: auto; width: 928px; padding: 16px;">
+
+		<!-- elemenut 1 --->
+		<div class="element large">
+			<div class="element long" style="margin-top: 0">
+				<a href="{url app=search&goodsId=$fixed_list[1].goods_ids}"> 
+					<img src="{$fixed_list[1].picture}" width="228" height="352" alt="">
+				</a>
+			</div>
+			<div class="element type3" style="margin-top: 0">
+				<a href="{url app=search&goodsId=$fixed_list[3].goods_ids}">
+					<img width="228" height="174" alt="" src="{$fixed_list[3].picture}">
+				</a>
+			</div>
+			<div class="element type3">
+				<div class="count">
+					<div class="comment">{$fixed_list[4].ctime}</div>
+				</div>
+				<div class="numbers">
+					<div class="number-img">
+						<a href="{url app=search&goodsId=$fixed_list[3].goods_ids}">
+							<img src="{$fixed_list[4].picture}" alt="">
+						</a>
+					</div>
+					<div class="text">
+						<a href="{url app=search&goodsId=$fixed_list[3].goods_ids}">
+							<div>
+								{$fixed_list[3].description}
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="element type3">
+				<div class="count">
+					<div class="comment">{$fixed_list[5].ctime}</div>
+				</div>
+				<div class="numbers">
+					<div class="number-img">
+						<img src="{$fixed_list[5].picture}" alt="">
+					</div>
+					<div class="text">
+						<a href="{url app=search&goodsId=$fixed_list[5].goods_ids}">
+							<div>
+								{$fixed_list[5].description}
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="element type1">
+				<div class="count">
+					<div class="comment">{$fixed_list[2].ctime}</div>
+				</div>
+				<div class="numbers">
+					<div class="number-img">
+						<img src="{$fixed_list[2].picture}" alt="">
+					</div>
+					<div class="text">
+						<a href="{url app=search&goodsId=$fixed_list[2].goods_ids}">
+							<div>
+								{$fixed_list[2].description}
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="element large">
+			<a href="{url app=search&goodsId=$fixed_list[6].goods_ids}" target="_blank"> <img src="{$fixed_list[6].picture}"
+				width="460" height="530" alt="">
+			</a>
+		</div>
+		<!--{foreach from=$dynamic_list item=product}-->
+		<div class="element type1">
+			<div class="count">
+				<div class="comment">{$product.ctime}</div>
+			</div>
+			<div class="numbers">
+				<div class="number-img">
+					<img src="{$product.picture}" alt="">
+				</div>
+				<div class="text">
+					<a href="{url app=search&goodsId=$product.goods_ids}">
+					{$product.description}
+					</a>
+				</div>
+			</div>
+			<div class="name">{$product.name}</div>
+		</div>
+    	<!--{/foreach}-->
+	</div>
+	<!-- //contents -->
+</div>
+<script type="text/javascript">
+    function schange(elmt){
+		$(elmt).hover(function(){
+          $(this).find('.number-img').css("display","none");
+          $(this).find('.text').css("display","block");
+        },function(){
+          $(this).find('.number-img').css("display","block");
+          $(this).find('.text').css("display","none");
+        });
+		}
+	$(document).ready(function(){
+      schange(".type1");
+	  schange(".type3");
+		
+
+	});
+</script>
+{include file=footer.new.html}

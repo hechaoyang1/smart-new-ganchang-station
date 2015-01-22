@@ -1,0 +1,53 @@
+{include file=header.new.html}
+{include file=top.html}
+<link href="{res file=css/shoppingCar.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{lib file=cart.js}" charset="utf-8"></script>
+<div class="shoppingCar">
+		<div class="wrap">
+			<div class="step1"></div>
+		<!--{foreach from=$carts item=cart key=store_id}-->
+			<table class="carTable">
+				<thead>
+					<tr>
+						<th><b>店铺：<a href="{url app=store&id=$store_id}" style="text-decoration:none;color:#333;">{$cart.store_name|escape}</a></b></th>
+						<th width="100">单价</th>
+						<th align="center" width="100">数量</th>
+						<th align="center" width="80">总计</th>
+						<th width="80"></th>
+					</tr>
+				</thead>
+				<tbody>
+				<!--{foreach from=$cart.goods item=goods}-->
+					<tr id="cart_item_{$goods.rec_id}">
+						<td class="goodsInfo">
+							<div class="pull-left">
+								<a href="{url app=goods&id=$goods.goods_id}"  target="_blank"><img class="thumb" src="{$goods.goods_image}" alt="{$goods.goods_name|escape}" height="80" width="80" alt=""></a>
+							</div>
+							<div class="pull-left name">
+								{$goods.goods_name|escape}
+								<span class="attr">{$goods.specification|escape}</span>
+								<!--{if $goods.source_type==1}-->
+								<div class="orange mt10">不支持货到付款</div>
+								<!-- {/if} -->
+							</div>
+						</td>
+						<td class="price">{$goods.price|price}</td>
+						<td class="num"><a href="javascript:;" onclick="decrease_quantity({$goods.rec_id});" >-</a><input id="input_item_{$goods.rec_id}" value="{$goods.quantity}" orig="{$goods.quantity}" changed="{$goods.quantity}" onkeyup="change_quantity({$store_id}, {$goods.rec_id}, {$goods.spec_id}, this);" class="text1 width3" type="text" /><a href="javascript:;" onclick="add_quantity({$goods.rec_id});">+</a></td>
+						<td  id="item{$goods.rec_id}_subtotal">{$goods.subtotal|price}</td>
+						<td class="operation">
+							<div><a href="javascript:;" onclick="drop_cart_item({$store_id}, {$goods.rec_id});">{$lang.drop}</a></div>
+							<div><a href="javascript:;" onclick="move_favorite({$store_id}, {$goods.rec_id}, {$goods.goods_id});">{$lang.move_favorite}</a></div>
+						</td>
+					</tr>
+				 <!--{/foreach}-->
+				</tbody>
+			</table>
+			<div class="shoppingCarTools clearfix">
+				<div class="pull-right">
+					总价(不含运费): <b class="red total" id="cart{$store_id}_amount">{$cart.amount|price}</b><a href="{url app=order&goods=cart&store_id=$store_id}" class="buy">去结算</a>
+				</div>
+			</div>
+			<!--{/foreach}-->
+		</div>
+	</div>
+{include file="footer.new.html"}

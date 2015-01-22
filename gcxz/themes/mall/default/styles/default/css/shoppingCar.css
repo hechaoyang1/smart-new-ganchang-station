@@ -1,0 +1,247 @@
+.shoppingCar .wrap {
+  background-color: #fff;
+  padding: 20px;
+  width: 920px; }
+
+.step1, .step2, .step3 {
+  background: url(../img/carStep3.jpg) no-repeat;
+  height: 35px;
+  width: 960px;
+  margin-left: -20px; }
+
+.step1 {
+  background-position: left 0; }
+
+.step2 {
+  background-position: left -35px; }
+
+.step3 {
+  background-position: left -70px; }
+
+.shoppingOver {
+  margin: 20px 10px;
+  padding-left: 250px;
+  background: url(../img/shoppingOverBg.jpg) no-repeat 100px 30px #fffbf0;
+  border: 3px solid #fadab3;
+  height: 200px; }
+
+.shoppingOver h3 {
+  margin-top: 20px;
+  font-size: 25px;
+  width: 500px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed #cbc7be; }
+
+.shoppingOver .shoppingInfo {
+  width: 500px; }
+
+.shoppingOver .shoppingInfo > li {
+  width: 250px;
+  float: left;
+  font-size: 15px;
+  margin-top: 5px; }
+
+.shoppingOver .shopping {
+  display: inline-block;
+  margin-left: 150px;
+  background-color: #ef8200;
+  border-radius: 5px;
+  text-decoration: none;
+  height: 30px;
+  line-height: 30px;
+  width: 100px;
+  text-align: center;
+  color: #fff;
+  margin-top: 10px; }
+
+.step2box {
+  width: 960px;
+  margin-left: -20px;
+  border-top: 2px solid #ececec;
+  border-bottom: 1px solid #ececec;
+  margin-top: 20px;
+  padding-bottom: 10px; }
+
+.step2box .title {
+  font-size: 18px;
+  color: #666;
+  padding: 10px 0 10px 15px; }
+
+.step2box .title > span {
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 3px;
+  color: #9a9a9a; }
+
+.step2box .content {
+  margin: 0 30px;
+  font-size: 14px;
+  color: #666; }
+
+.step2box .content input[type="radio"] {
+  vertical-align: bottom;
+  margin-bottom: 2px; }
+
+.step2box .content .t {
+  background-color: #fff4d4;
+  padding: 5px; }
+
+.step2box .content .a {
+  color: #9a9a9a;
+  font-size: 12px;
+  font-style: normal;
+  margin-left: 5px; }
+
+.step2box .addressList li {
+  margin-top: 10px;
+  padding-left: 20px; }
+
+.step2box .addressList span.pull-left {
+  width: 95px; }
+
+.step2box .addressList span.orange {
+  margin-right: 3px; }
+
+.step2box .addressList input[type="checkbox"] {
+  vertical-align: bottom; }
+
+.step2box .save {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  height: 25px;
+  line-height: 25px;
+  width: 100px;
+  text-align: center;
+  background-color: #ef8201;
+  border-radius: 2px; }
+
+.step2box .orderFormTable {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-spacing: 1px; }
+
+.step2box .orderFormTable td, .step2box .orderFormTable th {
+  background-color: #fff;
+  vertical-align: middle;
+  text-align: center; }
+
+.step2box .orderFormTable th {
+  background-color: #f6f6f6;
+  padding: 4px; }
+
+.step2box .orderFormTable th:first-child {
+  text-align: left;
+  text-indent: 20px; }
+
+.step2box .orderFormTable td:first-child {
+  text-align: left;
+  padding: 10px; }
+
+.step2box .orderFormTable td:first-child a {
+  text-decoration: none;
+  color: #5b82c3; }
+
+.step2box .orderFormTable td:first-child img {
+  vertical-align: middle;
+  margin-right: 10px; }
+
+.leaveWord {
+  width: 300px;
+  border: 1px solid #ccc;
+  background-color: #fcfcfc;
+  border-radius: 2px;
+  height: 20px;
+  line-height: 20px;
+  text-indent: 10px; }
+
+.carTable {
+  background-color: #fff;
+  width: 100%;
+  line-height: 22px;
+  margin-top: 20px; }
+
+.carTable th {
+  padding: 10px;
+  border-bottom: 1px solid #ccc; }
+
+.carTable td {
+  background-color: #fff4e8;
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding: 10px; }
+
+.carTable .goodsInfo .name {
+  margin-left: 10px;
+  width: 300px;
+  line-height: 18px; }
+
+.carTable td.price {
+  color: #b4aaab; }
+
+.carTable .thumb, .carTable td.num a {
+  border: 1px solid #efefef; }
+
+.carTable td.num * {
+  float: left; }
+
+.carTable td.num a {
+  line-height: 22px;
+  height: 22px;
+  width: 22px;
+  text-decoration: none;
+  color: #333;
+  text-align: center;
+  background-color: #fff; }
+
+.carTable td.num input {
+  width: 40px;
+  height: 20px;
+  border: none;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  text-align: center; }
+
+.carTable td.operation a {
+  text-decoration: none;
+  color: #b4aaab; }
+
+.shoppingCarTools {
+  margin-top: 20px;
+  border: 1px solid #efefef;
+  color: #818181;
+  height: 50px;
+  line-height: 50px; }
+
+.shoppingCarTools input[type="checkbox"] {
+  vertical-align: middle;
+  margin: 0 0 1px 10px; }
+
+.shoppingCarTools a {
+  text-decoration: none;
+  color: #818181;
+  margin-left: 10px; }
+
+.shoppingCarTools .total {
+  font-size: 16px; }
+
+.shoppingCarTools .buy {
+  display: inline-block;
+  height: 52px;
+  margin-top: -1px;
+  background-color: #a50000;
+  color: #fff;
+  padding: 0 20px;
+  font-size: 18px; }
+
+.recommend {
+  margin-top: 20px;
+  color: #818181; }
+
+.recommend ul {
+  margin-top: 10px; }
+
+.recommend li {
+  display: inline-block;
+  border: 1px solid #efefef; }

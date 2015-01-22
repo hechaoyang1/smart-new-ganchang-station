@@ -1,0 +1,55 @@
+{include file="member.header.html"}
+<div class="content">
+    <div class="particular">
+        <div class="particular_wrap">
+            <h2>退货单详情</h2>
+            <div class="box">
+                <div class="state">退货单状态&nbsp;:&nbsp;<strong>{$detail.status_text}</strong></div>
+                <div class="num">退货单号&nbsp;:&nbsp;{$detail.return_order_sn}</div>
+                <div class="time">退货申请时间&nbsp;:&nbsp;{$detail.ctime|date:Y-m-d H:i:s}</div>
+
+            </div>
+            <h3>退款单信息</h3>
+            <dl class="info">
+                <dd>订单号&nbsp;:&nbsp;{$detail.order_sn}</dd>
+                <dd>买家&nbsp;:&nbsp;{$detail.buyer_name}</dd>
+            </dl>
+            <dl class="info">
+            <dt>退货原因&nbsp;:&nbsp;</dt>
+            <dd>{$detail.remark}</dd>
+            </dl>
+            <div class="ware_line">
+                <div class="ware">
+                    <div class="ware_list">
+                        <div class="ware_pic"><img src="{$detail.goods_image}" width="50" height="50"  /></div>
+                        <div class="ware_text">
+                            <div class="ware_text1">
+                                <a href="{url app=goods&id=$detail.goods_id}">{$detail.goods_name|escape}</a>
+                                <br />
+                                <span>{$goods.specification|escape}</span>
+                            </div>
+                            <div class="ware_text2">
+                                <span>{$lang.quantity}&nbsp;:&nbsp;<strong>{$detail.quantity}</strong></span>
+                                <span>{$lang.price}&nbsp;:&nbsp;<strong>{$detail.price|price}</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="transportation">历史记录</div>
+                    <ul class="order_detail_list">
+	                    <!--{foreach from=$detail.log item=vo}-->
+	                    <li>{$vo.time|date:Y/m/d}&nbsp;:&nbsp;{$vo.name}&nbsp;&nbsp;{$vo.mark}</li>
+	                    <!--{/foreach}-->
+                    </ul>
+                </div>
+            </div>
+            <div class="particular_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

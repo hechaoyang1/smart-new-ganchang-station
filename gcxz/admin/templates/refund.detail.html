@@ -1,0 +1,64 @@
+{include file="header.html"}
+<div class="info">
+	</dl>
+    <table class="infoTable">
+      <tr>
+      	<th class="paddingT15">订单号:</th>
+      	<td>{$data.order_sn}</td>
+      </tr>
+       <tr>
+      	<th class="paddingT15">退款金额:</th>
+      	<td>{$data.amount}</td>
+      </tr>
+      <tr>
+      	<th class="paddingT15">买家:</th>
+      	<td>{$data.buyer_name}</td>
+      </tr>
+      <tr>
+      	<th class="paddingT15">申请理由:</th>
+      	<td>{$data.info}</td>
+      </tr>
+      <tr>
+      	<th class="paddingT15">卖家:</th>
+      	<td>{$data.seller_name}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">来源:</th>
+        <td>{$data.type_text}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">状态:</th>
+        <td>{$data.status}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">商品信息:</th>
+        <td>
+        <table style="width:100%">
+        <!--{foreach from=$data.goods item=goods}-->
+        <tr><td><img src="/{$goods.goods_image}" width="50" height="50"  /></td>
+        <td><a href="{$site_url}/index.php?app=goods&id={$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                                {if $group_id}<a target="_blank" href="{url app=groupbuy&id=$group_id}"><strong class="color8">[{$lang.groupbuy}]</strong></a>{/if}
+                               </td>
+         <td><span>数量&nbsp;:&nbsp;<strong>{$goods.quantity}</strong></span>
+                                <span>价格&nbsp;:&nbsp;<strong>{$goods.price|price}</strong></span></td>                     
+                               
+        </tr>
+        <!--{/foreach}-->
+        </table>
+        </td>
+      </tr>
+       <tr>
+      	<th class="paddingT15">历史记录:</th>
+      	<td><p>
+      	 <!--{foreach from=$data.log item=vo}-->
+      	 	<p><span>{$vo.time|date:Y-m-d H:i:s}</span>&nbsp;&nbsp;<span>{$vo.name}</span>&nbsp;&nbsp;<span>{$vo.mark}</span></p>
+      	 <!--{/foreach}-->
+      	</p></td>
+      </tr>
+      <tr>
+      <th></th>
+      <td class="ptb20"><a href="index.php?app=refund&cur={$cur}"><input type="button" class="formbtn" value="返回" /></a></td>
+      </tr>
+    </table>
+</div>
+{include file="footer.html"}

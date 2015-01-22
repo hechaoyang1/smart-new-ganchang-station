@@ -1,0 +1,90 @@
+{include file=header.new.html}
+{include file=top.html}
+<link href="{res file=css/f-product.css}" rel="stylesheet"
+	type="text/css" />
+<!-- <form id="filter" name="filter" method="post" action="index.php?app=farmGoods">
+	<input type="hidden" name="region" class="farea" value="" /> <input
+		type="hidden" name="cate1" class="fdropdown" value="" /> <input
+		type="hidden" name="cate2" class="fdropdown-menu" value="" /> <input
+		type="hidden" name="sales" class="sequence1" value="" /> <input
+		type="hidden" name="time" class="sequence2" value="" />
+</form> -->
+<div class="wrap">
+	<div id="filter">
+		<dl class="term">
+			<dt>条件：</dt>
+			{if $regionId gt 0}
+			<dd class="area" attr_id="{$regionId}">
+				<span>{$regionName}</span>
+			</dd>
+			{/if} {if $cate1 gt 0}
+			<dd class="dropdown" attr_id="{$cate1}">
+				<span>{$cateName1}</span>
+			</dd>
+			{/if} {if $cate2 gt 0}
+			<dd class="dropdown-menu" attr_id="{$cate2}">
+				<span>{$cateName2}</span>
+			</dd>
+			{/if}
+
+		</dl>
+		<dl class="area">
+			<dt>区域：</dt>
+			{foreach from=$areaArr item=area}
+			<dd>
+				<div>
+					<a {if $regionId eq $area.region_id}class="seled"{/if} attr_id="{$area.region_id}">{$area.region_name}</a>
+				</div>
+			</dd>
+			{/foreach}
+
+
+		</dl>
+		<dl class="dropdown">
+			<dt>分类：</dt>
+			{foreach key=key from=$cateArr1 item=cate}
+			<dd>
+				<div>
+					<a {if $key eq $cate1}class="seled"{/if}  attr_id="{$key}">{$cate}</a>
+				</div>
+			</dd>
+			{/foreach}
+		</dl>
+		{if !empty($cateArr2)}
+		<dl class="dropdown-menu">
+			{foreach key=key from=$cateArr2 item=cate}
+			<dd>
+				<div>
+					<a {if $key eq $cate2}class="seled"{/if} attr_id="{$key}">{$cate}</a>
+				</div>
+			</dd>
+			{/foreach}
+		</dl>
+		{/if}
+	</div>
+	<div class="product">
+		<div class="title clr">
+			<span>排列方式：</span> <a {if $salesOrder==1}class="foucs"{else}class=""{/if} >销量</a><a {if $priceOrder}class="{$priceOrder} foucs"{else}class=""{/if} >价格</a> <a {if $timeOrder == 1}class="foucs"{else}class=""{/if} >上架时间</a>
+		</div>
+		<ul>
+			{foreach name=gname from=$goods item=good}
+			<li {if ($smarty.foreach.gname.index+1)%3 eq 0} class="last"{/if}><a
+				href="index.php?app=goods&id={$good.goods_id}" class="img"><img
+					src="{$good.default_image}" width="278" height="210" /></a>
+				<p>
+					<span class="name"><a
+						href="index.php?app=goods&id={$good.goods_id}">{$good.goods_name}</a></span><span
+						class="place">【{$good.region_name}】</span>
+				</p>
+				<p>
+					<span class="sales"><b>{$good.sales}</b>已售</span><span
+						class="price">￥ {$good.price}</span><span class="old-price">￥{$good.price1}</span>
+				</p></li> {/foreach}
+
+		</ul>
+		<div class="clr"></div>
+	</div>
+	<div class="page">{include file=page.bottom.html}</div>
+</div>
+{include file=footer.new.html}
+<script src="{res file=js/filter.js}"></script>

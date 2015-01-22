@@ -1,0 +1,143 @@
+{include file=header.new.html}
+{include file=top.html}
+<link href="{res file=css/zxzx.css}" rel="stylesheet" type="text/css" />
+	<div class="zxzx">
+		<div class="wrap">
+			<div class="clearfix zxbox">
+				<div class="left-column">
+					<div class="slide zxslide">
+						<ul class="img-list">
+							<li><img src="data/files/article/20150128/zxslide1.jpg" alt=""></li>
+						</ul>
+					</div>
+					<div class="tab zx-tab">
+						<ul class="tab-top clearfix">
+							<li class="active"><a href="javascript:;">{$top_house.title}</a></li>
+							<li><a href="javascript:;">{$top_recu.title}</a></li>
+							<li><a href="javascript:;">{$top_trans.title}</a></li>
+						</ul>
+						<div class="tab-content">
+							<ul class="zx-list">
+								<li class="first">
+									<a href="#">
+										<img src="data/files/article/20150128/zxslide1.jpg" width="155" height="88" alt="">
+										<span class="name">仁寿各部门联手出重拳 扣黑车18辆</span>
+										<span class="summary">
+											1月8日下午1点23分,一辆车牌为川Z12321的枣红色小车...
+										</span>
+									</a>
+								</li>
+								<!--{foreach from=$houses item=vo}-->
+								<li><a class="pull-left" href="index.php?app=cms&act=detail&id={$vo.id}">{$vo.title}</a><span class="pull-right">{$vo.create_time}</span></li>
+								<!-- {/foreach} -->
+							</ul>
+							<ul class="zx-list" style="display:none;">
+								<li class="first">
+									<a href="#">
+										<img src="data/files/article/20150128/zxslide1.jpg" width="155" height="88" alt="">
+										<span class="name">仁寿各部门联手出重拳 扣黑车18辆</span>
+										<span class="summary">
+											1月8日下午1点23分,一辆车牌为川Z12321的枣红色小车...
+										</span>
+									</a>
+								</li>
+								<!--{foreach from=$recus item=vo}-->
+								<li><a class="pull-left" href="index.php?app=cms&act=detail&id={$vo.id}">{$vo.title}</a><span class="pull-right">{$vo.create_time}</span></li>
+								<!-- {/foreach} -->
+							</ul>
+							<ul class="zx-list" style="display:none;">
+								<li class="first">
+									<a href="#">
+										<img src="data/files/article/20150128/zxslide1.jpg" width="155" height="88" alt="">
+										<span class="name">仁寿各部门联手出重拳 扣黑车18辆</span>
+										<span class="summary">
+											1月8日下午1点23分,一辆车牌为川Z12321的枣红色小车...
+										</span>
+									</a>
+								</li>
+								<!--{foreach from=$trans item=vo}-->
+								<li><a class="pull-left" href="index.php?app=cms&act=detail&id={$vo.id}">{$vo.title}</a><span class="pull-right">{$vo.create_time}</span></li>
+								<!-- {/foreach} -->
+								</ul>
+						</div>
+					</div>
+				</div>
+				<div class="mid-colnmn">
+					<div class="zx-title">
+						<h3 class="pull-left">{$top_new.title}</h3>
+						<a href="#" class="more">更多</a>
+					</div>
+					<ul class="zx-list zx-hot">
+						<!--{foreach from=$news item=vo}-->
+						<li><a class="pull-left" href="index.php?app=cms&act=detail&id={$vo.id}">{$vo.title}</a><span class="pull-right">{$vo.create_time}</span></li>
+						<!-- {/foreach} -->
+					</ul>
+				</div>
+				<div class="right-colnmn">
+					<div class="zx-smallbox">
+						<div class="title">
+							<h3 class="pull-left">热门快递</h3>
+							<a href="#" class="more">更多</a>
+						</div>
+						<ul class="zx-kd">
+							<li>
+								<a href="http://www.sto.cn/" class="clearfix">
+									<img class="pull-left" src="data/files/article/20150128/kd1.jpg" alt="">申通
+								</a>
+							</li>
+							<li>
+								<a href="http://www.ems.com.cn/" class="clearfix">
+									<img class="pull-left" src="data/files/article/20150128/kd2.jpg" alt="">EMS
+								</a>
+							</li>
+							<li>
+								<a href="http://www.yundaex.com/" class="clearfix">
+									<img class="pull-left" src="data/files/article/20150128/kd3.jpg" alt="">韵达
+								</a>
+							</li>
+							<li>
+								<a href="http://www.ttkdex.com/" class="clearfix">
+									<img class="pull-left" src="data/files/article/20150128/kd4.jpg" alt="">天天
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="zx-smallbox mt10">
+						<div class="title">
+							<h3 class="pull-left">{$top_travel.title}</h3>
+							<a href="#" class="more">更多</a>
+						</div>
+						<ul class="zx-list zx-tour">
+						<!--{foreach from=$houses item=vo}-->
+						<li><a href="index.php?app=cms&act=detail&id={$vo.id}"><span class="red">[旅游]</span> {$vo.title}</a></li>
+						<!-- {/foreach} -->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="zxbox" style="border-bottom:1px solid #eee;">
+				<img src="data/files/article/20150128/zxzx2.jpg" alt="">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" >
+	var gcxz={};
+	gcxz.tab = function(options){
+		var _t = options;
+		var btn = _t.dom.find('.tab-top').children();
+		var content = _t.dom.find('.tab-content').children();
+		btn.on('click',function(){
+			var t = $(this);
+			var i = t.index();
+			t.addClass('active').siblings().removeClass('active');
+			content.eq(i).show().siblings().hide();
+		});
+	};
+	gcxz.tab({
+		dom:$('.classify-tab')
+	});
+	gcxz.tab({
+		dom:$('.tab')
+	});
+	</script>
+	{include file=footer.new.html}

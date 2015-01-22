@@ -1,0 +1,270 @@
+{include file=header.new.html} {include file=top.new.html}
+<link rel="stylesheet" href="{res file=css/goodsDetailed.css}">
+<div class="goodsDetaildContent">
+	<div class="wrap">
+		<div class="path">{include file=curlocal.html}</div>
+		<div class="clearfix">
+			<div class="pull-left">
+				<div class="clearfix">
+					<div class="goodsImg">
+						<div class="bigImg">
+							<img src="{$goods.default_image}"
+								jqimg="{$goods._images.0.image_url}" alt="">
+						</div>
+						<ul class="imgList clearfix">
+							<!--{foreach from=$goods._images item=goods_image name=fe_goods_image}-->
+							<li {if $smarty.foreach.fe_goods_image.first}class="active"
+								{/if} big-img="{$goods_image.image_url}"
+								max-img="{$goods_image.image_url}"><img
+								src="{$goods_image.thumbnail}" width="52" height="48" alt=""></li>
+							<!--{/foreach}-->
+						</ul>
+					</div>
+					<div class="goodsInfo">
+						<h2>{$goods.goods_name|escape}</h2>
+						<div class="goodsPrice">
+							<div>
+								促销价：<span class="orange"><i>￥</i>{$goods.price}</span>
+							</div>
+							<div>
+								原价：
+								<del>
+									<i>￥</i>{$goods.price1}
+								</del>
+							</div>
+						</div>
+						<!--{if $goods.spec_qty gt 0}-->
+						<div class="fz14 specifications">
+							{$goods.spec_name_1|escape}：</div>
+						<!--{/if}-->
+						<!--{if $goods.spec_qty gt 1}-->
+						<div class="fz14 specifications">
+							{$goods.spec_name_2|escape}：</div>
+						<!--{/if}-->
+						<div class="fz14 mt20">
+							数量<input id="quantity" class="number" type="text" value="1">件
+							库存<span ectype='goods_stock'>{$goods._specs.0.stock}</span>件
+						</div>
+						<div class="btns">
+							<a class="buyNow" href="javascript:nowbuy();">立即购买</a> <a
+								class="shoppingCar" href="javascript:buy();">加入购物车</a>
+						</div>
+					</div>
+				</div>
+				<div class="mt20 clearfix">
+					<div class="hotSale">
+						<div class="title">
+							<h3>店铺热卖</h3>
+						</div>
+						<ul class="list">
+							<!--{foreach from=$hotGoods item=good}-->
+							<li><a class="hotSaleImg"
+								href="index.php?app=goods&id={$good.goods_id}"> <img
+									src="{$good.default_image}" height="140" width="140" alt="">
+									<span class="price">￥{$good.price}</span>
+							</a>
+								<div class="name">
+									<a href="#">{$good.goods_name}</a>
+								</div></li>
+							<!--{/foreach}-->
+						</ul>
+					</div>
+					<div class="goodsShow">
+						<ul class="tab-top clearfix">
+							<li class="active"><a href="javascript:;">商品详情</a></li>
+							<li ><a href="javascript:;">商品评论</a></li>
+							<li><a href="javascript:;">销售记录</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="goodsDetaild">
+								{$goods.description|escape:editor}</div>
+							<div style="display: none;" class="comment">
+								<div class="score clearfix">
+									<div class="good">
+									<input type="hidden" id="goods_id" value="{$id}"/>
+										<span class="orange">{$good_percent}%</span>好评率
+									</div>
+									<ul class="scoreDetailed">
+										<li>好评: <span><i style="width: {$good_percent}%;"></i></span> {$good_percent}%
+										</li>
+										<li>中评: <span><i style="width: {$normal_percent}%;"></i></span> {$normal_percent}%
+										</li>
+										<li>差评: <span><i style="width: {$bad_percent}%;"></i></span> {$bad_percent}%
+										</li>
+									</ul>
+								</div>
+								<div class="filter">
+									<li><label><input type="radio" name="comment" value="0" checked> 全部({$page_info.item_count})</label></li>
+									<li><label><input type="radio" name="comment" value="3"> 好评({$eval_good})</label></li>
+									<li><label><input type="radio" name="comment" value="2"> 中评({$eval_normal})</label></li>
+									<li><label><input type="radio" name="comment" value="1"> 差评({$eval_bad})</label></li>
+								</div>
+								<div class="table">
+									<table>
+										<thead>
+											<tr>
+												<th width="300" class="center">评价内容</th>
+												<th class="mid center">顾客满意度</th>
+												<th class="center">评价者</th>
+											</tr>
+										</thead>
+										<tbody>
+											{foreach from=$goods_comments item=comments}
+											<tr>
+												<td>
+													<p>{$comments.comment}</p>
+												</td>
+												<td class="mid center">{if $comments.evaluation==3}好评{/if}{if $comments.evaluation==2}中评{/if}{if $comments.evaluation==1}差评{/if}</td>
+												<td class="center">{$comments.buyer_name}
+													<div>{$comments.time}</div>
+												</td>
+											</tr>
+											{/foreach}
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div style="display: none;" class="soldNote">
+								<table>
+									<thead>
+										<tr>
+											<th>买家</th>
+											<th>价格</th>
+											<th>数量</th>
+											<th>成交时间</th>
+										</tr>
+									</thead>
+									<tbody>
+										{foreach from=$sales_list item=sales}
+										<tr>
+											<td>{if $sales.anonymous}***{else}{$sales.buyer_name|escape}{/if}</td>
+											<td class="orange">{$sales.price|price}</td>
+											<td>{$sales.quantity}件</td>
+											<td>{$sales.add_time|date}</td>
+										</tr>
+										{/foreach}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="shopInfo">
+				<img class="imgTop"
+					src="themes/store/default/styles/default/img/shopInfoBg.png" alt="">
+				<div class="text-center">
+					<img src="{$store.store_logo}" alt="">
+				</div>
+				<ul>
+					<li>店铺：{$store.store_name|escape}</li>
+					<li>店主：{$store.store_owner.user_name|escape}</li>
+					<li>信用度：{$store.credit_value}</li>
+					<li>店铺等级：{$store.sgrade}</li>
+					<li>所在区域：{$store.region_name|escape}</li>
+					<li>联系卖家：</li>
+				</ul>
+				<a href="{url app=store&id=$store.store_id}" class="intoShop">去店铺逛逛</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="{res file=js/jquery.zoom.js}"></script>
+<script src="{res file=js/goodsDetailed.js}"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}"
+	charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=goodsinfo.js}"
+	charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+/* buy */
+function buy()
+{
+    if (goodsspec.getSpec() == null)
+    {
+        alert('请选择规格');
+        return;
+    }
+    var spec_id = goodsspec.getSpec().id;
+
+    var quantity = $("#quantity").val();
+    if (quantity == '')
+    {
+        alert('请输入购买数量');
+        return;
+    }
+    if (parseInt(quantity) < 1)
+    {
+        alert('您输入的数量不正确');
+        return;
+    }
+    add_to_cart(spec_id, quantity);
+}
+
+function nowbuy()
+{
+	 if (goodsspec.getSpec() == null)
+	    {
+	        alert('请选择规格');
+	        return;
+	    }
+	    var spec_id = goodsspec.getSpec().id;
+
+	    var quantity = $("#quantity").val();
+	    if (quantity == '')
+	    {
+	        alert('请输入购买数量');
+	        return;
+	    }
+	    if (parseInt(quantity) < 1)
+	    {
+	        alert('您输入的数量不正确');
+	        return;
+	    }
+    add_to_cart1(spec_id, quantity);
+}
+
+/* add cart */
+function add_to_cart(spec_id, quantity)
+{
+    var url = SITE_URL + '/index.php?app=cart&act=add';
+    $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
+        if (data.done)
+        {
+           /*  $('.bold_num').text(data.retval.cart.kinds);
+            $('.bold_mly').html(price_format(data.retval.cart.amount));
+            $('.ware_cen').slideDown('slow');
+            setTimeout(slideUp_fn, 5000); */
+            alert('商品已成功加入购物车');
+        }
+        else
+        {
+            alert(data.msg);
+        }
+    });
+}
+
+/* add cart */
+function add_to_cart1(spec_id, quantity)
+{
+    var url = SITE_URL + '/index.php?app=cart&act=add';
+    $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
+    	 if (data.done)
+         {
+        	window.location.href = SITE_URL + '/index.php?app=cart'; 
+         }else{
+        	alert(data.msg);
+         }
+    });
+}
+
+var specs = new Array();
+<!--{foreach from=$goods._specs item=spec}-->
+specs.push(new spec({$spec.spec_id}, '{$spec.spec_1|escape}', '{$spec.spec_2|escape}', {$spec.price}, {$spec.stock}));
+<!--{/foreach}-->
+var specQty = {$goods.spec_qty};
+var defSpec = {$goods.default_spec|escape};
+var goodsspec = new goodsspec(specs, specQty, defSpec);
+//]]>
+</script>
+{include file=footer.new.html}

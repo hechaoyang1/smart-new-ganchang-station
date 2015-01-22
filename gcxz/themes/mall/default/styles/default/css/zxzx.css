@@ -1,0 +1,143 @@
+.zxzx {
+  background-color: #f6f6f6;
+  padding: 0 0 20px; }
+
+.zxzx .wrap {
+  width: 985px; }
+
+.left-column {
+  float: left;
+  width: 355px; }
+
+.mid-colnmn {
+  float: left;
+  margin: 0 20px;
+  width: 360px; }
+
+.right-colnmn {
+  float: left;
+  width: 198px; }
+
+.zx-title {
+  overflow: hidden;
+  border-bottom: 2px solid #a50000;
+  padding: 0 0 5px;
+  height: 20px;
+  line-height: 20px; }
+
+.zx-title h3 {
+  font-size: 16px; }
+
+.zx-title .more {
+  color: #8d8d8d;
+  text-decoration: none;
+  float: right; }
+
+.zx-list {
+  padding: 10px 0; }
+
+.zx-list li {
+  background: url(../img/list-style.jpg) no-repeat left center;
+  font-size: 15px;
+  padding-left: 15px;
+  overflow: hidden;
+  height: 28px;
+  line-height: 28px; }
+
+.zx-list li a {
+  text-decoration: none;
+  color: #333; }
+
+.zx-hot li.first {
+  height: auto;
+  margin-bottom: 5px; }
+
+.zx-hot li.first a {
+  width: 300px;
+  font-size: 22px; }
+
+.zxbox {
+  background-color: #fff;
+  padding: 10px;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee; }
+
+.zx-smallbox {
+  border: 1px solid #d6d6d6; }
+
+.zx-smallbox .title {
+  background: url(../img/zx-smallbox-title.jpg) repeat-x top;
+  height: 28px;
+  line-height: 28px;
+  overflow: hidden;
+  padding: 0 10px; }
+
+.zx-smallbox .title h3 {
+  font-size: 16px;
+  color: #333; }
+
+.zx-smallbox .title .more {
+  float: right;
+  text-decoration: none;
+  color: #8d8d8d; }
+
+.zx-kd {
+  padding: 0 10px 10px; }
+
+.zx-kd li {
+  margin-top: 10px; }
+
+.zx-kd li img {
+  margin-right: 10px; }
+
+.zx-kd li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 20px;
+  line-height: 62px; }
+
+.zx-tour {
+  padding: 5px 0; }
+
+.zx-tour li {
+  background: none; }
+
+.zx-tab .tab-top {
+  padding: 20px 0 10px;
+  border-bottom: 2px solid #a50000; }
+
+.zx-tab .tab-top li {
+  float: left;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 35px; }
+
+.zx-tab a {
+  color: #333;
+  text-decoration: none; }
+
+.zx-tab .tab-top li.active a {
+  color: #a50000; }
+
+.zx-tab .tab-top li {
+  overflow: hidden; }
+
+.zx-tab .tab-content li.first {
+  height: auto;
+  padding-left: 0;
+  line-height: 22px; }
+
+.zx-tab .tab-content li.first span {
+  display: block; }
+
+.zx-tab .tab-content li.first .name {
+  color: #282828;
+  font-weight: bold; }
+
+.zx-tab .tab-content li.first .summary {
+  font-size: 12px; }
+
+.zx-tab .tab-content li.first img {
+  float: left;
+  border: 1px solid #d6d6d6;
+  margin-right: 10px; }

@@ -1,0 +1,17 @@
+{include file=member.header.html}
+<div class="content">
+<form method="post" action="index.php?app=buyer_returngoods&act=apply">
+	<input type="hidden" name='order_id' value="{$order_id}">
+	<input type="hidden" name='rec_id' value="{$rec_id}">
+    <h1>申请退货</h1>
+    <dl>
+        <dt>退货理由:</dt>
+        <dd><textarea class="text" id="remark_input" style="width:200px;" name="remark"></textarea></dd>
+    </dl>
+    <div class="btn">
+        <input type="submit" id="confirm_button" class="btn1" value="{$lang.confirm}" />
+        <input type="button" id="cancel_button" class="btn2" value="{$lang.cancel}" />
+    </div>
+</form>
+</div>
+{include file="footer.html"}

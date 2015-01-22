@@ -1,0 +1,39 @@
+			<div class="public_select table" style="display:none;">
+                <table id="my_goods" server="{$site_url}/index.php?app=my_goods&amp;act=ajax_col" >
+                    <!--{if $goods_list}-->
+                    <tr class="gray"  ectype="table_header">
+                        <th width="65" coltype="editable" column="goods_number" checker="check_required" inputwidth="90%" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">商品编号</span></th>
+                        <th width="165" coltype="editable" column="goods_name" checker="check_required" inputwidth="90%" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">商品名称</span></th>
+                        <th width="70" column="cate_id" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">分类</span></th>
+                        <th width="105" coltype="editable" column="brand" checker="check_required" inputwidth="55px" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">供应商</span></th>
+                        <th width="55" class="cursor_pointer" coltype="editable" column="price" checker="check_number" inputwidth="50px" title="{$lang.sort_order}"><span ectype="order_by">价格</span></th>
+                        <th width="55" class="cursor_pointer" coltype="editable" column="stock" checker="check_pint" inputwidth="50px" title="{$lang.sort_order}"><span ectype="order_by">售后类型</span></th>
+                        <th>{$lang.handle}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$goods_list item=goods name=_goods_f}-->
+                    <tr class="line<!--{if $smarty.foreach._goods_f.last}--> last_line<!--{/if}-->" ectype="table_item" idvalue="{$goods.goods_id}">
+                        <td width="65">
+                        	<span class="goods_id" style="display:none;">{$goods.id}</span>
+                        	<span class="color2 goods_number">{$goods.goods_number}</span>
+                       	</td>
+                        <td width="160" align="align2">
+                          <p class="ware_text"><span class="color2" ectype="editobj">{$goods.goods_name|escape}</span></p>
+                        </td>
+                        <td width="65"><span class="color2">{$goods.cate_name|nl2br}</span></td>
+                        <td width="100" class="align2">
+                            <span class="service_type" style="display:none;">{$goods.service_type}</span>
+                            <span class="supplier_id" style="display:none;">{$goods.supplier_id}</span>
+                            <span class="color2" ectype="editobj">{$goods.supplier_name|escape}</span>
+                        </td>
+                        <td width="50" class="align2"><!--{if $goods.spec_qty}--><span ectype="dialog" dialog_width="430" uri="index.php?app=my_goods&amp;act=spec_edit&amp;id={$goods.goods_id}" dialog_id="my_goods_spec_edit" class="cursor_pointer"><!--{else}--><span class="color2" ectype="editobj"><!--{/if}-->{$goods.price}</span></td>
+                        <td width="50" class="align2"><!--{if $goods.spec_qty}--><span ectype="dialog" dialog_width="430" uri="index.php?app=my_goods&amp;act=spec_edit&amp;id={$goods.goods_id}" dialog_id="my_goods_spec_edit" class="cursor_pointer"><!--{else}--><span class="color2" ectype="editobj"><!--{/if}-->{$goods.service_type}</span></td>
+                        <td><div class="add_share_goods" style="cursor: pointer;">添加</div></td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td class="align2 member_no_records padding6" colspan="10">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                </table>
+            </div>

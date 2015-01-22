@@ -1,0 +1,22 @@
+<ul class="tab">
+    <li class="active">填写快递单</li>
+</ul>
+<div class="eject_con">
+    <div class="info_table_wrap">
+    <div id="warning"></div>
+        <form method="post" action="index.php?app=buyer_returngoods&amp;act=express&amp;" target="buyer_returngoods" >
+        <input type="hidden" name='id' value={$id}> 
+        <ul class="info_table">
+            <li>
+                <h4>快递单号<font color="red">*</font>:</h4>
+                <p class="new_style"><input type="text" name='express_sn'></p>
+            </li>
+            <li>
+                <h4>操作原因</h4>
+                <p><textarea class="text" name="remark"></textarea></p>
+            </li>
+        </ul>
+        <div class="submit"><input type="submit" class="btn" value="{$lang.submit}" /></div>
+        </form>
+    </div>
+</div>

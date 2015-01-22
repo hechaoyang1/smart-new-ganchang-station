@@ -1,0 +1,33 @@
+<div class="nav">
+		<div class="wrap">
+			<div class="pull-left classify {if $index != 1}hide{/if}">
+				<div class="text-center classify-title">全部产品分类</div>
+				<?php 
+					$top_category=get_top_category();
+				?>
+				<ul class="classify-list">
+					<li class="icon-1"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[1]['cate_id']; ?>"><?php echo $top_category[1]['cate_name'] ?></a></li>
+					<li class="icon-2"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[2]['cate_id']; ?>"><?php echo $top_category[2]['cate_name'] ?></a></li>
+					<li class="icon-3"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[3]['cate_id']; ?>"><?php echo $top_category[3]['cate_name'] ?></a></li>
+					<li class="icon-4"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[4]['cate_id']; ?>"><?php echo $top_category[4]['cate_name'] ?></a></li>
+					<li class="icon-5"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[5]['cate_id']; ?>"><?php echo $top_category[5]['cate_name'] ?></a></li>
+					<li class="icon-6"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[6]['cate_id']; ?>"><?php echo $top_category[6]['cate_name'] ?></a></li>
+					<li class="icon-7"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[7]['cate_id']; ?>"><?php echo $top_category[7]['cate_name'] ?></a></li>
+					<li class="icon-8"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[8]['cate_id']; ?>"><?php echo $top_category[8]['cate_name'] ?></a></li>
+					<li class="icon-9"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[9]['cate_id']; ?>"><?php echo $top_category[9]['cate_name'] ?></a></li>
+					<li class="icon-10"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[10]['cate_id']; ?>"><?php echo $top_category[10]['cate_name'] ?></a></li>
+					<li class="icon-11"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[11]['cate_id']; ?>"><?php echo $top_category[11]['cate_name'] ?></a></li>
+					<li class="icon-12"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[12]['cate_id']; ?>"><?php echo $top_category[12]['cate_name'] ?></a></li>
+					<li class="icon-13"><a href="<?php echo SITE_URL.'/index.php?app=search&cate_id='.$top_category[13]['cate_id']; ?>"><?php echo $top_category[13]['cate_name'] ?></a></li>
+				</ul>
+			</div>
+			<ul class="list">
+				<li {if $index == 1}class="active"{/if}><a href="{url app=default&act=index}">首页</a></li>
+				<li>|</li>
+				<li {if $tab=='fcg'}class="active"{/if}><a href="{url app=default&act=fcg}">逢场购</a><img src="{res file=img/hot.gif}" alt="" class="hot"></li>
+				<li>|</li>
+				<li {if $tab=='ttc'}class="active"{/if}><a href="{url app=nativegoods}">土特产</a></li>
+			</ul>
+		</div>
+	</div>
+		<script src="{res file=js/top.js}"></script>

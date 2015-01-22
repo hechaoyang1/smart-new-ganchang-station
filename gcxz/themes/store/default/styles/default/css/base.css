@@ -1,0 +1,346 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline; }
+
+:focus {
+  outline: 0; }
+
+table {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal; }
+
+a img, iframe {
+  border: none; }
+
+ol, ul {
+  list-style: none; }
+
+img {
+  vertical-align: bottom; }
+
+input, textarea, select, button {
+  font-size: 100%;
+  font-family: inherit; }
+
+select {
+  margin: inherit; }
+
+/* Fixes incorrect placement of numbers in ol’s in IE6/7 */
+ol {
+  margin-left: 2em; }
+
+/* == clearfix == */
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
+.clearfix {
+  display: inline-block; }
+
+* html .clearfix {
+  height: 1%; }
+
+.clearfix {
+  display: block; }
+
+body {
+  font-size: 12px;
+  font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti;
+  background: url(../img/bodybg.jpg); }
+
+.wrap {
+  width: 960px;
+  margin: 0 auto; }
+
+.bold {
+  font-weight: bold; }
+
+.relative {
+  position: relative; }
+
+.absolute {
+  position: absolute; }
+
+.pull-left {
+  float: left; }
+
+.pull-right {
+  float: right; }
+
+.text-center {
+  text-align: center; }
+
+.ovf {
+  overflow: hidden; }
+
+.mt10 {
+  margin-top: 10px; }
+
+.mt20 {
+  margin-top: 20px; }
+
+.ml10 {
+  margin-left: 10px; }
+
+.mtb10 {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.mlr10 {
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.pt10 {
+  padding-top: 10px; }
+
+.ptb10 {
+  padding-top: 10px;
+  padding-bottom: 10px; }
+
+.red {
+  color: #a50000; }
+
+.black {
+  color: #333; }
+
+.orange {
+  color: #ef8200; }
+
+.fz14 {
+  font-size: 14px; }
+
+.top-tools {
+  background-color: #f7f7f7;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  height: 27px;
+  line-height: 27px;
+  color: #333;
+  font-size: 12px; }
+
+.top-tools .wrap {
+  width: 960px;
+  border: none;
+}
+
+.top-tools a {
+  color: #333; }
+
+.top-tools .mid {
+  text-align: center; }
+
+.top-tools .left {
+  left: 0;
+  text-align: left; }
+
+.top-tools .right {
+  top: 0;
+  right: 0;
+  text-align: right; }
+
+.top-tools .shoppingCar {
+  background: url(../img/icon-shoppingCar1.jpg) no-repeat left center;
+  padding-left: 20px;
+  margin-right: 15px; }
+
+.head-search {
+  padding: 20px 0;
+  background-color: #fff; }
+
+.head-search .search {
+  margin-left: 100px; }
+
+.head-search .search form {
+  background-color: #ef8200;
+  padding: 5px; }
+
+.head-search .wrap {
+  width: 960px;
+  border: none;
+  position: static; }
+
+.head-search .search .key {
+  border: none;
+  height: 25px;
+  line-height: 24px;
+  width: 360px;
+  padding-left: 10px; }
+
+.head-search .search .sub {
+  height: 25px;
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 0 20px;
+  font-size: 14px; }
+
+.head-search .search a {
+  color: #333;
+  margin-right: 10px;
+  text-decoration: none; }
+
+.nav {
+  background-color: #ef8200;
+  height: 34px;
+  line-height: 34px;
+  font-size: 14px; }
+
+.nav .wrap {
+  width: 960px;
+  border: none;
+background:none;
+  position: static; }
+
+.nav .list {
+  float: left;
+  color: #eedd8c; }
+
+.nav .list a {
+  color: #fff;
+  border-radius: 2px;
+ }
+
+.nav .list li {
+  display: inline-block;
+	float:left;
+  text-align: center;
+  padding: 0 18px;
+  position: relative; }
+
+.nav .list .hot {
+  position: absolute;
+  right: 0;
+  top: -10px; }
+
+.nav .list li.active {
+  background: url(../img/nav-active-bg.png) repeat-x left top; }
+
+.nav .list li.active a {
+  color: #fff; }
+
+.nav a {
+  color: #fff;
+  text-decoration: none; }
+
+.nav .classify {
+  width: 187px;
+  margin-right: 10px;
+  position: relative;
+  background-color: #a50000;
+  color: #fff;
+  height: 34px; }
+
+.nav .classify.hide .classify-list {
+  display: none; }
+
+.nav .classify.hide:hover .classify-list {
+  display: block; }
+
+.nav .classify-list {
+  background: url(../img/classifybg.png) no-repeat left top;
+  height: 358px;
+  position: absolute;
+  width: 187px;
+  top: 34px;
+  padding-top: 50px;
+  z-index: 999999; }
+
+.nav .classify-list li {
+  padding-left: 40px;
+  font-size: 12px;
+  line-height: 25px;
+  background: url(../img/classify-icon.png) no-repeat 20px 5px; }
+
+.nav .classify-list li.icon-1 {
+  background-position: 20px 5px; }
+
+.nav .classify-list li.icon-2 {
+  background-position: 20px -22px; }
+
+.nav .classify-list li.icon-3 {
+  background-position: 20px -47px; }
+
+.nav .classify-list li.icon-4 {
+  background-position: 20px -71px; }
+
+.nav .classify-list li.icon-5 {
+  background-position: 20px -96px; }
+
+.nav .classify-list li.icon-6 {
+  background-position: 20px -121px; }
+
+.nav .classify-list li.icon-7 {
+  background-position: 20px -146px; }
+
+.nav .classify-list li.icon-8 {
+  background-position: 20px -171px; }
+
+.nav .classify-list li.icon-9 {
+  background-position: 20px -196px; }
+
+.nav .classify-list li.icon-10 {
+  background-position: 20px -220px; }
+
+.nav .classify-list li.icon-11 {
+  background-position: 20px -246px; }
+
+.nav .classify-list li.icon-12 {
+  background-position: 20px -270px; }
+
+.nav .classify-list li.icon-13 {
+  background-position: 20px -296px; }
+
+.nav .classify-list a {
+  color: #a50000;
+  display: block; }
+
+.banner {
+  background: url(../img/bannerbg.png) top repeat-x #fcc93c; }
+
+.footer {
+  margin-top: 20px;
+  border-top: 2px solid #a50000;
+  background-color: #f5f5f5;
+  color: #333; }
+
+.footer .wrap {
+  width: 960px;
+  border: none;
+  position: static; }
+
+.footer .f1, .footer .f2 {
+  float: left; }
+
+.footer .f1 {
+  width: 28%; }
+
+.footer .f2 {
+  width: 18%; }
+
+.footer .wrap {
+  padding: 10px 0; }
+
+.footer h3 {
+  font-size: 16px; }
+
+.footer a {
+  text-decoration: none;
+  color: #333; }
+
+.page {
+  text-align: right;
+  padding: 20px; }

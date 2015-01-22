@@ -1,0 +1,85 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>{$store.store_name} | {$store.owner_name}</p>
+  <ul class="subnav">
+    <!--{if $smarty.get.binded}-->
+    <li><a class="btn1" href="index.php?app=bindsupplier&amp;act=index&amp;id={$smarty.get.id}&amp;">管理</a></li>
+    <!--{else}-->
+    <li><span>管理</span></li>
+    <!--{/if}-->
+    <!--{if $smarty.get.binded}-->
+    <li><span>已绑定</span></li>
+    <!--{else}-->
+    <li><a class="btn1" href="index.php?app=bindsupplier&amp;act=index&amp;id={$smarty.get.id}&amp;binded=1">已绑定</a></li>
+    <!--{/if}-->
+    <li><a class="btn1" href="javascript:history.back();">返回</a></li>
+  </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="bindsupplier" />
+          <input type="hidden" name="act" value="index" />
+          <input type="hidden" name="id" value="{$smarty.get.id}" />
+          <input type="hidden" name="binded" value="{$smarty.get.binded}" />
+          	供应商/联系人:
+          <input class="queryInput" type="text" name="owner_name" value="{$smarty.get.owner_name|escape}" />
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=store<!--{if $smarty.get.wait_verify}-->&amp;wait_verify={$smarty.get.wait_verify}<!--{/if}-->">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html} </div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $suppliers}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td><span ectype="order_by" fieldname="name">供应商名称</span></td>
+      <td><span ectype="order_by" fieldname="contacts">联系人</span></td>
+      <td>联系电话</td>
+      <td>公司电话</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$suppliers item=supplier}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$supplier.id}" /></td>
+      <td>{$supplier.name|escape}</td>
+      <td>{$supplier.contacts|escape}</td>
+      <td>{$supplier.tel|escape}</td>
+      <td>{$supplier.company_tel|escape}</td>
+      <td class="handler">
+        <!--{if $smarty.get.binded}-->
+        <a href="index.php?app=bindsupplier&amp;act=unbind&amp;id={$smarty.get.id}&amp;sid={$supplier.id}">解绑</a>
+        <!--{else}-->
+        <a href="index.php?app=bindsupplier&amp;act=bind&amp;id={$smarty.get.id}&amp;sid={$supplier.id}">绑定</a>
+        <!--{/if}--></td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="12">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $suppliers}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div id="batchAction" class="left paddingT15">
+      {if !$smarty.get.binded}
+      &nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="绑定" name="id" uri="index.php?app=bindsupplier&act=batch_bind&sid={$smarty.get.id}" presubmit="confirm('你确定要绑定这些供应商吗？');" />
+      {else}
+      <input class="formbtn batchButton" type="button" value="解绑" name="id" uri="index.php?app=bindsupplier&act=batch_unbind&sid={$smarty.get.id}" presubmit="confirm('你确定要解除绑定关系吗？');" />
+      <!--{/if}-->
+    </div>
+  </div>
+  <div class="clear"></div>
+  <!--{/if}-->
+
+</div>
+{include file="footer.html"}

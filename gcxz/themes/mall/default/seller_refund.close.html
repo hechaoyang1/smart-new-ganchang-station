@@ -1,0 +1,30 @@
+<script type="text/javascript">
+$(function(){
+    $('#cancel_button').click(function(){
+        DialogManager.close('seller_refunds_audit');
+    });
+});
+</script>
+<ul class="tab">
+    <li class="active">卖家关闭退款</li>
+</ul>
+<div class="content1">
+<div id="warning"></div>
+<form method="post" action="index.php?app=seller_refund&act=close" target="seller_refund">
+	<input type="hidden" name='id' value="{$refund.id}">
+    <h1>关闭退款</h1>
+    <p>订单号&nbsp;&nbsp;&nbsp;&nbsp;:<span>{$refund.order_sn}</span></p>
+    <dl>
+    	<dt>退款理由:</dt>
+    	<dd>{$refund.info}</dd>
+    </dl>
+    <dl>
+        <dt>关闭理由:</dt>
+        <dd><textarea class="text" id="remark_input" style="width:200px;" name="remark"></textarea></dd>
+    </dl>
+    <div class="btn">
+        <input type="submit" id="confirm_button" class="btn1" value="{$lang.confirm}" />
+        <input type="button" id="cancel_button" class="btn2" value="{$lang.cancel}" />
+    </div>
+</form>
+</div>

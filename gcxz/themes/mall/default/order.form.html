@@ -1,0 +1,332 @@
+{include file="header.new.html"}
+{include file=top.html}
+<link href="{res file=css/shoppingCar.css}" rel="stylesheet" type="text/css" />
+<style>
+<!--
+ span.error{
+	color:red;
+ }
+-->
+</style>
+<script type="text/javascript" src="{lib file=mlselection.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=jquery.plugins/jquery.validate.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=dialog/dialog.js}" id="dialog_js" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=jquery.ui/jquery.ui.js}" id="dialog_js" charset="utf-8"></script>
+<script type="text/javascript">
+</script>
+<form method="post" id="order_form">
+<div class="shoppingCar">
+		<div class="wrap">
+			<div class="step2"></div>
+			<div class="step2box">
+				<div class="title clearfix">
+					<h3 class="pull-left">收货人地址</h3><span class="pull-left">(带*必填)</span>
+				</div>
+				<div class="content">
+                	<!--{if $my_address}-->
+                	<!--{foreach from=$my_address item=address name=address_select}-->
+					<div style="padding-left:5px;" class="address_item">
+						<input type="radio" {if $smarty.foreach.address_select.iteration == 1} checked="true"{/if} name="address_options" value="{$address.addr_id}"><span class="mlr10">{$address.consignee|escape}&nbsp;&nbsp;<!--{if $address.phone_mob}-->{$address.phone_mob}<!--{else}-->{$address.phone_tel}<!--{/if}-->&nbsp;&nbsp;</span>{$address.region_name|escape}&nbsp;&nbsp;{$address.address|escape}
+					</div>
+					<!--{/foreach}-->
+					<div class="t mt10 address_item" >
+						<input type="radio" name="address_options" value="0"> 使用新地址
+					</div>
+					<!--{else}-->
+					<div class="t mt10 address_item">
+						<input type="radio" name="address_options" value="0" checked> 使用新地址
+					</div>
+					<!--{/if}-->
+					<ul class="addressList" id="region">
+						<li><span class="pull-left"><span class="orange">*</span>收货人姓名:</span> <input type="text" name="consignee" id="consignee" >&nbsp;<span class="error"></span></li>
+						<li><span class="pull-left"><span class="orange">*</span>联系电话: </span><input type="text" id="phone_mob" name="phone_mob">&nbsp;<span class="error"></span></li>
+						<li><span class="pull-left"><span class="orange">*</span>所在地区:</span> 
+						<input id="edit_region_button" type="button" class="edit_region" value="{$lang.edit}" style="display:none;" />
+                                <select onchange="hide_error();">
+                                    <option value="0">{$lang.select_pls}</option>
+                                    {html_options options=$regions}
+                                </select>
+                                <input type="hidden" class="mls_id" name="region_id" id="region_id"/><input type="hidden" name="region_name" class="mls_names" id="region_name"/>
+                              &nbsp;<span class="error"></span>
+                               </li>
+						<li><span class="pull-left"><span class="orange">*</span>详细地址:</span> <input name="address" id="address" type="text">&nbsp;<span class="error"></span></li>
+						<li><input type="checkbox" value="1" id="save_address" name="save_address">设置为默认地址</li>
+					</ul>
+				</div>
+			</div>
+			<div class="step2box">
+				<div class="title clearfix">
+					<h3 class="pull-left">配送方式</h3>
+				</div>
+				<div class="content">
+					<div class="t mt10">
+						<ul class="clearfix">
+						<?php $shiping_num=0;?>
+							<!--{foreach from=$shipping_methods item=shipping_method name=shipping_select}-->
+							<li class="pull-left<?php if($shiping_num>0)echo ' mlr10';?>"  shipping_id="{$shipping_method.shipping_id}"><input type="radio" name="shipping_id" value="{$shipping_method.shipping_id}" /><span class="shipping_name">{$shipping_method.shipping_name|escape}</span>&nbsp;<i class="a money" ectype="shipping_fee" style="display:none;">(&yen; 0.00)</i></li>
+							<?php $shiping_num=1;?>
+							<!--{/foreach}-->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="step2box">
+				<div class="title clearfix">
+					<h3 class="pull-left">付款方式</h3>
+				</div>
+				<div class="content">
+					<div class="t mt10">
+						<ul class="clearfix">
+							<li class="pull-left"><input type="radio" id="payment_1" name="payment_code" value="allinpay" checked>在线支付</li>
+							<li class="pull-left mlr10"><input type="radio" id="payment_2" name="payment_code" value="cod" onclick="checkOrder()">货到付款<i class="a">(部分商品不支持货到付款)</i></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="step2box">
+				<div class="title clearfix">
+					<h3 class="pull-left">确认订单信息</h3>
+				</div>
+				<div class="content">
+					<table class="orderFormTable" border="1" cellspacing="10" valign="middle">
+						<thead>
+							<tr>
+								<th>店铺商品</th>
+								<th>价格</th>
+								<th>数量</th>
+								<th>小计</th>
+							</tr>
+						</thead>
+						<tbody>
+						<!--{foreach from=$goods_info.items item=goods}-->
+							<tr>
+								<td>
+									<a target="_blank" href="{url app=goods&id=$goods.goods_id}"><img height="70" width="65" src="{$goods.goods_image}" alt="{$goods.goods_name|escape}"></a>
+									<a target="_blank" href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name|escape}</a>
+								</td>
+								<td>{$goods.price|price}</td>
+								<td>{$goods.quantity}</td>
+								<td class="orange">{$goods.subtotal|price}</td>
+							</tr>
+						<!--{/foreach}-->
+						<tr>
+								<td colspan="3">
+									<input placeholder="给卖家留言" type="text" onclick="postscript_activation(this);" class="pull-left leaveWord">
+									<span class="pull-right mlr10">
+										运费:<span id="select_shipping"></span>
+									</span>
+								</td>
+								<td class="orange" id="select_shipping_fee">0.00</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="clearfix mt10">
+						<div class="pull-right">
+							应付金额：<span class="orange"  id="order_amount">{$goods_info.amount|price}</span><a href="javascript:void($('#order_form').submit());" class="save ml10">提交订单</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+	<script type="text/javascript">
+	   var shippings = {$shippings};
+	   var addresses = {$addresses};
+	   var goods_amount = {$goods_info.amount};
+	   var goods_quantity = {$goods_info.quantity};
+	   var orders = {$orders};
+	   $(function(){
+	       regionInit("region");
+	       $('#order_form').validate({
+	           invalidHandler:function(e, validator){
+	            var err_count = validator.numberOfInvalids();
+	            var msg_tpl = '{$lang.order_have_error}';
+	            var d = DialogManager.create('show_error');
+	            d.setWidth(400);
+	            d.setTitle("错误信息");
+	            d.setContents('message', {type:'warning', text:$.format(msg_tpl, err_count)});
+	            d.show('center');
+	           },
+	           errorPlacement: function(error, element){
+	               var _message_box = $(element).parent().find('.error');
+	               _message_box.append(error);
+	           },
+	           /**
+	           success       : function(label){
+	               label.addClass('validate_right').text('OK!');
+	           },
+	           */
+	           rules : {
+	               consignee : {
+	                   required : true
+	               },
+	               region_id : {
+	                   required : true,
+	                   min   : 1
+	               },
+	               address   : {
+	                   required : true
+	               },
+	               phone_mob : {
+	                   required : true,
+	                   minlength:6,
+	                   digits : true
+	               }
+	           },
+	           messages : {
+	               consignee : {
+	                   required : '{$lang.consignee_required}'
+	               },
+	               region_id : {
+	                   required : '{$lang.region_required}',
+	                   min  : '{$lang.region_required}'
+	               },
+	               address   : {
+	                   required : '{$lang.address_required}'
+	               },
+	               phone_mob : {
+	                   required : '{$lang.phone_required}',
+	                   minlength: '{$lang.phone_mob_error}',
+	                   digits : true
+	               }
+	           }
+	       });
+	       $('li[shipping_id]').each(function(){
+	           var _shipping_fee = get_shipping_fee($(this).attr('shipping_id'));
+	           $(this).find('[ectype="shipping_fee"]').html("("+price_format(_shipping_fee)+")");
+	       }).click(function(){
+	           $(this).find('input[name="shipping_id"]').attr('checked', true);
+	           $("#select_shipping").html($(this).find(".shipping_name").text());
+	           var _shipping_fee = get_shipping_fee($(this).attr('shipping_id'));
+	           $("#select_shipping_fee").html(price_format(_shipping_fee));
+	           set_order_amount($(this).attr('shipping_id'));
+	       });
+
+	       //select first
+	       $($('li[shipping_id]')[0]).click();
+	   });
+	   function set_order_amount(shipping_id){
+	       var _shipping_fee = get_shipping_fee(shipping_id);
+	       var _amount  = goods_amount + _shipping_fee;
+	       $('#order_amount').html(price_format(_amount));
+	   }
+	   function get_shipping_fee(shipping_id){
+	       var shipping_data = shippings[shipping_id];
+	       var first_price   = Number(shipping_data['first_price']);
+	       var step_price   = Number(shipping_data['step_price']);
+	       var _shipping_fee = 0;
+	       for(var i in orders){
+	       	var goods = orders[i]['goods'];
+	       	var quantity = 0;
+	       	for(var j in goods){
+	       		quantity += Number(goods[j]['quantity']);
+	       	}
+	       	_shipping_fee+=(first_price + (quantity - 1) * step_price);
+	       }
+	       return _shipping_fee;
+	   }
+	   function check_phone(){
+	       return ($('#phone_tel').val() == '' && $('#phone_mob').val() == '');
+	   }
+	   function hide_error(){
+	       $('#region').find('.error').hide();
+	   }
+       $('.address_item').click(function(){
+           $(this).find("input[name='address_options']").attr('checked', true);
+           $('.address_item').removeClass('selected_address');
+           $(this).addClass('selected_address');
+           set_address();
+       });
+       //init
+       set_address();
+   function set_address(){
+       var a_id = $("input[name='address_options']:checked").val();
+       if(a_id == 0)
+       {
+           $('#consignee').val("");
+           $('#region_name').val("");
+           $('#region_id').val("");
+           $('#region select').show();
+           $("#edit_region_button").hide();
+           $('#region_name_span').hide();
+
+           $('#address').val("");
+           $('#zipcode').val("");
+           $('#phone_tel').val("");
+           $('#phone_mob').val("");
+
+           $('#region').show();
+       }
+       else
+       {
+           $('#region').hide();
+           fill_address_form(a_id);
+       }
+   }
+   function fill_address_form(addr_id){
+       var addr_data = addresses[addr_id];
+       for(k in addr_data){
+           switch(k){
+               case 'consignee':
+               case 'address':
+               case 'zipcode':
+               case 'email':
+               case 'phone_tel':
+               case 'phone_mob':
+               case 'region_id':
+                   $("input[name='" + k + "']").val(addr_data[k]);
+               break;
+               case 'region_name':
+                   $("input[name='" + k + "']").val(addr_data[k]);
+                   $('#region select').hide();
+                   $('#region_name_span').text(addr_data[k]).show();
+                   $("#edit_region_button").show();
+               break;
+           }
+       }
+   }
+   function clickYes() {
+	$('#payment_1')[0].checked = true;
+	DialogManager.close('show_goods');
+	}
+	function clickNo() {
+		window.location.href="index.php?app=cart";
+	}
+	function checkOrder() {
+		$.get(REAL_SITE_URL + '/index.php?app=order&act=checkGoodsPayment', {
+			store_id : '{$smarty.get.store_id}'
+		}, function(data) {
+			if (data.status == 1) {
+				var text = '以下商品不支持货到付款<br/>';
+				for(var i in data.goods){
+					var good = data.goods[i];
+					text += '&nbsp;&nbsp;&nbsp;&nbsp;'+good[1]+'<br/>';
+				}
+				var d = DialogManager.create('show_goods');
+				$('.dialog_close_button').remove();
+				d.setWidth(400);
+				d.setTitle('提示');
+				d.setContents('message', {
+					type : 'confirm',
+					text : text,
+					yes_button_name : '在线支付',
+					onClickYes : clickYes,
+					no_button_name : '返回购物车',
+					onClickNo : clickNo,
+	
+				});
+				d.show('center');
+			}
+		}, 'json');
+	}
+	function postscript_activation(tt){
+	       if (!tt.name)
+	       {
+	           tt.value    = '';
+	           tt.name = 'postscript';
+	       }
+	
+	   }
+</script>
+{include file="footer.new.html"}

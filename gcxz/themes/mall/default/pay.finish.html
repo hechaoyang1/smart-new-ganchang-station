@@ -1,0 +1,23 @@
+{include file=header.new.html}
+{include file=top.html}
+<link rel="stylesheet" type="text/css" href="{res file=css/shoppingCar.css}">
+<div class="shoppingCar">
+	<div class="wrap" style="height:700px;">
+		<div class="step3"></div>
+		<div class="shoppingOver">
+			<h3>支付成功！</h3>
+			<ul class="shoppingInfo clearfix">
+				<li>订单编号：{$order.order_sn}</li>
+				<li>下单时间：{$order.order_add_time}</li>
+				<li>支付方式：{$order.payment_name}</li>
+				<li>支付时间：{$order.pay_time}</li>
+				<li>收货人信息：{$order.consignee}</li>
+				<li>{$order.region_name}{$order.address}</li>
+			</ul>
+			<div>
+				<a href="index.php" class="shopping">继续购物</a>
+			</div>
+		</div>
+	</div>
+</div>
+{include file=footer.new.html}

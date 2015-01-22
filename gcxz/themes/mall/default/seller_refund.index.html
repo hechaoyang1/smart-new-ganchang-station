@@ -1,0 +1,124 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    $('#ctime_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#ctime_to').datepicker({dateFormat: 'yy-mm-dd'});
+    $('.checkall_s').click(function(){
+        var if_check = $(this).attr('checked');
+        $('.checkitem').each(function(){
+            if(!this.disabled)
+            {
+                $(this).attr('checked', if_check);
+            }
+        });
+        $('.checkall_s').attr('checked', if_check);
+    });
+    $('a[ectype="batchcancel"]').click(function(){
+        if($('.checkitem:checked').length == 0){
+            return false;
+        }
+        if($(this).attr('presubmit')){
+            if(!eval($(this).attr('presubmit'))){
+                return false;
+            }
+        }
+        var items = '';
+        $('.checkitem:checked').each(function(){
+            items += this.value + ',';
+        });
+        items = items.substr(0, (items.length - 1));
+
+        var uri = $(this).attr('uri');
+        uri = uri + '&' + $(this).attr('name') + '=' + items;
+        var id = 'seller_order_cancel_order';
+        var title = $(this).attr('dialog_title') ? $(this).attr('dialog_title') : '';
+        //var url = $(this).attr('uri');
+        var width = '500';
+        ajax_form(id, title, uri, width);
+    });
+});
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">{include file=member.submenu.html}
+        <div class="wrap">
+            <div class="scarch_order">
+                <form method="get">
+                <div style="float:left;">
+                <span class="title">{$lang.order_sn}:</span>
+                <input class="text_normal" type="text" name="order_sn" value="{$query.order_sn|escape}" />
+                <span class="title">{$lang.add_time}:</span>
+                <input class="text_normal width2" type="text" name="ctime_from" id="ctime_from" value="{$query.ctime_from}" /> &#8211; <input class="text_normal width2" id="ctime_to" type="text" name="ctime_to" value="{$query.ctime_to}" />
+                <span class="title">{$lang.buyer_name}:</span>
+                <input class="text_normal" type="text" name="buyer_name" value="{$query.buyer_name|escape}" />
+                <input type="hidden" name="app" value="seller_refund" />
+                <input type="hidden" name="act" value="index" />
+                <input type="hidden" name="type" value="{$type}" />
+                <input type="submit" class="btn" value="{$lang.search}" />
+                </div>
+                <!--{if $query.buyer_name or $query.ctime_from or $query.ctime_to or $query.order_sn}-->
+                    <a class="detlink" href="{url app=seller_refund&type=$query.type}">{$lang.cancel_query}</a>
+                <!--{/if}-->
+
+        </form>
+
+        </div>
+         <div class="public_index table">
+                <table>
+                    <tr <!--{if $refunds}--> class="table_line"<!--{/if}-->>
+                    <!--{if $refunds}-->
+                    </tr>
+                    <tr class="line tr_bgcolor">
+                  	    <th></th>
+                        <th>订单号</th>
+                        <th>买家</th>
+                        <th>电话号码</th>
+                        <th>订单总价</th>
+                        <th width="90">退款状态</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!-- 循环开始 -->
+                    <!--{foreach from=$refunds item=vo}-->
+                    <tr class="color2">
+                    	<td width="10px;"></td>
+                        <td><span class="color3">{$vo.order_sn}</span></td>
+                        <td>{$vo.buyer_name|escape}</td>
+                        <td><!--{ if $vo.phone_mob neq ''}-->{$vo.phone_mob}<!--{else}-->{$vo.phone_tel}<!--{/if}--><br />
+</td>
+                        <td class="padding1"><strong>{$vo.amount|price}</strong></td>
+                        <td class="align2"><span class="color4">{$vo.status_text}<!--{if $order.evaluation_status}-->,&nbsp;{$lang.already_evaluate}<!--{/if}--></span></td>
+                    </tr>
+                    <tr class="line_bottom">
+                        <td colspan="8" align="right" class="order_form1"><div class="button_wrap">
+                        <input type="button" value="审核通过" class="btn" ectype="dialog" dialog_id="seller_refund_audit" dialog_width="400" uri="index.php?app=seller_refund&amp;act=audit&amp;id={$vo.id}&ajax" dialog_title="{$lang.received_pay}" id="order{$order.order_id}_action_received_pay"{if $vo.status neq STATUS_APPLY} style="display:none"{/if} />
+                       	<input type="button" value="关闭申请" class="btn" ectype="dialog" dialog_id="seller_refund_close" dialog_width="400" uri="index.php?app=seller_refund&amp;act=close&amp;id={$vo.id}&ajax" dialog_title="{$lang.received_pay}" id="order{$order.order_id}_action_received_pay"{if $vo.status neq STATUS_APPLY} style="display:none"{/if} />
+                      	<a class="btn1" href="javascript:;" ectype="dialog" dialog_id="seller_refund_confirm" dialog_width="400" uri="index.php?app=seller_refund&amp;act=confirm&amp;id={$vo.id}&ajax" dialog_title="{$lang.received_pay}" id="order{$order.order_id}_action_received_pay"{if $vo.status neq STATUS_REFUNDED} style="display:none"{/if} >确认已退款</a>
+                       	<a class="btn1" href="{url app=seller_refund&act=detail&id=$vo.id}" target="_blank">查看退款</a>
+                       </div> </td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr><td class="member_no_records" colspan="8">暂无数据</td></tr>
+                    <!--{/foreach}-->
+                    <!--{if $orders}-->
+                    <tr><th class="width1"><input id="all2" type="checkbox" class="checkall_s" /></th>
+                    <th class="align1" colspan="7">
+                            <p class="position1">
+                                <label for="all2"><span class="all">{$lang.checkall}</span></label>
+                                <a href="javascript:;" class="delete" ectype="batchcancel" uri="index.php?app=seller_order&act=cancel_order" name="order_id">{$lang.cancel_order}</a>
+                            </p>
+                            <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                    </table>
+                    <iframe name="seller_refund" style="display:none;"></iframe>
+        </div>
+    <div class="wrap_bottom"></div>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+{include file=footer.html}

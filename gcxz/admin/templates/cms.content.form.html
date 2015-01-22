@@ -1,0 +1,75 @@
+{include file="header.html"}
+
+<div id="rightTop">
+    <p>{$lang.title}</p>
+    <ul class="subnav">
+       <li><a class="btn1" href="index.php?app=cms">{$lang.notice}</a></li>
+       <li><span>{$lang.add_content}</span></li>
+       <li><a class="btn1" href="index.php?app=cms&amp;act=groups">{$lang.group}</a></li>
+       <li><a class="btn1" href="index.php?app=cms&amp;act=addgroup">{$lang.add_group}</a></li>
+    </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="user_form">
+  <!-- {if $content} -->
+  <input type="hidden" name="id" value="{$content.id}">
+  <!-- {/if} -->
+    <table class="infoTable">
+      <tr>
+	      <th class="paddingT15"> {$lang.is_top}:</th>
+	      <td class="paddingT15 wordSpacing5"><p>
+            <label>
+            <input type="radio" name="is_top" value="0" {if $content.is_top eq 0}checked="checked"{/if} />
+            {$lang.no}</label>
+            <label>
+            <input type="radio" name="is_top" value="1" {if $content.is_top eq 1}checked="checked"{/if} />
+            {$lang.yes}</label>
+          </p></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.sort}:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="sort" type="text" name="sort" value="{$content.sort|escape}" />
+          <label class="field_notice">{$lang.sort}</label>
+        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.notice_title}:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="title" type="text" name="title" value="{$content.title|escape}" />
+          <label class="field_notice">{$lang.notice_title}</label>
+        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.group}:</th>
+        <td class="paddingT15 wordSpacing5">
+                    <select id="gid" name="gid"><option value="0">{$lang.select_pls}</option>
+                     <!--{foreach from=$groups item=vo}-->
+                     <option value="{$vo.id}"  <!-- {if $content.gid eq $vo.id} --> selected<!-- {/if} -->>{$vo.title}</option>
+                     <!--{/foreach}-->
+                    </select> <label class="field_notice">{$lang.group}</label>               </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.notice_content}:</th>
+        <td class="paddingT15 wordSpacing5">
+         <textarea name="content" id="myEditor">{if $content}{$content.content}{else}请在这里添入内容{/if}</textarea>
+				<script type="text/javascript">
+				    var editor = new UE.ui.Editor({  maximumWords:50000,initialFrameHeight:250,initialFrameWidth:800});
+				    editor.render("myEditor");
+				    //1.2.4以后可以使用一下代码实例化编辑器
+				    //UE.getEditor('myEditor')
+				</script>  
+		<label class="field_notice">{$lang.group}</label>   
+        </td>
+      </tr>
+       <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="reset" value="{$lang.reset}" />            </td>
+        </tr>
+       
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

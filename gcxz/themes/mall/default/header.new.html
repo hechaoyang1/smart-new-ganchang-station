@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>赶场小站</title>
+	<link href="{res file=css/base.css}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+	//<!CDATA[
+	var SITE_URL = "{$site_url}";
+	var REAL_SITE_URL = "{$real_site_url}";
+	var REAL_BACKEND_URL = "{$real_backend_url}";
+	//]]>
+	</script>
+	<script type="text/javascript" src="{lib file=jquery-1.7.2.min.js}" charset="utf-8"></script>
+	<script src="{res file=js/base.js}"></script>
+	<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+	<script type="text/javascript" src="index.php?act=jslang"></script>
+</head>
+<body>
+	<div class="top-tools">
+		<div class="wrap relative">
+			<div class="absolute left">
+				欢迎来到赶场小站!{$visitor.user_name|escape}
+        		<!--{if !$visitor.user_id}-->
+        		<a href="{url app=member&act=login&ret_url=$ret_url}">登录</a>&nbsp;|&nbsp;<a href="{url app=member&act=register&ret_url=$ret_url}">免费注册</a>
+		        <!--{else}-->
+		        <span class="H_gan_top"><a href="{url app=member&act=logout}">{$lang.logout}</a></span>
+		        <!--{/if}-->
+			</div>
+			<div class="mid">
+				服务热线： 4000-688-888
+			</div>
+			<div class="absolute right">
+				<a class="shoppingCar" target="_blank" href="{url app=cart}">购物车</a>
+				<!--{if $visitor.has_store}-->
+	        	<a href="{url app=seller_order}">我的小站</a>
+	            <!--{else}-->
+	            <a href="{url app=buyer_order}">我的小站</a>
+	            <!--{/if}-->
+			</div>
+		</div>
+	</div>
+	<div class="head-search">
+		<div class="clearfix wrap">
+			<div class="pull-left">
+				<a href="index.php" class="logo"><img src="{res file=img/logo.png}" alt=""></a>
+			</div>
+			<div class="pull-left search">
+				<form>
+	                <input type="hidden" name="act" value="index" />
+	                <input type="hidden" name="app" value="search" />
+					<input type="text" name="keyword" placeholder="搜索" class="key"><input type="submit" value="搜索" class="sub">
+				</form>
+				<!--{foreach from=$hot_keywords item=keyword}-->
+	             <a href="{url app=search&keyword=$keyword}">{$keyword}</a>
+	            <!--{/foreach}-->
+			</div>
+		</div>
+	</div>
