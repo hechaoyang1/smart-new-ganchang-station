@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$site_url}/" />
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+{$page_seo}
+
+<meta name="author" content="www.cdksx.net" />
+<meta name="copyright" content="Cosecant Inc. All Rights Reserved" />
+<link href="{res file=css/user.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/public.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var PRICE_FORMAT = '{$price_format}';
+//]]>
+</script>
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=member.js}" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="{lib file=jquery1.42.min.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=jquery.SuperSlide.2.1.1.js}" charset="utf-8"></script>
+<script type="text/javascript">
+
+</script>
+{$_head_tags}
+</head>
+<body>
+<div class="L_top_wap">
+	<div class="L_top">
+		<div class="L_top_l">
+        欢迎访问赶场小站，{$visitor.user_name|escape}
+        <!--{if !$visitor.user_id}-->
+        <span class="H_gan_top"><a href="{url app=member&act=login&ret_url=$ret_url}">登录</a></span>&nbsp;|&nbsp;<span class="H_gan_top"><a href="{url app=member&act=register&ret_url=$ret_url}">免费注册</a></span>
+        <!--{else}-->
+        <span class="H_gan_top"><a href="{url app=member&act=logout}">{$lang.logout}</a></span>
+        <!--{/if}-->
+        </div>
+        <div class="L_top_c">7*24小时服务热线： <font class="H_ld">4000-688-888</font></div>
+        <div class="L_top_r">
+        	<!--{if $visitor.store_id}-->
+        	<a href="{url app=seller_order}">{$lang.order_manage}</a>
+            <!--{else}-->
+            <a href="{url app=buyer_order}">{$lang.my_order}</a>
+            <!--{/if}-->
+            <!--{foreach from=$navs.header item=nav}-->
+            <a href="{$nav.link}"{if $nav.open_new} target="_blank"{/if}>{$nav.title|escape}</a>
+            <!--{/foreach}-->
+        </div>
+    </div>
+</div>
+<div class="L_head_wap">
+	<div class="H_head_logo"><a href="index.php"><img alt="{$site_title}" src="{$site_logo}"  width="216" height="103" /></a></div>
+    <div class="H_head_xt"><a href="#"><img src="{res file=images/cs/20150106_top.png}" width="103" height="103"  /></a></div>
+    <div class="H_head_sou">
+        <div class="form">
+            <form method="GET" action="{url app=search}">
+                <input  name="keyword" class="H_head_tet1" type="text"  placeholder="输入关键词搜索">
+                <input type="hidden" name="act" value="index" />
+                <input type="hidden" name="app" value="search" />
+                <input class="H_head_but1" type="submit" value="" >
+            </form>
+		</div>
+        <div class="H_head_souzi">
+            <strong>大家正在搜：</strong>
+            <!--{foreach from=$hot_keywords item=keyword}-->
+             <a href="{url app=search&keyword=$keyword}">{$keyword}</a>
+            <!--{/foreach}-->
+         </div>
+    </div><!--H_head_sou end-->
+    <div class="H_head_ri">
+    	<a href="#" class="H_head_ri_l"></a>
+        <a href="#" class="H_head_ri_r"></a>
+    </div>
+</div>
+<div class="L_nav_wap">
+	<div class="L_nav">
+    	<div class="L_nav_l">
+        	<div class="L_daohang" {if !$index} style="display:none"{/if}>
+            	<ul class="H_le">
+                	<!--{foreach from=$store_gcategor item=gcategor name=name}--> 
+                	<li>
+                    	<h6>{$gcategor.value}</h6>
+                        <p> 
+                        	<!--{foreach from=$gcategor.children item=childrens  name=name1}-->    
+                            {if $smarty.foreach.name1.iteration < 4}                                              
+                            <a href="{url app=search&cate_id=$childrens.id}">{$childrens.value}</a>
+                            {/if}
+                            <!--{/foreach}-->                                                                      
+                        </p>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+        </div>
+        <ul class="H_dh">
+        	<li class="L_nav_l_ybg"><a href="./">网站首页</a></li>
+            <!--{foreach from=$navs.middle item=nav}-->
+   			 <li {if !$index and $nav.link eq $current_url}L_nav_l_ybg{/if}><a  href="{$nav.link}"{if $nav.open_new} target="_blank"{/if}>{$nav.title|escape}</a></li>
+    		<!--{/foreach}-->
+        </ul>
+        <div class="L_nav_r">
+            <a href="{url app=cart}">
+                <span class="L_nav_r_che"></span>
+                <font style="float:left;">我的购物车</font>
+                <span id="cart_goods_kinds">({$cart_goods_kinds})</span>
+                <span class="L_nav_r_jt"></span>
+            </a>
+        </div>
+    </div>
+</div>
+{if !$index}
+<script type="text/javascript">
+        jQuery(".L_nav").slide({ type:"menu",  titCell:".L_nav_l", targetCell:".L_daohang", delayTime:0,defaultPlay:false,returnDefault:true  });
+	</script>
+{/if}
