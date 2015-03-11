@@ -23,7 +23,7 @@ class InterfaceApp extends BaseApp {
 						e.consignee,
 						e.phone_mob,
 						e.shipping_name,
-						e.address,
+						CONCAT(e.region_name,e.address) address,
 						o.payment_name,
 						s.tel store_tel,
 						s.address,
