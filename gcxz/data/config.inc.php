@@ -38,6 +38,7 @@ SESSION_MEMCACHED : 存储session数据的memcached服务器(服务器地址1:�
 */
 
 return array (
+<<<<<<< HEAD
   'DB_CONFIG' => 'mysql://root:root@localhost:3306/gcxz',
 //   'DB_CONFIG' => 'mysql://gcxz:gcxz101@10.66.62.18:3306/gcxz',
   'DB_PREFIX' => 'ecm_',
@@ -56,6 +57,25 @@ return array (
   'SESSION_MEMCACHED' => 'localhost:11211',
   'CACHE_MEMCACHED' => 'localhost:11211',
   'WMS_URL'=>'',
+=======
+  'SITE_URL' => 'http://localhost/smart-ganchang-station/gcxz',
+  'DB_CONFIG' => 'mysql://root:root@localhost:3306/gcxz',
+  'DB_PREFIX' => 'ecm_',
+  'LANG' => 'sc-utf-8',
+  'COOKIE_DOMAIN' => '',
+  'COOKIE_PATH' => '/',
+  'ECM_KEY' => 'e0b57ccba419d7c8806a733a22006547',
+  'MALL_SITE_ID' => 'EMNK5DGl0euxHGUn',
+  'ENABLED_GZIP' => 0,
+  'DEBUG_MODE' => 0,
+  'CACHE_SERVER' => 'default',
+  'MEMBER_TYPE' => 'default',
+  'ENABLED_SUBDOMAIN' => 0,
+  'SUBDOMAIN_SUFFIX' => '',
+  'SESSION_TYPE' => 'mysql',
+  'SESSION_MEMCACHED' => 'localhost:11211',
+  'CACHE_MEMCACHED' => 'localhost:11211',
+>>>>>>> branch 'master' of https://github.com/incito/smart-new-ganchang-station.git
 );
 
 ?>
