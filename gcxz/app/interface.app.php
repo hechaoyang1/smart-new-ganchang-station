@@ -516,7 +516,7 @@ class InterfaceApp extends BaseApp {
 	 * 添加商品
 	 */
 	function addGood() {
-		$user_id = $_POST ['user_id'];
+		$user_id = intval($_POST ['user_id']);
 		$userprivModel = &m ( 'userpriv' );
 		$info = $userprivModel->find ( array (
 				'conditions' => 'user_id=' . $user_id,
