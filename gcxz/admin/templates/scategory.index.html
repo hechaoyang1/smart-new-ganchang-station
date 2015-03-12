@@ -29,7 +29,7 @@ $(function()
         <thead>
         <tr>
             <th class="w30"><input id="checkall_1" type="checkbox" class="checkall" /></th>
-            <th width="50%"><span class="all_checkbox"><label for="checkall_1">{$lang.checkall}</label></span>{$lang.cate_name}</td>
+            <th width="50%" style="text-align:left"><span class="all_checkbox"><label for="checkall_1"></label></span>{$lang.cate_name}</th>
             <th>{$lang.sort_order}</th>
             <th class="handler">{$lang.handler}</th>
         </tr>
@@ -60,7 +60,6 @@ $(function()
                 <td colspan="3" id="batchAction">
                     <span class="all_checkbox"><label for="checkall_2">{$lang.checkall}</label></span>&nbsp;&nbsp;
                     <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=scategory&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
-<!--                    <input class="formbtn batchButton" type="button" value="{$lang.update_order}" name="id" presubmit="updateOrder(this);" />-->
                 </td>
             <!--{/if}-->
             </tr>
