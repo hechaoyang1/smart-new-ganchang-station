@@ -278,7 +278,7 @@ ul, ol { list-style-type:none; }
 
 
 .tab_table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-.tab_table th { height: 25px; color: #a9a9a9; }
+.tab_table th { height: 25px; color: #a9a9a9; vertical-align:middle;}
 .tab_table th, .tab_table td { border-bottom: 1px solid #e2e2e2; }
 .tab_align { text-align: center; }
 .tab_align_right { text-align: right; }
