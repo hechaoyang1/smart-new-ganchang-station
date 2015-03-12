@@ -183,12 +183,12 @@ $(function(){
                                     <!-- {if $goods.cate_id} -->
                                     <span class="f_l">{$goods.cate_name|escape}</span>
                                     <a class="edit_gcategory btn" href="javascript:;">{$lang.edit}</a>
-                                    <select style="display:none">
+                                    <select style="display:none;width:100px;">
                                         <option>{$lang.select_pls}</option>
                                         {html_options options=$mgcategories}
                                     </select>
                                     <!-- {else} -->
-                                    <select>
+                                    <select style="width:100px;">
                                         <option>{$lang.select_pls}</option>
                                         {html_options options=$mgcategories}
                                     </select>
@@ -202,13 +202,13 @@ $(function(){
                                 <p class="select">
                                     <!--{if $goods._scates}-->
                                     <!--{foreach from=$goods._scates item=sgcate}-->
-                                    <select name="sgcate_id[]" class="sgcategory">
+                                    <select name="sgcate_id[]" class="sgcategory" style="width:100px;">
                                         <option value="0">{$lang.select_pls}</option>
                                         {html_options options=$sgcategories selected=$sgcate.cate_id}
                                     </select>
                                     <!-- {/foreach} -->
                                     <!--{else}-->
-                                    <select name="sgcate_id[]" class="sgcategory">
+                                    <select name="sgcate_id[]" class="sgcategory"  style="width:100px;">
                                         <option value="0">{$lang.select_pls}</option>
                                         {html_options options=$sgcategories}
                                     </select>
