@@ -44,7 +44,7 @@ function regionChange()
             {
                 if (data.retval.length > 0)
                 {
-                    $("<select><option>请选择</option></select>").change(regionChange).insertAfter(_self);
+                    $("<select style='display: inline-block;margin-top:0;'><option>请选择</option></select>").change(regionChange).insertAfter(_self);
                     var data  = data.retval;
                     for (i = 0; i < data.length; i++)
                     {
