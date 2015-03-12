@@ -119,6 +119,7 @@ function getFullPath(obj)
 {
     if(obj)
     {
+    	
         //ie
         if (window.navigator.userAgent.indexOf("MSIE")>=1)
         {
@@ -131,7 +132,8 @@ function getFullPath(obj)
             if(obj.files)
             {
 //                return obj.files.item(0).getAsDataURL();
-            	return  URL.createObjectURL(obj.files.item(0));
+            	var urlFn = window.webkitURL ? window.webkitURL : window.URL;
+            	return  urlFn.createObjectURL(obj.files.item(0));
             }
             return obj.value;
         }
