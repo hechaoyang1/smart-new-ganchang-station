@@ -110,5 +110,5 @@ a.img{ display:block;}
 .agricultural-search #leftnav{ float:left; width:133px; margin-right:15px; border:1px solid #e0e0e0; background:#FFF;}
 .agricultural-search .p-list{float:left; width:780px; }
 #leftnav h2.info{ font-size:14px;  line-height:38px; text-align:center; background:#e1e1e1}
-#leftnav h2.title{ font-size:14px; padding-left:15px; line-height:38px; background:url(../images/bg-leftnav.png) repeat-x center center;cursor:pointer;-webkit-box-shadow: 0 0 9px #FFF;    -moz-box-shadow: 0 0 9px #FFF;    box-shadow: 0 0 9px #FFF;overflow:hidden;}
+#leftnav h2.title{ font-size:14px; padding-left:15px; line-height:38px; background:url(../images/bg-leftnav.png) repeat-x center center;cursor:pointer;-webkit-box-shadow: 0 0 9px #FFF;    -moz-box-shadow: 0 0 9px #FFF;    box-shadow: 0 0 9px #FFF;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
 #leftnav .mrc a{ display:block; border-bottom:1px solid #e0e0e0; line-height:30px; padding:0 15px;overflow:hidden; }
