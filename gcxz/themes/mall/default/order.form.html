@@ -42,7 +42,7 @@
 						<li><span class="pull-left"><span class="orange">*</span>联系电话: </span><input type="text" id="phone_mob" name="phone_mob">&nbsp;<span class="error"></span></li>
 						<li><span class="pull-left"><span class="orange">*</span>所在地区:</span> 
 						<input id="edit_region_button" type="button" class="edit_region" value="{$lang.edit}" style="display:none;" />
-                                <select onchange="hide_error();">
+                                <select onchange="hide_error();" style="display: inline-block;margin-top:0;">
                                     <option value="0">{$lang.select_pls}</option>
                                     {html_options options=$regions}
                                 </select>
