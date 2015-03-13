@@ -32,12 +32,12 @@ $(function(){
 
                     <tr class="line_bold">
                         <th class="width1"><input type="checkbox" id="all" class="checkall"/></th>
-                        <th class="align1" colspan="3">
+                        <th class="align1" colspan="2">
                             <span class="all"><label for="all">{$lang.checkall}</label></span>
                             <a href="javascript:void(0);" class="edit" ectype="batchbutton" uri="index.php?app=my_goods&act=batch_edit" name="id">{$lang.edit}</a>
                             <a href="javascript:void(0);" class="delete" ectype="batchbutton" uri="index.php?app=my_goods&act=drop" name="id" presubmit="confirm('{$lang.drop_confirm}')">{$lang.drop}</a>
                         </th>
-                        <th colspan="8">
+                        <th colspan="9">
                             <div class="select_div">
                             <form id="truncate_form" method="post">
                             </form>
@@ -79,7 +79,7 @@ $(function(){
                         <th width="25" coltype="switchable" column="if_show" onclass="right_ico" offclass="wrong_ico" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">{$lang.if_show}</span></th>
                         <th width="25" coltype="switchable" column="recommended" onclass="right_ico" offclass="wrong_ico" title="{$lang.sort_order}"  class="cursor_pointer" ><span ectype="order_by">{$lang.recommended}</span></th>
                         <th width="25" column="closed" title="{$lang.sort_order}" class="cursor_pointer" style="width:40px;"><span ectype="order_by">{$lang.closed}</span></th>
-                        <th>{$lang.handle}</th>
+                        <th width="60">{$lang.handle}</th>
                     </tr>
                     <!--{/if}-->
                     <!--{foreach from=$goods_list item=goods name=_goods_f}-->
