@@ -161,9 +161,8 @@
 			<ul>
 				{foreach name=gname from=$top_list item=good}
 				<li><a href="index.php?app=goods&id={$good.goods_id}">
-						<p>{$good.goods_name}
-						<p>
-							<img src="{$good.default_image}" />
+						<p>{$good.goods_name}</p>
+						<img src="{$good.default_image}" />
 				</a></li> {if $smarty.foreach.gname.index eq 2}
 				<div class="clearfix"></div>
 				{/if} {/foreach}

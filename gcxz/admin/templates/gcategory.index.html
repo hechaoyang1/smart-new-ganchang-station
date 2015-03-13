@@ -19,7 +19,6 @@
             <td width="50%"><span class="all_checkbox"><label for="checkall_1">{$lang.checkall}</label></span>{$lang.cate_name}</td>
             <td>{$lang.sort_order}</td>
             <td>{$lang.if_show}</td>
-            <td>首页推荐</td>
             <td class="handler">{$lang.handler}</td>
         </tr>
         </thead>
@@ -31,7 +30,6 @@
             <td class="node" width="50%"><!--{if $gcategory.switchs}--><img src="templates/style/images/treetable/tv-expandable.gif" ectype="flex" status="open" fieldid="{$gcategory.cate_id}"><!--{else}--><img src="templates/style/images/treetable/tv-item.gif"><!--{/if}--><span class="node_name editable" ectype="inline_edit" fieldname="cate_name" fieldid="{$gcategory.cate_id}" required="1" title="{$lang.editable}">{$gcategory.cate_name|escape}</span></td>
             <td class="align_center"><span class="editable" ectype="inline_edit" fieldname="sort_order" fieldid="{$gcategory.cate_id}" datatype="number" title="{$lang.editable}">{$gcategory.sort_order}</span></td>
             <td class="align_center"><!--{if $gcategory.if_show}--><img src="templates/style/images/positive_enabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="{$gcategory.cate_id}" fieldvalue="1" title="{$lang.editable}"/><!--{else}--><img src="templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="{$gcategory.cate_id}" fieldvalue="0" title="{$lang.editable}"/><!--{/if}--></td>
-            <td class="align_center">&nbsp;</td>
             <td class="handler"><span><a href="index.php?app=gcategory&amp;act=edit&amp;id={$gcategory.cate_id}">{$lang.edit}</a>
                 |
                 <a href="javascript:if(confirm('{$lang.drop_confirm}'))window.location = 'index.php?app=gcategory&amp;act=drop&amp;id={$gcategory.cate_id}';">{$lang.drop}</a><!-- {if $region.layer lt $max_layer} --> | <a href="index.php?app=gcategory&amp;act=add&amp;pid={$gcategory.cate_id}">{$lang.add_child}</a><!-- {/if} -->
