@@ -322,7 +322,8 @@ background:none;
 
 .footer .wrap {
   width: 960px;
-  border: none;
+  border: none;  
+  background:none;
   position: static; }
 
 .footer .f1, .footer .f2 {
@@ -333,9 +334,6 @@ background:none;
 
 .footer .f2 {
   width: 18%; }
-
-.footer .wrap {
-  padding: 10px 0; }
 
 .footer h3 {
   font-size: 16px; }

@@ -541,6 +541,16 @@ class My_goodsApp extends StoreadminbaseApp
             return ;
         }
         $goods_list =m('commongoods')->find_goods($sid);
+        foreach ($goods_list as & $goods)
+        {
+            $str_spec = '';
+            $obj = json_decode($goods['spec']);
+            foreach($obj as $key=>$value){
+                $str_spec .= "$key:$value".'<br>';
+            }
+            $goods['spec'] = $str_spec;
+            $goods['service_type'] = $goods['service_type'] == 1 ? '支持退货' : '不支持退货';
+        }
 		$this->assign('goods_list', $goods_list);
         $this->display('share_goods.div.html');
     }

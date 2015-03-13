@@ -58,8 +58,13 @@ class BindsupplierApp extends BackendApp
             $limit = $page['limit'];
             $sql = "select s.* from ecm_supplier s left join (select * from ecm_store_supplier where store_id=$id) ss on s.id = ss.supplier_id where $conditions limit $limit";
             $suppliers = m('supplier')->getAll($sql);
-            
             $this->assign('suppliers', $suppliers);
+            
+            $sql = "select count(*) as c from ecm_supplier s left join (select * from ecm_store_supplier where store_id=$id) ss on s.id = ss.supplier_id where $conditions";
+            $page['item_count'] = m('supplier')->getOne($sql);
+            $this->_format_page($page);
+            $this->assign('page_info', $page);
+            
             /* 导入jQuery的表单验证插件 */
             $this->import_resource(
                     array(

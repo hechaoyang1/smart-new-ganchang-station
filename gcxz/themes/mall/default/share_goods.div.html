@@ -1,14 +1,21 @@
-			<div class="public_select table" style="display:none;">
-                <table id="my_goods" server="{$site_url}/index.php?app=my_goods&amp;act=ajax_col" >
+		<div class="public_select table" style="display:none;">
+			<style>
+				#my_goods{border-spacing:1px;background-color:#000;}
+				#my_goods th,#my_goods td{background-color:#fff;}
+				#my_goods th{font-weight:bold;}
+			</style>
+			<div style="height: 400px; overflow: auto; border:1px solid #ccc;">
+                <table id="my_goods">
                     <!--{if $goods_list}-->
                     <tr class="gray"  ectype="table_header">
-                        <th width="65" coltype="editable" column="goods_number" checker="check_required" inputwidth="90%" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">商品编号</span></th>
-                        <th width="165" coltype="editable" column="goods_name" checker="check_required" inputwidth="90%" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">商品名称</span></th>
-                        <th width="70" column="cate_id" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">分类</span></th>
-                        <th width="105" coltype="editable" column="brand" checker="check_required" inputwidth="55px" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">供应商</span></th>
-                        <th width="55" class="cursor_pointer" coltype="editable" column="price" checker="check_number" inputwidth="50px" title="{$lang.sort_order}"><span ectype="order_by">价格</span></th>
-                        <th width="55" class="cursor_pointer" coltype="editable" column="stock" checker="check_pint" inputwidth="50px" title="{$lang.sort_order}"><span ectype="order_by">售后类型</span></th>
-                        <th>{$lang.handle}</th>
+                        <th width="65" column="goods_number" checker="check_required" inputwidth="90%"  class="cursor_pointer">商品编号</th>
+                        <th width="165" column="goods_name" checker="check_required" inputwidth="90%"  class="cursor_pointer">商品名称</th>
+                        <th width="65" column="cate_id" class="cursor_pointer">分类</th>
+                        <th width="105" column="brand" checker="check_required" inputwidth="55px" class="cursor_pointer">供应商</th>
+                        <th width="55" class="cursor_pointer" column="price" checker="check_number" inputwidth="50px">价格</th>
+                        <th width="85" class="cursor_pointer" column="stock" checker="check_pint" inputwidth="50px">售后类型</th>
+                        <th width="255" class="cursor_pointer" column="stock" checker="check_pint" inputwidth="50px">规格</th>
+                        <th width="55">{$lang.handle}</th>
                     </tr>
                     <!--{/if}-->
                     <!--{foreach from=$goods_list item=goods name=_goods_f}-->
@@ -26,9 +33,10 @@
                             <span class="supplier_id" style="display:none;">{$goods.supplier_id}</span>
                             <span class="color2" ectype="editobj">{$goods.supplier_name|escape}</span>
                         </td>
-                        <td width="50" class="align2"><!--{if $goods.spec_qty}--><span ectype="dialog" dialog_width="430" uri="index.php?app=my_goods&amp;act=spec_edit&amp;id={$goods.goods_id}" dialog_id="my_goods_spec_edit" class="cursor_pointer"><!--{else}--><span class="color2" ectype="editobj"><!--{/if}-->{$goods.price}</span></td>
-                        <td width="50" class="align2"><!--{if $goods.spec_qty}--><span ectype="dialog" dialog_width="430" uri="index.php?app=my_goods&amp;act=spec_edit&amp;id={$goods.goods_id}" dialog_id="my_goods_spec_edit" class="cursor_pointer"><!--{else}--><span class="color2" ectype="editobj"><!--{/if}-->{$goods.service_type}</span></td>
-                        <td><div class="add_share_goods" style="cursor: pointer;">添加</div></td>
+                        <td width="50" class="align2">{$goods.price}</td>
+                        <td width="80" class="align2">{$goods.service_type}</td>
+                        <td width="250">{$goods.spec}</td>
+                        <td width="50"><div class="add_share_goods" style="cursor: pointer;">添加</div></td>
                     </tr>
                     <!--{foreachelse}-->
                     <tr>
@@ -37,3 +45,4 @@
                     <!--{/foreach}-->
                 </table>
             </div>
+       </div>

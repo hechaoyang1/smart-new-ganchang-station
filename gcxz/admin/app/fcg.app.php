@@ -318,7 +318,7 @@ class FcgApp extends BackendApp
         $id = empty($_GET['id']) ? 0 : intval($_GET['id']);
         if (! IS_POST) {
             /* 是否存在 */
-            $store = $this->_fcg_mod->get(array('condition'=>"id = $id"));
+            $store = $this->_fcg_mod->get(array('conditions' => "id = $id"));
             if (! $store) {
                 $this->show_warning('专题产品未找到');
                 return;
@@ -457,7 +457,7 @@ class FcgApp extends BackendApp
         }
     
         $data = "fcg_id=$sid and goods_id in ($id)";
-        m('storesupplier')->drop($data);
+        m('fcggoods')->drop($data);
     
         $this->show_message('批量解绑成功！');
     }

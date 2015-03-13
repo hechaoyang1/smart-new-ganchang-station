@@ -58,8 +58,10 @@
 			<tr>
 				<th class="paddingT15">商品名称:</th>
 				<td class="paddingT15 wordSpacing5"><input
-					class="infoTableInput2" id="name" type="text" name="name"
-					value="{$brand.name|escape}" /></td>
+					class="infoTableInput2" id="name" type="text" name="name" maxlength="5"
+					value="{$brand.name|escape}" />
+					<label class="field_notice">最多只能输入5个字符</label>
+				</td>
 			</tr>
 			<tr>
 				<th class="paddingT15">链接地址:</th>

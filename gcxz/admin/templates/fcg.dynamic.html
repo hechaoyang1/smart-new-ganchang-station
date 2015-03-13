@@ -33,7 +33,7 @@ $(function(){
     <!--{/if}-->
     <!--{foreach from=$fixed_list item=goods}-->
     <tr class="tatr2">
-      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$goods.goods_id}"/></td>
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$goods.id}"/></td>
       <td><span ectype="inline_edit" fieldname="name" fieldid="{$goods.id}" required="1" class="editable" title="{$lang.editable}">{$goods.name|escape}</span></td>
       <td><a href="{$goods.picture}" target="_bank"><img src="{$goods.picture}" height="30" /></a></td>
       <td>{$goods.description|escape}</td>
@@ -48,7 +48,7 @@ $(function(){
   <!--{if $fixed_list}-->
   <div id="dataFuncs">
     <div id="batchAction" class="left paddingT15"> <!--{if !$smarty.get.closed}-->
-      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=goodsad&act=drop&ret_page={$page_info.curr_page}" presubmit="confirm('{$lang.drop_confirm}')" />
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=fcg&act=drop&ret_page={$page_info.curr_page}" presubmit="confirm('{$lang.drop_confirm}')" />
     </div>
     <div class="pageLinks">{include file=page.bottom.html}</div>
    <!--{/if}-->
