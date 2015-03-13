@@ -188,15 +188,10 @@ function buy()
     var spec_id = goodsspec.getSpec().id;
 
     var quantity = $("#quantity").val();
-    if (quantity == '')
-    {
-        alert('请输入购买数量');
-        return;
-    }
-    if (parseInt(quantity) < 1)
-    {
-        alert('您输入的数量不正确');
-        return;
+    var re = /^[1-9]+[0-9]*$/
+    if(!re.test(quantity)){
+    	alert('请输入正整数');
+    	return;
     }
     add_to_cart(spec_id, quantity);
 }
@@ -211,18 +206,14 @@ function nowbuy()
 	    var spec_id = goodsspec.getSpec().id;
 
 	    var quantity = $("#quantity").val();
-	    if (quantity == '')
-	    {
-	        alert('请输入购买数量');
-	        return;
-	    }
-	    if (parseInt(quantity) < 1)
-	    {
-	        alert('您输入的数量不正确');
-	        return;
+	    var re = /^[1-9]+[0-9]*$/
+	    if(!re.test(quantity)){
+	    	alert('请输入正整数');
+	    	return;
 	    }
     add_to_cart1(spec_id, quantity);
 }
+
 
 /* add cart */
 function add_to_cart(spec_id, quantity)
