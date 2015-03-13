@@ -62,7 +62,7 @@ $(function()
                         }
 						
 						//给每一个取出的数据添加是否显示标志
-                        if(res[2].is_fine == '1')
+                        if(res[i].is_fine == '1')
                         {
                             is_fine = "<img src='templates/style/images/positive_enabled.gif' ectype='inline_edit' fieldname='is_fine' fieldid='"+res[i].cate_id+"' fieldvalue='1'/>";
                         }
