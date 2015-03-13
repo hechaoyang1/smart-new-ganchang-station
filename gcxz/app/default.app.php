@@ -71,7 +71,7 @@ class DefaultApp extends MallbaseApp
 		    {
 		        $goods_list = $this->_get_new_goods($cate_id, 8, 1);
 		        $top_cate_goods[$floor] = $goods_list;
-		        $top_cate_children[$floor] = $gcategory_mod->get_children($cate_id);
+		        $top_cate_children[$floor] = $gcategory_mod->get_children($cate_id, true);
 		    }
 		}
 		$this->assign('top_category',$top_category);
