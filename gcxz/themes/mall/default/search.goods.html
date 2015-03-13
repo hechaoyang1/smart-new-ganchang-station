@@ -21,7 +21,7 @@
 			<dl class="term">
 				<dt>条件:</dt>
 				{foreach from=$areaArr item=area} {if $region_id eq $area.region_id}
-				<dd class="area">
+				<dd class="area" attr_id="{$area.region_id}">
 					<span>{$area.region_name}</span>
 				</dd>
 				{/if} {/foreach}
