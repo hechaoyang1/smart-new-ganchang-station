@@ -36,7 +36,9 @@
 						<td  id="item{$goods.rec_id}_subtotal">{$goods.subtotal|price}</td>
 						<td class="operation">
 							<div><a href="javascript:;" onclick="drop_cart_item({$store_id}, {$goods.rec_id});">{$lang.drop}</a></div>
+							{if $visitor['user_id']}
 							<div><a href="javascript:;" onclick="move_favorite({$store_id}, {$goods.rec_id}, {$goods.goods_id});">{$lang.move_favorite}</a></div>
+							{/if}
 						</td>
 					</tr>
 				 <!--{/foreach}-->
