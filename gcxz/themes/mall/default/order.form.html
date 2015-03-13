@@ -3,7 +3,7 @@
 <link href="{res file=css/shoppingCar.css}" rel="stylesheet" type="text/css" />
 <style>
 <!--
- span.error{
+ label.error{
 	color:red;
  }
 -->
@@ -38,18 +38,18 @@
 					</div>
 					<!--{/if}-->
 					<ul class="addressList" id="region">
-						<li><span class="pull-left"><span class="orange">*</span>收货人姓名:</span> <input type="text" name="consignee" id="consignee" >&nbsp;<span class="error"></span></li>
-						<li><span class="pull-left"><span class="orange">*</span>联系电话: </span><input type="text" id="phone_mob" name="phone_mob">&nbsp;<span class="error"></span></li>
+						<li><span class="pull-left"><span class="orange">*</span>收货人姓名:</span> <input type="text" name="consignee" id="consignee" >&nbsp;<span class="errormsg"></span></li>
+						<li><span class="pull-left"><span class="orange">*</span>联系电话: </span><input type="text" id="phone_mob" name="phone_mob">&nbsp;<span class="errormsg"></span></li>
 						<li><span class="pull-left"><span class="orange">*</span>所在地区:</span> 
 						<input id="edit_region_button" type="button" class="edit_region" value="{$lang.edit}" style="display:none;" />
-                                <select onchange="hide_error();" style="display: inline-block;margin-top:0;">
+                                <select onchange="hide_error(this);" style="display: inline-block;margin-top:0;">
                                     <option value="0">{$lang.select_pls}</option>
                                     {html_options options=$regions}
                                 </select>
                                 <input type="hidden" class="mls_id" name="region_id" id="region_id"/><input type="hidden" name="region_name" class="mls_names" id="region_name"/>
-                              &nbsp;<span class="error"></span>
+                              &nbsp;<span class="errormsg"></span>
                                </li>
-						<li><span class="pull-left"><span class="orange">*</span>详细地址:</span> <input name="address" id="address" type="text">&nbsp;<span class="error"></span></li>
+						<li><span class="pull-left"><span class="orange">*</span>详细地址:</span> <input name="address" id="address" type="text">&nbsp;<span class="errormsg"></span></li>
 						<li><input type="checkbox" value="1" id="save_address" name="save_address">设置为默认地址</li>
 					</ul>
 				</div>
@@ -149,8 +149,8 @@
 	            d.show('center');
 	           },
 	           errorPlacement: function(error, element){
-	               var _message_box = $(element).parent().find('.error');
-	               _message_box.append(error);
+	               var _message_box = $(element).parent().find('.errormsg');
+	               _message_box.html(error);
 	           },
 	           /**
 	           success       : function(label){
@@ -229,8 +229,8 @@
 	   function check_phone(){
 	       return ($('#phone_tel').val() == '' && $('#phone_mob').val() == '');
 	   }
-	   function hide_error(){
-	       $('#region').find('.error').hide();
+	   function hide_error(obj){
+		   $(obj).siblings('.errormsg').empty();
 	   }
        $('.address_item').click(function(){
            $(this).find("input[name='address_options']").attr('checked', true);
