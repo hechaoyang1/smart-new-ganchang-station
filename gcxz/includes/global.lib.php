@@ -322,21 +322,13 @@ function &get_mailer()
     {
         /* 使用mailer类 */
         import('mailer.lib');
-//         $sender     = Conf::get('site_name');
-//         $from       = Conf::get('email_addr');
-//         $protocol   = Conf::get('email_type');
-//         $host       = Conf::get('email_host');
-//         $port       = Conf::get('email_port');
-//         $username   = Conf::get('email_id');
-//         $password   = Conf::get('email_pass');
-        
-        $sender     = '赶场小站';
-        $from       = 'xcb4007@qq.com';
-        $protocol   = '1';
-        $host       = 'smtp.qq.com';
-        $port       =  25;
-        $username   = 'xcb4007@qq.com';
-        $password   = 'youaresb1';
+        $sender     = Conf::get('site_name');
+        $from       = Conf::get('email_addr');
+        $protocol   = Conf::get('email_type');
+        $host       = Conf::get('email_host');
+        $port       = Conf::get('email_port');
+        $username   = Conf::get('email_id');
+        $password   = Conf::get('email_pass');
         $mailer = new Mailer($sender, $from, $protocol, $host, $port, $username, $password);
     }
 
