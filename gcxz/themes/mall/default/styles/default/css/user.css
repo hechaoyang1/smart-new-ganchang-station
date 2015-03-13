@@ -635,7 +635,7 @@ body { font-size: 12px; font-family: Arial, Verdana, sans-serif; }
 
 .information .photo b input { cursor: pointer; width: 0; height: 32px; -moz-opacity: 0; opacity: 0; filter: alpha(opacity=0); }
 .information .photo b input[type="file"]{
-	width:100px;
+	width:120px;
 }
 .information .info table { width: 100%; border-collapse: collapse; }
 .information .info th { font-weight: normal; text-align: left; color: #666; padding-right: 20px; height: 40px; }
