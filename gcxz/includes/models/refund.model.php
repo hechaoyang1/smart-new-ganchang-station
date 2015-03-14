@@ -82,7 +82,7 @@ class RefundModel extends BaseModel
             $data['status'] = $type == 1 ? STATUS_APPLY : STATUS_AUDITD;
             $data['info'] = $param['info'];
             $data['type'] = $type;
-            $data['ctime'] = time ();
+            $data['ctime'] = gmtime ();
             $data['log'] = $this->create_log ( array (), $data['user_id'], $order['buyer_name'], '申请退款' );
             $res = $this->add ( $data );
             // 修改订单状态为“申请退款”
@@ -174,7 +174,7 @@ class RefundModel extends BaseModel
                     'fields' => 'log' 
             ) );
             m ( 'order' )->edit ( $refund['order_id'], array (
-            'status' => ORDER_FINISHED
+                    'status' => ORDER_FINISHED 
             ) );
             $returnmodel->edit ( $refund['return_goods_id'], array (
                     'status' => RETURN_COMPLETED,
@@ -193,7 +193,7 @@ class RefundModel extends BaseModel
     {
         $refund = $this->get ( array (
                 'conditions' => 'id=' . $param['id'],
-                'fields' => 'seller_id,status,type,log,type' 
+                'fields' => 'seller_id,status,type,order_id,log,type' 
         ) );
         if (empty ( $refund ) || $refund['seller_id'] != $param['user_id']) {
             $this->error = '非法操作';
@@ -205,10 +205,16 @@ class RefundModel extends BaseModel
         }
         $refund['log'] = unserialize ( $refund['log'] );
         $log = $this->create_log ( $refund['log'], $param['user_id'], $param['user_name'], '卖家关闭:' . $param['remark'] );
-        return $this->edit ( 'id=' . $param['id'], array (
+        $ret = $this->edit ( 'id=' . $param['id'], array (
                 'status' => STATUS_CLOSED,
                 'log' => $log 
         ) );
+        if ($ret) {
+            return m ( 'order' )->edit ( $refund['order_id'], array (
+                    'status' => ORDER_ACCEPTED 
+            ) );
+        }
+        return $ret;
     }
 
     /**
@@ -222,7 +228,7 @@ class RefundModel extends BaseModel
     {
         $refund = $this->get ( array (
                 'conditions' => 'id=' . $param['id'],
-                'fields' => 'status,log' 
+                'fields' => 'status,log,order_id,type' 
         ) );
         if ($refund['status'] != STATUS_AUDITD) {
             $this->error = '该退款状态不能审核';
@@ -230,10 +236,16 @@ class RefundModel extends BaseModel
         }
         $refund['log'] = unserialize ( $refund['log'] );
         $log = $this->create_log ( $refund['log'], $param['user_id'], $param['user_name'], ($approve ? '审批通过:' : '关闭退款:') . $param['remark'] );
-        return $this->edit ( 'id=' . $param['id'], array (
+        $ret = $this->edit ( 'id=' . $param['id'], array (
                 'status' => $approve ? STATUS_APPROVED : STATUS_CLOSED,
                 'log' => $log 
         ) );
+        if ($ret && !$approve && $refund['type'] == 1) {
+            return m ( 'order' )->edit ( $refund['order_id'], array (
+                    'status' => ORDER_ACCEPTED 
+            ) );
+        }
+        return $ret;
     }
 
     /**
@@ -270,7 +282,7 @@ class RefundModel extends BaseModel
         $log[] = array (
                 'user_id' => $user_id,
                 'name' => $user_name,
-                'time' => time (),
+                'time' => gmtime (),
                 'mark' => $mark 
         );
         return serialize ( $log );

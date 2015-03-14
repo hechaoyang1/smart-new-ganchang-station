@@ -71,6 +71,9 @@ $(function(){
             goods_name : {
                 required   : true
             },
+            sku : {
+                required   : true
+            },
             price      : {
                 number     : true,
                 required : true,
@@ -99,6 +102,9 @@ $(function(){
         messages : {
             goods_name  : {
                 required   : '{$lang.goods_name_empty}'
+            },
+            sku  : {
+                required   : '货号不能为空'
             },
             price       : {
                 number     : '{$lang.number_only}',
@@ -294,11 +300,11 @@ $(function(){
                                     </li>
                                     <li>
                                         <h2  ectype="no_spec">促销价: </h2>
-                                        <div class="arrange"  ectype="no_spec"><input name="spec_id" value="{$goods._specs.0.spec_id}" type="hidden" /><input name="price" value="{$goods._specs.0.price}" type="text" class="text width_short" /></div>
+                                        <div class="arrange"  ectype="no_spec"><input name="spec_id" value="{$goods._specs.0.spec_id}" type="hidden" /><input name="price" value="{$goods._specs.0.price}" type="text" class="text width_short" /><span class="red">*</span></div>
                                     </li>
                                     <li>
                                         <h2  ectype="no_spec">原价: </h2>
-                                        <div class="arrange"  ectype="no_spec"><input name="price1" value="{$goods._specs.0.price1}" type="text" class="text width_short" /></div>
+                                        <div class="arrange"  ectype="no_spec"><input name="price1" value="{$goods._specs.0.price1}" type="text" class="text width_short" /><span class="red">*</span></div>
                                     </li>
                                     <li ectype="no_spec">
                                         <h2>{$lang.stock}: </h2>
@@ -306,7 +312,7 @@ $(function(){
                                     </li>
                                     <li ectype="no_spec">
                                         <h2>{$lang.sku}: </h2>
-                                        <div class="arrange"><input name="sku" value="{$goods._specs.0.sku}" type="text" class="text width_normal" /></div>
+                                        <div class="arrange"><input name="sku" value="{$goods._specs.0.sku}" type="text" class="text width_normal" /><span class="red">*</span></div>
                                     </li>
 									<li ectype="no_spec">
 										<h2>所属地区:</h2>

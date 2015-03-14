@@ -229,7 +229,7 @@ class GcategoryBModel extends GcategoryModel
         }
         else
         {
-            $sql = "SELECT cate_id, cate_name FROM {$this->table} WHERE parent_id = '$id' AND store_id = '{$this->_store_id}'";
+            $sql = "SELECT cate_id, cate_name FROM {$this->table} WHERE parent_id = '$id' AND is_show = 1 AND store_id = '{$this->_store_id}'";
             $res = $this->getAll($sql);
         }
 
