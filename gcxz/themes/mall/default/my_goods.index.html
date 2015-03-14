@@ -71,7 +71,7 @@ $(function(){
                         <th width="50">{$lang.radar_title}</th>
                         {/if} -->
                         <th width="165" coltype="editable" column="goods_name" checker="check_required" inputwidth="90%" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">{$lang.goods_name}</span></th>
-                        <th width="70" column="cate_id" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">{$lang.gcategory}</span></th>
+                        <th width="170" column="cate_id" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">{$lang.gcategory}</span></th>
                         <th width="55" coltype="editable" column="brand" checker="check_required" inputwidth="55px" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">{$lang.brand}</span></th>
                         <th width="55" class="cursor_pointer" coltype="editable" column="price" checker="check_number" inputwidth="50px" title="{$lang.sort_order}"><span ectype="order_by">{$lang.price}</span></th>
                         <th width="55" class="cursor_pointer" coltype="editable" column="stock" checker="check_pint" inputwidth="50px" title="{$lang.sort_order}"><span ectype="order_by">{$lang.stock}</span></th>
@@ -92,7 +92,7 @@ $(function(){
                         <td width="160" align="align2">
                           <p class="ware_text"><span class="color2" ectype="editobj">{$goods.goods_name|escape}</span></p>
                         </td>
-                        <td width="65"><span class="color2">{$goods.cate_name|nl2br}</span></td>
+                        <td width="165"><span class="color2">{$goods.cate_name|nl2br}</span></td>
                         <td width="50" class="align2"><span class="color2" ectype="editobj">{$goods.brand|escape}</span></td>
                         <td width="50" class="align2"><!--{if $goods.spec_qty}--><span ectype="dialog" dialog_width="430" uri="index.php?app=my_goods&amp;act=spec_edit&amp;id={$goods.goods_id}" dialog_id="my_goods_spec_edit" class="cursor_pointer"><!--{else}--><span class="color2" ectype="editobj"><!--{/if}-->{$goods.price}</span></td>
                         <td width="50" class="align2"><!--{if $goods.spec_qty}--><span ectype="dialog" dialog_width="430" uri="index.php?app=my_goods&amp;act=spec_edit&amp;id={$goods.goods_id}" dialog_id="my_goods_spec_edit" class="cursor_pointer"><!--{else}--><span class="color2" ectype="editobj"><!--{/if}-->{$goods.stock}</span></td>
