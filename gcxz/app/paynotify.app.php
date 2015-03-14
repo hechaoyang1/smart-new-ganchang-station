@@ -74,8 +74,8 @@ class PaynotifyApp extends MallbaseApp
                'join'       => 'has_orderextm'
         ) );
         $order_info['order_sn'] = t ( $_GET['order_sn'] );
-        $order_info['order_add_time'] = date('Y-m-d H:i:s', $order_info['add_time']);
-        $order_info['pay_time'] = date('Y-m-d H:i:s', $order_info['pay_time']);
+        $order_info['order_add_time'] = local_date('Y-m-d H:i:s', $order_info['add_time']);
+        $order_info['pay_time'] = local_date('Y-m-d H:i:s', $order_info['pay_time']);
         $this->assign('order', $order_info);
         $this->display ( 'pay.finish.html' );
     }
