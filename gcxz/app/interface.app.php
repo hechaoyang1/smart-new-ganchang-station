@@ -67,7 +67,7 @@ class InterfaceApp extends BaseApp {
 	 */
 	function retreatOrder() {
 		$param = '&order_id=73&return_order_sn=152349492348&goods_number=1111&quantity=1';
-		sendPost ( 'http://192.168.30.47:8080/wms/api/retreatOrder', $param );
+		echo sendPost ( 'http://192.168.30.120:8080/wms/api/retreatOrder', $param );
 	}
 	/**
 	 * 修改退单状态
