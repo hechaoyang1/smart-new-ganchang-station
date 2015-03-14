@@ -136,7 +136,7 @@ class GoodsModel extends BaseModel
         $cg_table  = DB_PREFIX . 'category_goods';
 
         $fields = "g.goods_id, g.store_id, g.type, g.goods_name, g.cate_id, g.cate_name, g.brand, g.spec_qty, g.spec_name_1, g.spec_name_2, g.if_show,g.is_fine,g.is_red, g.closed, g.add_time, g.recommended, g.default_image,g.source_type, " .
-                "gs.spec_id, gs.spec_1, gs.spec_2, gs.color_rgb, gs.price,gs.price1, gs.stock, " .
+                "gs.spec_id, gs.spec_1, gs.spec_2, gs.color_rgb, gs.price,gs.price1, gs.stock,g.unit " .
                 "s.store_name, s.region_id, s.region_name, s.credit_value, s.sgrade, " .
                 "gst.views, gst.sales, gst.comments,g.ttc,g.native";
         $desc && $fields .= ", g.description";
