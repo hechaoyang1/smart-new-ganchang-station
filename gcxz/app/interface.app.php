@@ -26,7 +26,7 @@ class InterfaceApp extends BaseApp {
 						CONCAT(e.region_name,e.address) address,
 						o.payment_name,
 						s.tel store_tel,
-						s.address,
+						s.address store_address,
 						o.order_amount
 					FROM
 						`ecm_order_goods` og
