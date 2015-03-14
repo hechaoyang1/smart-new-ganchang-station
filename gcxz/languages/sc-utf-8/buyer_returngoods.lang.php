@@ -13,7 +13,8 @@ return array(
     'total_price' => '总价',
     'consignee_address' => '收货地址',
     'preference' => '优惠打折',
-    'groupbuy' => '团购'
+    'groupbuy' => '团购',
+    'wrong_status'=>'退货单不存在',
 );
 
 ?>

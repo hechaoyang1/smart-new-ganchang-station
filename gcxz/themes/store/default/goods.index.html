@@ -42,8 +42,8 @@
 							{$goods.spec_name_2|escape}：</div>
 						<!--{/if}-->
 						<div class="fz14 mt20">
-							数量<input id="quantity" class="number" type="text" value="1">件
-							库存<span ectype='goods_stock'>{$goods._specs.0.stock}</span>件
+							数量<input id="quantity" class="number" type="text" value="1">{$goods.unit}
+							库存<span ectype='goods_stock'>{$goods._specs.0.stock}</span>{$goods.unit}
 						</div>
 						<div class="btns">
 							<a class="buyNow" href="javascript:nowbuy();">立即购买</a> <a

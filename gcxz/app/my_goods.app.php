@@ -2026,6 +2026,7 @@ class My_goodsApp extends StoreadminbaseApp
             'tags'             => trim($_POST['tags']),
         	'region_id'        => $_POST['region_id'],
         	'region_name'        => $_POST['region_name'],
+        	'unit'        => $_POST['unit'],
         );
         $spec_name_1 = !empty($_POST['spec_name_1']) ? $_POST['spec_name_1'] : '';
         $spec_name_2 = !empty($_POST['spec_name_2']) ? $_POST['spec_name_2'] : '';

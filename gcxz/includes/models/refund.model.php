@@ -82,7 +82,7 @@ class RefundModel extends BaseModel
             $data['status'] = $type == 1 ? STATUS_APPLY : STATUS_AUDITD;
             $data['info'] = $param['info'];
             $data['type'] = $type;
-            $data['ctime'] = time ();
+            $data['ctime'] = gmtime ();
             $data['log'] = $this->create_log ( array (), $data['user_id'], $order['buyer_name'], '申请退款' );
             $res = $this->add ( $data );
             // 修改订单状态为“申请退款”
@@ -282,7 +282,7 @@ class RefundModel extends BaseModel
         $log[] = array (
                 'user_id' => $user_id,
                 'name' => $user_name,
-                'time' => time (),
+                'time' => gmtime (),
                 'mark' => $mark 
         );
         return serialize ( $log );

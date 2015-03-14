@@ -69,7 +69,7 @@ class ReturngoodsModel extends BaseModel
         $data['source_type'] = $order_goods['source_type'];
         $data['remark'] = t ( $_POST['remark'] );
         $data['log'] = $this->_create_log ( array (), $data['user_id'], $data['buyer_name'], '申请退货' );
-        $data['ctime'] = time ();
+        $data['ctime'] = gmtime ();
         $ret = $this->add ( $data );
         if (!ret) {
             $this->error = '申请失败';
@@ -82,7 +82,7 @@ class ReturngoodsModel extends BaseModel
         $log[] = array (
                 'user_id' => $user_id,
                 'name' => $user_name,
-                'time' => time (),
+                'time' => gmtime (),
                 'mark' => $mark 
         );
         return serialize ( $log );
