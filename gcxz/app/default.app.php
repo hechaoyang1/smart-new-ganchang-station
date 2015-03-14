@@ -92,17 +92,17 @@ class DefaultApp extends MallbaseApp
 		  $order="views desc,g.add_time desc";
 		  $conditions .=" and is_red=1";
 		}
-		if($order==0){
+		else if($order==2){
+		 $order="views desc,g.add_time desc";
+		 $conditions .=" and is_fine=1";
+		}
+		else if($order==0){
 		  $order="sales desc";	
 		}
 		
 		$gcategory_mod  =& bm('gcategory');
         $cate_id_layer   = $gcategory_mod->get_layer($cate_id, true);
 		$conditions .= " AND g.cate_id_{$cate_id_layer} = '" . $cate_id . "'";
-		if($order==2){
-		 $order="views desc,g.add_time desc";
-		 $conditions .=" and is_fine=1";
-		}
         $goods_mod =& m('goods');
         $goods_list = $goods_mod->get_list(array(
             'conditions' => "closed = 0 AND if_show = 1".$conditions,
