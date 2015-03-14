@@ -16,7 +16,7 @@ return array(
     'offline_payment'       => '线下支付',
     'pay_message_successed' => '支付信息提交成功，请等待卖家确认',
     'connecting_pay_gateway'=> '正在连接支付网关, 请稍等...',
-    'cod_order_notice'      => '您选择了 货到付款 支付方式 ，请等待卖家确认',
+    'cod_order_notice'      => '您选择了 货到付款 支付方式 ，请等待卖家发货',
     'close_window'          => '关闭该页面',
     'view_order'            => '查看订单列表',
     'post_pay_message'      => '提交线下支付信息',
