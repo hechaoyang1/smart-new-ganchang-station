@@ -77,7 +77,7 @@
 				<div class="content">
 					<div class="t mt10">
 						<ul class="clearfix">
-							<li class="pull-left"><input type="radio" id="payment_1" name="payment_code" value="allinpay" checked>在线支付</li>
+							<!-- <li class="pull-left"><input type="radio" id="payment_1" name="payment_code" value="allinpay" checked>在线支付</li> -->
 							<li class="pull-left mlr10"><input type="radio" id="payment_2" name="payment_code" value="cod" onclick="checkOrder()">货到付款<i class="a">(部分商品不支持货到付款)</i></li>
 						</ul>
 					</div>
@@ -294,7 +294,7 @@
 		window.location.href="index.php?app=cart";
 	}
 	function checkOrder() {
-		$.get(REAL_SITE_URL + '/index.php?app=order&act=checkGoodsPayment', {
+		/* $.get(REAL_SITE_URL + '/index.php?app=order&act=checkGoodsPayment', {
 			store_id : '{$smarty.get.store_id}'
 		}, function(data) {
 			if (data.status == 1) {
@@ -318,7 +318,7 @@
 				});
 				d.show('center');
 			}
-		}, 'json');
+		}, 'json'); */
 	}
 	function postscript_activation(tt){
 	       if (!tt.name)
