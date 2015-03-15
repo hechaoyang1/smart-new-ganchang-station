@@ -549,7 +549,7 @@ class My_goodsApp extends StoreadminbaseApp
                 $str_spec .= "$key:$value".'<br>';
             }
             $goods['spec'] = $str_spec;
-            $goods['service_type'] = $goods['service_type'] == 1 ? '支持退货' : '不支持退货';
+            $goods['service_type_name'] = $goods['service_type'] == 1 ? '支持退货' : '不支持退货';
         }
 		$this->assign('goods_list', $goods_list);
         $this->display('share_goods.div.html');
