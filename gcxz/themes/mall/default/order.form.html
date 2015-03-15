@@ -294,7 +294,7 @@
 		window.location.href="index.php?app=cart";
 	}
 	function checkOrder() {
-		/* $.get(REAL_SITE_URL + '/index.php?app=order&act=checkGoodsPayment', {
+	 $.get(REAL_SITE_URL + '/index.php?app=order&act=checkGoodsPayment', {
 			store_id : '{$smarty.get.store_id}'
 		}, function(data) {
 			if (data.status == 1) {
@@ -314,11 +314,12 @@
 					onClickYes : clickYes,
 					no_button_name : '返回购物车',
 					onClickNo : clickNo,
+					is_order: true,
 	
 				});
 				d.show('center');
 			}
-		}, 'json'); */
+		}, 'json');
 	}
 	function postscript_activation(tt){
 	       if (!tt.name)

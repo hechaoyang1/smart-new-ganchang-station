@@ -345,7 +345,11 @@ Dialog.prototype = {
                             }
                             DialogManager.close(self.id);
                         });
-                        $(_buttons_bar).append(_yes_button).append(_no_button);
+                        if(options.is_order){
+                        	$(_buttons_bar).append(_no_button);
+                        }else{
+                        	$(_buttons_bar).append(_yes_button).append(_no_button);
+                        }
                     break;
                 }
                 _html = $(_message_body).append(_message_contents).append(_buttons_bar);
