@@ -537,7 +537,8 @@ class InterfaceApp extends BaseApp {
 		$_POST ['tags'] && $data ['tags'] = $_POST ['tags'];
 		$_POST ['price'] && $data ['price'] = $_POST ['price'];
 		$_POST ['price_original'] && $data ['price1'] = $_POST ['price_original'];
-		($_POST ['is_show'] || $_POST ['is_show'] == '0') && $data ['if_show'] = 0;
+// 		($_POST ['if_show'] || $_POST ['if_show'] == '0') && $data ['if_show'] = $_POST ['if_show'];
+		$data ['if_show'] = 0;
 		$_POST ['service_type'] && $data ['service_type'] = $_POST ['service_type'];
 		($_POST ['is_recommended'] || $_POST ['is_recommended'] == '0') && $data ['recommended'] = $_POST ['is_recommended'];
 		$_POST ['spec_name_1'] && $data ['spec_name_1'] = $_POST ['spec_name_1'];
