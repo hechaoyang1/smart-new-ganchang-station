@@ -156,6 +156,12 @@ class Buyer_returngoodsApp extends MemberbaseApp
                 'conditions' => 'order_id=' . intval ( $_GET['order_id'] ),
                 'fields' => 'status,buyer_id' 
         ) );
+        $goods=m('goods')->getAll('select g.service_type from ecm_order_goods og left join ecm_goods g on og.goods_id=g.goods_id where og.rec_id='.intval ( $_GET['rec_id'] ).' limit 1');
+        $goods=current($goods);
+        if($goods['service_type']==2){
+            $this->show_warning ( '该商品不支持退货' );
+            return;
+        }
         // 权限校验
         if ($this->visitor->info['user_id'] != $order['buyer_id']) {
             $this->show_warning ( 'no_access' );

@@ -35,12 +35,14 @@ class ReturngoodsModel extends BaseModel
             $this->error = '该商品已经申请过退货';
             return false;
         }
-        $order_goods = m ( 'ordergoods' )->get ( array (
-                'conditions' => "rec_id={$param['rec_id']} and order_id={$param['order_id']}",
-                'fields' => 'rec_id,quantity,goods_id,source_type' 
-        ) );
+        $order_goods = m ( 'ordergoods' )->getAll("select og.rec_id,og.quantity,og.goods_id,og.source_type,g.service_type from ecm_order_goods og left join ecm_goods g on og.goods_id=g.goods_id where og.rec_id={$param['rec_id']} and og.order_id={$param['order_id']} limit 1");
+        $order_goods=current($order_goods);
         if (empty ( $order_goods )) {
             $this->error = '商品记录不存在';
+            return false;
+        }
+        if($order_goods['service_type']==2){
+            $this->error='该商品不支持退货';
             return false;
         }
         $order = m ( 'order' )->get ( array (
