@@ -149,7 +149,7 @@ class ReturngoodsModel extends BaseModel
     {
         $return = $this->get ( array (
                 'conditions' => 'id=' . $param['id'],
-                'fields' => 'id,seller_id,order_id,return_order_sn,order_goods_id,status,quantity,source_type,log' 
+                'fields' => 'id,seller_id,order_id,return_order_sn,order_goods_id,status,quantity,source_type,express_sn,log' 
         ) );
         // 权限校验
         if ($param['seller_id'] != $return['seller_id']) {
@@ -170,7 +170,7 @@ class ReturngoodsModel extends BaseModel
                     'conditions' => 'rec_id=' . $return['order_goods_id'],
                     'fields' => 'goods_number' 
             ) );
-            $query = "&order_id={$return['order_id']}&return_order_sn={$return['return_order_sn']}&goods_number={$goods_num['goods_number']}&quantity={$return['quantity']}";
+            $query = "&order_id={$return['order_id']}&return_order_sn={$return['return_order_sn']}&goods_number={$goods_num['goods_number']}&quantity={$return['quantity']}&invoice_no={$return['express_sn']}";
             sendPost ( WMS_URL . 'retreatOrder', $query );
         }
         return $this->edit ( 'id=' . $param['id'], $data );

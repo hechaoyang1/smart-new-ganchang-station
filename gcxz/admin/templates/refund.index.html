@@ -2,6 +2,12 @@
 <style>
 tr td.handler, th.handler { text-align: center; width: 180px; }
 </style>
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
 <!--{if $status}-->
 <div id="rightTop">
     <p>退款管理</p>
@@ -17,7 +23,24 @@ tr td.handler, th.handler { text-align: center; width: 180px; }
 </div>
 <!--{/if}-->
 <div class="mrightTop">
-  <div class="fontr">{include file=page.top.html}</div>
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="refund" />
+                <input type="hidden" name="act" value="index" />
+                订单号:<input class="queryInput2" type="text" style="width:100px;" value="{$query.order_sn}" name="order_sn" />
+                退货时间从:<input class="queryInput2" type="text" style="width:100px;" value="{$query.add_time_from}" id="add_time_from" name="add_time_from" class="pick_date" />
+                至:<input class="queryInput2" type="text" style="width:100px;" value="{$query.add_time_to}" id="add_time_to" name="add_time_to" class="pick_date" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=order">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {if $orders}{include file=page.top.html}{/if}
+    </div>
 </div>
 <div class="tdare">
   <table width="100%" cellspacing="0" class="dataTable">

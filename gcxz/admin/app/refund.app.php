@@ -28,11 +28,28 @@ class RefundApp extends BackendApp
     public function index()
     {
         $this->_get_status ();
+        $conditions = $this->_get_query_conditions(array(
+        array(
+                'field' => 'rf.order_sn',
+                'name'  => 'order_sn',
+                'equal' => 'LIKE',
+        ),array(
+                'field' => 'rf.ctime',
+                'name'  => 'add_time_from',
+                'equal' => '>=',
+                'handler'=> 'gmstr2time',
+        ),array(
+                'field' => 'rf.ctime',
+                'name'  => 'add_time_to',
+                'equal' => '<=',
+                'handler'   => 'gmstr2time_end',
+        )
+        ));
         $condition = $this->_get_condition ( $_GET['cur'] );
         $page = $this->_get_page ();
+        $condition="($condition)$conditions";
         $sql = "SELECT rf.id, rf.order_id,rf.order_sn,rf.seller_name,rf.buyer_name,rf.type,rf.status,rf.amount FROM ecm_refund rf WHERE {$condition} ORDER BY ctime DESC LIMIT {$page['limit']}";
         $refunds = $this->m->getAll ( $sql );
-        error_reporting ( E_ALL );
         foreach ( $refunds as &$v ) {
             $v['status_text'] = $this->m->get_status ( $v['status'] );
             $v['type_text'] = $this->m->convert_type( $v['type']);
@@ -43,6 +60,8 @@ class RefundApp extends BackendApp
         $this->assign ( 'cur', isset ( $_GET['cur'] ) ? $_GET['cur'] : 'all' );
         $this->assign ( 'page_info', $page );
         $this->assign ( 'refunds', $refunds );
+        $this->import_resource(array('script' => 'inline_edit.js,jquery.ui/jquery.ui.js,jquery.ui/i18n/' . i18n_code() . '.js',
+                'style'=> 'jquery.ui/themes/ui-lightness/jquery.ui.css'));
         $this->display ( 'refund.index.html' );
     }
 
