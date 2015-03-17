@@ -190,13 +190,13 @@ function order_status($order_status)
             $lang_key = '正在出库';
         break;
         case ORDER_SHIPPED:
-            $lang_key = 'order_shipped';
+            $lang_key = '已发货';
         break;
         case ORDER_FINISHED:
-            $lang_key = 'order_finished';
+            $lang_key = '已完成';
         break;
         case ORDER_CANCELED:
-            $lang_key = 'order_canceled';
+            $lang_key = '已取消';
         break;
         case ORDER_REFUNDED:
             $lang_key = '待退款';

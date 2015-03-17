@@ -192,9 +192,9 @@ class InterfaceApp extends BaseApp {
 					$order_log = & m ( 'orderlog' );
 					$order_log->add ( array (
 							'order_id' => $order->order_id,
-							'operator' => 'interface',
-							'order_status' => $info ['status'],
-							'changed_status' => $order->status,
+							'operator' => '仓库',
+							'order_status' => order_status ( $info ['status'] ),
+							'changed_status' => order_status ( $order->status ),
 							'log_time' => gmtime () 
 					) );
 				}
