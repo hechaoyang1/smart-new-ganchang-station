@@ -180,14 +180,14 @@ class InterfaceApp extends BaseApp {
 					// 修改运单号
 					$editData ['invoice_no'] = $order->invoice_no;
 				}
+				$info = $orderModel->get ( array (
+						'conditions' => 'order_id=' . $order->order_id,
+						'fields' => 'status' 
+				) );
 				// 如果修改失败
 				if (! $orderModel->edit ( $order->order_id, $editData )) {
 					array_push ( $errorArray, $order->order_id );
 				} else {
-					$info = $orderModel->get ( array (
-							'conditions' => 'order_id=' . $order->order_id,
-							'fields' => 'status' 
-					) );
 					/* 记录订单操作日志 */
 					$order_log = & m ( 'orderlog' );
 					$order_log->add ( array (
@@ -217,7 +217,7 @@ class InterfaceApp extends BaseApp {
 		$status = $_POST ['status'];
 		$id = $_POST ['id'];
 		$result ['code'] = 0;
-		if(!isset($id)){
+		if (! isset ( $id )) {
 			$result ['msg'] = '供应商id为必填字段';
 			exit ( json_encode ( $result ) );
 		}
@@ -258,7 +258,7 @@ class InterfaceApp extends BaseApp {
 		$status = $_POST ['status'];
 		$id = $_POST ['id'];
 		$result ['code'] = 0;
-		if(!isset($id)){
+		if (! isset ( $id )) {
 			$result ['msg'] = '商品id为必填字段';
 			exit ( json_encode ( $result ) );
 		}
@@ -352,7 +352,7 @@ class InterfaceApp extends BaseApp {
 				'_store_id' => 0 
 		) );
 		$result ['code'] = 0;
-		if(!isset($id)){
+		if (! isset ( $id )) {
 			$result ['msg'] = '分类id为必填字段';
 			exit ( json_encode ( $result ) );
 		}
@@ -501,7 +501,7 @@ class InterfaceApp extends BaseApp {
 		if ($data) {
 			$result ['code'] = 1;
 			$result ['msg'] = 'OK';
-			$data['appURL'] = SITE_URL .$data['appURL'];
+			$data ['appURL'] = SITE_URL . $data ['appURL'];
 			$result ['appObject'] = array (
 					$data 
 			);
@@ -511,12 +511,11 @@ class InterfaceApp extends BaseApp {
 		}
 		exit ( json_encode ( $result ) );
 	}
-	
 	/**
 	 * 添加商品
 	 */
 	function addGood() {
-		$user_id = intval($_POST ['user_id']);
+		$user_id = intval ( $_POST ['user_id'] );
 		$userprivModel = &m ( 'userpriv' );
 		$info = $userprivModel->find ( array (
 				'conditions' => 'user_id=' . $user_id,
@@ -537,7 +536,7 @@ class InterfaceApp extends BaseApp {
 		$_POST ['tags'] && $data ['tags'] = $_POST ['tags'];
 		$_POST ['price'] && $data ['price'] = $_POST ['price'];
 		$_POST ['price_original'] && $data ['price1'] = $_POST ['price_original'];
-// 		($_POST ['if_show'] || $_POST ['if_show'] == '0') && $data ['if_show'] = $_POST ['if_show'];
+		// ($_POST ['if_show'] || $_POST ['if_show'] == '0') && $data ['if_show'] = $_POST ['if_show'];
 		$data ['if_show'] = 0;
 		$_POST ['service_type'] && $data ['service_type'] = $_POST ['service_type'];
 		($_POST ['is_recommended'] || $_POST ['is_recommended'] == '0') && $data ['recommended'] = $_POST ['is_recommended'];
