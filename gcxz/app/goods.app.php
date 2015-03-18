@@ -30,6 +30,11 @@ class GoodsApp extends StorebaseApp
         {
             return;
         }
+        else if($data['goods']['source_type'] == 3)
+        {
+            header("Location: ".$data['goods']['foreign_url']);
+            exit;
+        }
         else
         {
             $this->_assign_common_info($data);
