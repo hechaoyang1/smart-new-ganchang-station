@@ -15,7 +15,7 @@ $(function(){
         rules : {
             user_name : {
                 required : true,
-                byteRange: [3,30,'{$charset}'],
+                byteRange: [3,45,'{$charset}'],
                 remote   : {
                     url :'index.php?app=member&act=check_user&ajax=1',
                     type:'get',
@@ -37,7 +37,8 @@ $(function(){
             },
             password : {
                 required : true,
-                minlength: 6
+                minlength: 6,
+                maxlength:20
             },
             password_confirm : {
                 required : true,
@@ -71,7 +72,8 @@ $(function(){
             },
             password  : {
                 required : '{$lang.password_required}',
-                minlength: '{$lang.password_length_limit}'
+                minlength: '{$lang.password_length_limit}',
+                maxlength: '{$lang.password_length_limit}'
             },
             password_confirm : {
                 required : '{$lang.password_confirm_please}',
@@ -106,7 +108,7 @@ $(function(){
                             </tr>
                             <tr>
                                 <td>{$lang.user_name}:</td>
-                                <td><input type="text" id="user_name" name="user_name" class="text width10" /></td>
+                                <td><input type="text" id="user_name" name="user_name" class="text width10" maxlength="15"/></td>
                                 <td class="padding3 fontColor4"><label class="field_notice">{$lang.user_name_desc}</label><label id="checking_user" class="checking">{$lang.checking}</label></td>
                             </tr>
                             <tr>

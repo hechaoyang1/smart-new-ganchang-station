@@ -200,7 +200,7 @@ class MemberApp extends MemberbaseApp
 
                 return;
             }
-            if ($passlen < 6 || $passlen > 20)
+            if ($passlen < 6 || $passlen > 60)
             {
                 $this->show_warning('password_length_error');
 
