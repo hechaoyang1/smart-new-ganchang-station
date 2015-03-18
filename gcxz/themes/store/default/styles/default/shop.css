@@ -206,7 +206,7 @@ ul, ol { list-style-type:none; }
 .submenu ul { padding-left: 22px; }
 .submenu ul li {}
 .submenu ul li a { background: url(images/ico.gif) no-repeat 0 -241px; padding-left: 10px; }
-
+.submenu li a.circle {background: url(images/ico.gif) no-repeat 0 -241px;padding-left: 10px;}
 .none_ico { background: url(images/ico.gif) no-repeat 0 -209px; }
 .block_ico { background: url(images/ico.gif) no-repeat 0 -179px; }
 .link_ico { background: url(images/ico.gif) no-repeat 3px -276px; }

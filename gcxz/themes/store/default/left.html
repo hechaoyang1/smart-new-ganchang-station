@@ -84,11 +84,11 @@
             <div class="wrap">
                 <div class="wrap_child">
                     <ul class="submenu">
-                        <li><a class="none_ico" href="{url app=store&id=$store.store_id&act=search}">{$lang.all_goods}</a></li>
+                        <li><a class="none_ico circle" href="{url app=store&id=$store.store_id&act=search}">{$lang.all_goods}</a></li>
                         <!--{foreach from=$store.store_gcates item=gcategory}-->
                         <!--{if $gcategory.children}-->
                         <li>
-                            <a class="block_ico" href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a>
+                            <a class="none_ico circle" href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a>
                             <ul>
                                 <!--{foreach from=$gcategory.children item=child_gcategory}-->
                                 <li><a href="{url app=store&id=$store.store_id&act=search&cate_id=$child_gcategory.id}">{$child_gcategory.value|escape}</a></li>
@@ -96,7 +96,7 @@
                             </ul>
                         </li>
                         <!--{else}-->
-                        <li><a class="none_ico" href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a></li>
+                        <li><a class="none_ico .circle" href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a></li>
                         <!--{/if}-->
                         <!--{/foreach}-->
                     </ul>
