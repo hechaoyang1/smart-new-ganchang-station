@@ -682,6 +682,65 @@ class My_goodsApp extends StoreadminbaseApp
             );
         }
     }
+    
+    function addForeign()
+    {
+        /* 检测支付方式、配送方式、商品数量等 */
+        if (!$this->_addible()) {
+            return;
+        }
+        
+        if (!IS_POST)
+        {
+            $this->formData();
+            $this->display('my_goods.foreignform.html');
+        }
+        else
+        {
+            /* 取得数据 */
+            $data = $this->_get_post_data(0);
+            /* 检查数据 */
+            if (!$this->_check_post_data($data, 0))
+            {
+                $this->show_warning($this->get_error());
+                return;
+            }
+            
+            
+            $data['goods']['foreign_url'] = $_POST['foreign_url'];
+            $data['goods']['source_type'] = 3;
+            /* 保存数据 */
+            if (!$this->_save_post_data($data, 0, 3))
+            {
+                $this->show_warning($this->get_error());
+                return;
+            }
+            $goods_id = $this->_last_update_id;
+            
+            $goods_info = $this->_get_goods_info($goods_id);
+            if ($goods_info['if_show'])
+            {
+                $goods_url = SITE_URL . '/' . url('app=goods&id=' . $goods_info['goods_id']);
+                $feed_images = array();
+                $feed_images[] = array(
+                        'url'   => SITE_URL . '/' . $goods_info['default_image'],
+                        'link'  => $goods_url,
+                );
+                $this->send_feed('goods_created', array(
+                        'user_id' => $this->visitor->get('user_id'),
+                        'user_name' => $this->visitor->get('user_name'),
+                        'goods_url' => $goods_url,
+                        'goods_name' => $goods_info['goods_name'],
+                        'images' => $feed_images
+                ));
+            }
+        
+            $this->show_message('添加成功',
+                    'back_list', 'index.php?app=my_goods',
+                    'continue_add', 'index.php?app=my_goods&amp;act=addForeign'
+            );
+        }
+    }
 
     function edit()
     {
@@ -808,13 +867,17 @@ class My_goodsApp extends StoreadminbaseApp
                 'content_css' => SITE_URL . "/themes/store/{$template_name}/styles/{$style_name}" . '/shop.css', // for preview
             )));
              
-            if($goods['source_type'] == 2)
+            if ($goods['source_type'] == 1)
+            {
+                $this->display('my_goods.form.html');
+            }
+            else if($goods['source_type'] == 2)
             {
                 $this->display('my_goods.shareform.html');
             }
-            else 
+            else if ($goods['source_type'] == 3)
             {
-                $this->display('my_goods.form.html');
+                $this->display('my_goods.foreignform.html');
             }
         }
         else
@@ -1701,10 +1764,10 @@ class My_goodsApp extends StoreadminbaseApp
                      'name' => 'goods_add',
                      'url'  => 'index.php?app=my_goods&amp;act=add',
                  ),
-                 array(
-                     'name' => 'import_taobao',
-                     'url'  => 'index.php?app=my_goods&amp;act=import_taobao',
-                 ),
+//                  array(
+//                      'name' => 'import_taobao',
+//                      'url'  => 'index.php?app=my_goods&amp;act=import_taobao',
+//                  ),
                  array(
                     'name' => 'brand_apply_list',
                     'url' => 'index.php?app=my_goods&amp;act=brand_list'

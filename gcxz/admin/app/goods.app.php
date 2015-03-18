@@ -5,6 +5,8 @@
 class GoodsApp extends BackendApp
 {
     var $_goods_mod;
+    
+    var $goods_source = array(1 => '自营', 2 => '共享仓', 3 => '外链商品');
 
     function __construct()
     {
@@ -75,6 +77,7 @@ class GoodsApp extends BackendApp
         foreach ($goods_list as $key => $goods)
         {
             $goods_list[$key]['cate_name'] = $this->_goods_mod->format_cate_name($goods['cate_name']);
+            $goods_list[$key]['source_name'] = $this->goods_source[$goods['source_type']];
         }
         $this->assign('goods_list', $goods_list);
 

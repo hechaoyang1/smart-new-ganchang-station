@@ -62,6 +62,7 @@ $(function(){
       <td class="table-center"><span ectype="order_by" fieldname="closed">{$lang.close}</span></td>
       <td class="table-center"><span ectype="order_by" fieldname="native">标记土特产</span></td>
       <td class="table-center"><span ectype="order_by" fieldname="ttc">土特产置顶</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="source_type">商品来源</span></td>
       <td><span ectype="order_by" fieldname="views">{$lang.views}</span></td>
       <td>{$lang.handler}</td>
     </tr>
@@ -84,8 +85,15 @@ $(function(){
       <td class="table-center"><!-- {if $goods.closed} --><img src="{res file=style/images/negative_enabled.gif}" ectype="inline_edit" fieldname="closed" fieldid="{$goods.goods_id}" fieldvalue="1" title="{$lang.editable}"/><!--{else}--><img src="{res file=style/images/negative_disabled.gif}" ectype="inline_edit" fieldname="closed" fieldid="{$goods.goods_id}" fieldvalue="0" title="{$lang.editable}"/><!-- {/if} --></td>
       <td class="table-center"><!-- {if $goods.native} --><img src="{res file=style/images/positive_enabled.gif}" ectype="inline_edit" fieldname="native" fieldid="{$goods.goods_id}" fieldvalue="1" title="土特产"/><!--{else}--><img src="{res file=style/images/positive_disabled.gif}" ectype="inline_edit" fieldname="native" fieldid="{$goods.goods_id}" fieldvalue="0" title="土特产"/><!-- {/if} --></td>
       <td class="table-center"><!-- {if $goods.ttc} --><img src="{res file=style/images/positive_enabled.gif}" ectype="inline_edit" fieldname="ttc" fieldid="{$goods.goods_id}" fieldvalue="1" title="土特产"/><!--{else}--><img src="{res file=style/images/positive_disabled.gif}" ectype="inline_edit" fieldname="ttc" fieldid="{$goods.goods_id}" fieldvalue="0" title="土特产"/><!-- {/if} --></td>
+      <td>{$goods.source_name}</td>
       <td>{$goods.views|default:0}</td>
-      <td><a target="_blank" href="{$site_url}/index.php?app=goods&amp;id={$goods.goods_id}">{$lang.view}</a></td>
+      <td>
+      	{if $goods.soure_type == 3}
+      	<a target="_blank" href="{$goods.foreign_url}">{$lang.view}</a>
+      	{else}
+      	<a target="_blank" href="{$site_url}/index.php?app=goods&amp;id={$goods.goods_id}">{$lang.view}</a>
+      	{/if}
+      </td>
     </tr>
     <!--{foreachelse}-->
     <tr class="no_data info">

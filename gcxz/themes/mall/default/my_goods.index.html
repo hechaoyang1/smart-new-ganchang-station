@@ -25,8 +25,8 @@ $(function(){
   <div id="right">
     {include file=member.submenu.html}
         <div class="wrap">
-            <div class="eject_btn_two eject_pos1" title="{$lang.import_taobao}"><b class="ico1" onclick="go('index.php?app=my_goods&amp;act=import_taobao');">{$lang.import_taobao}</b></div>
-            <div class="eject_btn_two eject_pos2" title="{$lang.goods_add}"><b class="ico2" onclick="go('index.php?app=my_goods&amp;act=add');">{$lang.goods_add}</b></div>
+            <!-- <div class="eject_btn_two eject_pos1" title="{$lang.import_taobao}"><b class="ico1" onclick="go('index.php?app=my_goods&amp;act=import_taobao');">{$lang.import_taobao}</b></div> -->
+            <div class="eject_btn_two eject_pos1" title="{$lang.goods_add}"><b class="ico2" onclick="go('index.php?app=my_goods&amp;act=add');">{$lang.goods_add}</b></div>
             <div class="public_select table">
                 <table id="my_goods" server="{$site_url}/index.php?app=my_goods&amp;act=ajax_col" >
 
@@ -85,7 +85,13 @@ $(function(){
                     <!--{foreach from=$goods_list item=goods name=_goods_f}-->
                     <tr class="line<!--{if $smarty.foreach._goods_f.last}--> last_line<!--{/if}-->" ectype="table_item" idvalue="{$goods.goods_id}">
                         <td width="25" class="align2"><input type="checkbox" class="checkitem" value="{$goods.goods_id}"/></td>
-                        <td width="50" class="align2"><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$site_url}/{$goods.default_image}" width="50" height="50"  /></a></td>
+                        <td width="50" class="align2">
+                        {if $goods.source_type==3}
+                        <a href="{$goods.foreign_url}" target="_blank"><img src="{$site_url}/{$goods.default_image}" width="50" height="50"  /></a>
+                        {else}
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$site_url}/{$goods.default_image}" width="50" height="50"  /></a>
+                        {/if}
+                        </td>
                         <!-- {if $store.enable_radar}
                         <td width="50"  align="center"><span id="r{$goods.goods_id}" class="radar_product_point" radar_price="{$goods.price}" radar_product_id='{$goods.goods_id}' radar_brand="{$goods.brand}"  radar_catname="{$goods.cat_name}" radar_sn="{$goods.goods_sn}" radar_keyword="" radar_name="{$goods.goods_name}"></span></td>
                         {/if} -->
@@ -96,7 +102,7 @@ $(function(){
                         <td width="50" class="align2"><span class="color2" ectype="editobj">{$goods.brand|escape}</span></td>
                         <td width="50" class="align2"><!--{if $goods.spec_qty}--><span ectype="dialog" dialog_width="430" uri="index.php?app=my_goods&amp;act=spec_edit&amp;id={$goods.goods_id}" dialog_id="my_goods_spec_edit" class="cursor_pointer"><!--{else}--><span class="color2" ectype="editobj"><!--{/if}-->{$goods.price}</span></td>
                         <td width="50" class="align2"><!--{if $goods.spec_qty}--><span ectype="dialog" dialog_width="430" uri="index.php?app=my_goods&amp;act=spec_edit&amp;id={$goods.goods_id}" dialog_id="my_goods_spec_edit" class="cursor_pointer"><!--{else}--><span class="color2" ectype="editobj"><!--{/if}-->{$goods.stock}</span></td>
-                        <td width="70" class="align2"><span class="color2">{if $goods.source_type==1}自营{else}共享仓{/if}</span></td>
+                        <td width="70" class="align2"><span class="color2">{if $goods.source_type==1}自营{elseif $goods.source_type==2}共享仓{elseif $goods.source_type==3}外链商品{/if}</span></td>
                         <td width="20" class="align2"><span style="margin:0px 5px;" ectype="editobj" <!--{if $goods.if_show}-->class="right_ico" status="on"<!--{else}-->class="wrong_ico" stauts="off"<!--{/if}-->></span></td>
                         <td width="20" class="align2"><span style="margin:0px 5px;" ectype="editobj" <!--{if $goods.recommended}-->class="right_ico" status="on"<!--{else}-->class="wrong_ico" stauts="off"<!--{/if}-->></span></td>
                         <td width="20" class="align2"><span style="margin:0px 5px;" <!--{if $goods.closed}-->class="no_ico"<!--{else}-->class="no_ico_disable"<!--{/if}-->></span></td>
