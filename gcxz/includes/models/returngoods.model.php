@@ -122,7 +122,7 @@ class ReturngoodsModel extends BaseModel
     {
         $return = $this->get ( array (
                 'conditions' => 'id=' . $param['id'],
-                'fields' => 'id,user_id,status,log' 
+                'fields' => 'id,user_id,order_id,return_order_sn,quantity,order_goods_id,status,source_type,log' 
         ) );
         // 权限校验
         if ($param['user_id'] != $return['user_id']) {
@@ -137,7 +137,17 @@ class ReturngoodsModel extends BaseModel
         $data['status'] = RETURN_MAILED;
         $data['express_sn'] = $param['express_sn'];
         $data['log'] = $this->_create_log ( unserialize ( $return['log'] ), $param['user_id'], $param['user_name'], '邮寄商品' . ($param['remark'] ? ':' . $param['remark'] : '') );
-        return $this->edit ( 'id=' . $param['id'], $data );
+        $ret=$this->edit ( 'id=' . $param['id'], $data );
+        /* 共享商品卖家审核后,通知仓库验货 */
+        if ($return['source_type'] == 2&&$ret) {
+            $goods_num = m ( 'ordergoods' )->get ( array (
+                    'conditions' => 'rec_id=' . $return['order_goods_id'],
+                    'fields' => 'goods_number'
+            ) );
+            $query = "&order_id={$return['order_id']}&return_order_sn={$return['return_order_sn']}&goods_number={$goods_num['goods_number']}&quantity={$return['quantity']}&invoice_no={$param['express_sn']}";
+            sendPost ( WMS_URL . 'retreatOrder', $query );
+        }
+        return $ret;
     }
 
     /**
@@ -149,7 +159,7 @@ class ReturngoodsModel extends BaseModel
     {
         $return = $this->get ( array (
                 'conditions' => 'id=' . $param['id'],
-                'fields' => 'id,seller_id,order_id,return_order_sn,order_goods_id,status,quantity,source_type,express_sn,log' 
+                'fields' => 'id,seller_id,status,log' 
         ) );
         // 权限校验
         if ($param['seller_id'] != $return['seller_id']) {
@@ -164,15 +174,6 @@ class ReturngoodsModel extends BaseModel
         $data['status'] = $param['audit'] == 1 ? RETURN_AUDITD : RETURN_CLOSED;
         $msg = $param['audit'] == 1 ? '审核通过' : ('关闭申请' . ($param['remark'] ? ':' . $param['remark'] : ''));
         $data['log'] = $this->_create_log ( unserialize ( $return['log'] ), $param['user_id'], $param['user_name'], $msg );
-        /* 共享商品卖家审核后,通知仓库验货 */
-        if ($return['source_type'] == 2 && $param['audit'] == 1) {
-            $goods_num = m ( 'ordergoods' )->get ( array (
-                    'conditions' => 'rec_id=' . $return['order_goods_id'],
-                    'fields' => 'goods_number' 
-            ) );
-            $query = "&order_id={$return['order_id']}&return_order_sn={$return['return_order_sn']}&goods_number={$goods_num['goods_number']}&quantity={$return['quantity']}&invoice_no={$return['express_sn']}";
-            sendPost ( WMS_URL . 'retreatOrder', $query );
-        }
         return $this->edit ( 'id=' . $param['id'], $data );
     }
 

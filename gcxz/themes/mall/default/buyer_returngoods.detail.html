@@ -9,10 +9,11 @@
                 <div class="time">退货申请时间&nbsp;:&nbsp;{$detail.ctime|date:Y-m-d H:i:s}</div>
 
             </div>
-            <h3>退款单信息</h3>
+            <h3>退货单信息</h3>
             <dl class="info">
                 <dd>订单号&nbsp;:&nbsp;{$detail.order_sn}</dd>
                 <dd>买家&nbsp;:&nbsp;{$detail.buyer_name}</dd>
+                {if $detail.express_sn}<dd>运单号&nbsp;:&nbsp;{$detail.express_sn}</dd>{/if}
             </dl>
             <dl class="info">
             <dt>退货原因&nbsp;:&nbsp;</dt>

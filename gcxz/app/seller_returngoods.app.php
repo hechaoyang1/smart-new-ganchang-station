@@ -59,7 +59,7 @@ class seller_returngoodsApp extends MemberbaseApp
             $this->show_warning ( '不存在的记录' );
             return;
         }
-        $sql = "SELECT id, rg.return_order_sn, o.order_sn, rg.buyer_name, rg.quantity, rg.status, og.goods_name, og.goods_image, og.price, og.goods_id, rg.remark, rg.log, rg.ctime,rg.status FROM ecm_return_goods rg LEFT JOIN ecm_order_goods og ON rg.order_goods_id = og.rec_id LEFT JOIN ecm_order o ON rg.order_id = o.order_id WHERE rg.id=$id and rg.seller_id={$this->visitor->get ( 'manage_store' )}  limit 1";
+        $sql = "SELECT id, rg.return_order_sn,rg.express_sn, o.order_sn, rg.buyer_name, rg.quantity, rg.status, og.goods_name, og.goods_image, og.price, og.goods_id, rg.remark, rg.log, rg.ctime,rg.status FROM ecm_return_goods rg LEFT JOIN ecm_order_goods og ON rg.order_goods_id = og.rec_id LEFT JOIN ecm_order o ON rg.order_id = o.order_id WHERE rg.id=$id and rg.seller_id={$this->visitor->get ( 'manage_store' )}  limit 1";
         $detail = $this->m->getAll ( $sql );
         if ($detail) {
             $detail = $detail[0];
