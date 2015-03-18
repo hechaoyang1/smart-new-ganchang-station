@@ -41,6 +41,11 @@ function change_quantity(store_id, rec_id, spec_id, input, orig){
     var amount_span = $('#cart' + store_id + '_amount');
     //暂存为局部变量，否则如果用户输入过快有可能造成前后值不一致的问题
     var _v = input.value;
+    var oldv=$(input).attr('changed');
+    if(!/^\d+$/.test(_v)||_v==oldv){
+    	$(input).val(oldv);
+    	return;
+    }
     $.getJSON('index.php?app=cart&act=update&spec_id=' + spec_id + '&quantity=' + _v, function(result){
         if(result.done){
             //更新成功
