@@ -9,7 +9,7 @@
 class AllinpayPayment extends BasePayment
 {
     /* 支付宝网关 */
-    var $_gateway = 'http://ceshi.allinpay.com/gateway/index.do';
+    var $_gateway = 'https://service.allinpay.com/gateway/index.do';
     var $_code = 'allinpay';
 
     function BasePayment($payment_info = array())
