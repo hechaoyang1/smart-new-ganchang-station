@@ -1,0 +1,35 @@
+@charset "utf-8";
+/*
+ * css catalogue:
+ * -------------------
+ * initialize.css
+ * public.css
+ * head.css
+ * keyword.css
+ * module.css
+ * ad.css
+ * footer.css
+ * page.css
+ * table.css
+ * default.css
+ * newAdd.css
+ * hack.css
+ * -------------------
+ */
+
+
+
+
+
+/*
+ * -------------------------------------------------------
+ * ******************** initialize.css *******************
+ * -------------------------------------------------------
+ */
+
+.page{ margin-top:15px;}
+.page a.page_link{ border:1px solid #EEE; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px; padding:5px 15px;text-decoration: none;}
+.page a.page_hover{ border:1px solid #c1271a; color:#FFF; background:#da2d1f; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px; padding:7px 17px}
+.page a.page_link:hover{ background:#EEE; border-color:#CCC}
+.page a.nonce{border:1px dashed #EEE;  background:#f6f6f6; color:#777; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px; padding:5px 15px }
+.page a.down,a.down_no,a.former{ border:1px solid #c1271a; margin-left:12px; color:#da2d1f; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px; padding:5px 15px;text-decoration: none;}
