@@ -131,6 +131,9 @@ class NormalOrder extends BaseOrder
 			$order ['buyer_email'] = $base_info ['buyer_email'];
 			$order ['status'] = $base_info ['status'];
 			$order ['add_time'] = $base_info ['add_time'];
+			if('cod' == $payment_info['payment_code']){
+				$order ['pay_time'] = gmtime ();
+			}
 			$order ['discount'] = $base_info ['discount'];
 			$order ['anonymous'] = $base_info ['anonymous'];
 			$order ['postscript'] = $base_info ['postscript'];
