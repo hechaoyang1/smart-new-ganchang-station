@@ -19,6 +19,7 @@ class InterfaceApp extends BaseApp {
 						o.order_sn,
 						o.seller_name,
 						o.add_time,
+						o.pay_time,
 						o.buyer_name,
 						e.consignee,
 						e.phone_mob,
