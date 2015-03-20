@@ -283,6 +283,12 @@ class My_favoriteApp extends MemberbaseApp
             $this->json_error('no_such_goods');
             return;
         }
+        //判断是否已经收藏该商品
+        $conditions = 'item_id=' . $goods_id . ' and type=\'goods\' and user_id=' . $this->visitor->get ( 'user_id' );
+		if (db()->getAll ('SELECT * FROM ecm_collect WHERE '.$conditions )) {
+			$this->json_result ( '', '你已收藏该店铺' );
+			exit ();
+		}
         $model_user =& m('member');
         $model_user->createRelation('collect_goods', $this->visitor->get('user_id'), array(
             $goods_id   =>  array(

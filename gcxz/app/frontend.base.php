@@ -62,7 +62,8 @@ class FrontendApp extends ECBaseApp
 	/* 取得店铺分类 */
     function _get_store_gcategory($cate_id=0)
     {
-    	$store_id = intval($this->visitor->info['store_id']);
+//     	$store_id = intval($this->visitor->info['store_id']);
+    	$store_id = empty($_GET['id']) ? 0 : intval($_GET['id']);
        	$gcategory_mod =& bm('gcategory', array('_store_id' => $store_id));
         $gcategories = $gcategory_mod->get_list(-1, true);
         import('tree.lib');
