@@ -24,6 +24,11 @@ $(function(){
                 <input class="queryInput" type="text" name="name" value="{$query.name|escape}" />
                 	链接地址:
                 <input class="queryInput" type="text" name="url" value="{$query.url|escape}">
+                	显示位置：
+                <select class="querySelect" name="position">
+		            <option value="">{$lang.select_pls}</option>
+		            {html_options options=$positions selected=$smarty.get.position}
+		        </select>
                 <input type="submit" class="formbtn" value="{$lang.query}" />
             </div>
             <!--{if $filtered}-->
@@ -43,7 +48,7 @@ $(function(){
       <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
       <td><span ectype="order_by" fieldname="name">图片名称</span></td>
       <td><span ectype="order_by" fieldname="url">链接地址</span></td>
-      <td><span ectype="order_by" fieldname="position">所属地址</span></td>
+      <td><span ectype="order_by" fieldname="position">显示位置</span></td>
       <td>图片标识</td>
       <td><span ectype="order_by" fieldname="sort">排序</span></td>
       <td>{$lang.handler}</td>
@@ -54,7 +59,7 @@ $(function(){
       <td class="firstCell"><input type="checkbox" class="checkitem" value="{$goods.id}"/></td>
       <td><span ectype="inline_edit" fieldname="name" fieldid="{$goods.id}" required="1" class="editable" title="{$lang.editable}">{$goods.name|escape}</span></td>
       <td><span ectype="inline_edit" fieldname="url" fieldid="{$goods.id}" required="1" class="editable" title="{$lang.editable}">{$goods.url|escape}</span></td>
-       <td><span fieldname="postion" fieldid="{$goods.position}" title="{$lang.editable}">{if $goods.position eq 1}首页{else}土特产{/if}</span></td>
+       <td><span fieldname="postion" fieldid="{$goods.position}" title="{$lang.editable}">{$goods.position}</span></td>
       <td><a href="{$goods.path}" target="_bank"><img src="{$goods.path}" height="30" /></a></td>
       <td><span ectype="inline_edit" fieldname="sort" fieldid="{$goods.id}" required="1" class="editable" title="{$lang.editable}">{$goods.sort|escape}</span></td>
       <td><a href="index.php?app=goodsad&amp;act=edit&amp;id={$goods.id}">{$lang.edit}</a>  |  <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=goodsad&amp;act=drop&amp;id={$goods.id}');">{$lang.drop}</a></td>

@@ -78,6 +78,16 @@ class DefaultApp extends MallbaseApp
 		$this->assign('top_cate_goods',$top_cate_goods);
 		$this->assign('top_cate_children',$top_cate_children);
 		
+		//分会场
+		$floor = 1;
+	    $list = m('goodsad')->get_list(3, 13);
+	    foreach ($list as $id=>$goods)
+	    {
+	        $sub_places[$floor] = $goods;
+	        $floor++;
+	    }
+		$this->assign('sub_places',$sub_places);
+		
 // 		//新闻动态
 // 		$newsList = m('cmscontent')->getNewsList(9);
 // 		$this->assign('newsList', $newsList);

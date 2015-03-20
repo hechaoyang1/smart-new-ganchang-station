@@ -5,6 +5,8 @@
 class GoodsadApp extends BackendApp
 {
     var $_goods_mod;
+    
+    var $_position = array(1 => '首页', 2 => '土特产', 3 => '首页分会场');
 
     function __construct()
     {
@@ -33,6 +35,9 @@ class GoodsadApp extends BackendApp
                 'assoc' => 'AND',
                 'name' => 'url',
                 'type' => 'string',
+            ),
+            array(
+                'field' => 'position',
             ),
         ));;
 
@@ -63,8 +68,11 @@ class GoodsadApp extends BackendApp
         foreach ($goods_list as $key => $brand)
         {
             $brand['path']&&$goods_list[$key]['path'] = dirname(site_url()) . '/' . $brand['path'];
+            $goods_list[$key]['position'] = $this->_position[$brand['position']];
         }
         $this->assign('goods_list', $goods_list);
+        
+        $this->assign('positions', $this->_position);
 
         $page['item_count'] = $this->_goods_mod->getCount();
         /* 导入jQuery的表单验证插件 */
@@ -97,6 +105,7 @@ class GoodsadApp extends BackendApp
             ));
             $this->assign('yes_or_no', $yes_or_no);
             $this->assign('brand', $brand);
+            $this->assign('positions', $this->_position);
             $this->display('goodsad.form.html');
         }
         else
@@ -162,6 +171,7 @@ class GoodsadApp extends BackendApp
             ));
             $this->assign('yes_or_no', $yes_or_no);
             $this->assign('brand', $brand);
+            $this->assign('positions', $this->_position);
             $this->display('goodsad.form.html');
         }
         else

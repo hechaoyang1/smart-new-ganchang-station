@@ -66,21 +66,22 @@
 			<tr>
 				<th class="paddingT15">链接地址:</th>
 				<td class="paddingT15 wordSpacing5"><input
-					class="infoTableInput2" id="url" type="text" name="url"
+					style="width: 400px;" id="url" type="text" name="url"
 					value="{$brand.url|escape}" /></td>
 			</tr>
 			<tr>
 				<th class="paddingT15">页面分类:</th>
-				<td class="paddingT15 wordSpacing5"><select name='position'>
-						<option value="1" {if $brand.position neq 2}selected{/if}>首页</option>
-						<option value="2" {if $brand.position eq 2}selected{/if}>土特产</option>
+				<td class="paddingT15 wordSpacing5">
+				<select name='position'>
+					{html_options options=$positions selected=$brand.position}
 				</select>
+				</td>
 			</tr>
 			<tr>
 				<th class="paddingT15">图片标示:</th>
 				<td class="paddingT15 wordSpacing5"><input
 					class="infoTableFile2" id="brand_logo" type="file" name="logo" />
-					<label class="field_notice">支持格式gif,jpg,jpeg,png;尺寸大小：500*300</label>
+					<label class="field_notice">支持格式gif,jpg,jpeg,png</label>
 				</td>
 			</tr>
 			{if $brand.path}
