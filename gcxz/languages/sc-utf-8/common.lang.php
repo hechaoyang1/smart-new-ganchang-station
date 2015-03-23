@@ -270,7 +270,7 @@ return array(
     'remote_upload_tips' => '请输入远程图片地址',
     'canceled' => '已取消',
     'import_taobao' => '淘宝助理导入',
-    'auth_failed'           => '密码验证失败',
+    'auth_failed'           => '用户名或密码错误',
     'user_exists'           => '用户已存在',
     'cannot_add_myself'     => '无法添加自己',
     'invalid_user_name'     => '无效的用户名',

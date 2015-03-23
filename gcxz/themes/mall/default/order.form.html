@@ -138,6 +138,9 @@
 	   var orders = {$orders};
 	   $(function(){
 	       regionInit("region");
+	       jQuery.validator.addMethod("stringCheck", function(value, element) {      
+			    return this.optional(element) || (value.length==6&&value.substr(4,2)!='00');      
+			}, "请选择完整所在地区"); 
 	       $('#order_form').validate({
 	           invalidHandler:function(e, validator){
 	            var err_count = validator.numberOfInvalids();
@@ -159,11 +162,13 @@
 	           */
 	           rules : {
 	               consignee : {
-	                   required : true
+	                   required : true,
+	                   minlength:2
 	               },
 	               region_id : {
 	                   required : true,
-	                   min   : 1
+	                   min   : 1,
+	                   stringCheck:true
 	               },
 	               address   : {
 	                   required : true
@@ -176,11 +181,12 @@
 	           },
 	           messages : {
 	               consignee : {
-	                   required : '{$lang.consignee_required}'
+	                   required : '{$lang.consignee_required}',
+	                   minlength:'名字长度不能少于2位'
 	               },
 	               region_id : {
 	                   required : '{$lang.region_required}',
-	                   min  : '{$lang.region_required}'
+	                   min  : '{$lang.region_required}',
 	               },
 	               address   : {
 	                   required : '{$lang.address_required}'
@@ -188,7 +194,7 @@
 	               phone_mob : {
 	                   required : '{$lang.phone_required}',
 	                   minlength: '{$lang.phone_mob_error}',
-	                   digits : true
+	                   digits : '{$lang.phone_mob_error}'
 	               }
 	           }
 	       });
