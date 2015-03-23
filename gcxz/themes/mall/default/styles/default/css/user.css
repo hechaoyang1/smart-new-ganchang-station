@@ -799,7 +799,7 @@ body { font-size: 12px; font-family: Arial, Verdana, sans-serif; }
 
 .box_arr table { width: 100%; margin-top: 10px; border-collapse: collapse; }
 .box_arr table th { height: 25px; font-weight: normal; color: #ababab; }
-.box_arr table td { height: 25px; text-align: center; color: #3e3e3e; }
+.box_arr table td { height: 25px; color: #3e3e3e; }
 .box_arr .table_btn { width: 86px; height: 28px; margin: 10px auto; }
 .box_arr .table_btn a { display: block; width: 86px; height: 28px; font-size: 12px; padding-left: 15px; background: url(../images/member/btn.gif) 0 -973px; }
 
@@ -810,7 +810,7 @@ body { font-size: 12px; font-family: Arial, Verdana, sans-serif; }
 .add_spec h2 { border-bottom: 2px solid #e3e3e3; color: #3f3f3f; height: 32px; line-height: 32px; }
 .add_spec p { color: #9d9d9d; padding: 10px; }
 
-.add_spec ul { width: 530px; overflow: hidden; }
+.add_spec ul { width: 590px; overflow: hidden; }
 .add_spec .th { padding: 3px 0; margin-bottom: 10px; border-top: 2px solid #e3e3e3; border-bottom: 1px solid #e3e3e3; background: #f8f8f8; }
 .add_spec .td { padding-bottom: 10px; }
 .add_spec li { float: left; margin-left: 6px; display: inline; }
@@ -825,10 +825,10 @@ body { font-size: 12px; font-family: Arial, Verdana, sans-serif; }
 .add_spec .down_btn { display: block; float: left; margin-right: 4px; width: 10px; height: 10px; overflow: hidden; cursor: pointer; background: url(../images/member/ico.gif) 0 -1144px; }
 .add_spec .delete_btn { display: block; float: left; margin-right: 4px; width: 10px; height: 10px; overflow: hidden; cursor: pointer; background: url(../images/member/ico.gif) 0 -634px; }
 
-.add_spec .add { display: block; width: 506px; padding-left: 24px; height: 42px; line-height: 42px; color: #919191; border-top: 1px solid #e2e2e2; border-bottom: 1px solid #e2e2e2; background: url(../images/member/ico.gif) no-repeat 8px -1165px;  }
+.add_spec .add { display: block; width: 566px; padding-left: 24px; height: 42px; line-height: 42px; color: #919191; border-top: 1px solid #e2e2e2; border-bottom: 1px solid #e2e2e2; background: url(../images/member/ico.gif) no-repeat 8px -1165px;  }
 .add_spec .add:hover { color: red; }
 
-.btn_wrap { padding: 15px 0 10px; width: 530px; border-top: 2px solid #e3e3e3; margin-top: 1px; text-align: center; }
+.btn_wrap { padding: 15px 0 10px; width: 590px; border-top: 2px solid #e3e3e3; margin-top: 1px; text-align: center; }
 .btn_wrap .btn { border: 0; width: 120px; height: 32px; background: url(../images/member/btn.gif) no-repeat 0 -253px; cursor: pointer; font-weight: bold; color: #3f3d3e; }
 .add_spec_bottom { position: absolute; top: 6px; left: -7px; width: 552px; height: 3px; overflow: hidden; background: #000; -moz-opacity: 0.2; opacity: .2; filter: alpha(opacity=20); }
 

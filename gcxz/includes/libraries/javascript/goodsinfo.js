@@ -1,10 +1,11 @@
 /* spec对象 */
-function spec(id, spec1, spec2, price, stock)
+function spec(id, spec1, spec2, price,price1, stock)
 {
     this.id    = id;
     this.spec1 = spec1;
     this.spec2 = spec2;
     this.price = price;
+    this.price1 = price1;
     this.stock = stock;
 }
 
@@ -126,6 +127,7 @@ function selectSpec(num, liObj)
         {
             $("[ectype='current_spec']").html(spec.spec1 + ' ' + spec.spec2);
             $(".goodsPrice span.orange").html('<i>￥</i>'+spec.price);
+            $(".goodsPrice del").html('<i>￥</i>'+spec.price1);
             $("[ectype='goods_stock']").html(spec.stock);
         }
     }

@@ -8,7 +8,7 @@
 				<div class="clearfix">
 					<div class="goodsImg">
 						<div class="bigImg">
-							<img src="{$goods.default_image}"
+							<img src="{$goods._images.0.thumbnail|default:$default_image}"
 								jqimg="{$goods._images.0.image_url}" alt="">
 						</div>
 						<ul class="imgList clearfix">
@@ -251,7 +251,7 @@ function add_to_cart1(spec_id, quantity)
 
 var specs = new Array();
 <!--{foreach from=$goods._specs item=spec}-->
-specs.push(new spec({$spec.spec_id}, '{$spec.spec_1|escape}', '{$spec.spec_2|escape}', {$spec.price}, {$spec.stock}));
+specs.push(new spec({$spec.spec_id}, '{$spec.spec_1|escape}', '{$spec.spec_2|escape}', '{$spec.price}','{$spec.price1}', {$spec.stock}));
 <!--{/foreach}-->
 var specQty = {$goods.spec_qty};
 var defSpec = {$goods.default_spec|escape};

@@ -418,6 +418,9 @@ class SearchApp extends MallbaseApp
                 {
                     list($min, $max) = array($max, $min);
                 }
+                if($arr[1] == '0'){
+                	list($min, $max) = array($max, $min);
+                }
     
                 $res['price'] = array(
                     'min' => $min,

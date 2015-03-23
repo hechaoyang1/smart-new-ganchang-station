@@ -1,5 +1,9 @@
 <script type="text/javascript">
 $(function(){
+	jQuery.validator.addMethod("stringCheck", function(value, element) {      
+		    return this.optional(element) || /^[a-zA-Z\d]+$/.test(value);      
+		}, "物流单号只能包括英文字母、数字");  
+
     $('#cancel_button').click(function(){
         DialogManager.close('seller_order_shipped');
     });
@@ -10,7 +14,8 @@ $(function(){
     },
      rules : {
             invoice_no : {
-                required   : true
+                required   : true,
+                stringCheck:true
             }
         },
         messages : {

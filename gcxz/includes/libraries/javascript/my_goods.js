@@ -63,6 +63,7 @@ function spec_update(){
             (SPEC.spec_qty == "1" || SPEC.spec_qty == "0") && tpl.find('*[item="spec_2"]').hide();
         }
         tpl.find('*[item="price"]').append('<input type="hidden" name="price['+ item.spec_id +']" value="' + item.price + '" />' + item.price);
+        tpl.find('*[item="price1"]').append('<input type="hidden" name="price1['+ item.spec_id +']" value="' + item.price1 + '" />' + item.price1);
         tpl.find('*[item="stock"]').append('<input type="hidden" name="stock['+ item.spec_id +']" value="' + item.stock + '" />' + item.stock);
         tpl.find('*[item="sku"]').append('<input type="hidden" name="sku['+ item.spec_id +']" value="' + item.sku + '" /><input type="hidden" name="spec_id['+ item.spec_id +']" value="' + item.spec_id + '" /><input type="hidden" name="share_goods_id['+ item.spec_id +']" value="' + item.share_goods_id + '" />' + item.sku);
         tpl.show();
@@ -129,6 +130,7 @@ function spec_editor(){
         item.spec_1 && tpl.find('*[item="spec_1"]').val(item.spec_1);
         item.spec_2 && tpl.find('*[item="spec_2"]').val(item.spec_2);
         tpl.find('*[item="price"]').val(item.price);
+        tpl.find('*[item="price1"]').val(item.price1);
         tpl.find('*[item="stock"]').val(item.stock);
         tpl.find('*[item="sku"]').val(item.sku);
         tpl.find('*[item="spec_id"]').val(item.spec_id);
@@ -142,7 +144,7 @@ function spec_editor(){
     _d.setContents($('*[ectype="dialog_contents"]').children().clone(true));
     _d.setStyle('add_spec');
     _d.setStyle({'padding' : '0'});
-    _d.setWidth(550);
+    _d.setWidth(610);
     ScreenLocker.style.opacity = 0;
     _d.show('center');
     hide_drop_button();
@@ -213,6 +215,7 @@ function spec_editor(){
         var arr_spec_name = new Array(); // 累积规格项名称。检查重复
         var spec_duplicate = new Array(); // 重复的规格项
         var price_error = new Array();
+        var price1_error = new Array();
         var sku_error = new Array();
         var complate = true; // 是否完成
         SPEC.specs = [];
@@ -220,6 +223,7 @@ function spec_editor(){
             var spec_1 = SPEC.spec_name_1 ? $.trim($(this).find('*[item="spec_1"]').val()) : null;
             var spec_2 = SPEC.spec_name_2 ? $.trim($(this).find('*[item="spec_2"]').val()) : null;
             var price = $.trim($(this).find('*[item="price"]').val());
+            var price1 = $.trim($(this).find('*[item="price1"]').val());
             var stock = $.trim($(this).find('*[item="stock"]').val());
             var sku = $.trim($(this).find('*[item="sku"]').val());
             var spec_id = $.trim($(this).find('*[item="spec_id"]').val());
@@ -229,9 +233,9 @@ function spec_editor(){
 
             if(SPEC.spec_qty == 1){ // 一个规格
                 var spec_pos = SPEC.spec_name_1 ? 1 : 2;
-                eval('if(spec_' + spec_pos + ' || (!spec_' + spec_pos + ' && !price && !stock && !sku)){}else{complate = false;}');
+                eval('if(spec_' + spec_pos + ' || (!spec_' + spec_pos + ' && !price && !price1 && !stock && !sku)){}else{complate = false;}');
             }else{ // 两个规格
-                if((spec_1 && spec_2) || (!spec_1 && !spec_2 && !price && !stock && !sku)){
+                if((spec_1 && spec_2) || (!spec_1 && !spec_2 && !price && !price1 && !stock && !sku)){
 
                 }else{
                     complate = false;
@@ -250,6 +254,9 @@ function spec_editor(){
             if(isNaN(price) || price <0 || !price){
                 valid && price_error.push(item);
             }
+            if(isNaN(price1) || price1 <0 || !price1){
+                valid && price1_error.push(item);
+            }
             /* 判断货号 */
             if(!sku)
         	{
@@ -259,6 +266,7 @@ function spec_editor(){
                 'spec_1':spec_1,
                 'spec_2':spec_2,
                 'price':number_format(price, 2),
+                'price1':number_format(price1, 2),
                 'stock':number_format(stock, 0),
                 'sku':sku,
                 'spec_id':spec_id,
@@ -289,6 +297,17 @@ function spec_editor(){
         if(price_error.length>0){
             var msg = lang.follow_spec_price_invalid + '\n';
             $.each(price_error,function(i,val){
+                msg += val + '\n';
+            });
+
+            alert(msg);
+            SPEC = {};
+            SPEC = bak_spec; // 还原备份
+            return;
+        }
+        if(price1_error.length>0){
+            var msg = '以下规格原价未填写或格式有误:\n';
+            $.each(price1_error,function(i,val){
                 msg += val + '\n';
             });
 
