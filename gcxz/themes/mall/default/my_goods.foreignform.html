@@ -1,7 +1,5 @@
 {include file=member.header.html}
 {$images_upload}
-{$editor_upload}
-{$build_editor}
 <style>
 .box_arr .table_btn { width: 222px; }
 .box_arr .table_btn a { float: left; }
@@ -16,8 +14,6 @@ add_spec h2 { padding-left: 10px; }
 </style>
 <script type="text/javascript">
 //<!CDATA[
-//var SPEC = {$goods.spec_json};
-
 
 function add_uploadedfile(file_data)
 {
@@ -77,7 +73,7 @@ $(function(){
             price      : {
                 number     : true,
                 required : true,
-                min : 0
+                min : 0.01
             },
             cate_id    : {
                 remote   : {
@@ -110,7 +106,6 @@ $(function(){
     });
     // init cover
     set_cover($("#goods_images li:first-child").attr('file_id'));
-
     // init spec
     //spec_update();
 });
