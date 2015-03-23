@@ -45,6 +45,9 @@ class SearchApp extends MallbaseApp
 				'limit' => $page ['limit'],
 				'count' => true 
 		) );
+		if($param['keyword'] && !$goods_list){
+			$this->show_warning ( '没有找到与'.$_GET['keyword'].'相关商品' );
+		}
 		$page ['item_count'] = $goods_mod->_last_query_count;
 		foreach ( $goods_list as $key => $goods ) {
 			$step = intval ( Conf::get ( 'upgrade_required' ) );
