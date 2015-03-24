@@ -76,7 +76,6 @@ class InterfaceApp extends BaseApp {
 	function updateRetreatOrderStatus() {
 		$sn = $_POST ['return_order_sn'];
 		$data ['status'] = $_POST ['status'];
-		$_POST ['reason'] && $data ['remark'] = $_POST ['reason'];
 		$returnGoodsModel = &m ( 'returngoods' );
 		if (! $returnGoodsModel->edit ( 'return_order_sn="' . $sn . '"', $data )) {
 			$result ['code'] = 0;
@@ -516,6 +515,11 @@ class InterfaceApp extends BaseApp {
 	 * 添加商品
 	 */
 	function addGood() {
+		$log = fopen ( "mislog/mis.log", "ab++" );
+		fwrite($log, var_export($_POST,true));
+		fwrite($log, var_export($_FILES,true));
+		fclose($log);
+		
 		$user_id = intval ( $_POST ['user_id'] );
 		$userprivModel = &m ( 'userpriv' );
 		$info = $userprivModel->find ( array (
