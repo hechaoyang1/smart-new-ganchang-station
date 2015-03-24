@@ -432,7 +432,7 @@ class Seller_orderApp extends StoreadminbaseApp
         {
             echo Lang::get('no_such_order');
         }
-        $status = array(ORDER_SUBMITTED, ORDER_PENDING, ORDER_PENDED, ORDER_ACCEPTED);
+        $status = array(ORDER_SUBMITTED, ORDER_PENDING);
         $order_ids = explode(',', $order_id);
         if ($ext)
         {

@@ -593,9 +593,7 @@ class My_goodsApp extends StoreadminbaseApp
                 }
             }
             
-            //补充数据
-            $data['goods']['service_type'] = $_POST['service_type'];
-            $data['goods']['supplier_id'] = $_POST['supplier_id'];
+            //标记商品类型
             $data['goods']['source_type'] = 2;
             
             /* 保存数据 */
@@ -706,8 +704,7 @@ class My_goodsApp extends StoreadminbaseApp
                 return;
             }
             
-            
-            $data['goods']['foreign_url'] = $_POST['foreign_url'];
+            //标记商品类型
             $data['goods']['source_type'] = 3;
             /* 保存数据 */
             if (!$this->_save_post_data($data, 0, 3))
@@ -2090,6 +2087,9 @@ class My_goodsApp extends StoreadminbaseApp
         	'region_id'        => $_POST['region_id'],
         	'region_name'        => $_POST['region_name'],
         	'unit'        => $_POST['unit'],
+            'service_type' => $_POST['service_type'],
+            'supplier_id' => $_POST['supplier_id'],
+            'foreign_url' => $_POST['foreign_url'],
         );
         $spec_name_1 = !empty($_POST['spec_name_1']) ? $_POST['spec_name_1'] : '';
         $spec_name_2 = !empty($_POST['spec_name_2']) ? $_POST['spec_name_2'] : '';

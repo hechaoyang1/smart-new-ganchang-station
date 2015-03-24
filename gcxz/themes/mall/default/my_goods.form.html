@@ -274,7 +274,7 @@ $(function(){
                                             <div id="remote" class="upload_file" style="display:none">
                                             <iframe src="index.php?app=comupload&act=view_remote&id={$id}&belong={$belong}&instance=goods_image" width="272" height="39" scrolling="no" frameborder="0"></iframe>
                                             </div>
-                                            <div id="goods_upload_progress"></div>
+                                            <div style="display:none;" id="goods_upload_progress"></div>
                                             <div class="upload_txt">
                                                 <span>{$lang.note_for_upload}</span>
                                             </div>
@@ -425,7 +425,7 @@ $(function(){
                                                 <div id="editor_remote" class="upload_file" style="display:none">
                                                 <iframe src="index.php?app=comupload&act=view_remote&id={$id}&belong={$belong}&instance=desc_image" width="272" height="39" scrolling="no" frameborder="0"></iframe>
                                                 </div>
-                                                <div id="editor_upload_progress"></div>
+                                                <div style="display: none;" id="editor_upload_progress"></div>
                                                 <div class="upload_txt">
                                                     <span>{$lang.note_for_upload}</span>
                                                 </div>

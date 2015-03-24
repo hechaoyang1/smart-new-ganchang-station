@@ -79,12 +79,10 @@ class DefaultApp extends MallbaseApp
 		$this->assign('top_cate_children',$top_cate_children);
 		
 		//分会场
-		$floor = 1;
 	    $list = m('goodsad')->get_list(3, 13);
 	    foreach ($list as $id=>$goods)
 	    {
-	        $sub_places[$floor] = $goods;
-	        $floor++;
+	        $sub_places[$goods['sort']] = $goods;
 	    }
 		$this->assign('sub_places',$sub_places);
 		
