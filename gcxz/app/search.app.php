@@ -47,6 +47,7 @@ class SearchApp extends MallbaseApp
 		) );
 		if($param['keyword'] && !$goods_list){
 			$this->show_warning ( '没有找到相关商品' );
+			return;
 		}
 		$page ['item_count'] = $goods_mod->_last_query_count;
 		foreach ( $goods_list as $key => $goods ) {
