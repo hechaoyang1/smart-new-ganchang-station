@@ -28,7 +28,8 @@ $(function(){
         rules: {
             owner_name: {
                 required: true,
-                minlength:2
+                minlength:2,
+                maxlength:20
             },
             owner_card:{
             	isIdCardNo:true
@@ -47,6 +48,11 @@ $(function(){
                 },
                 minlength:2,
                 maxlength: 20
+            },
+            zipcode:{
+            	 digits:true,
+            	 minlength:6,
+                 maxlength:6
             },
             tel: {
                 required: true,
@@ -69,13 +75,19 @@ $(function(){
         messages: {
             owner_name: {
                 required: '{$lang.input_owner_name}',
-                minlength:'名字不能少于2字'
+                minlength:'名字不能少于2字',
+                maxlength:"名字长度不能超过20"
             },
             store_name: {
                 required: '{$lang.input_store_name}',
                 remote: '{$lang.name_exist}',
                 minlength:'店铺名不能少于2字',
                 maxlength: '{$lang.note_for_store_name}'
+            },
+            zipcode:{
+            	 digits:'请输入6位邮政编码',
+            	 minlength:'请输入6位邮政编码',
+                 maxlength:"请输入6位邮政编码"
             },
             tel: {
                 required: '{$lang.input_tel}',
