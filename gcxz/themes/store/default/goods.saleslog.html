@@ -1,41 +1,48 @@
-{include file=header.html}
-
-{include file=top.html}
-
-<div id="content">
-    <div id="left">
-        {include file=left.html}
-    </div>
-    
-    <div id="right">
-        {include file=goodsinfo.html}
-        
-        <a name="module">
-        <ul class="user_menu">
-            <div class="ornament1"></div>
-            <div class="ornament2"></div>
-            <li><a class="normal" href="{url app=goods&id=$goods.goods_id}#module"><span>{$lang.goods_detail}</span></a></li>
-            <li><a class="normal" href="{url app=goods&act=comments&id=$goods.goods_id}#module"><span>{$lang.goods_comment}</span></a></li>
-            <li><a class="active" href="{url app=goods&act=saleslog&id=$goods.goods_id}#module"><span>{$lang.sales_log}</span></a></li>
-            <li><a class="normal" href="{url app=goods&act=qa&id=$goods.goods_id}#module"><span>{$lang.qa}</span></a></li>
-        </ul>
-        <div class="clear"></div>
-        
-        <div class="module_currency">
-            <div class="wrap">
-                <div class="wrap_child">
-                    {include file=saleslog.html}
-                    <div class="clear"></div>
-                </div>
-            </div>
-        </div>
-        <div class="clear"></div>
-
-        {include file=page.bottom.html}
-        <div class="clear"></div>
-    </div>
-    
-    <div class="clear"></div>
+<table>
+	<thead>
+		<tr>
+			<th>买家</th>
+			<th>价格</th>
+			<th>数量</th>
+			<th>成交时间</th>
+		</tr>
+	</thead>
+	<tbody>
+		{foreach from=$sales_list item=sales}
+		<tr>
+			<td>{if $sales.anonymous}***{else}{$sales.buyer_name|escape}{/if}</td>
+			<td class="orange">{$sales.price|price}</td>
+			<td>{$sales.quantity}件</td>
+			<td>{$sales.add_time|date}</td>
+		</tr>
+		{/foreach}
+	</tbody>
+</table>
+<!--{if $page_info.page_count gt 1}-->
+<div class="page">
+    <!--{if $page_info.prev_link}-->
+    <a class="former" href="javascript:;" onclick="ajaxSalesLogData(this)" link="{$page_info.prev_link}">上一页</a>
+    <!--{else}-->
+    <span class="former_no"></span>
+    <!--{/if}-->
+    <!--{if $page_info.first_link}-->
+    <a class="page_link" href="javascript:;" onclick="ajaxSalesLogData(this)" link="{$page_info.first_link}">1&nbsp;<!--{$page_info.first_suspen}--></a>
+    <!--{/if}-->
+    <!--{foreach from=$page_info.page_links key=page item=link}-->
+    <!--{if $page_info.curr_page eq $page}-->
+    <a class="page_hover" href="javascript:;"  onclick="ajaxSalesLogData(this)" link="{$link}">{$page}</a>
+    <!--{else}-->
+    <a class="page_link" href="javascript:;" onclick="ajaxSalesLogData(this)" link="{$link}">{$page}</a>
+    <!--{/if}-->
+    <!--{/foreach}-->
+    <!--{if $page_info.last_link}-->
+    <a class="page_link" href="javascript:;" onclick="ajaxSalesLogData(this)" link="{$page_info.last_link}"><!--{$page_info.last_suspen}-->&nbsp;<!--{$page_info.page_count}--></a>
+    <!--{/if}-->
+    <a class="nonce">{$page_info.curr_page} / {$page_info.page_count}</a>
+    <!--{if $page_info.next_link}-->
+    <a class="down" href="javascript:;" onclick="ajaxSalesLogData(this)" link="{$page_info.next_link}">{$lang.next_page}</a>
+    <!--{else}-->
+    <!-- <span class="down_no">{$lang.next_page}</span> -->
+    <!--{/if}-->
 </div>
-
-{include file=footer.html}
+<!--{/if}-->

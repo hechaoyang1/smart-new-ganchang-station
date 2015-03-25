@@ -31,37 +31,29 @@
 		});
 	}
 	
+	var goods_id = $('#goods_id').val();
 	$('input[name=comment]').click(function(){
 		var value = $(this).val();
-		var goods_id = $('#goods_id').val();
-		 var url = SITE_URL + '/index.php?app=goods&act=getComment';
-		    $.get(url, {'goods_id':goods_id,'eval':value}, function(data){
-		    	 if (data.done)
-		         {
-		    		 //清除以前数据
-		    		 var comments = data.retval.comments;
-		    		 $('.table tbody tr').remove();
-		    		 for(var i in comments){
-		    			 $tr = $('<tr> <td> <p></p> </td> <td class="mid center">好评</td> <td class="center">落花<div>2015-03-03 10:32:41</div> </td> </tr>');
-		    			 $tr.find('p').text(comments[i]['comment']);
-		    			 var _eval = '';
-		    			 if(comments[i]['evaluation'] == 3){
-		    				 _eval = '好评';
-		    			 }else if(comments[i]['evaluation'] == 2){
-		    				 _eval = '好评';
-		    			 }else{
-		    				 _eval = '差评';
-		    			 }
-		    			 $tr.find('td.mid').text(_eval);
-		    			 $tr.find('td:last').html(comments[i]['buyer_name']+'<div>'+comments[i]['time']+'</div>');
-		    			 $('.table tbody').append($tr);
-		    		 }
-		         }else{
-		        	 alert('获取评论异常,请重新再试');
-		         }
-		    },'json');
+		var url = SITE_URL + '/index.php?app=goods&act=ajax_goods_comments';
+		$.get(url, {
+			'goods_id' : goods_id,
+			'evaluation' : value
+		}, function(data) {
+			$('.comment').find('.table').remove();
+			$('.comment').find('.page').remove();
+			$('.comment').append(data);
+		});
 	});
-
+	
+	//初始选中全部评论
+	$('input[name=comment]:first').click();
+	
+	//初始设置销售记录
+	$.get( SITE_URL + '/index.php?app=goods&act=ajax_goods_sales_log', {'goods_id' : goods_id}, function(data) {
+		$('.soldNote').empty();
+		$('.soldNote').append(data);
+	});
+	
 	// // 商品放大镜
 	// function goodsZoom (dom) {
 	// 	var img = dom.children('img');
@@ -103,3 +95,20 @@
 	// 	}
 	// }
 }();
+
+function ajaxCommentsData(obj){
+	var url = $(obj).attr('link');
+	$.get(url, null, function(data) {
+		$('.comment').find('.table').remove();
+		$('.comment').find('.page').remove();
+		$('.comment').append(data);
+	});
+}
+
+function ajaxSalesLogData(obj){
+	var url = $(obj).attr('link');
+	$.get(url, null, function(data) {
+		$('.soldNote').empty();
+		$('.soldNote').append(data);
+	});
+}

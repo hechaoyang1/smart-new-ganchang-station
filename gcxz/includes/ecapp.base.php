@@ -758,7 +758,7 @@ EOT;
      * @param   array   $page
      * @param   int     $num    显示几页的链接
      */
-    function _format_page(&$page, $num = 7)
+    function _format_page(&$page, $num = 4)
     {
         $page['page_count'] = ceil($page['item_count'] / $page['pageper']);
         $mid = ceil($num / 2) - 1;

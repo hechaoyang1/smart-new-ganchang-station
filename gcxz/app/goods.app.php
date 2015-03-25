@@ -310,10 +310,10 @@ class GoodsApp extends StorebaseApp
         $this->_curlocal ( $this->_get_goods_curlocal ( $data['goods']['cate_id'] ) );
         
         /* 赋值销售记录 */
-        $this->_assign_sales_log($this->_get_sales_log($_GET['id'], 50));
+//         $this->_assign_sales_log($this->_get_sales_log($_GET['id'], 50));
         
         /* 赋值商品评论 */
-        $this->_assign_goods_comment($this->_get_goods_comment($_GET['id'], 50));
+        $this->_assign_goods_comment($this->_get_goods_comment($_GET['id'], 1));
         $this->assign('id', $_GET['id']);
         
         $this->import_resource(array(
@@ -377,6 +377,32 @@ class GoodsApp extends StorebaseApp
 
         return $data;
     }
+    
+    /**
+     * ajax获取商品评论
+     */
+    function ajax_goods_sales_log(){
+    	$page = $_GET['page']?$_GET['page']:1;
+    	$goods_id = $_GET['goods_id'];
+    
+    	$page = $this->_get_page(10);
+        $order_goods_mod =& m('ordergoods');
+        $sales_list = $order_goods_mod->find(array(
+            'conditions' => "goods_id = '$goods_id' AND status = '" . ORDER_FINISHED . "'",
+            'join'  => 'belongs_to_order',
+            'fields'=> 'buyer_id, buyer_name, add_time, anonymous, goods_id, specification, price, quantity, evaluation',
+            'count' => true,
+            'order' => 'add_time desc',
+            'limit' => $page['limit'],
+        ));
+    	$page['item_count'] = $order_goods_mod->getCount();
+    	$this->_format_page($page);
+    
+    	$this->assign('sales_list',$sales_list);
+    	$this->assign('page_info',$page);
+    	$this->display('goods.saleslog.html');
+    }
+    
 
     /* 赋值销售记录 */
     function _assign_sales_log($data)
@@ -437,6 +463,37 @@ class GoodsApp extends StorebaseApp
 		}
 		return $data;
     }
+    
+    /**
+     * ajax获取商品评论
+     */
+    function ajax_goods_comments(){
+    	 $evaluation = $_GET['evaluation'];
+    	 $page = $_GET['page']?$_GET['page']:1;
+    	 $goods_id = $_GET['goods_id'];
+    	 
+    	 $page = $this->_get_page(10);
+    	 $order_goods_mod =& m('ordergoods');
+    	 if ($evaluation == 0) {
+    	 	$condition = 'goods_id = '.$goods_id.' AND evaluation_status = 1 AND evaluation in (1,2,3)';
+    	 } else {
+    	 	$condition =  'goods_id = '.$goods_id.' AND evaluation_status = 1 AND evaluation ='. $evaluation;
+    	 }
+    	 $comments = $order_goods_mod->find(array(
+    	 		'conditions' => $condition,
+    	 		'join'  => 'belongs_to_order',
+    	 		'fields'=> 'buyer_id, buyer_name, anonymous, FROM_UNIXTIME(evaluation_time) time, comment, evaluation',
+    	 		'count' => true,
+    	 		'order' => 'evaluation_time desc',
+    	 		'limit' => $page['limit'],
+    	 ));
+    	 $page['item_count'] = $order_goods_mod->getCount();
+    	 $this->_format_page($page);
+    	 
+    	 $this->assign('goods_comments',$comments);
+    	 $this->assign('page_info',$page);
+    	 $this->display('goods.comments.html');
+    }
 
     /* 赋值商品评论 */
     function _assign_goods_comment($data)
@@ -485,6 +542,16 @@ class GoodsApp extends StorebaseApp
             'qa_info' => $qa_info,
         );
     }
+	/**
+	 * ajax获取产品咨询
+	 */
+	function ajax_goods_qa() {
+		$data = $this->_get_goods_qa ( $_GET ['goods_id'], 10 );
+		$this->_assign_goods_qa ( $data );
+		/*赋值产品咨询*/
+		$this->display('goods.qa.html');
+	}
+  
 
     /* 赋值商品咨询 */
     function _assign_goods_qa($data)
