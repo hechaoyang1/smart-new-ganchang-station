@@ -163,7 +163,7 @@
 					<li>信用度：{$store.credit_value}</li>
 					<li>店铺等级：{$store.sgrade}</li>
 					<li>所在区域：{$store.region_name|escape}</li>
-					<li>联系卖家：</li>
+					<li>联系卖家：{$store.store_owner.im_qq|escape}</li>
 				</ul>
 				<a href="{url app=store&id=$store.store_id}" class="intoShop">去店铺逛逛</a>
 			</div>
