@@ -23,12 +23,12 @@
 					</div>
 					<div class="goodsInfo">
 						<h2>{$goods.goods_name|escape}</h2>
-						<h3>{$sub_goods_name|escape}</h3>
+						<h3>{$goods.sub_goods_name|escape}</h3>
 						<div class="goodsPrice">
 							<div>
 								促销价：<span class="orange"><i>￥</i>{$goods.price}</span>
 							</div>
-							<div>原价格：<del><i>￥</i>{$goods.price1}</del> {$goods.unit}</div>
+							<div>原价格：<del><i>￥</i>{$goods.price1}</del>{if $goods.unit neq ''}/{$goods.unit}{/if}</div>
 						</div>
 						<!--{if $goods.spec_qty gt 0}-->
 						<div class="fz14 specifications">
@@ -39,11 +39,12 @@
 							{$goods.spec_name_2|escape}：</div>
 						<!--{/if}-->
 						<div class="fz14 mt20">
-							数量<span class="number"><input id="quantity" type="text" value="1"><a href="javascript:;" class="up">&nbsp;</a><a href="javascript:;" class="down">&nbsp;</a></span>件 库存<span ectype="goods_stock">{$goods._specs.0.stock}</span>件
+							数量<span class="number"><input id="quantity" type="text" value="1"><a href="javascript:;" class="up">&nbsp;</a><a href="javascript:;" class="down">&nbsp;</a></span>{$goods.unit} 库存<span ectype="goods_stock">{$goods._specs.0.stock}</span>{$goods.unit}
 						</div>
 						<div class="btns">
 								<a class="buyNow" href="javascript:nowbuy();">立即购买</a>
 								<a class="shoppingCar" href="javascript:buy();"><i></i>加入购物车</a>
+								<a class="shoppingCar" href="javascript:move_favorite({$store.store_id},  1, {$goods.goods_id});"><i></i>收藏商品</a>
 						</div>
 					</div>
 					<div class="shopInfo">
@@ -59,7 +60,10 @@
 							<li>信用度：{$store.credit_value}</li>
 							<li>店铺等级：{$store.sgrade}</li>
 							<li>所在区域：{$store.region_name|escape}</li>
-							<li>联系卖家：{$store.store_owner.im_qq|escape}</li>
+							<li>联系卖家：{if $store.store_owner.im_qq neq ''}<a href="http://wpa.qq.com/msgrd?v=3&uin={$store.store_owner.im_qq|escape}&site=qq&menu=yes" target="_blank">
+<img title="QQ交流" src="http://wpa.qq.com/pa?p=2:{$store.store_owner.im_qq|escape}:41"
+alt="QQ交流" border="0" />
+</a>{/if}</li>
 						</ul>
 						<a href="{url app=store&id=$store.store_id}" class="intoShop">去店铺逛逛</a>
 					</div>
@@ -127,6 +131,8 @@
 <script type="text/javascript" src="{lib file=ecmall.js}"
 	charset="utf-8"></script>
 <script type="text/javascript" src="{lib file=goodsinfo.js}"
+	charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=cart.js}"
 	charset="utf-8"></script>
 <script type="text/javascript">
 //<!CDATA[
