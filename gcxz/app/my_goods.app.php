@@ -2090,6 +2090,7 @@ class My_goodsApp extends StoreadminbaseApp
             'service_type' => $_POST['service_type'],
             'supplier_id' => $_POST['supplier_id'],
             'foreign_url' => $_POST['foreign_url'],
+            'sub_goods_name' => $_POST['sub_goods_name'],
         );
         $spec_name_1 = !empty($_POST['spec_name_1']) ? $_POST['spec_name_1'] : '';
         $spec_name_2 = !empty($_POST['spec_name_2']) ? $_POST['spec_name_2'] : '';
