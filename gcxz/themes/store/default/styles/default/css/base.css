@@ -135,7 +135,7 @@ body {
 .top-tools .wrap {
   width: 960px;
   border: none;
-}
+  position: static; }
 
 .top-tools a {
   color: #333; }
@@ -197,13 +197,14 @@ body {
   background-color: #ef8200;
   height: 34px;
   line-height: 34px;
-  font-size: 14px; }
+  font-size: 14px;
+  position: relative;
+  z-index: 2; }
 
 .nav .wrap {
   width: 960px;
   border: none;
-background:none;
-  position: static; }
+  background: none; }
 
 .nav .list {
   float: left;
@@ -211,12 +212,11 @@ background:none;
 
 .nav .list a {
   color: #fff;
-  border-radius: 2px;
- }
+  border-radius: 2px; }
 
 .nav .list li {
+  float: left;
   display: inline-block;
-	float:left;
   text-align: center;
   padding: 0 18px;
   position: relative; }
@@ -319,9 +319,9 @@ background:none;
 
 .footer .wrap {
   width: 960px;
-  border: none;  
-  background:none;
-  position: static; }
+  border: none;
+  position: static;
+  background: none; }
 
 .footer .f1, .footer .f2 {
   float: left; }

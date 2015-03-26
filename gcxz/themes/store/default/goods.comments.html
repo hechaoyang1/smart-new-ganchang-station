@@ -2,7 +2,7 @@
 	<table>
 		<thead>
 			<tr>
-				<th width="300" class="center">评价内容</th>
+				<th>评价内容</th>
 				<th class="mid center">顾客满意度</th>
 				<th class="center">评价者</th>
 			</tr>
@@ -13,7 +13,7 @@
 				<td>
 					<p>{$comments.comment}</p>
 				</td>
-											<td class="mid center">{if $comments.evaluation==3}好评{/if}{if $comments.evaluation==2}中评{/if}{if $comments.evaluation==1}差评{/if}</td>
+				<td class="mid center">{if $comments.evaluation==3}好评{/if}{if $comments.evaluation==2}中评{/if}{if $comments.evaluation==1}差评{/if}</td>
 				<td class="center">{$comments.buyer_name}
 					<div>{$comments.time}</div>
 				</td>

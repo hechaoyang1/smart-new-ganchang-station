@@ -1,9 +1,8 @@
 .goodsDetaildContent, body {
-  background: #e8e8e8; }
+  background: #fff; }
 
 .goodsDetaildContent > .wrap {
   background-color: #fff;
-  border: 1px solid #cfc8bc;
   border-top: none;
   padding: 0 20px; }
 
@@ -24,8 +23,8 @@
   position: relative; }
 
 .goodsImg .bigImg, .goodsImg .bigImg > img {
-  width: 270px;
-  height: 290px; }
+  width: 340px;
+  height: 340px; }
 
 .goodsImg .imgList {
   margin-top: 10px; }
@@ -33,39 +32,87 @@
 .goodsImg .imgList li {
   float: left;
   cursor: pointer;
-  border: 1px solid #fff; }
+  border: 1px solid #fff;
+  margin-right: 14px; }
 
 .goodsImg .imgList li.active {
   border: 1px solid #a50000; }
 
 .goodsInfo {
   float: left;
-  margin: 0 40px;
-  width: 450px; }
+  margin: 0 26px;
+  width: 410px;
+  color: #999; }
 
-.goodsInfo h3 {
-  font-size: 20px; }
+.goodsInfo h2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px; }
+
+.goodsInfo .salesVolume {
+  margin-top: 10px;
+  border-bottom: 1px dotted #ccc;
+  padding-bottom: 10px; }
+
+.goodsInfo .salesVolume > span {
+  display: inline-block;
+  width: 45%;
+  text-align: center; }
+
+.goodsInfo .salesVolume > span:first-child {
+  border-right: 1px solid #ccc; }
 
 .goodsInfo .number {
+  position: relative;
+  display: inline-block;
+  padding-right: 14px;
+  margin-right: 10px; }
+
+.goodsInfo .number .up, .goodsInfo .number .down {
+  border: 1px solid #b8b7bd;
+  width: 16px;
+  height: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-decoration: none;
+  background: url(../img/upAndDown.jpg) no-repeat left top; }
+
+.goodsInfo .number .down {
+  top: auto;
+  bottom: 0;
+  background-position: left -16px; }
+
+.goodsInfo .number input {
   width: 50px;
   height: 30px;
   line-height: 30px;
   margin: 0 10px;
   text-align: center; }
 
+.goodsInfo .salesVolume .red {
+  font-weight: bold;
+  margin-left: 5px; }
+
 .goodsPrice {
-  padding: 20px;
-  background-color: #e8e8eb;
+  padding: 10px 20px;
+  background: url(../img/goodsPriceBg.png) no-repeat bottom right #f5f5f5;
   margin: 20px 0; }
 
-.goodsPrice .orange {
-  font-size: 18px; }
+.goodsPrice div {
+  padding: 5px 0; }
 
-.goodsPrice span, .goodsPrice del {
+.goodsPrice .red {
+  font-size: 24px;
+  display: inline-block;
+  vertical-align: middle; }
+
+.goodsPrice span {
   font-weight: bold; }
 
 .goodsPrice i {
-  font-size: 12px;
+  vertical-align: middle;
+  font-size: 14px;
   font-style: normal; }
 
 .goodsInfo .btns {
@@ -80,6 +127,14 @@
   background: #a50000;
   border: 1px solid #a50000;
   color: #fff; }
+
+.goodsInfo .btns > .shoppingCar > i {
+  background: url(../img/shoppingCarIcon.png) no-repeat left top;
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 20px;
+  margin-right: 5px; }
 
 .goodsInfo .btns > .buyNow, .goodsInfo .btns > .shoppingCar {
   height: 40px;
@@ -167,7 +222,7 @@
 .goodsShow {
   float: left;
   margin-left: 10px;
-  width: 590px; }
+  width: 758px; }
 
 .goodsShow .tab-top {
   background-color: #f9f9f9;
@@ -222,7 +277,9 @@
 
 .goodsDetaild .summary {
   border: 1px solid #e0e0e0;
-  margin-top: 20px; }
+  margin-top: 20px;
+  word-wrap: break-word;
+  word-break: break-all; }
 
 .soldNote {
   padding-top: 20px;
@@ -259,7 +316,9 @@
   margin-top: 20px; }
 
 .comment .table > table {
-  border: 1px solid #efefef; }
+  border: 1px solid #efefef;
+	width:100%;
+}
 
 .comment .table th, .comment .table td {
   border-bottom: 1px solid #efefef;
@@ -273,10 +332,12 @@
   margin-right: 10px; }
 
 .comment .table .mid {
+	width:100px;
   position: relative; }
 
 .comment .table .center {
   vertical-align: middle;
+	width:150px;
   text-align: center; }
 
 .comment .table .mid:before, .comment .table .mid:after {

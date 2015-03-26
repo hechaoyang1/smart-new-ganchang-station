@@ -1,4 +1,5 @@
-{include file=header.new.html} {include file=top.new.html}
+{include file=header.new.html}
+ {include file=top.new.html}
 <link rel="stylesheet" href="{res file=css/goodsDetailed.css}">
 <div class="goodsDetaildContent">
 	<div class="wrap">
@@ -22,16 +23,12 @@
 					</div>
 					<div class="goodsInfo">
 						<h2>{$goods.goods_name|escape}</h2>
+						<h3>{$sub_goods_name|escape}</h3>
 						<div class="goodsPrice">
 							<div>
 								促销价：<span class="orange"><i>￥</i>{$goods.price}</span>
 							</div>
-							<div>
-								原价：
-								<del>
-									<i>￥</i>{$goods.price1}
-								</del>
-							</div>
+							<div>原价格：<del><i>￥</i>{$goods.price1}</del> {$goods.unit}</div>
 						</div>
 						<!--{if $goods.spec_qty gt 0}-->
 						<div class="fz14 specifications">
@@ -42,13 +39,29 @@
 							{$goods.spec_name_2|escape}：</div>
 						<!--{/if}-->
 						<div class="fz14 mt20">
-							数量<input id="quantity" class="number" type="text" value="1">{$goods.unit}
-							库存<span ectype='goods_stock'>{$goods._specs.0.stock}</span>{$goods.unit}
+							数量<span class="number"><input id="quantity" type="text" value="1"><a href="javascript:;" class="up">&nbsp;</a><a href="javascript:;" class="down">&nbsp;</a></span>件 库存<span ectype="goods_stock">{$goods._specs.0.stock}</span>件
 						</div>
 						<div class="btns">
-							<a class="buyNow" href="javascript:nowbuy();">立即购买</a> <a
-								class="shoppingCar" href="javascript:buy();">加入购物车</a>
+								<a class="buyNow" href="javascript:nowbuy();">立即购买</a>
+								<a class="shoppingCar" href="javascript:buy();"><i></i>加入购物车</a>
 						</div>
+					</div>
+					<div class="shopInfo">
+						<img class="imgTop"
+							src="themes/store/default/styles/default/img/shopInfoBg.png"
+							alt="">
+						<div class="text-center">
+							<img src="{$store.store_logo}" alt="" width="150px">
+						</div>
+						<ul>
+							<li>店铺：{$store.store_name|escape}</li>
+							<li>店主：{$store.store_owner.user_name|escape}</li>
+							<li>信用度：{$store.credit_value}</li>
+							<li>店铺等级：{$store.sgrade}</li>
+							<li>所在区域：{$store.region_name|escape}</li>
+							<li>联系卖家：{$store.store_owner.im_qq|escape}</li>
+						</ul>
+						<a href="{url app=store&id=$store.store_id}" class="intoShop">去店铺逛逛</a>
 					</div>
 				</div>
 				<div class="mt20 clearfix">
@@ -72,7 +85,7 @@
 					<div class="goodsShow">
 						<ul class="tab-top clearfix">
 							<li class="active"><a href="javascript:;">商品详情</a></li>
-							<li ><a href="javascript:;">商品评论</a></li>
+							<li ><a href="javascript:;">商品评价<span style="color:red;">({$page_info.item_count})</span></a></li>
 							<li><a href="javascript:;">销售记录</a></li>
 						</ul>
 						<div class="tab-content">
@@ -99,73 +112,12 @@
 									<li><label><input type="radio" name="comment" value="2"> 中评({$eval_normal})</label></li>
 									<li><label><input type="radio" name="comment" value="1"> 差评({$eval_bad})</label></li>
 								</div>
-								<div class="table">
-									<table>
-										<thead>
-											<tr>
-												<th width="300" class="center">评价内容</th>
-												<th class="mid center">顾客满意度</th>
-												<th class="center">评价者</th>
-											</tr>
-										</thead>
-										<tbody>
-											{foreach from=$goods_comments item=comments}
-											<tr>
-												<td>
-													<p>{$comments.comment}</p>
-												</td>
-												<td class="mid center">{if $comments.evaluation==3}好评{/if}{if $comments.evaluation==2}中评{/if}{if $comments.evaluation==1}差评{/if}</td>
-												<td class="center">{$comments.buyer_name}
-													<div>{$comments.time}</div>
-												</td>
-											</tr>
-											{/foreach}
-										</tbody>
-									</table>
-								</div>
-								{include file=page.bottom.html}
 							</div>
 							<div style="display: none;" class="soldNote">
-								<table>
-									<thead>
-										<tr>
-											<th>买家</th>
-											<th>价格</th>
-											<th>数量</th>
-											<th>成交时间</th>
-										</tr>
-									</thead>
-									<tbody>
-										{foreach from=$sales_list item=sales}
-										<tr>
-											<td>{if $sales.anonymous}***{else}{$sales.buyer_name|escape}{/if}</td>
-											<td class="orange">{$sales.price|price}</td>
-											<td>{$sales.quantity}件</td>
-											<td>{$sales.add_time|date}</td>
-										</tr>
-										{/foreach}
-									</tbody>
-								</table>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="shopInfo">
-				<img class="imgTop"
-					src="themes/store/default/styles/default/img/shopInfoBg.png" alt="">
-				<div class="text-center">
-					<img src="{$store.store_logo}" alt="" width="150px">
-				</div>
-				<ul>
-					<li>店铺：{$store.store_name|escape}</li>
-					<li>店主：{$store.store_owner.user_name|escape}</li>
-					<li>信用度：{$store.credit_value}</li>
-					<li>店铺等级：{$store.sgrade}</li>
-					<li>所在区域：{$store.region_name|escape}</li>
-					<li>联系卖家：{$store.store_owner.im_qq|escape}</li>
-				</ul>
-				<a href="{url app=store&id=$store.store_id}" class="intoShop">去店铺逛逛</a>
 			</div>
 		</div>
 	</div>

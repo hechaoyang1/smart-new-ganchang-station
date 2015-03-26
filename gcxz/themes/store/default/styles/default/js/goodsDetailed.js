@@ -8,6 +8,28 @@
 		dom:$('.goodsShow')
 	});
 
+
+	// 商品数量加减
+	var numberBox = $('.number');
+	var numberInput = numberBox.find('input');
+	numberBox.find(".up").on('click',function(){
+		var val = parseInt(numberInput.val());
+		if(isNaN(val)){
+			numberInput.val(0)
+		}else{
+			numberInput.val(val+1);
+		}
+	});
+	numberBox.find(".down").on('click',function(){
+		var val = parseInt(numberInput.val());
+		if(isNaN(val)){
+			numberInput.val(0);
+		}else{
+			if(val < 2)val = 2;
+			numberInput.val(val-1);
+		}
+	});
+	
 	$('.bigImg').jqueryzoom({
 		zoomType: 'standard',
 		lens:true,

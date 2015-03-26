@@ -13,7 +13,7 @@
 			<td>{if $sales.anonymous}***{else}{$sales.buyer_name|escape}{/if}</td>
 			<td class="orange">{$sales.price|price}</td>
 			<td>{$sales.quantity}件</td>
-			<td>{$sales.add_time|date}</td>
+			<td>{$sales.add_time|date:Y-m-d H:i:s}</td>
 		</tr>
 		{/foreach}
 	</tbody>
