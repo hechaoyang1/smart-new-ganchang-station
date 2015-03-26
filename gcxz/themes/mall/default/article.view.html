@@ -1,40 +1,56 @@
-{include file=header.html}
-{include file=curlocal.html}
-<div class="content">
-    <div class="left">
-        <div class="module_sidebar">
-            <h2><b>{$lang.acategory}</b></h2>
-            <div class="wrap">
-                <div class="wrap_child">
-                    <div class="classify_list">
-                        <ul>
-                            <!-- {foreach from=$acategories item=acategory} -->
-                            <li><a href="{url app=article&cate_id=$acategory.cate_id}">{$acategory.cate_name|escape}</a></li>
-                            <!-- {/foreach} -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>赶场小站</title>
+<link href="{res file=css/base.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/public.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/nav.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/select.js}" charset="utf-8"></script>
 
-            <h2><b>{$lang.new_article}</b></h2>
-            <div class="wrap">
-                <div class="wrap_child">
-                    <div class="side_textlist">
-                        <ul>
-                            <!-- {foreach from=$new_articles item=new_article} -->
-                            <li><a {if $new_article.link}target="_blank"{/if} href="{url app=article&act=view&article_id=$new_article.article_id}">{$new_article.title|escape}</a></li>
-                            <!-- {foreachelse} -->
-                            <li>{$lang.no_new_article}</li>
-                            <!-- {/foreach} -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<script type="text/javascript" src="{lib file=jquery1.42.min.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=jquery.SuperSlide.2.1.1.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var PRICE_FORMAT = '{$price_format}';
+//]]>
+</script>
 
-    <div class="right">
-        <div class="article_wrap">
+{$_head_tags}
+<!--<editmode></editmode>-->
+</head>
+
+<body>
+<div class="top-tools">
+		<div class="wrap relative">
+			<div class="absolute left">
+				欢迎来到赶场小站!{$visitor.user_name|escape}
+        		<!--{if !$visitor.user_id}-->
+        		<a href="{url app=member&act=login&ret_url=$ret_url}">登录</a>&nbsp;|&nbsp;<a href="{url app=member&act=register&ret_url=$ret_url}">免费注册</a>
+		        <!--{else}-->
+		        <span class="H_gan_top"><a href="{url app=member&act=logout}">{$lang.logout}</a></span>
+		        <!--{/if}-->
+			</div>
+			<div class="mid">
+				服务热线： 028-36294040
+			</div>
+			<div class="absolute right">
+				<a class="shoppingCar" target="_blank" href="{url app=cart}">购物车</a>
+				<!--{if $visitor.has_store}-->
+	        	<a href="{url app=seller_order}">我的小站</a>
+	            <!--{else}-->
+	            <a href="{url app=buyer_order}">我的小站</a>
+	            <!--{/if}-->
+			</div>
+		</div>
+	</div>
+<div class="article_wrap">
             <div class="article_con">
                 <h1>{$article.title|escape}</h1>
                 <h2>{$article.add_time|date:Y-m-d H:i}</h2>
@@ -44,14 +60,7 @@
                     <!-- {else} -->
                     {$article.content}
                     <!-- {/if} -->
-                </div>
-
-                <div class="more_article">
-                    <h3>{$lang.pre_article}: <!--{if $pre_article}--><a target="{$pre_article.target}" href="{url app=article&act=view&article_id=$pre_article.article_id}">{$pre_article.title|escape}</a> <span>{$pre_article.add_time|date:Y-m-d H:i}</span><!--{else}-->{$lang.no_records}<!--{/if}--></h3>
-                    <h3>{$lang.next_article}: <!--{if $next_article}--><a target="{$next_article.target}" href="{url app=article&act=view&article_id=$next_article.article_id}">{$next_article.title|escape}</a> <span>{$next_article.add_time|date:Y-m-d H:i}</span><!--{else}-->{$lang.no_records}<!--{/if}--></h3>
-                </div>
+				</div>
             </div>
         </div>
-    </div>
-</div>
 {include file=footer.html}

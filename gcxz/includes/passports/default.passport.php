@@ -43,6 +43,32 @@ class DefaultPassportUser extends BasePassportUser
 
         return $user_id;
     }
+    
+ /* 注册 */
+    function register_by_phone($user_name, $password, $phone, $local_data = array())
+    {
+        if (!$this->check_username($user_name))
+        {
+            return false;
+        }
+
+        if (!$this->check_phone($phone))
+        {
+            return false;
+        }
+
+        $local_data['user_name']    = $user_name;
+        $local_data['password']     = md5($password);
+        $local_data['phone_mob']        = $phone;
+        $local_data['reg_time']     = gmtime();
+        $local_data['is_verified']     = 1;
+
+        /* 添加到用户系统 */
+        $user_id = $this->_local_add($local_data);
+
+        return $user_id;
+    }
+     
     /* 编辑用户数据 */
     function edit($user_id, $old_password, $items, $force = false)
     {
@@ -164,6 +190,18 @@ class DefaultPassportUser extends BasePassportUser
             return false;
         }
 
+        return true;
+    }
+    
+    function check_phone($phone){
+        $model_member =& m('member');
+        $info=$model_member->get(array('conditions'=>"phone_mob='{$phone}' and is_verified=1",'limit'=>'1','fields'=>'1'));
+        if (!empty($info))
+        {
+            $this->_error('该手机已被使用');
+        
+            return false;
+        }
         return true;
     }
 

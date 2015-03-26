@@ -1,0 +1,262 @@
+.Signin_logo {
+	height: 57px;
+	width: 960px;
+	margin: 50px auto;
+	background-image: url(../img/logo.png);
+	background-repeat: no-repeat;
+	background-position: left;
+}
+.Signin_box{
+	width: 484px;
+	border: 8px solid #e8e8e8;
+	height: 430px;
+	margin: auto;
+	background-color: #FFFFFF;
+}
+.Signin_box_p{
+	width: 100%;
+	height: 85px;
+}
+.Signin_box p{
+	float: left;
+	font-size: 16px;
+	margin: 35px 78px;
+}
+.Signin_box_p a{
+	float: left;
+	font-size: 16px;
+	margin: 35px 79px;
+	color: #8da9d1;
+}
+.Signin_box_name{
+	width: 310px;
+	margin:auto;
+}
+.Signin_box_name span{
+	color: #bcadb0;
+}
+.Signin_text{
+	width:100%;
+	height: 35px;
+	float: left;
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+.re_text_name{
+	width:19px!important;
+	height: 19px!important;
+	background-image: url(../img/Signin_box_name.jpg);
+	background-repeat: no-repeat;
+	background-position: left;
+	float: right;
+	margin-top: -45px;
+	margin-right: 15px;
+	position: relative!important;
+	left: -220px;
+	top: 54px;
+	z-index:99
+}
+.text_word{
+	background-repeat: no-repeat;
+	background-position: -40px;
+}
+
+.float{
+	clear: both;
+}
+.box_box{
+	margin-top: 50px;
+	margin-bottom: 15px;
+}
+.box_box a{
+	text-decoration:none;
+}
+.btn{
+	  vertical-align: middle;
+	  padding: 7px 129px 7px;
+	  font-size: 18px;
+	  font-weight: 700;
+	  text-align: right;
+	  text-decoration: none;
+	  border-width: 0 0 1px;
+	  border-style: solid;
+	  background-repeat: repeat-x;
+	  border-radius: 2px;
+	  user-select: none;
+	  cursor: pointer;
+	  color: #fff;
+	  background-color: #e23539;
+	  border-color: #e23539;
+	  background-size: 100%;
+}
+
+.Signin_level{
+	width:100%;
+	height: 2px;
+	background-color: #a50000;
+	margin-top: 140px;
+	margin-bottom: 10px;
+}
+
+.Signin_ul{
+	width:960px;
+	margin:auto
+}
+.Signin_ul li{
+	width:170px;
+	list-style-type: none;
+	float: left;
+}
+.Signin_ul_li{
+	width:280px!important;
+	float: left;
+}
+.Signin_ul li span{
+	font-size: 12px;
+}
+.Signin_ul_span{
+	font-size: 14px!important;
+	color: #a60000;
+}
+.Signin_the{
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.float{
+	clear: both;
+}
+.registration_logo {
+	height: 57px;
+	width: 960px;
+	margin: 50px auto;
+	background-image: url(../img/logo.png);
+	background-repeat: no-repeat;
+	background-position: left;
+}
+.registration_box{
+	width: 944px;
+	border: 8px solid #e8e8e8;
+	height: 550px;
+	margin: auto;
+	background-color: #FFFFFF;
+}
+
+.btn{
+	  vertical-align: middle;
+	  padding: 7px 129px 7px;
+	  font-size: 18px;
+	  text-align: right;
+	  text-decoration: none;
+	  border-width: 0 0 1px;
+	  border-style: solid;
+	  background-repeat: repeat-x;
+	  border-radius: 2px;
+	  user-select: none;
+	  cursor: pointer;
+	  color: #fff;
+	  background-color: #e23539;
+	  border-color: #e23539;
+	  background-size: 100%;
+}
+
+.registration_level{
+	width:100%;
+	height: 2px;
+	background-color: #a50000;
+	margin-top: 140px;
+	margin-bottom: 10px;
+}
+
+.registration_ul{
+	width:960px;
+	margin:auto
+}
+.registration_ul li{
+	width:170px;
+	list-style-type: none;
+	float: left;
+}
+.registration_ul_li{
+	width:280px!important;
+	float: left;
+}
+.registration_ul li span{
+	font-size: 12px;
+}
+.registration_ul_span{
+	font-size: 14px!important;
+	color: #a60000;
+}
+.registration_the{
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.register_left{
+	float: left;
+	height: 500px;
+	width: 630px;
+	margin:20px;
+}	
+.form_field_uname{
+	margin:30px 0;
+	
+}
+.form_field_uname input{
+	height: 35px;
+	width: 310px;
+	position: relative;
+	left: 100px;
+	z-index:1
+}
+.form_field_uname label{
+  position: absolute;
+  width: 90px;
+  padding-top: 6px;
+  font-size: 14px;
+  text-align: right;
+  color: #999999;
+}
+.form_field_uname label span{
+	color: #e43739;
+}
+.uname_label{
+	width: 120px!important;
+	text-align: left!important;
+	left: 660px;
+}
+.left{
+	font-size: 16px;
+}
+.code{
+	width: 100px!important;
+}
+.code1{
+	width: 100px!important;
+	height: 41px!important;
+	margin-top: 2px!important;
+}
+.register_right{
+	width: 270px;
+	height: 460px;
+	margin-top: 45px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #eeeeee;
+	float: left;
+}
+.register_right ul{
+	font-size: 14px;
+	margin-left: 27px;
+}
+.text_phone{
+	background-repeat: no-repeat;
+	background-position: -80px;
+}
+form label.validate_right {
+	font-style: italic;
+	color: green;
+	float: none;
+}
