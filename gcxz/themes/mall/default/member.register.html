@@ -1,15 +1,35 @@
-{include file="header.html"}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>赶场小站</title>
+<link href="{res file=css/base.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/loginregister.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=jquery.plugins/jquery.validate.js}" charset="utf-8"></script>
+<style>
+.registration_box .form_field_uname label.error{
+	color:red;
+}
+</style>
+</head>
+<a href="index.php"><div class="registration_logo"></div></a>
 <script type="text/javascript">
 //注册表单验证
 $(function(){
+	jQuery.validator.addMethod("isPhone", function (value, element) {
+        return this.optional(element) || /^\d{11}$/.test();
+    }, "请正确输入您的身份证号码");
     $('#register_form').validate({
         errorPlacement: function(error, element){
-            var error_td = element.parent('td').next('td');
-            error_td.find('.field_notice').hide();
+        	var error_td = element.parent('.form_field_uname');
+            error_td.find('.uname_label').hide();
+            error.addClass('uname_label');
             error_td.append(error);
         },
         success       : function(label){
-            label.addClass('validate_right').text('OK!');
+        	label.removeClass('error').addClass('uname_label validate_right').text('OK!');
         },
         onkeyup: false,
         rules : {
@@ -44,10 +64,6 @@ $(function(){
                 required : true,
                 equalTo  : '#password'
             },
-            email : {
-                required : true,
-                email    : true
-            },
             captcha : {
                 required : true,
                 remote   : {
@@ -79,10 +95,6 @@ $(function(){
                 required : '{$lang.password_confirm_please}',
                 equalTo  : '{$lang.password_inconsistent}'
             },
-            email : {
-                required : '{$lang.email_required}',
-                email    : '{$lang.email_invalid}'
-            },
             captcha : {
                 required : '{$lang.captcha_required}',
                 remote   : '{$lang.captcha_error}'
@@ -94,77 +106,97 @@ $(function(){
     });
 });
 </script>
-<div class="content">
-    <div class="module_common">
-        <h2><b class="register" title="JOIN US{$lang.user_register}"></b></h2>
-        <div class="wrap">
-            <div class="wrap_child">
-                <div class="login_con">
-                    <div class="login_fill_in">
-                        <form name="" id="register_form" method="post" action="">
-                        <table>
-                            <tr>
-                                <td colspan="3"><h4>{$lang.enter_register_info}</h4></td>
-                            </tr>
-                            <tr>
-                                <td>{$lang.user_name}:</td>
-                                <td><input type="text" id="user_name" name="user_name" class="text width10" maxlength="15"/></td>
-                                <td class="padding3 fontColor4"><label class="field_notice">{$lang.user_name_desc}</label><label id="checking_user" class="checking">{$lang.checking}</label></td>
-                            </tr>
-                            <tr>
-                                <td>{$lang.password}:</td>
-                                <td><input type="password" id="password" name="password" class="text width10" /></td>
-                                <td class="padding3 fontColor4"><label class="field_notice">{$lang.password_desc}</label></td>
-                            </tr>
-                            <tr>
-                                <td>{$lang.password_confirm}:</td>
-                                <td><input type="password" name="password_confirm" class="text width10" /></td>
-                                <td class="padding3 fontColor4"><label class="field_notice">{$lang.password_confirm_desc}</label></td>
-                            </tr>
-                            <tr>
-                                <td>{$lang.email}:</td>
-                                <td><input type="text" name="email" class="text width10" /></td>
-                                <td class="padding3 fontColor4"><label class="field_notice">{$lang.email_desc}</label></td>
-                            </tr>
-                            <!--{if $captcha}-->
-                            <tr>
-                                <td>{$lang.captcha}:</td>
-                                <td>
-                                    <input type="text" name="captcha" class="text" id="captcha1" />
-                                    <a href="javascript:change_captcha($('#captcha'));" class="renewedly"><img id="captcha" src="index.php?app=captcha&amp;{$random_number}" /></a>
-                                </td>
-                                <td class="padding3 fontColor4"><label class="field_notice">{$lang.captcha_desc}</label></td>
-                            </tr>
-                            <!--{/if}-->
-                            <tr>
-                                <td></td>
-                                <td><input id="clause" type="checkbox" name="agree" value="1" /> <label for="clause">{$lang.i_have_read} <a href="{url app=article&act=system&code=eula}" target="_blank" class="agreement">{$lang.mall_eula}</a></label></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td colspan="2"><input type="submit" name="Submit" value="" class="login_btn" title="{$lang.register_now}" /></td><input type="hidden" name="ret_url" value="{$ret_url}" />
-                            </tr>
-                        </table>
-                        </form>
-                    </div>
-
-                    <div class="login_right">
-                        <h4>{$lang.attention}:<br />{$lang.not_member}</h4>
-                        <p>{$lang.after_register}</p>
-                        <ol>
-                            <li><strong>1.</strong> {$lang.save_profile}</li>
-                            <li><strong>2.</strong> {$lang.collect_goods}</li>
-                            <!--<li><strong>3.</strong> {$lang.member_point}</li>-->
-                            <li><strong>3.</strong> {$lang.subscription_goods}</li>
-                        </ol>
-                        <h4>{$lang.already_have_account}</h4>
-                        <a href="{url app=member&act=login&ret_url=$ret_url}" class="enter" title="{$lang.login_now}"></a>
-                    </div>
-                </div>
+<div class="registration_box">
+		<div class="register_left">
+		<form id="register_form" method="post" action="">
+			<p class="left">新用户注册</p>
+		
+			<div class="form_field_uname">
+                <label><span>*</span>用户名:</label>
+                <input type="text" id="user_name" name="user_name" class="">
+				<label class="re_text_name"></label>
+				<label class="uname_label">填写用户名</label>
             </div>
-        </div>
-    </div>
-</div>
-
+            <div class="form_field_uname">
+                <label><span>*</span>密码:</label>
+                <input type="password" id="password" name="password" class="">
+				<label class="re_text_name text_word"></label>
+				<label class="uname_label">填写至少6位的密码</label>
+            </div>
+            <div class="form_field_uname">
+                <label><span>*</span>确认密码:</label>
+                <input type="password" id="password_confirm" name="password_confirm" class="">
+				<label class="re_text_name text_word"></label>
+				<label class="uname_label">重复输入你的密码</label>
+            </div>
+			<div class="form_field_uname">
+                <label><span>*</span>验证手机:</label>
+                <input type="text" id="phone" name="phone" class="">
+				<label class="uname_label">或<a href="#">邮箱验证</a></label>
+            </div>
+			<div class="form_field_uname">
+                <label><span>*</span>短信验证码:</label>
+                <input type="text" id="code" name="code" class="code">
+				<input type="button" id="btn" class="code1" value="获取短信验证码" />
+            </div>
+			<div class="form_field_uname">
+                <label></label>
+                <input id="agree" name="agree" type="checkbox" value="1" checked / style='width: 15px;'>
+				<div style="  margin-top: -30px;margin-left: 123px;">我已阅读并同意<a href="{url app=article&act=system&code=eula}"  target="_blank">《赶场小站用户注册协议》</a></div>
+            </div>
+			<div class="form_field_uname registration_box_name">
+                <label></label>
+                <input type="submit" class="btn" value="立即注册" />
+            </div>
+            </form>
+		</div>
+		<div class="register_right">
+			<ul><br />
+				<li>我已拥有账号，现在就<a href="{url app=member&act=login&ret_url=$ret_url}">登录</a></li>
+				<br />
+				<br />
+				<li>友情提示:</li><br />
+				<li>如果你不是会员，请注册</li><br /><br />
+				<li>注册之后你就可以</li><br /><br />
+				<li>1.保存你的个人资料</li>
+				<li>2.收藏你关注的商品</li>
+				<li>3.订阅本店商品信息</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+var wait=60;
+var flag=true;
+function send(o){
+	if(!flag){
+		alert('短信已发送，请耐心等待');
+	}
+	flag=false;
+	$.get('index.php?app=member&act=send_reg_code&phone='+$('#phone').val(),null,function(data){
+		if(data.code=="1"){
+			time(o);
+		}else{
+			alert(data.msg);
+			flag=true;
+		}
+	},'json');
+}
+function time(o) {
+    if (wait == 0) {
+        o.removeAttribute("disabled");            
+        o.value="免费获取验证码";
+        wait = 60;
+        flag=true;
+    } else {
+        o.setAttribute("disabled", true);
+        o.value="重新发送(" + wait + ")";
+        wait--;
+        setTimeout(function() {
+            time(o)
+        },
+        1000);
+    }
+}
+document.getElementById("btn").onclick=function(){send(this);}
+</script>
 {include file="footer.html"}

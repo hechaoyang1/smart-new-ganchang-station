@@ -165,7 +165,6 @@ class MemberApp extends MemberbaseApp
             }
 
             /* 导入jQuery的表单验证插件 */
-            $this->import_resource('jquery.plugins/jquery.validate.js');
             $this->display('member.register.html');
         }
         else
@@ -187,11 +186,22 @@ class MemberApp extends MemberbaseApp
                 $this->show_warning('inconsistent_password');
                 return;
             }
-
+            $phone=t($_POST['phone']);
+            if(!$this->isValidPhone($phone)){
+                $this->show_warning('非法的手机号');
+                return;
+            }
+            $code=t($_POST['code']);
+            /*短信验证码校验*/
+            $verified_model=m('verified');
+            $checked=$verified_model->checkCode($phone,$code,MSGKEY_REG);
+            if($checked!==true){
+                $this->show_warning($checked['msg']);
+                return;
+            }
             /* 注册并登陆 */
             $user_name = trim($_POST['user_name']);
             $password  = $_POST['password'];
-            $email     = trim($_POST['email']);
             $passlen = strlen($password);
             $user_name_len = strlen($user_name);
             if ($user_name_len < 3 || $user_name_len > 50)
@@ -206,15 +216,9 @@ class MemberApp extends MemberbaseApp
 
                 return;
             }
-            if (!is_email($email))
-            {
-                $this->show_warning('email_error');
-
-                return;
-            }
 
             $ms =& ms(); //连接用户中心
-            $user_id = $ms->user->register($user_name, $password, $email);
+            $user_id = $ms->user->register_by_phone($user_name, $password, $phone);
 
             if (!$user_id)
             {
@@ -222,6 +226,8 @@ class MemberApp extends MemberbaseApp
 
                 return;
             }
+            /*标记短信验证码已使用*/
+            $verified_model->sign_used($phone,MSGKEY_REG);
             $this->_hook('after_register', array('user_id' => $user_id));
             //登录
             $this->_do_login($user_id);
@@ -238,8 +244,38 @@ class MemberApp extends MemberbaseApp
             );
         }
     }
-
-
+    /**
+     * 发送注册验证码
+     */
+    function send_reg_code(){
+        $phone=t($_GET['phone']);
+        if(!$this->isValidPhone($phone)){
+            exit(json_encode(array('code'=>'0','msg'=>'非法的手机号')));
+        }
+        /*手机号是否已被绑定*/
+        $used=m('member')->get(array('conditions'=>'phone_mob=\''.$phone.'\' and is_verified=1','fields'=>'1','limit'=>'1'));
+        if($used){
+            exit(json_encode(array('code'=>'0','msg'=>'该手机已被注册')));
+        }
+        $verified=m('verified');
+        $time=time()-60;
+        /*发送频率校验*/
+        $find=$verified->get(array('conditions'=>"userkey='{$phone}' and msgkey='".MSGKEY_REG."' and used=0 and ctime>={$time}",'fields'=>'1','limit'=>'1'));
+        if($find){
+            exit(json_encode(array('code'=>'0','msg'=>'发送太频繁啦')));
+        }
+        /*随机验证码*/
+        $code = mt_rand ( 111111, 999999 );
+        /*发送验证码*/
+        $sended=$verified->sendSms($phone,'验证码：'.$code);
+        /*短信发送成功后入库*/
+        if($sended){
+            $verified->saveCode($phone,$code,MSGKEY_REG);
+            exit(json_encode(array('code'=>'1')));
+        }else{
+            exit(json_encode(array('code'=>'0','msg'=>'短信发送失败，请稍后重试')));
+        }
+    }
     /**
      *    检查用户是否存在
      *
@@ -571,6 +607,9 @@ class MemberApp extends MemberbaseApp
         }
         $uploader->root_dir(ROOT_PATH);
         return $uploader->save('data/files/mall/portrait/' . ceil($user_id / 500), $user_id);
+    }
+    function isValidPhone($phone){
+        return preg_match('/^\d{11}$/i', $phone)!==0;
     }
 }
 

@@ -541,7 +541,7 @@ class MemberbaseApp extends MallbaseApp
     function _run_action()
     {
         /* 只有登录的用户才可访问 */
-        if (!$this->visitor->has_login && !in_array(ACT, array('login', 'register', 'check_user')))
+        if (!$this->visitor->has_login && !in_array(ACT, array('login', 'register', 'check_user','send_reg_code')))
         {
             if (!IS_AJAX)
             {
