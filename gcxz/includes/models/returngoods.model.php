@@ -35,14 +35,14 @@ class ReturngoodsModel extends BaseModel
             $this->error = '该商品已经申请过退货';
             return false;
         }
-        $order_goods = m ( 'ordergoods' )->getAll("select og.rec_id,og.quantity,og.goods_id,og.source_type,g.service_type from ecm_order_goods og left join ecm_goods g on og.goods_id=g.goods_id where og.rec_id={$param['rec_id']} and og.order_id={$param['order_id']} limit 1");
-        $order_goods=current($order_goods);
+        $order_goods = m ( 'ordergoods' )->getAll ( "select og.rec_id,og.quantity,og.goods_id,og.source_type,g.service_type from ecm_order_goods og left join ecm_goods g on og.goods_id=g.goods_id where og.rec_id={$param['rec_id']} and og.order_id={$param['order_id']} limit 1" );
+        $order_goods = current ( $order_goods );
         if (empty ( $order_goods )) {
             $this->error = '商品记录不存在';
             return false;
         }
-        if($order_goods['service_type']==2){
-            $this->error='该商品不支持退货';
+        if ($order_goods['service_type'] == 2) {
+            $this->error = '该商品不支持退货';
             return false;
         }
         $order = m ( 'order' )->get ( array (
@@ -137,12 +137,12 @@ class ReturngoodsModel extends BaseModel
         $data['status'] = RETURN_MAILED;
         $data['express_sn'] = $param['express_sn'];
         $data['log'] = $this->_create_log ( unserialize ( $return['log'] ), $param['user_id'], $param['user_name'], '邮寄商品' . ($param['remark'] ? ':' . $param['remark'] : '') );
-        $ret=$this->edit ( 'id=' . $param['id'], $data );
+        $ret = $this->edit ( 'id=' . $param['id'], $data );
         /* 共享商品卖家审核后,通知仓库验货 */
-        if ($return['source_type'] == 2&&$ret) {
+        if ($return['source_type'] == 2 && $ret) {
             $goods_num = m ( 'ordergoods' )->get ( array (
                     'conditions' => 'rec_id=' . $return['order_goods_id'],
-                    'fields' => 'goods_number'
+                    'fields' => 'goods_number' 
             ) );
             $query = "&order_id={$return['order_id']}&return_order_sn={$return['return_order_sn']}&goods_number={$goods_num['goods_number']}&quantity={$return['quantity']}&invoice_no={$param['express_sn']}&remark={$return['remark']}";
             sendPost ( WMS_URL . 'retreatOrder', $query );
@@ -230,7 +230,7 @@ class ReturngoodsModel extends BaseModel
         $data['log'] = $this->_create_log ( unserialize ( $return['log'] ), $param['user_id'], $param['user_name'], $msg );
         $ret = $this->edit ( 'id=' . $param['id'], $data );
         /* 审核通过后生成退款单 申请退款 */
-        if ($ret) {
+        if ($ret && $param['examine'] == 1) {
             $ordergoods = m ( 'ordergoods' )->get ( array (
                     'conditions' => 'rec_id=' . $return['order_goods_id'],
                     'fields' => 'price' 
@@ -248,7 +248,7 @@ class ReturngoodsModel extends BaseModel
             }
             return $ret;
         }
-        return false;
+        return $ret;
     }
 
     public function convert_status($status = 0)
