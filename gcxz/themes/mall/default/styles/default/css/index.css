@@ -179,6 +179,11 @@
   overflow: hidden;
   font-size: 22px;
   width: 100%; }
+	
+.goods .img a img{
+	width: 100%;
+	height: 100%;
+}
 
 .goods .img .absolute {
   left: 30px;
