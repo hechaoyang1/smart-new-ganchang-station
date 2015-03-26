@@ -472,7 +472,7 @@ class GoodsApp extends StorebaseApp
     	 $page = $_GET['page']?$_GET['page']:1;
     	 $goods_id = $_GET['goods_id'];
     	 
-    	 $page = $this->_get_page(10);
+    	 $page = $this->_get_page(1);
     	 $order_goods_mod =& m('ordergoods');
     	 if ($evaluation == 0) {
     	 	$condition = 'goods_id = '.$goods_id.' AND evaluation_status = 1 AND evaluation in (1,2,3)';

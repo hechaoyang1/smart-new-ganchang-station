@@ -23,12 +23,12 @@
 					</div>
 					<div class="goodsInfo">
 						<h2>{$goods.goods_name|escape}</h2>
-						<h3>{$sub_goods_name|escape}</h3>
+						<h3>{$goods.sub_goods_name|escape}</h3>
 						<div class="goodsPrice">
 							<div>
 								促销价：<span class="orange"><i>￥</i>{$goods.price}</span>
 							</div>
-							<div>原价格：<del><i>￥</i>{$goods.price1}</del> {$goods.unit}</div>
+							<div>原价格：<del><i>￥</i>{$goods.price1}</del>{if $goods.unit neq ''}/{$goods.unit}{/if}</div>
 						</div>
 						<!--{if $goods.spec_qty gt 0}-->
 						<div class="fz14 specifications">
@@ -39,7 +39,7 @@
 							{$goods.spec_name_2|escape}：</div>
 						<!--{/if}-->
 						<div class="fz14 mt20">
-							数量<span class="number"><input id="quantity" type="text" value="1"><a href="javascript:;" class="up">&nbsp;</a><a href="javascript:;" class="down">&nbsp;</a></span>件 库存<span ectype="goods_stock">{$goods._specs.0.stock}</span>件
+							数量<span class="number"><input id="quantity" type="text" value="1"><a href="javascript:;" class="up">&nbsp;</a><a href="javascript:;" class="down">&nbsp;</a></span>{$goods.unit} 库存<span ectype="goods_stock">{$goods._specs.0.stock}</span>{$goods.unit}
 						</div>
 						<div class="btns">
 								<a class="buyNow" href="javascript:nowbuy();">立即购买</a>
