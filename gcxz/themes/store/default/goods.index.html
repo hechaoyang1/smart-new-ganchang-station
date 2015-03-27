@@ -32,6 +32,10 @@
 							</div>
 							<div>原价格：<del><i>￥</i>{$goods.price1}</del>{if $goods.unit neq ''}/{$goods.unit}{/if}</div>
 						</div>
+						<div class="salesVolume">
+								<span>月销量:<span class="red">{$sales_num}</span></span>
+								<span>累计评价:<span class="red">{$comments_num}</span></span>
+						</div>
 						<!--{if $goods.spec_qty gt 0}-->
 						<div class="fz14 specifications">
 							{$goods.spec_name_1|escape}：</div>
@@ -90,7 +94,7 @@ alt="QQ交流" border="0" />
 					<div class="goodsShow">
 						<ul class="tab-top clearfix">
 							<li class="active"><a href="javascript:;">商品详情</a></li>
-							<li ><a href="javascript:;">商品评价<span style="color:red;">({$page_info.item_count})</span></a></li>
+							<li ><a href="javascript:;">商品评价<span style="color:red;">({$comments_num})</span></a></li>
 							<li><a href="javascript:;">销售记录</a></li>
 						</ul>
 						<div class="tab-content">

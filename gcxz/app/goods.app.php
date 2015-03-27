@@ -311,6 +311,12 @@ class GoodsApp extends StorebaseApp
         
         /* 赋值销售记录 */
 //         $this->_assign_sales_log($this->_get_sales_log($_GET['id'], 50));
+
+        /* 赋值月销量*/
+        $this->assign('sales_num',$this->_get_sales_log_num($_GET['id']));
+        
+        /* 赋值商品评论数量*/
+        $this->assign('comments_num',$this->_get_goods_comment_num($_GET['id']));
         
         /* 赋值商品评论 */
         $this->_assign_goods_comment($this->_get_goods_comment($_GET['id'], 1));
@@ -354,6 +360,17 @@ class GoodsApp extends StorebaseApp
         ecm_setcookie('goodsBrowseHistory', join(',', array_unique($goods_ids)));
 
         return $goods_list;
+    }
+    
+    function _get_sales_log_num($goods_id){
+    	$order_goods_mod =& m('ordergoods');
+    	$sales_list = $order_goods_mod->get(array(
+    			'conditions' => "goods_id = '$goods_id' AND status = '" . ORDER_FINISHED . "'",
+    			'join'  => 'belongs_to_order',
+    			'fields'=> 'count(buyer_id) count',
+    	));
+    	
+    	return $sales_list['count'];
     }
 
     /* 取得销售记录 */
@@ -415,6 +432,15 @@ class GoodsApp extends StorebaseApp
         $this->assign('more_sales', $data['more_sales']);
     }
 
+    function _get_goods_comment_num($goods_id){
+    	$order_goods_mod =& m('ordergoods');
+    	$comments = $order_goods_mod->get(array(
+    			'conditions' => "goods_id = '$goods_id' AND evaluation_status = '1'",
+    			'join'  => 'belongs_to_order',
+    			'fields'=> 'count(buyer_id) count',
+    	));
+    	return $comments['count'];
+    }
     /* 取得商品评论 */
     function _get_goods_comment($goods_id, $num_per_page)
     {
@@ -475,7 +501,7 @@ class GoodsApp extends StorebaseApp
     	 $page = $_GET['page']?$_GET['page']:1;
     	 $goods_id = $_GET['goods_id'];
     	 
-    	 $page = $this->_get_page(1);
+    	 $page = $this->_get_page(10);
     	 $order_goods_mod =& m('ordergoods');
     	 if ($evaluation == 0) {
     	 	$condition = 'goods_id = '.$goods_id.' AND evaluation_status = 1 AND evaluation in (1,2,3)';
