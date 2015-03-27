@@ -311,10 +311,26 @@ class CartApp extends MallbaseApp
         foreach ($carts as $_store_id => $cart)
         {
             $carts[$_store_id]['kinds'] =   count(array_keys($kinds[$_store_id]));  //各店铺的商品种类数
+            $carts[$_store_id]['goods_num'] = count( $carts[$_store_id]['goods']);
         }
 
         return $carts;
     }
+    
+    /**
+     *    列出购物车中的商品
+     *
+     *    @author    Garbin
+     *    @return    void
+     */
+    function ajax_cart()
+    {
+    	$store_id = isset($_GET['store_id']) ? intval($_GET['store_id']) : 0;
+    	$carts = $this->_get_carts($store_id);
+    	$this->assign('carts', $carts);
+    	$this->display('cart.div.html');
+    }
+    
 }
 
 ?>

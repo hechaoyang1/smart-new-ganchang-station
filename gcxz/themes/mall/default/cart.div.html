@@ -1,0 +1,44 @@
+<div class="toolsShoppingCar modal">
+	<h3 class="title">我的购物车</h3>
+	<div class="content" {if empty($carts)}style="height:200px;" {/if}>
+		{if empty($carts)}购物车中没有数据{/if}
+		<!--{foreach from=$carts item=cart key=store_id}-->
+		<div class="shop">
+			<h3 class="shopTitle">店铺：{$cart.store_name|escape}</h3>
+			<ul>
+				<!--{foreach from=$cart.goods item=goods}-->
+				<li>
+					<div class="name">{$goods.goods_name|escape}</div>
+					<div class="clearfix">
+						<a href="#" class="pull-left"><img src="{$goods.goods_image}"
+							height="50" width="50" alt=""></a>
+						<div class="pull-left specifications">
+							<span>{$goods.specification|escape}</span>
+						</div>
+						<div class="pull-right">
+							<div class="number">{$goods.quantity}</div>
+							<div class="money">￥{$goods.price}</div>
+							<div class="del">
+								<a href="javascript:;" onclick="gcxz.drop_good({$store_id}, {$goods.rec_id},this);">×</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<!--{/foreach}-->
+			</ul>
+			<div class="buy">
+				<div class="pull-left">
+					该店铺 {$cart.goods_num}件商品 <span class="red">共计{$cart.amount|price}元</span>
+				</div>
+				<a class="pull-right"
+					href="{url app=order&goods=cart&store_id=$store_id}">结算
+					&gt;&gt;</a>
+			</div>
+		</div>
+	</div>
+	<!--{/foreach}-->
+</div>
+
+<script>
+	
+</script>

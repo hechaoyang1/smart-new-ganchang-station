@@ -48,4 +48,25 @@ gcxz.shoppingCar = function(ele){
 		}
 	}
 };
+gcxz.drop_good = function(store_id, rec_id,obj) {
+	var li = $(obj).parents('li');
+	var shop = $(obj).parents('.shop');
+	$.getJSON('index.php?app=cart&act=drop&rec_id=' + rec_id, function(result){
+        if(result.done){
+        	 //删除成功
+            if(result.retval.cart.quantity == 0){
+            	$('.rightTools').click();    //刷新
+            }
+            else{
+            	/*如果还有其他商品，移除该商品*/
+            	if(li.siblings('li').length>0){
+	                li.remove();        //移除
+            	}else{
+            	/*如果没有其他商品，移除店铺*/
+            		shop.remove(); 
+            	}
+            }
+        }
+    });
+}
 gcxz.shoppingCar.isopen = false;
