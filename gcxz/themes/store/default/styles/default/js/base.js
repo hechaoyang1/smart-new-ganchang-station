@@ -1,4 +1,5 @@
 var gcxz={};
+// 选项卡
 gcxz.tab = function(options){
 	var _t = options;
 	var btn = _t.dom.find('.tab-top').children();
@@ -10,3 +11,41 @@ gcxz.tab = function(options){
 		content.eq(i).show().siblings().hide();
 	});
 };
+// 返回顶部
+gcxz.backTop = function(){
+	$(document).scrollTop(0);
+};
+
+// 购物车
+gcxz.shoppingCar = function(ele){
+	if(gcxz.shoppingCar.isopen)return;
+	gcxz.shoppingCar.isopen = true;
+	$.post(urls.shoppingCar,function(data){
+		 	ele = $(ele);
+			var eleH = ele.height(),
+			offsetHeight = $(document).scrollTop(),
+			eleTop = ele.offset().top,
+			centerHeight = eleTop - offsetHeight + eleH/2,
+			appendHtml = $(data).hide().appendTo('body'),
+			appendHtmlHeight = appendHtml.height();
+		appendHtml.css({
+			top:centerHeight - appendHtmlHeight/2-20
+		}).show();
+
+		setTimeout(function(){
+			$(document).on('click',removeAppendHtml);
+		});
+	});
+	
+	function removeAppendHtml(e){
+		var t = $(e.target);
+		var modal = t.closest('.modal');
+		var modal2 =$('.modal');
+		if(modal2.length != 0 && modal.length === 0){
+			modal2.remove();
+			$(document).off('click',removeAppendHtml);
+			gcxz.shoppingCar.isopen = false;
+		}
+	}
+};
+gcxz.shoppingCar.isopen = false;

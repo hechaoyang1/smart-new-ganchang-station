@@ -1,5 +1,6 @@
 {include file=header.new.html}
  {include file=top.new.html}
+ {include file=right.tool.html}
 <link rel="stylesheet" href="{res file=css/goodsDetailed.css}">
 <div class="goodsDetaildContent">
 	<div class="wrap">
@@ -20,6 +21,7 @@
 								src="{$goods_image.thumbnail}" width="52" height="48" alt=""></li>
 							<!--{/foreach}-->
 						</ul>
+							<a href="javascript:move_favorite({$store.store_id},  1, {$goods.goods_id});"><i></i>收藏商品</a>
 					</div>
 					<div class="goodsInfo">
 						<h2>{$goods.goods_name|escape}</h2>
@@ -44,7 +46,6 @@
 						<div class="btns">
 								<a class="buyNow" href="javascript:nowbuy();">立即购买</a>
 								<a class="shoppingCar" href="javascript:buy();"><i></i>加入购物车</a>
-								<a class="shoppingCar" href="javascript:move_favorite({$store.store_id},  1, {$goods.goods_id});"><i></i>收藏商品</a>
 						</div>
 					</div>
 					<div class="shopInfo">

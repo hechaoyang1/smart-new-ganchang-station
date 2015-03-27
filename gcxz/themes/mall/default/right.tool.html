@@ -1,0 +1,16 @@
+<div class="rightTools">
+	<ul>
+		<li><a href="javascript:;" title="我要反馈" class="rt1">我要反馈</a></li>
+		<li><a href="javascript:;" title="收藏夹" class="rt2">收藏夹</a></li>
+		<li><a href="javascript:;" onclick="gcxz.shoppingCar(this)"
+			title="购物车" class="rt3">购物车</a></li>
+		<li><a href="javascript:;" onclick="gcxz.backTop()" title="Top"
+			class="rt4">Top</a></li>
+	</ul>
+</div>
+
+<script>
+	var urls = {};
+	// 购物车请求链接	
+	urls['shoppingCar'] = SITE_URL + '/index.php?app=goods&act=ajax_goods_comments';
+</script>
