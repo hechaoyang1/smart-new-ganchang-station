@@ -134,8 +134,7 @@ body {
 
 .top-tools .wrap {
   width: 960px;
-  border: none;
-  position: static; }
+  border: none; }
 
 .top-tools a {
   color: #333; }

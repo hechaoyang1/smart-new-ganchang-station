@@ -85,7 +85,9 @@ $(function(){
                 min : 0.01
             },
             stock      : {
-                digits    : true
+                digits    : true,
+                required : true,
+                min : 1
             },
             cate_id    : {
                 remote   : {
@@ -117,7 +119,9 @@ $(function(){
                 min : '{$lang.price_ge_0}'
             },
             stock       : {
-                digits  : '{$lang.number_only}'
+                digits  : '此项只能是正整数',
+                required : '库存不能为空',
+                min : '库存必须大于或等于1'
             },
             cate_id     : {
                 remote  : '{$lang.select_leaf_category}'
@@ -338,7 +342,7 @@ $(function(){
                                     </li>
                                     <li ectype="no_spec">
                                         <h2>{$lang.stock}: </h2>
-                                        <div class="arrange"><input name="stock" value="{$goods._specs.0.stock}" type="text" class="text width_short" /></div>
+                                        <div class="arrange"><input name="stock" value="{$goods._specs.0.stock}" type="text" class="text width_short" /><span class="red">*</span></div>
                                     </li>
                                     <li ectype="no_spec">
                                         <h2>{$lang.sku}: </h2>
