@@ -79,6 +79,22 @@ class My_favoriteApp extends MemberbaseApp
             $this->_drop_collect_store($item_id);
         }
     }
+    
+    function ajax_drop(){
+    	 $item_id = empty($_GET['item_id'])  ? 0 : trim($_GET['item_id']);
+
+    	 $ids = explode(',', $item_id);
+    	/* 解除“我”与商品ID为$ids的收藏关系 */
+    	$model_user =& m('member');
+    	$model_user->unlinkRelation('collect_goods', $this->visitor->get('user_id'), $ids);
+    	
+    	if (!$model_user->has_error())
+    	{
+    		echo '1';
+    		return;
+    	}
+    	echo '0';
+    }
 
     /**
      *    列表收藏的商品
@@ -366,6 +382,22 @@ class My_favoriteApp extends MemberbaseApp
             ),
         );
         return $menus;
+    }
+    
+    function ajax_goods(){
+    	$model_goods =& m('goods');
+    	$collect_goods = $model_goods->find(array(
+    			'join'  => 'be_collect,belongs_to_store,has_default_spec',
+    			'fields'=> 'this.*,store.store_name,store.store_id,collect.add_time,goodsspec.price,goodsspec.spec_id',
+    			'conditions' => 'collect.user_id = ' . $this->visitor->get('user_id') ,
+    			'order' => 'collect.add_time DESC',
+    	));
+    	foreach ($collect_goods as $key => $goods)
+    	{
+    		empty($goods['default_image']) && $collect_goods[$key]['default_image'] = Conf::get('default_goods_image');
+    	}
+    	$this->assign('collect_goods', $collect_goods);
+    	$this->display('my_favorite.goods.div.html');
     }
 }
 

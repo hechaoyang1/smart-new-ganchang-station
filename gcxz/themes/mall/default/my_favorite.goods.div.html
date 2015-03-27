@@ -1,0 +1,27 @@
+<div class="toolsShoppingCar modal">
+	<h3 class="title">我的收藏</h3>
+	<div class="content" style="min-height:200px;">
+		{if empty($collect_goods)}你还未收藏商品{/if}
+		<div class="shop">
+			<ul>
+				<!--{foreach from=$collect_goods item=goods}-->
+				<li>
+					<div class="clearfix">
+						<a href="#" class="pull-left"><img
+							src="{$goods.default_image}" height="50" width="50" alt=""></a>
+						<div class="pull-left specifications">
+							<span>{$goods.goods_name|escape}</span>
+						</div>
+						<div class="pull-right">
+							<div class="money">{$goods.price|price}</div>
+							<div class="del">
+								<a href="javascript:;" onclick="gcxz.drop_favorite_good({$goods.goods_id},this);">×</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<!--{/foreach}-->
+			</ul>
+		</div>
+	</div>
+</div>
