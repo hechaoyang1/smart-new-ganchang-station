@@ -1,0 +1,55 @@
+<div class="toolsLogin modal">
+	<form id="login_form" action="index.php" method="post">
+		<input type="hidden" name="app" value="member" />
+		<input type="hidden" name="act" value="login" />
+		<input type="hidden" name="ret_url" value="" />
+		<div>用户名/已验证手机</div>
+		<input type="text" class="username" name="user_name" />
+		<div class="clearfix">
+			<span class="pull-left">密码</span>
+			<a href="{url app=find_password}" class="pull-right">忘记密码?</a>
+		</div>
+		<input type="password" class="password" name="password" />
+		<input type="submit" class="sub" value="登 录">
+		<div class="clearfix">
+			<a href="{url app=member&act=register}" class="pull-right">免费注册 ></a>
+		</div>
+	</form>
+</div>
+<style>
+#login_form .error{
+	color:red;
+}
+</style>
+
+<script type="text/javascript" src="{lib file=jquery.plugins/jquery.validate.js}" charset="utf-8"></script>
+<script type="text/javascript">
+$(function(){
+	$("input[name=ret_url]").val(window.location.href);
+    $('#login_form').validate({
+        errorPlacement: function(error, element){
+            $(element).after(error); 
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        onkeyup : false,
+        rules : {
+            user_name : {
+                required : true
+            },
+            password : {
+                required : true
+            }
+        },
+        messages : {
+            user_name : {
+                required : '请输入用户名'
+            },
+            password  : {
+                required : '请输入密码'
+            }
+        }
+    });
+});
+</script>
