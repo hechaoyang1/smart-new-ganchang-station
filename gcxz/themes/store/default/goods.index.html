@@ -21,7 +21,12 @@
 								src="{$goods_image.thumbnail}" width="52" height="48" alt=""></li>
 							<!--{/foreach}-->
 						</ul>
-							<a href="javascript:move_favorite({$store.store_id},  1, {$goods.goods_id});"><i></i>收藏商品</a>
+						<!--{if $visitor.user_id}-->
+						<div class="collection" onclick="move_favorite({$store.store_id},  1, {$goods.goods_id});">
+							<div class="collection_div"></div>
+							<span>收藏商品</span>
+						</div>
+						   <!--{/if}-->
 					</div>
 					<div class="goodsInfo">
 						<h2>{$goods.goods_name|escape}</h2>

@@ -467,3 +467,16 @@ div.jqZoomPup {
   -moz-opacity: 0.5;
   -khtml-opacity: 0.5;
   filter: alpha(Opacity=50); }
+
+.collection{
+	margin:20px 0px;
+	font-size: 14px;
+	color: #666666;
+	cursor:pointer;
+}
+.collection_div {
+	background-image: url(../img/shouchang.jpg);
+	height: 19px;
+	width: 19px;
+	float: left;
+}
