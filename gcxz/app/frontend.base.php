@@ -157,7 +157,10 @@ class FrontendApp extends ECBaseApp
             {
                 /* 通过验证，执行登陆操作 */
                 $this->_do_login($user_id);
-
+                /*勾选自动登录时，cookie中放入加密uid*/
+                if(intval($_POST['auto_login'])){
+                    setcookie('gcxz_in',jiami($user_id),time()+7*24*3600);
+                }
                 /* 同步登陆外部系统 */
                 $synlogin = $ms->user->synlogin($user_id);
             }
@@ -391,6 +394,16 @@ class FrontendApp extends ECBaseApp
     function _init_visitor()
     {
         $this->visitor =& env('visitor', new UserVisitor());
+        /*自动登录*/
+        if( !$this->visitor->has_login){
+            $cookie_uid=$_COOKIE['gcxz_in'];
+            /*获取cookie中的加密UID*/
+            if($cookie_uid){
+                $cookie_uid=jiemi($cookie_uid);
+                $this->_do_login($cookie_uid);
+                $this->visitor =& env('visitor', new UserVisitor());
+            }
+        }
     }
 }
 /**

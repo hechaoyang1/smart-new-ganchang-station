@@ -8,104 +8,9 @@
 <link href="{res file=css/loginregister.css}" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
 <script type="text/javascript" src="{lib file=jquery.plugins/jquery.validate.js}" charset="utf-8"></script>
-<style>
-.registration_box .form_field_uname label.error{
-	color:red;
-}
-</style>
 </head>
+<body>
 <a href="index.php"><div class="registration_logo"></div></a>
-<script type="text/javascript">
-//注册表单验证
-$(function(){
-	jQuery.validator.addMethod("isPhone", function (value, element) {
-        return this.optional(element) || /^\d{11}$/.test();
-    }, "请正确输入您的身份证号码");
-    $('#register_form').validate({
-        errorPlacement: function(error, element){
-        	var error_td = element.parent('.form_field_uname');
-            error_td.find('.uname_label').hide();
-            error.addClass('uname_label');
-            error_td.append(error);
-        },
-        success       : function(label){
-        	label.removeClass('error').addClass('uname_label validate_right').text('OK!');
-        },
-        onkeyup: false,
-        rules : {
-            user_name : {
-                required : true,
-                byteRange: [3,45,'{$charset}'],
-                remote   : {
-                    url :'index.php?app=member&act=check_user&ajax=1',
-                    type:'get',
-                    data:{
-                        user_name : function(){
-                            return $('#user_name').val();
-                        }
-                    },
-                    beforeSend:function(){
-                        var _checking = $('#checking_user');
-                        _checking.prev('.field_notice').hide();
-                        _checking.next('label').hide();
-                        $(_checking).show();
-                    },
-                    complete :function(){
-                        $('#checking_user').hide();
-                    }
-                }
-            },
-            password : {
-                required : true,
-                minlength: 6,
-                maxlength:20
-            },
-            password_confirm : {
-                required : true,
-                equalTo  : '#password'
-            },
-            captcha : {
-                required : true,
-                remote   : {
-                    url : 'index.php?app=captcha&act=check_captcha',
-                    type: 'get',
-                    data:{
-                        captcha : function(){
-                            return $('#captcha1').val();
-                        }
-                    }
-                }
-            },
-            agree : {
-                required : true
-            }
-        },
-        messages : {
-            user_name : {
-                required : '{$lang.user_name_required}',
-                byteRange: '{$lang.user_name_limit}',
-                remote   : '{$lang.user_already_taken}'
-            },
-            password  : {
-                required : '{$lang.password_required}',
-                minlength: '{$lang.password_length_limit}',
-                maxlength: '{$lang.password_length_limit}'
-            },
-            password_confirm : {
-                required : '{$lang.password_confirm_please}',
-                equalTo  : '{$lang.password_inconsistent}'
-            },
-            captcha : {
-                required : '{$lang.captcha_required}',
-                remote   : '{$lang.captcha_error}'
-            },
-            agree : {
-                required : '{$lang.agree_required}'
-            }
-        }
-    });
-});
-</script>
 <div class="registration_box">
 		<div class="register_left">
 		<form id="register_form" method="post" action="">
@@ -165,6 +70,94 @@ $(function(){
 		</div>
 	</div>
 	<script type="text/javascript">
+	//注册表单验证
+	$(function(){
+		jQuery.validator.addMethod("isPhone", function (value, element) {
+	        return this.optional(element) || /^\d{11}$/.test();
+	    }, "请正确输入您的身份证号码");
+	    $('#register_form').validate({
+	        errorPlacement: function(error, element){
+	        	var error_td = element.parent('.form_field_uname');
+	            error_td.find('label.uname_label,label.error,label.validate_right').hide();
+	            error_td.append(error);
+	        },
+	        success       : function(label){
+	        	label.removeClass('error').addClass('validate_right').text('OK!');
+	        },
+	        onkeyup: false,
+	        rules : {
+	            user_name : {
+	                required : true,
+	                byteRange: [3,45,'{$charset}'],
+	                remote   : {
+	                    url :'index.php?app=member&act=check_user&ajax=1',
+	                    type:'get',
+	                    data:{
+	                        user_name : function(){
+	                            return $('#user_name').val();
+	                        }
+	                    },
+	                    beforeSend:function(){
+	                        var _checking = $('#checking_user');
+	                        _checking.prev('.field_notice').hide();
+	                        _checking.next('label').hide();
+	                        $(_checking).show();
+	                    },
+	                    complete :function(){
+	                        $('#checking_user').hide();
+	                    }
+	                }
+	            },
+	            password : {
+	                required : true,
+	                minlength: 6,
+	                maxlength:20
+	            },
+	            password_confirm : {
+	                required : true,
+	                equalTo  : '#password'
+	            },
+	            captcha : {
+	                required : true,
+	                remote   : {
+	                    url : 'index.php?app=captcha&act=check_captcha',
+	                    type: 'get',
+	                    data:{
+	                        captcha : function(){
+	                            return $('#captcha1').val();
+	                        }
+	                    }
+	                }
+	            },
+	            agree : {
+	                required : true
+	            }
+	        },
+	        messages : {
+	            user_name : {
+	                required : '{$lang.user_name_required}',
+	                byteRange: '{$lang.user_name_limit}',
+	                remote   : '{$lang.user_already_taken}'
+	            },
+	            password  : {
+	                required : '{$lang.password_required}',
+	                minlength: '{$lang.password_length_limit}',
+	                maxlength: '{$lang.password_length_limit}'
+	            },
+	            password_confirm : {
+	                required : '{$lang.password_confirm_please}',
+	                equalTo  : '{$lang.password_inconsistent}'
+	            },
+	            captcha : {
+	                required : '{$lang.captcha_required}',
+	                remote   : '{$lang.captcha_error}'
+	            },
+	            agree : {
+	                required : '{$lang.agree_required}'
+	            }
+	        }
+	    });
+	});
 var wait=60;
 var flag=true;
 function send(o){

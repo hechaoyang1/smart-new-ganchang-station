@@ -721,4 +721,60 @@ function short_msg_filter($string)
     return $ms->pm->msg_filter($string);
 }
 
+/**
+ * 加密函数
+ * @param string $txt 需加密的字符串
+ * @param string $key 加密密钥，默认读取SECURE_CODE配置
+ * @return string 加密后的字符串
+ */
+ function jiami($txt, $key = null) {
+    empty($key) && $key = ECM_KEY;
+    //无mcrypt扩展时
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-=_";
+    $nh = rand(0, 64);
+    $ch = $chars[$nh];
+    $mdKey = md5($key.$ch);
+    $mdKey = substr($mdKey, $nh % 8, $nh % 8 + 7);
+    $txt = base64_encode($txt);
+    $tmp = '';
+    $i = 0;
+    $j = 0;
+    $k = 0;
+    for($i = 0; $i < strlen($txt); $i++) {
+        $k = $k == strlen($mdKey) ? 0 : $k;
+        $j = ($nh + strpos($chars, $txt [$i]) + ord($mdKey[$k++])) % 64;
+        $tmp .= $chars[$j];
+    }
+    return $ch.$tmp;
+}
+
+/**
+ * 解密函数
+ * @param string $txt 待解密的字符串
+ * @param string $key 解密密钥，默认读取SECURE_CODE配置
+ * @return string 解密后的字符串
+ */
+function jiemi($txt, $key = null) {
+    empty($key) && $key = ECM_KEY;
+    //无mcrypt扩展时
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-=_";
+    $ch = $txt[0];
+    $nh = strpos($chars, $ch);
+    $mdKey = md5($key.$ch);
+    $mdKey = substr($mdKey, $nh % 8, $nh % 8 + 7);
+    $txt = substr($txt, 1);
+    $tmp = '';
+    $i = 0;
+    $j = 0;
+    $k = 0;
+    for($i = 0; $i < strlen($txt); $i++) {
+        $k = $k == strlen($mdKey) ? 0 : $k;
+        $j = strpos($chars, $txt[$i]) - $nh - ord($mdKey[$k++]);
+        while($j < 0) {
+            $j += 64;
+        }
+        $tmp .= $chars[$j];
+    }
+    return base64_decode($tmp);
+}
 ?>
