@@ -269,3 +269,6 @@ form label.validate_right {
 	color: green;
 	float: none;
 }
+.Signin_box_name .error{
+	color:red;
+}
