@@ -1,104 +1,43 @@
-{include file="header.html"}
-
-<script type="text/javascript">
-$(function(){
-    $('#login_form').validate({
-        errorPlacement: function(error, element){
-            $(element).parent('td').append(error); 
-        },
-        success       : function(label){
-            label.addClass('validate_right').text('OK!');
-        },
-        onkeyup : false,
-        rules : {
-            user_name : {
-                required : true
-            },
-            password : {
-                required : true
-            },
-            captcha : {
-                required : true,
-                remote   : {
-                    url : 'index.php?app=captcha&act=check_captcha',
-                    type: 'get',
-                    data:{
-                        captcha : function(){
-                            return $('#captcha1').val();
-                        }
-                    }
-                }
-            }
-        },
-        messages : {
-            user_name : {
-                required : '{$lang.user_name_required}'
-            },
-            password  : {
-                required : '{$lang.password_required}'
-            },
-            captcha : {
-                required : '{$lang.captcha_required}',
-                remote   : '{$lang.captcha_error}'
-            }
-        }
-    });
-});
-</script>
-
-<div class="content">
-    <div class="module_common">
-        <h2><b class="login" title="LOGIN{$lang.user_login}"></b></h2>
-        <div class="wrap">
-            <div class="wrap_child">
-                <div class="login_con">
-                    <div class="login_left">
-                        <form method="post" id="login_form">
-                        <table>
-                            <tr>
-                                <td>{$lang.user_name}: </td>
-                                <td><input type="text" name="user_name" class="text width5" /></td>
-                            </tr>
-                            <tr>
-                                <td>{$lang.password}: </td>
-                                <td><input type="password" name="password" class="text width5" /></td>
-                            </tr>
-                            <!--{if $captcha}-->
-                            <tr>
-                                <td>{$lang.captcha}:</td>
-                                <td>
-                                    <input type="text" name="captcha" class="text" id="captcha1" />
-                                    <span><a href="javascript:change_captcha($('#captcha'));" class="renewedly"><img id="captcha" src="index.php?app=captcha&amp;{$random_number}" /></a></span>
-                                </td>
-                            </tr>
-                            <!--{/if}-->
-                            <tr class="distance">
-                                <td></td>
-                                <td>
-                                  <input type="submit" name="Submit" value="" class="enter" />                                  
-                                  <a href="{url app=find_password}" class="clew">{$lang.forget_password}</a>
-                                </td>
-                            </tr>
-                        </table>
-                        <input type="hidden" name="ret_url" value="{$ret_url}" />
-                        </form>
-                    </div>
-
-                    <div class="login_right">
-                        <h4>{$lang.attention}:<br />{$lang.not_member}</h4>
-                        <p>{$lang.after_register}</p>
-                        <ol>
-                            <li><strong>1.</strong> {$lang.save_profile}</li>
-                            <li><strong>2.</strong> {$lang.collect_goods}</li>
-                           <!-- <li><strong>3.</strong> {$lang.member_point}</li>-->
-                            <li><strong>3.</strong> {$lang.subscription_goods}</li>
-                        </ol>
-                        <a href="{url app=member&act=register&ret_url=$ret_url}" class="login_btn" title="{$lang.register_now}"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>赶场小站</title>
+<link href="{res file=css/base.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/loginregister.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a href="index.php"><div class="Signin_logo"></div></a>
+	<div class="Signin_box">
+		<div class="Signin_box_p">
+			<p>赶场小站会员</p>
+			<a href="{url app=member&act=register}">立即注册></a>
+		</div>
+		<form id="login_form" action="" method="post">
+		<div class="Signin_box_name">
+			<span>用户名/已验证手机</span><br>
+			<input type="text" name="user_name" id="user_name" class="Signin_text">
+			<div class="text_name"></div>
+		</div>
+		<div class="float"></div>
+		<div class="Signin_box_name">
+			<span>密码</span><br>
+			<input type="password" name="password" id="password" class="Signin_text Signin_word">
+			<div class="text_name text_word"></div>
+		</div>
+		<div class="float"></div>
+		<div class="Signin_box_name">
+			<div class="box_box">
+				<input name="auto_login" type="checkbox" value="1" checked>
+				<span>自动登录</span>&nbsp;&nbsp;&nbsp;
+				<a href="#">忘记密码？</a>
+			</div>
+		</div>
+		<div class="Signin_box_name">
+			<input type="submit" class="btn" value="登&nbsp;&nbsp;&nbsp;&nbsp;录" />
+		</div>
+		</form>
+	</div>
+	<div class="Signin_level"></div>
 {include file="footer.html"}

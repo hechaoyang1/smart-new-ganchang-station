@@ -124,7 +124,7 @@ class DefaultPassportUser extends BasePassportUser
     {
         if ($is_name)
         {
-            $conditions = "user_name='{$flag}'";
+            $conditions = "user_name='{$flag}' or (phone_mob='{$flag}' and is_verified=1)";
         }
         else
         {
@@ -144,15 +144,17 @@ class DefaultPassportUser extends BasePassportUser
      */
     function auth($user_name, $password)
     {
-        $info = $this->get($user_name, true);
-        if ($info['password'] != md5($password))
-        {
-            $this->_error('auth_failed');
-
-            return 0;
+        $model_member =& m('member');
+        $infos=$model_member->db->getAll("SELECT user_id, password FROM ecm_member WHERE phone_mob = '{$user_name}' AND is_verified = 1 UNION ALL SELECT user_id, password FROM ecm_member WHERE user_name = '{$user_name}'");
+        foreach ($infos as &$info){
+            if ($info['password'] == md5($password))
+            {
+                return $info['user_id'];
+            }
         }
+        $this->_error('auth_failed');
+        return 0;
 
-        return $info['user_id'];
     }
 
     /**

@@ -1368,6 +1368,8 @@ class BaseVisitor extends Object
     function logout()
     {
         unset($_SESSION[$this->_info_key]);
+        /*清空cookie 使自动登录失效*/
+        setcookie('gcxz_in',null,time()-1);
     }
     function i_can($event, $privileges = array())
     {
