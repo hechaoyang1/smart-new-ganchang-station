@@ -385,19 +385,23 @@ class My_favoriteApp extends MemberbaseApp
     }
     
     function ajax_goods(){
-    	$model_goods =& m('goods');
-    	$collect_goods = $model_goods->find(array(
-    			'join'  => 'be_collect,belongs_to_store,has_default_spec',
-    			'fields'=> 'this.*,store.store_name,store.store_id,collect.add_time,goodsspec.price,goodsspec.spec_id',
-    			'conditions' => 'collect.user_id = ' . $this->visitor->get('user_id') ,
-    			'order' => 'collect.add_time DESC',
-    	));
-    	foreach ($collect_goods as $key => $goods)
-    	{
-    		empty($goods['default_image']) && $collect_goods[$key]['default_image'] = Conf::get('default_goods_image');
-    	}
-    	$this->assign('collect_goods', $collect_goods);
-    	$this->display('my_favorite.goods.div.html');
+		if ($this->visitor->has_login) {
+			$model_goods = & m ( 'goods' );
+			$collect_goods = $model_goods->find ( array (
+					'join' => 'be_collect,belongs_to_store,has_default_spec',
+					'fields' => 'this.*,store.store_name,store.store_id,collect.add_time,goodsspec.price,goodsspec.spec_id',
+					'conditions' => 'collect.user_id = ' . $this->visitor->get ( 'user_id' ),
+					'order' => 'collect.add_time DESC' 
+			) );
+			foreach ( $collect_goods as $key => $goods ) {
+				empty ( $goods ['default_image'] ) && $collect_goods [$key] ['default_image'] = Conf::get ( 'default_goods_image' );
+			}
+			$this->assign ( 'collect_goods', $collect_goods );
+			$this->display ( 'my_favorite.goods.div.html' );
+		}else{
+			
+		}
+    	
     }
 }
 

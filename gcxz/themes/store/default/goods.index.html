@@ -28,7 +28,7 @@
 						<h3>{$goods.sub_goods_name|escape}</h3>
 						<div class="goodsPrice">
 							<div>
-								促销价：<span class="orange"><i>￥</i>{$goods.price}</span>
+								促销价：<span class="red"><i>￥</i>{$goods.price}</span>
 							</div>
 							<div>原价格：<del><i>￥</i>{$goods.price1}</del>{if $goods.unit neq ''}/{$goods.unit}{/if}</div>
 						</div>
@@ -192,7 +192,6 @@ function add_to_cart(spec_id, quantity)
             setTimeout(slideUp_fn, 5000); */
             var _i =  $('.rightTools li:eq(2)').find('i');
             _i.text(parseInt(_i.text())+parseInt(quantity));
-            alert('商品已成功加入购物车');
         }
         else
         {

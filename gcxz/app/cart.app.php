@@ -332,10 +332,14 @@ class CartApp extends MallbaseApp
      */
     function ajax_cart()
     {
-    	$store_id = isset($_GET['store_id']) ? intval($_GET['store_id']) : 0;
-    	$carts = $this->_get_carts($store_id);
-    	$this->assign('carts', $carts);
-    	$this->display('cart.div.html');
+    	if ($this->visitor->has_login) {
+			$store_id = isset ( $_GET ['store_id'] ) ? intval ( $_GET ['store_id'] ) : 0;
+			$carts = $this->_get_carts ( $store_id );
+			$this->assign ( 'carts', $carts );
+			$this->display ( 'cart.div.html' );
+		}else{
+			
+		}
     }
     
 }
