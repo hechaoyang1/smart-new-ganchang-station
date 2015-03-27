@@ -227,6 +227,12 @@
 	text-align: left!important;
 	left: 660px;
 }
+.registration_box .form_field_uname label.error{
+	width: 120px!important;
+	text-align: left!important;
+	left: 660px;
+	color:red;
+}
 .left{
 	font-size: 16px;
 }
@@ -256,6 +262,9 @@
 	background-position: -80px;
 }
 form label.validate_right {
+	width: 120px!important;
+	text-align: left!important;
+	left: 660px;
 	font-style: italic;
 	color: green;
 	float: none;
