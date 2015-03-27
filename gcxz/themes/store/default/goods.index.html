@@ -186,6 +186,8 @@ function add_to_cart(spec_id, quantity)
             $('.bold_mly').html(price_format(data.retval.cart.amount));
             $('.ware_cen').slideDown('slow');
             setTimeout(slideUp_fn, 5000); */
+            var _i =  $('.rightTools li:eq(2)').find('i');
+            _i.text(parseInt(_i.text())+parseInt(quantity));
             alert('商品已成功加入购物车');
         }
         else

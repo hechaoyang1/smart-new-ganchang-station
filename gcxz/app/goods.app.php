@@ -316,6 +316,9 @@ class GoodsApp extends StorebaseApp
         $this->_assign_goods_comment($this->_get_goods_comment($_GET['id'], 1));
         $this->assign('id', $_GET['id']);
         
+        //赋值购物车数量
+        $this->assign('cart_num', $this->get_cart_num());
+        
         $this->import_resource(array(
             'script' => 'jquery.jqzoom.js',
             'style' => 'res:jqzoom.css'
@@ -689,6 +692,22 @@ class GoodsApp extends StorebaseApp
 				'comments' => array_values($comments) 
 		) );
     	
+    }
+    /**
+     * 获取购物车商品数量
+     */
+    function get_cart_num(){
+    	/* 获取所有购物车中的内容 */
+    	
+    	/* 只有是自己购物车的项目才能购买 */
+    	$where_user_id = $this->visitor->get('user_id') ? " AND cart.user_id=" . $this->visitor->get('user_id') : '';
+    	$cart_model =& m('cart');
+    	$cart_items = $cart_model->get(array(
+    			'conditions'    => 'session_id = \'' . SESS_ID . "'"  . $where_user_id,
+    			'fields'        => 'sum(quantity) count',
+    			'join'          => 'belongs_to_store',
+    	));
+    	return $cart_items['count'];
     }
 }
 

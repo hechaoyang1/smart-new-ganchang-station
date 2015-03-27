@@ -78,12 +78,19 @@ class CartApp extends MallbaseApp
         /* 是否添加过 */
         $model_cart =& m('cart');
         $item_info  = $model_cart->get("spec_id={$spec_id} AND session_id='" . SESS_ID . "'");
-        if (!empty($item_info))
-        {
-            $this->json_error('goods_already_in_cart');
-
-            return;
-        }
+		if (! empty ( $item_info )) {
+			$quantity += $item_info ['quantity'];
+			
+			if ($quantity > $spec_info ['stock']) {
+				$this->json_error ( 'no_enough_goods' );
+				return;
+			}
+			$model_cart->edit("spec_id={$spec_id} AND session_id='" . SESS_ID . "'",array('quantity'=>$quantity));
+			$this->json_result(array(
+					'cart'      =>  $cart_status['status'],  //返回购物车状态
+			), 'addto_cart_successed');
+			return;
+		}
 
         if ($quantity > $spec_info['stock'])
         {
