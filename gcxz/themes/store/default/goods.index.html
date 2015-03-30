@@ -196,7 +196,8 @@ function add_to_cart(spec_id, quantity)
             $('.ware_cen').slideDown('slow');
             setTimeout(slideUp_fn, 5000); */
             var _i =  $('.rightTools li:eq(1)').find('i');
-            if(_i.text()==''){
+            if(_i.text()=='' || _i.text()=='0'){
+            	 _i.show();
             	 _i.text(quantity);
             }else{
            		 _i.text(parseInt(_i.text())+parseInt(quantity));

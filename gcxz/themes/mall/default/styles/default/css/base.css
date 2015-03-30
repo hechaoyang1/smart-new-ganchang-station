@@ -375,6 +375,20 @@ body {
 
 .rightTools li > a.rt3:hover {
   background-position: -50px -98px; }
+	
+.rightTools li > i.number {
+	position: absolute;
+	right: 5px;
+	top: 20px;
+	font-style: normal;
+	background-color: #f00;
+	color: #fff;
+	display: inline-block;
+	height: 15px;
+	width: 15px;
+	text-align: center;
+	line-height: 16px;
+	border-radius: 50%; }
 
 .rightTools li > a.rt4 {
   height: 48px;

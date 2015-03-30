@@ -86,6 +86,15 @@ gcxz.drop_good = function(store_id, rec_id,obj) {
 	var shop = $(obj).parents('.shop');
 	$.getJSON('index.php?app=cart&act=drop&rec_id=' + rec_id, function(result){
         if(result.done){
+            //更新数量
+            var _i =  $('.rightTools li:eq(1)').find('i');
+            var num = parseInt(_i.text()) - parseInt(li.find('.number').text());
+            if(num <= 0){
+            	 _i.hide();
+            	 _i.text(0);
+            }else{
+            	_i.text(num);
+            }
         	 //删除成功
             if(result.retval.cart.quantity == 0){
             	$('.rightTools').click();    //刷新
