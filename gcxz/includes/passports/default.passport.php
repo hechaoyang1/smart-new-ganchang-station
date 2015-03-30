@@ -52,14 +52,14 @@ class DefaultPassportUser extends BasePassportUser
             return false;
         }
 
-        if (!$this->check_phone($phone))
-        {
-            return false;
-        }
+//         if (!$this->check_phone($phone))
+//         {
+//             return false;
+//         }
 
         $local_data['user_name']    = $user_name;
         $local_data['password']     = md5($password);
-        $local_data['phone_mob']        = $phone;
+//         $local_data['phone_mob']        = $phone;
         $local_data['reg_time']     = gmtime();
         $local_data['is_verified']     = 1;
 

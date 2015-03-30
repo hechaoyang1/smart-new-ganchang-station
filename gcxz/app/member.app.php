@@ -187,18 +187,18 @@ class MemberApp extends MemberbaseApp
                 return;
             }
             $phone=t($_POST['phone']);
-            if(!$this->isValidPhone($phone)){
-                $this->show_warning('非法的手机号');
-                return;
-            }
-            $code=t($_POST['code']);
-            /*短信验证码校验*/
-            $verified_model=m('verified');
-            $checked=$verified_model->checkCode($phone,$code,MSGKEY_REG);
-            if($checked!==true){
-                $this->show_warning($checked['msg']);
-                return;
-            }
+//             if(!$this->isValidPhone($phone)){
+//                 $this->show_warning('非法的手机号');
+//                 return;
+//             }
+//             $code=t($_POST['code']);
+//             /*短信验证码校验*/
+//             $verified_model=m('verified');
+//             $checked=$verified_model->checkCode($phone,$code,MSGKEY_REG);
+//             if($checked!==true){
+//                 $this->show_warning($checked['msg']);
+//                 return;
+//             }
             /* 注册并登陆 */
             $user_name = trim($_POST['user_name']);
             $password  = $_POST['password'];
@@ -227,7 +227,7 @@ class MemberApp extends MemberbaseApp
                 return;
             }
             /*标记短信验证码已使用*/
-            $verified_model->sign_used($phone,MSGKEY_REG);
+//             $verified_model->sign_used($phone,MSGKEY_REG);
             $this->_hook('after_register', array('user_id' => $user_id));
             //登录
             $this->_do_login($user_id);
