@@ -95,7 +95,9 @@ class ApplyApp extends MallbaseApp
                     $this->assign('scategories', $this->_get_scategory_options());
 
                     /* 导入jQuery的表单验证插件 */
-                    $this->import_resource(array('script' => 'mlselection.js,jquery.plugins/jquery.validate.js'));
+                    $this->import_resource(array(
+                            'script' => 'mlselection.js,jquery.plugins/jquery.validate.js',
+                    ));
 
                     $this->_config_seo('title', Lang::get('title_step2') . ' - ' . Conf::get('site_title'));
                     $this->assign('store', $store);

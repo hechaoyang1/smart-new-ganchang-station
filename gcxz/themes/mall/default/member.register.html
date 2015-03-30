@@ -14,8 +14,9 @@
 <div class="registration_box">
 		<div class="register_left">
 		<form id="register_form" method="post" action="">
+			<input type="hidden" name="ret_url" value={$ret_url}/>
 			<p class="left">新用户注册</p>
-		
+			
 			<div class="form_field_uname">
                 <label><span>*</span>用户名:</label>
                 <input type="text" id="user_name" name="user_name" class="">
@@ -34,7 +35,7 @@
 				<label class="re_text_name text_word"></label>
 				<label class="uname_label">重复输入你的密码</label>
             </div>
-			<div class="form_field_uname">
+			<!-- <div class="form_field_uname">
                 <label><span>*</span>验证手机:</label>
                 <input type="text" id="phone" name="phone" class="">
 				<label class="uname_label">或<a href="#">邮箱验证</a></label>
@@ -44,6 +45,7 @@
                 <input type="text" id="code" name="code" class="code">
 				<input type="button" id="btn" class="code1" value="获取短信验证码" />
             </div>
+             -->
 			<div class="form_field_uname">
                 <label></label>
                 <input id="agree" name="agree" type="checkbox" value="1" checked / style='width: 15px;'>
