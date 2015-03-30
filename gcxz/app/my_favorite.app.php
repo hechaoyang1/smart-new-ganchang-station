@@ -399,7 +399,7 @@ class My_favoriteApp extends MemberbaseApp
 			$this->assign ( 'collect_goods', $collect_goods );
 			$this->display ( 'my_favorite.goods.div.html' );
 		}else{
-			
+		    $this->display ( 'login.div.html' );
 		}
     	
     }
