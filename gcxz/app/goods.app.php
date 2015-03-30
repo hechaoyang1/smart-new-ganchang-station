@@ -719,22 +719,6 @@ class GoodsApp extends StorebaseApp
 		) );
     	
     }
-    /**
-     * 获取购物车商品数量
-     */
-    function get_cart_num(){
-    	/* 获取所有购物车中的内容 */
-    	
-    	/* 只有是自己购物车的项目才能购买 */
-    	$where_user_id = $this->visitor->get('user_id') ? " AND cart.user_id=" . $this->visitor->get('user_id') : '';
-    	$cart_model =& m('cart');
-    	$cart_items = $cart_model->get(array(
-    			'conditions'    => 'session_id = \'' . SESS_ID . "'"  . $where_user_id,
-    			'fields'        => 'sum(quantity) count',
-    			'join'          => 'belongs_to_store',
-    	));
-    	return $cart_items['count'];
-    }
 }
 
 ?>
