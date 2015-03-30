@@ -471,7 +471,11 @@ body {
   line-height: 50px;
   float: left;
   width: 50px;
-  text-align: center; }
+  text-align: center; }  
+	
+.toolsShoppingCar .money{
+  width: 75px;
+}
 
 .toolsShoppingCar .specifications {
   padding: 7px 0 0 5px; }
