@@ -313,7 +313,7 @@ class GoodsApp extends StorebaseApp
 //         $this->_assign_sales_log($this->_get_sales_log($_GET['id'], 50));
 
         /* 赋值月销量*/
-        $this->assign('sales_num',$this->_get_sales_log_num($_GET['id']));
+//         $this->assign('sales_num',$this->_get_sales_log_num($_GET['id']));
         
         /* 赋值商品评论数量*/
         $this->assign('comments_num',$this->_get_goods_comment_num($_GET['id']));
