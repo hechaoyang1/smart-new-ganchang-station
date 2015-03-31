@@ -249,7 +249,7 @@ class GoodsApp extends StorebaseApp
             /* 分享链接 */
             $data['share'] = $this->_get_share($goods);
             
-            $cache_server->set($key, $data, 1800);
+            $cache_server->set($key, $data, 60);
         }
         if ($cached)
         {
