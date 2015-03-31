@@ -38,7 +38,7 @@
 							<div>原价格：<del><i>￥</i>{$goods.price1}</del>{if $goods.unit neq ''}/{$goods.unit}{/if}</div>
 						</div>
 						<div class="salesVolume">
-								<span>月销量:<span class="red">{$sales_num}</span></span>
+								<span>月销量:<span class="red">{$goods.sales}</span></span>
 								<span>累计评价:<span class="red">{$comments_num}</span></span>
 						</div>
 						<!--{if $goods.spec_qty gt 0}-->
@@ -70,8 +70,8 @@
 							<li>信用度：{$store.credit_value}</li>
 							<li>店铺等级：{$store.sgrade}</li>
 							<li>所在区域：{$store.region_name|escape}</li>
-							<li>联系卖家：{if trim($store.store_owner.im_qq) neq ''}<a href="http://wpa.qq.com/msgrd?v=3&uin={$store.store_owner.im_qq|escape}&site=qq&menu=yes" target="_blank">
-<img title="QQ交流" src="http://wpa.qq.com/pa?p=2:{$store.store_owner.im_qq|escape}:41"
+							<li>联系卖家：{if trim($store.store_owner.im_qq) neq ''}<a href="http://wpa.qq.com/msgrd?v=3&uin={$store.store_owner.im_qq|escape}&site=QQ咨询&menu=yes" target="_blank">
+<img title="QQ交流" src="http://wpa.qq.com/pa?p=1:123456:4"
 alt="QQ交流" border="0" />
 </a>{/if}</li>
 						</ul>
@@ -87,7 +87,7 @@ alt="QQ交流" border="0" />
 							<!--{foreach from=$hotGoods item=good}-->
 							<li><a class="hotSaleImg"
 								href="index.php?app=goods&id={$good.goods_id}"> <img
-									src="{$good.default_image}" height="140" width="140" alt="">
+									src="{if $good.default_image eq ''}data/system/default_goods_image.gif{else} {$good.default_image}{/if}" height="140" width="140" alt="">
 									<span class="price">￥{$good.price}</span>
 							</a>
 								<div class="name">
