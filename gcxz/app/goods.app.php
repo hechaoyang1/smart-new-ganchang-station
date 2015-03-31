@@ -53,6 +53,9 @@ class GoodsApp extends StorebaseApp
         $this->assign('top_category', m('gcategory')->get_top_category());
         
         $this->assign('guest_comment_enable', Conf::get('guest_comment'));
+        $this->import_resource(array(
+        		'style' => 'res:css/goodsDetailed.css'
+        ));
         $this->display('goods.index.html');
     }
 
