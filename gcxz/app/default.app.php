@@ -86,6 +86,9 @@ class DefaultApp extends MallbaseApp
 	    }
 		$this->assign('sub_places',$sub_places);
 		
+        //赋值购物车数量
+        $this->assign('cart_num', $this->get_cart_num());
+		
 // 		//新闻动态
 // 		$newsList = m('cmscontent')->getNewsList(9);
 // 		$this->assign('newsList', $newsList);

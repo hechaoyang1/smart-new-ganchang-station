@@ -7,7 +7,7 @@ define('MAX_STAT_PRICE', 10000);   // 最大统计价格
 define('PRICE_INTERVAL_NUM', 5);   // 价格区间个数
 define('MIN_STAT_STEP', 50);       // 价格区间最小间隔
 define('NUM_PER_PAGE', 15);        // 每页显示数量
-define('ENABLE_SEARCH_CACHE', true); // 启用商品搜索缓存
+define('ENABLE_SEARCH_CACHE', false); // 启用商品搜索缓存
 define('SEARCH_CACHE_TTL', 3600);  // 商品搜索缓存时间
 
 class SearchApp extends MallbaseApp
@@ -38,7 +38,6 @@ class SearchApp extends MallbaseApp
 			$this->assign ( 'goodsId', $_GET ['goodsId'] );
 			$conditions = str_replace ( '\'', '', $conditions . " and " . db_create_in ( $goodsId, 'g.goods_id' ) );
 		}
-		
 		$goods_list = $goods_mod->get_list ( array (
 				'conditions' => $conditions,
 				'order' => $orderStr,
