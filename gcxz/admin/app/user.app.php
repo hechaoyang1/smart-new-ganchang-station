@@ -268,8 +268,17 @@ class UserApp extends BackendApp
             }
 
             /* 修改本地数据 */
-            $this->_user_mod->edit($id, $data);
-
+            $status = $this->_user_mod->edit($id, $data);
+            if($status === false)
+            {
+                $msg = $ms->user->_errors[0]['msg'];
+                $this->show_warning($msg,
+                        'back_list',    'index.php?app=user',
+                        'edit_again',   'index.php?app=user&amp;act=edit&amp;id=' . $id
+                );
+                return;
+            }
+            
             /* 修改用户系统数据 */
             $user_data = array();
             !empty($_POST['password']) && $user_data['password'] = trim($_POST['password']);
@@ -277,9 +286,18 @@ class UserApp extends BackendApp
             if (!empty($user_data))
             {
                 $ms =& ms();
-                $ms->user->edit($id, '', $user_data, true);
+                $status = $ms->user->edit($id, '', $user_data, true);
+                if($status === false)
+                {
+                    $msg = $ms->user->_errors[0]['msg'];
+                    $this->show_warning($msg,
+                        'back_list',    'index.php?app=user',
+                        'edit_again',   'index.php?app=user&amp;act=edit&amp;id=' . $id
+                    );
+                    return;
+                }
             }
-
+            
             $this->show_message('edit_ok',
                 'back_list',    'index.php?app=user',
                 'edit_again',   'index.php?app=user&amp;act=edit&amp;id=' . $id
