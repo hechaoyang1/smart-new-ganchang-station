@@ -97,7 +97,7 @@
 	        rules : {
 	            user_name : {
 	                required : true,
-	                byteRange: [3,45,'{$charset}'],
+	                rangelength: [3,15],
 	                remote   : {
 	                    url :'index.php?app=member&act=check_user&ajax=1',
 	                    type:'get',
@@ -142,7 +142,7 @@
 	        messages : {
 	            user_name : {
 	                required : '{$lang.user_name_required}',
-	                byteRange: '{$lang.user_name_limit}',
+	                rangelength: '{$lang.user_name_limit}',
 	                remote   : '{$lang.user_already_taken}'
 	            },
 	            password  : {
