@@ -457,7 +457,7 @@ body {
   text-decoration: none;
   overflow: hidden;
   border-bottom: 1px solid #f0f0f0;
-  padding-bottom: 3px;
+  padding-bottom: 0px;
   margin-bottom: 3px; }
 
 .toolsShoppingCar .thumb {
