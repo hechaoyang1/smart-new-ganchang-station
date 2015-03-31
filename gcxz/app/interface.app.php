@@ -529,7 +529,7 @@ class InterfaceApp extends BaseApp {
 		) );
 		if (! $info) {
 			$result ['code'] = 0;
-			$result ['msg'] = '你还没有自己的店铺,无法创建商品';
+			$result ['msg'] = 'You do not have your own shop, you can not create a commodity.';
 			exit ( json_encode ( $result ) );
 		}
 		// 获取店铺id
@@ -556,7 +556,7 @@ class InterfaceApp extends BaseApp {
 		$goods_id = $goodModel->add ( $data );
 		if (! $goods_id) {
 			$result ['code'] = 0;
-			$result ['msg'] = '添加商品基本信息失败';
+			$result ['msg'] = 'Add product information failed.';
 			exit ( json_encode ( $result ) );
 		}
 		// 添加商品规格
@@ -569,7 +569,7 @@ class InterfaceApp extends BaseApp {
 		$spec_id = $specModel->add ( $spec );
 		if (! $spec_id) {
 			$result ['code'] = 0;
-			$result ['msg'] = '添加商品规格信息失败';
+			$result ['msg'] = 'Add Product specifications failure.';
 			exit ( json_encode ( $result ) );
 		}
 		$images = $_FILES ['file'];
@@ -591,7 +591,7 @@ class InterfaceApp extends BaseApp {
 					if (! $this->saveImg ( $imageData, $paths )) {
 						$goodModel->drop ( $goods_id );
 						$result ['code'] = 0;
-						$result ['msg'] = '图片上传失败';
+						$result ['msg'] = 'Image upload failed.';
 						exit ( json_encode ( $result ) );
 					}
 				}
@@ -606,7 +606,7 @@ class InterfaceApp extends BaseApp {
 				if (! $this->saveImg ( $imageData, $paths )) {
 					$goodModel->drop ( $goods_id );
 					$result ['code'] = 0;
-					$result ['msg'] = '图片保存失败';
+					$result ['msg'] = 'Failed to save the picture.';
 					exit ( json_encode ( $result ) );
 				}
 			}
