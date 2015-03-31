@@ -1060,7 +1060,7 @@ class StorebaseApp extends FrontendApp
                     $store['functions'][$v] = $v;
                 }
             }
-            $cache_server->set($key, $store, 60);
+            $cache_server->set($key, $store, 1800);
         }
         return $store;
     }
