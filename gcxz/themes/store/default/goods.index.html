@@ -87,7 +87,7 @@ alt="QQ交流" border="0" />
 							<!--{foreach from=$hotGoods item=good}-->
 							<li><a class="hotSaleImg"
 								href="index.php?app=goods&id={$good.goods_id}"> <img
-									src="{$good.default_image}" height="140" width="140" alt="">
+									src="{if $good.default_image eq ''}data/system/default_goods_image.gif{else} {$good.default_image}{/if}" height="140" width="140" alt="">
 									<span class="price">￥{$good.price}</span>
 							</a>
 								<div class="name">
