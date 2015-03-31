@@ -249,7 +249,7 @@ class GoodsApp extends StorebaseApp
             /* 分享链接 */
             $data['share'] = $this->_get_share($goods);
             
-            $cache_server->set($key, $data, 1800);
+            $cache_server->set($key, $data, 60);
         }
         if ($cached)
         {
@@ -669,7 +669,7 @@ class GoodsApp extends StorebaseApp
 					ecm_goods g
 				LEFT JOIN ecm_goods_statistics gs ON g.goods_id = gs.goods_id
 				WHERE
-					g.store_id = '.$id.'
+					g.store_id = '.$id.' AND g.if_show=1 AND closed = 0 
 				ORDER BY
 					gs.sales DESC
 				LIMIT '.$limit;
