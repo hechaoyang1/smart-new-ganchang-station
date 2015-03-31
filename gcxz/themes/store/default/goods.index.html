@@ -54,7 +54,7 @@
 						</div>
 						<div class="btns">
 								<a class="buyNow" href="javascript:nowbuy();">立即购买</a>
-								<a class="shoppingCar" href="javascript:buy();"><i></i>加入购物车</a>
+								<a class="shoppingCar" href="javascript:;"><i></i>加入购物车</a>
 						</div>
 					</div>
 					<div class="shopInfo">
@@ -147,23 +147,78 @@ alt="QQ交流" border="0" />
 <script type="text/javascript">
 //<!CDATA[
 /* buy */
-function buy()
-{
-    if (goodsspec.getSpec() == null)
-    {
-        alert('请选择规格');
-        return;
-    }
-    var spec_id = goodsspec.getSpec().id;
+ 
+$(function(){
+    $.extend({
+        tipsBox: function(options) {
+            options = $.extend({
+                obj:$("div"),
+                str: "+1",  
+                startSize: "20px",
+                endSize: "20px",
+                interval: 800,
+                color: "red", 
+                callback: function() {}
+            }, options);
+            $("body").append("<span class='num'>"+ options.str +"</span>");
+            var box = $(".num");
+            var left = options.obj.offset().left + options.obj.width() / 2;
+            var top = options.obj.offset().top - options.obj.height();
+            box.css({
+                // "left": left + "px",
+                // "top": top + "px",
+                "position":"fixed",
+                "left":"50%",
+                "font-size":"30px",
+                "font-weight":"600",
+                "margin-left":"505px",
+                "top":"0px",
+                "z-index": 9999,
+                "font-size": options.startSize,
+                "line-height": options.endSize,
+                "color": options.color
+            });
+            box.animate({
+                "font-size": options.endSize,
+                "opacity": "0",
+                // "top": top - parseInt(options.endSize) + "px"
+                "left":"50%",
+                "font-size":"30px",
+                "font-weight":"900",
+                "margin-left":"495px",
+                "top":"260px",
+            }, options.interval , function() {
+                box.remove();
+                options.callback();
+            });
+        }
+    });
+    
+	$('.shoppingCar').click(function(){
+	    if (goodsspec.getSpec() == null)
+	    {
+	        alert('请选择规格');
+	        return;
+	    }
+	    var spec_id = goodsspec.getSpec().id;
+	
+	    var quantity = $("#quantity").val();
+	    var re = /^[1-9]+[0-9]*$/
+	    if(!re.test(quantity)){
+	    	alert('请输入正整数');
+	    	return;
+	    }
 
-    var quantity = $("#quantity").val();
-    var re = /^[1-9]+[0-9]*$/
-    if(!re.test(quantity)){
-    	alert('请输入正整数');
-    	return;
-    }
-    add_to_cart(spec_id, quantity);
-}
+	    //
+	    $.tipsBox({
+			obj: $(this),
+			str: "+"+quantity,
+	        callback: function() {
+	    		add_to_cart(spec_id, quantity);
+	        }
+		});
+	});
+});
 
 function nowbuy()
 {
@@ -183,7 +238,6 @@ function nowbuy()
     add_to_cart1(spec_id, quantity);
 }
 
-
 /* add cart */
 function add_to_cart(spec_id, quantity)
 {
@@ -202,7 +256,6 @@ function add_to_cart(spec_id, quantity)
             }else{
            		 _i.text(parseInt(_i.text())+parseInt(quantity));
             }
-            alert("添加成功");
         }
         else
         {
