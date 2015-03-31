@@ -10,13 +10,13 @@
 				<div class="clearfix">
 					<div class="goodsImg">
 						<div class="bigImg">
-							<img src="{$goods._images.0.image_url|default:$default_image}"
+							<img src="{$goods._images.0.thumbnail|default:$default_image}"
 								jqimg="{$goods._images.0.image_url}" alt="">
 						</div>
 						<ul class="imgList clearfix">
 							<!--{foreach from=$goods._images item=goods_image name=fe_goods_image}-->
 							<li {if $smarty.foreach.fe_goods_image.first}class="active"
-								{/if} big-img="{$goods_image.image_url}"
+								{/if} big-img="{$goods_image.thumbnail}"
 								max-img="{$goods_image.image_url}"><img
 								src="{$goods_image.thumbnail}" width="52" height="48" alt=""></li>
 							<!--{/foreach}-->

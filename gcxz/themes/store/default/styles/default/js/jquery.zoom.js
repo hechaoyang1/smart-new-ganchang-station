@@ -86,9 +86,9 @@
 				/*$("div.jqZoomPup").hide();*/
 
 
-				var bigwidth = $(".bigimg").get(0).offsetWidth;
+				var bigwidth = bigimage == "" ? 0 : $(".bigimg").get(0).offsetWidth;
 
-				var bigheight = $(".bigimg").get(0).offsetHeight;
+				var bigheight = bigimage == "" ? 0 : $(".bigimg").get(0).offsetHeight;
 
 				var scaley = 'x';
 
