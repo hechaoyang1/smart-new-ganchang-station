@@ -302,7 +302,7 @@ class My_favoriteApp extends MemberbaseApp
         //判断是否已经收藏该商品
         $conditions = 'item_id=' . $goods_id . ' and type=\'goods\' and user_id=' . $this->visitor->get ( 'user_id' );
 		if (db()->getAll ('SELECT * FROM ecm_collect WHERE '.$conditions )) {
-			$this->json_result ( '', '你已收藏该店铺' );
+			$this->json_result ( '', '你已收藏该商品' );
 			exit ();
 		}
         $model_user =& m('member');

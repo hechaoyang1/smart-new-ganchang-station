@@ -14,7 +14,7 @@
 <div class="registration_box">
 		<div class="register_left">
 		<form id="register_form" method="post" action="">
-			<input type="hidden" name="ret_url" value={$ret_url}/>
+			<input type="hidden" name="ret_url" value="{$ret_url}"/>
 			<p class="left">新用户注册</p>
 			
 			<div class="form_field_uname">
@@ -86,11 +86,18 @@
 	        success       : function(label){
 	        	label.removeClass('error').addClass('validate_right').text('OK!');
 	        },
+	        submitHandler:function(form){
+	            if($("#register_form input[name=agree]").is(":checked")){
+	            	form.submit();
+	            }else{
+	            	alert("请阅读并同意注册协议");
+	            }
+	        },
 	        onkeyup: false,
 	        rules : {
 	            user_name : {
 	                required : true,
-	                byteRange: [3,45,'{$charset}'],
+	                rangelength: [3,15],
 	                remote   : {
 	                    url :'index.php?app=member&act=check_user&ajax=1',
 	                    type:'get',
@@ -130,15 +137,12 @@
 	                        }
 	                    }
 	                }
-	            },
-	            agree : {
-	                required : true
 	            }
 	        },
 	        messages : {
 	            user_name : {
 	                required : '{$lang.user_name_required}',
-	                byteRange: '{$lang.user_name_limit}',
+	                rangelength: '{$lang.user_name_limit}',
 	                remote   : '{$lang.user_already_taken}'
 	            },
 	            password  : {
@@ -153,9 +157,6 @@
 	            captcha : {
 	                required : '{$lang.captcha_required}',
 	                remote   : '{$lang.captcha_error}'
-	            },
-	            agree : {
-	                required : '{$lang.agree_required}'
 	            }
 	        }
 	    });
