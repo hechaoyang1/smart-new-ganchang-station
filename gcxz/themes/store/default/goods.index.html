@@ -10,7 +10,7 @@
 				<div class="clearfix">
 					<div class="goodsImg">
 						<div class="bigImg">
-							<img src="{$goods._images.0.thumbnail|default:$default_image}"
+							<img src="{$goods._images.0.image_url|default:$default_image}"
 								jqimg="{$goods._images.0.image_url}" alt="">
 						</div>
 						<ul class="imgList clearfix">
@@ -70,7 +70,7 @@
 							<li>信用度：{$store.credit_value}</li>
 							<li>店铺等级：{$store.sgrade}</li>
 							<li>所在区域：{$store.region_name|escape}</li>
-							<li>联系卖家：{if $store.store_owner.im_qq neq ''}<a href="http://wpa.qq.com/msgrd?v=3&uin={$store.store_owner.im_qq|escape}&site=qq&menu=yes" target="_blank">
+							<li>联系卖家：{if trim($store.store_owner.im_qq) neq ''}<a href="http://wpa.qq.com/msgrd?v=3&uin={$store.store_owner.im_qq|escape}&site=qq&menu=yes" target="_blank">
 <img title="QQ交流" src="http://wpa.qq.com/pa?p=2:{$store.store_owner.im_qq|escape}:41"
 alt="QQ交流" border="0" />
 </a>{/if}</li>
@@ -196,7 +196,8 @@ function add_to_cart(spec_id, quantity)
             $('.ware_cen').slideDown('slow');
             setTimeout(slideUp_fn, 5000); */
             var _i =  $('.rightTools li:eq(1)').find('i');
-            if(_i.text()==''){
+            if(_i.text()=='' || _i.text()=='0'){
+            	 _i.show();
             	 _i.text(quantity);
             }else{
            		 _i.text(parseInt(_i.text())+parseInt(quantity));
