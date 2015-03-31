@@ -209,14 +209,8 @@ $(function(){
 	    	return;
 	    }
 
-	    //
-	    $.tipsBox({
-			obj: $(this),
-			str: "+"+quantity,
-	        callback: function() {
-	    		add_to_cart(spec_id, quantity);
-	        }
-		});
+	    var obj = $(this);
+		add_to_cart(obj, spec_id, quantity);
 	});
 });
 
@@ -239,23 +233,29 @@ function nowbuy()
 }
 
 /* add cart */
-function add_to_cart(spec_id, quantity)
+function add_to_cart(obj, spec_id, quantity)
 {
     var url = SITE_URL + '/index.php?app=cart&act=add';
     $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
         if (data.done)
         {
-           /*  $('.bold_num').text(data.retval.cart.kinds);
-            $('.bold_mly').html(price_format(data.retval.cart.amount));
-            $('.ware_cen').slideDown('slow');
-            setTimeout(slideUp_fn, 5000); */
-            var _i =  $('.rightTools li:eq(1)').find('i');
-            if(_i.text()=='' || _i.text()=='0'){
-            	 _i.show();
-            	 _i.text(quantity);
-            }else{
-           		 _i.text(parseInt(_i.text())+parseInt(quantity));
-            }
+    	    $.tipsBox({
+    			obj: obj,
+    			str: "+"+quantity,
+    	        callback: function() {
+		           /*  $('.bold_num').text(data.retval.cart.kinds);
+		            $('.bold_mly').html(price_format(data.retval.cart.amount));
+		            $('.ware_cen').slideDown('slow');
+		            setTimeout(slideUp_fn, 5000); */
+		            var _i =  $('.rightTools li:eq(1)').find('i');
+		            if(_i.text()=='' || _i.text()=='0'){
+		            	 _i.show();
+		            	 _i.text(quantity);
+		            }else{
+		           		 _i.text(parseInt(_i.text())+parseInt(quantity));
+		            }
+    	        }
+    		});
         }
         else
         {
