@@ -1369,7 +1369,7 @@ class BaseVisitor extends Object
     {
         unset($_SESSION[$this->_info_key]);
         /*清空cookie 使自动登录失效*/
-        setcookie('gcxz_in',null,time()-8000000);
+        setcookie('gcxz_in','',time()-8000000);
     }
     function i_can($event, $privileges = array())
     {

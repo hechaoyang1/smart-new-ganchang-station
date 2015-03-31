@@ -12,10 +12,13 @@
 $(function(){
     $('#login_form').validate({
         errorPlacement: function(error, element){
-            $(element).parent('div.Signin_box_name').append(error); 
+            $(element).parents('div.Signin_box_name').append(error); 
         },
         success       : function(label){
         	label.remove();
+        },
+        submitHandler:function(form){
+            	form.submit();
         },
         onkeyup : false,
         rules : {
@@ -63,20 +66,24 @@ $(function(){
 		</div>
 		<form id="login_form" action="" method="post">
 		<div class="Signin_box_name">
-			<span>用户名/已验证手机</span><br>
-			<input type="text" name="user_name" id="user_name" class="Signin_text">
-			<div class="text_name"></div>
+			<span>用户名/已验证手机</span><br />
+			<div class="form_field_uname_div" style="margin:0">
+					<input type="text"  name="user_name" id="user_name" class="form_field_uname_input" />
+					<div class="re_text_name"></div>
+			</div>
 		</div>
 		<div class="float"></div>
 		<div class="Signin_box_name">
-			<span>密码</span><br>
-			<input type="password" name="password" id="password" class="Signin_text Signin_word">
-			<div class="text_name text_word"></div>
+		<span>密码</span><br />
+			<div class="form_field_uname_div" style="margin:0">
+					<input type="password" name="password" id="password"  class="form_field_uname_input" />
+					<div class="re_text_name text_word"></div>
+			</div>
 		</div>
 		<div class="float"></div>
 		<div class="Signin_box_name">
 			<div class="box_box">
-				<input name="auto_login" type="checkbox" value="1" checked>
+				<input name="auto_login" type="checkbox" value="1" checked />
 				<span>自动登录</span>&nbsp;&nbsp;&nbsp;
 				<a href="{url app=find_password}">忘记密码？</a>
 				<input type="hidden" name="ret_url" value="{$ret_url}" />

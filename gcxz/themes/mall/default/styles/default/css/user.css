@@ -297,7 +297,7 @@ body { font-size: 12px; font-family: Arial, Verdana, sans-serif; }
 .info_table li { width: 566px; overflow: hidden; float: left; padding-bottom: 10px; }
 .info_table h4 { float: left; width: 100px; padding: 6px 0 0 25px; font-weight: normal; color: #656565; font-size: 12px; }
 .info_table h5 { float: left; width: 135px; padding: 3px 0 0 25px; font-weight: normal; color: #656565; font-size: 12px;  }
-.info_table p { float: left; word-spacing: 5px; }
+.info_table p {word-spacing: 5px; }
 .info_table .zone { float: left; width: 364px; }
 .info_table .zone p { width: 364px; line-height: 22px; color: #3e3e3e; }
 .info_table p textarea { vertical-align: top; width: 195px; height: 60px; overflow-y: auto; }

@@ -19,41 +19,55 @@
 			
 			<div class="form_field_uname">
                 <label><span>*</span>用户名:</label>
-                <input type="text" id="user_name" name="user_name" class="">
-				<label class="re_text_name"></label>
+                <div class="form_field_uname_div">
+					<input type="text" id="user_name" name="user_name" class="" />
+					<div class="re_text_name"></div>
+				</div>
 				<label class="uname_label">填写用户名</label>
             </div>
+            <div class="float"></div>
             <div class="form_field_uname">
                 <label><span>*</span>密码:</label>
-                <input type="password" id="password" name="password" class="">
-				<label class="re_text_name text_word"></label>
+                <div class="form_field_uname_div">
+					 <input type="password" id="password" name="password" class="" />
+					<div class="re_text_name text_word"></div>
+				</div>
 				<label class="uname_label">填写至少6位的密码</label>
             </div>
+            <div class="float"></div>
             <div class="form_field_uname">
                 <label><span>*</span>确认密码:</label>
-                <input type="password" id="password_confirm" name="password_confirm" class="">
-				<label class="re_text_name text_word"></label>
+                <div class="form_field_uname_div">
+					<input type="password" id="password_confirm" name="password_confirm" class="" />
+					<div class="re_text_name text_word"></div>
+				</div>
 				<label class="uname_label">重复输入你的密码</label>
             </div>
+            <div class="float"></div>
 			<!-- <div class="form_field_uname">
                 <label><span>*</span>验证手机:</label>
-                <input type="text" id="phone" name="phone" class="">
+                <div class="form_field_uname_div">
+					<input type="text" id="phone" name="phone" class="">
+					<div class="re_text_name text_phone"></div>
+				</div>
 				<label class="uname_label">或<a href="#">邮箱验证</a></label>
             </div>
+            <div class="float"></div>
 			<div class="form_field_uname">
                 <label><span>*</span>短信验证码:</label>
-                <input type="text" id="code" name="code" class="code">
+                <input type="text" name="code" class="code" style="border: 1px solid #666666;">
 				<input type="button" id="btn" class="code1" value="获取短信验证码" />
             </div>
              -->
 			<div class="form_field_uname">
                 <label></label>
-                <input id="agree" name="agree" type="checkbox" value="1" checked / style='width: 15px;'>
-				<div style="  margin-top: -30px;margin-left: 123px;">我已阅读并同意<a href="{url app=article&act=system&code=eula}"  target="_blank">《赶场小站用户注册协议》</a></div>
+                <input type="checkbox"  id="agree" name="agree" type="checkbox" value="1" checked / style='width: 15px;margin: 0 0 0 20px;  float: left;' />
+				<div style="  margin-top: 5px;  float: left;">我已阅读并同意<a target="_blank" href="{url app=article&act=system&code=eula}">《赶场小站用户注册协议》</a></div>
             </div>
+            <div class="float"></div>
 			<div class="form_field_uname registration_box_name">
                 <label></label>
-                <input type="submit" class="btn" value="立即注册" />
+                <input type="submit" style="width:310px;margin-left: 20px;" class="btn form_field_uname_input" value="立即注册" />
             </div>
             </form>
 		</div>
@@ -79,7 +93,7 @@
 	    }, "请正确输入您的身份证号码");
 	    $('#register_form').validate({
 	        errorPlacement: function(error, element){
-	        	var error_td = element.parent('.form_field_uname');
+	        	var error_td = element.parents('.form_field_uname');
 	            error_td.find('label.uname_label,label.error,label.validate_right').hide();
 	            error_td.append(error);
 	        },
