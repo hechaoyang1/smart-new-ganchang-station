@@ -85,11 +85,7 @@ class DefaultPassportUser extends BasePassportUser
         //先判断是否为同一邮箱
         $model_member =& m('member');
         $user = $model_member->get("user_id='{$user_id}'");
-        if ($user['email'] == $items['email']){
-        	$this->_error('you_are_sb');
-        	return false;
-        }
-        if (!$this->check_email($items['email']))
+        if (!$this->check_email($items['email'], $user_id))
         {
         	return false;
         }
@@ -105,7 +101,7 @@ class DefaultPassportUser extends BasePassportUser
 
         if (empty($edit_data))
         {
-            return false;
+            return true;
         }
         //编辑本地数据
         $this->_local_edit($user_id, $edit_data);
@@ -181,10 +177,10 @@ class DefaultPassportUser extends BasePassportUser
      *    @param     string $email
      *    @return    bool
      */
-    function check_email($email)
+    function check_email($email, $user_id)
     {
         $model_member =& m('member');
-        $info = $model_member->get("email='{$email}'");
+        $info = $model_member->get("email='{$email}' and user_id <> '{$user_id}'");
         if (!empty($info))
         {
             $this->_error('email_exists');
