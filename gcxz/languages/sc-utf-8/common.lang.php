@@ -249,7 +249,7 @@ return array(
     'back_index' => '返回首页',
     'cancel_query' => '取消检索',
     'pay_message' => '支付消息',
-    'default_site_description' => '这是一个用Cosecant架设的网上商城',
+    'default_site_description' => '这是一个用Incito架设的网上商城',
     'default_closed_reason' => '商城维护中，暂时关闭，请稍候访问。',
     'ecmall_sysmsg' => '系统信息',
     'page_close'   => '关闭页面',

@@ -1,16 +1,5 @@
 <?php
 
-/**
- * ECMALL: 消息控制器
- * ============================================================================
- * 版权所有 (C) 2005-2008 成都市科盛兴科技有限公司，并保留所有权利。
- * 网站地址: http://www.cdksx.net
- * -------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和使用；
- * 不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
- * $Id: message.base.php 12127 2010-10-18 09:58:37Z huibiaoli $
- */
 if (!defined('IN_ECM'))
 {
     trigger_error('Hacking attempt', E_USER_ERROR);
@@ -250,9 +239,6 @@ class Message extends MessageBase
             $tmp_arr = explode("\n", $msg, 2);
             $tmp_param = strtr($tmp_arr[0], array('MySQL Error['=>'dberrno=', ']: '=>'&dberror='));
             parse_str($tmp_param, $tmp_arr);
-            $url = 'http://www.cdksx.net/help/faq.php?type=mysql&dberrno=' . $tmp_arr['dberrno'] . '&dberror=' .  urlencode($tmp_arr['dberror']);
-
-            $this->add_link(Lang::get('mysql_error_report'), $url);
         }
         else
         {
@@ -318,7 +304,7 @@ class Message extends MessageBase
             {
                 $this->redirect = str_replace('&amp;', '&', $this->redirect); //$this->redirect 是给js使用的,不能包含&amp;
             }
-            $this->_config_seo('title', Lang::get('ecmall_sysmsg') . '-- Powered by Cosecant');
+            $this->_config_seo('title', Lang::get('ecmall_sysmsg') . '-- Powered by Incito');
             $this->assign('message',    $this->message);
             $this->assign('links',      $this->links);
             $this->assign('icon',       $this->icon);

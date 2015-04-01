@@ -16,7 +16,7 @@ return array(
     'toseller_store_passed_notify' => '恭喜，您的店铺已开通，赶快来用户中心发布商品吧。',
     'toseller_store_refused_notify'=> '抱歉，您的开店申请已被拒绝，原因如下： {$reason}',
     
-    'code_example' => "图片标签：[img]http://www.cdksx.net/images/logo.gif[/img]<br/>超链接标签：[url=http://www.cdksx.net]Cosecant官方网站[/url]",
+    'code_example' => "图片标签：[img][/img]<br/>超链接标签：官方网站",
 );
 
 ?>

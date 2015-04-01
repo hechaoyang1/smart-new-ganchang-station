@@ -1,17 +1,5 @@
 <?php
 
-/**
- * ECMall: MYSQL 公用类库
- * ============================================================================
- * 版权所有 (C) 2005-2008 成都市科盛兴科技有限公司，并保留所有权利。
- * 网站地址: http://www.cdksx.net
- * -------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和使用；
- * 不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
- * $Id: mysql.php 12009 2010-09-03 09:28:21Z huibiaoli $
- */
-
 if (!defined('IN_ECM'))
 {
     trigger_error('Hacking attempt', E_USER_ERROR);
@@ -427,7 +415,6 @@ class cls_mysql
             echo "<b>MySQL server error report:</b><br />";
             echo "Error:",$error, "<br />";
             echo "Errno:", $error_no, "<br />";
-            echo '<a href="http://www.cdksx.net/help/faq.php?type=mysql&amp;dberrno=' . $error_no . '&amp;dberror=' . urlencode($error) . '" target="_blank">'. Lang::get('mysql_error_report') . '</a>';
         }
 
         exit;

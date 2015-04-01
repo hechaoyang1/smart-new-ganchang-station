@@ -80,11 +80,11 @@ class DefaultApp extends BackendApp
      *    @param    none
      *    @return    void
      */
-    function aboutus()
-    {
-        $this->headtag('<base target="_blank" />');
-        $this->display('aboutus.html');
-    }
+//     function aboutus()
+//     {
+//         $this->headtag('<base target="_blank" />');
+//         $this->display('aboutus.html');
+//     }
 
     function _get_menu()
     {

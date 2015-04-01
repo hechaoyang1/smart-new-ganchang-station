@@ -3,7 +3,7 @@
 return array(
     'name'      => 'pink',
     'version'   => '1.0',
-    'author'    => 'Cosecant TEAM',
+    'author'    => 'Incito TEAM',
     'description'=> 'style',
 );
 

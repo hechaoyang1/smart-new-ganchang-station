@@ -2,7 +2,7 @@
 
 return array(
     'version'       => '1.0',
-    'author'        => 'Cosecant TEAM',
+    'author'        => 'Incito TEAM',
     'description'   => 'yes',
 );
 

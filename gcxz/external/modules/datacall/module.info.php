@@ -5,8 +5,8 @@ return array(
     'name'  => Lang::get('data_call'),
     'desc'  => Lang::get('datacall_desc'),
     'version'   => '1.0',
-    'author'    => 'Cosecant TEAM',
-    'website'   => 'http://www.cdksx.net',
+    'author'    => 'Gcxz TEAM',
+    'website'   => 'http://www.scgcxz.com',
     'menu'  => array(
         array(
             'text'  => Lang::get('datacall_manage'),

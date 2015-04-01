@@ -5,7 +5,7 @@ return array(
     'hook' => 'after_opening',
     'name' => '开店邮件通知',
     'desc' => '开店成功后给店主发邮件通知',
-    'author' => 'Cosecant TEAM',
+    'author' => 'Incito TEAM',
     'version' => '1.0',
     'config' => array(
         'subject' => array(
