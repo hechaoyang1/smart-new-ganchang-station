@@ -8,7 +8,7 @@
 			<ul>
 				<!--{foreach from=$cart.goods item=goods}-->
 				<li>
-					<div class="name"><a href="{url app=goods&id=$goods.goods_id}"  target="_parent">{$goods.goods_name|escape}</a></div>
+					<div class="name"><a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}" target="_parent">{$goods.goods_name|escape}</a></div>
 					<div class="clearfix">
 						<a href="{url app=goods&id=$goods.goods_id}" target="_parent" class="pull-left"><img src="{$goods.goods_image}"
 							height="50" width="50" alt=""></a>
