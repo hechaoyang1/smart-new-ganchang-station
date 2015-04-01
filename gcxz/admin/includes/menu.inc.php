@@ -10,10 +10,6 @@ return array(
                 'text'  => Lang::get('welcome_page'),
                 'url'   => 'index.php?act=welcome',
             ),
-            'aboutus'   => array(
-                'text'  => Lang::get('aboutus_page'),
-                'url'   => 'index.php?act=aboutus',
-            ),
             'base_setting'  => array(
                 'parent'=> 'setting',
                 'text'  => Lang::get('base_setting'),
