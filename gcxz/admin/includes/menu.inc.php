@@ -50,10 +50,6 @@ return array(
                 'text'  => Lang::get('region'),
                 'url'   => 'index.php?app=region',
             ),
-            'theme' => array(
-                'text'  => Lang::get('theme'),
-                'url'   => 'index.php?app=theme',
-            ),
             'template' => array(
                 'text'  => Lang::get('template'),
                 'url'   => 'index.php?app=template',
