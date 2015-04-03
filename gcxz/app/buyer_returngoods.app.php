@@ -21,7 +21,7 @@ class Buyer_returngoodsApp extends MemberbaseApp
                 'join' => 'belongs_to_store' 
         ) );
         // 订单状态校验 已发货、已完成
-        if ($order_info['status'] != ORDER_SHIPPED && $order_info['status'] != ORDER_FINISHED) {
+        if ($order_info['status'] != ORDER_FINISHED) {
             $this->show_warning ( 'wrong_status' );
             return;
         }
@@ -168,7 +168,7 @@ class Buyer_returngoodsApp extends MemberbaseApp
             return;
         }
         // 订单状态校验 已发货、已完成
-        if ($order['status'] != ORDER_SHIPPED && $order['status'] != ORDER_FINISHED) {
+        if ($order['status'] != ORDER_FINISHED) {
             $this->show_warning ( 'wrong_status' );
             return;
         }
