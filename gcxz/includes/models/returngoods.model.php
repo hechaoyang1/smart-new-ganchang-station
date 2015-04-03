@@ -55,7 +55,7 @@ class ReturngoodsModel extends BaseModel
             return false;
         }
         // 订单状态校验 已发货、已完成
-        if ($order['status'] != ORDER_SHIPPED && $order['status'] != ORDER_FINISHED) {
+        if ($order['status'] != ORDER_FINISHED) {
             $this->error = '该订单状态不能退货';
             return false;
         }
