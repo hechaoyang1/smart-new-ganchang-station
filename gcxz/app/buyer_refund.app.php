@@ -88,8 +88,8 @@ class Buyer_refundApp extends MemberbaseApp
             return;
         }
         // 订单状态校验
-        if ($order['status'] != ORDER_PENDED && $order['status'] != ORDER_ACCEPTED) {
-            $this->show_warning ( 'wrong_status' );
+        if ($order['status'] != ORDER_PENDED && $order['status'] != ORDER_ACCEPTED && $order['status'] != ORDER_REQUEST && $order['status'] != ORDER_RESPONSE && $order['status'] != ORDER_SHIPPED) {
+        	$this->show_warning ( 'wrong_status' );
             return;
         }
         $this->assign ( 'order', $order );
