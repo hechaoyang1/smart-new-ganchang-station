@@ -48,7 +48,7 @@ $(function(){
                         <p class="price">{$lang.price}: <span>{$goods.price|price}</span></p>
                         <p class="amount">{$lang.quantity}: <span>{$goods.quantity}</span></p>
                         <!-- {if $order.status eq ORDER_FINISHED} -->
-                        <p style="float: right;padding-top: 15px;padding-right:10px;"><a target="_blank" href="index.php?app=buyer_returngoods&act=view&order_id={$order.order_id}&rec_id={$goods.rec_id}">申请退货</a></p>
+                        <p style="float: right;padding-top: 15px;padding-right:10px;"><a target="_blank" href="index.php?app=buyer_returngoods&act=view&order_id={$order.order_id}&rec_id={$goods.rec_id}">鐢宠閫�揣</a></p>
                     	<!-- {/if} -->
                     </div>
                     <!--{/foreach}-->
@@ -67,7 +67,7 @@ $(function(){
                             {if $order.status eq ORDER_SHIPPED}<input type="button" value="{$lang.confirm_order}" class="btn1" ectype="dialog" dialog_id="buyer_order_confirm_order" dialog_width="400" dialog_title="{$lang.confirm_order}" uri="index.php?app=buyer_order&amp;act=confirm_order&order_id={$order.order_id}&ajax"  id="order{$order.order_id}_action_confirm" />{/if}
                             {if $order.status lte ORDER_PENDING and $order.status neq ORDER_CANCELED}<input type="button" value="{$lang.cancel_order}" class="btn1" ectype="dialog" dialog_width="400" dialog_title="{$lang.cancel_order}" dialog_id="buyer_order_cancel_order" uri="index.php?app=buyer_order&amp;act=cancel_order&order_id={$order.order_id}&ajax"  id="order{$order.order_id}_action_cancel" />{/if}
                             <a href="{url app=buyer_order&act=view&order_id=$order.order_id}" target="_blank" class="btn1">{$lang.view_order}</a>
-                       		<input type="button" value="{$lang.apply_refund}" class="btn" ectype="dialog" dialog_id="seller_refund_save" dialog_width="400" uri="index.php?app=seller_refund&amp;act=to_apply&amp;order_id={$order.order_id}&ajax" dialog_title="{$lang.received_pay}" id="order{$order.order_id}_action_received_pay"{if ($order.status neq ORDER_PENDED and $order.status neq ORDER_ACCEPTED) or $order.payment_code eq 'cod' } style="display:none"{/if} />
+                       		<input type="button" value="{$lang.apply_refund}" class="btn" ectype="dialog" dialog_id="seller_refund_save" dialog_width="400" uri="index.php?app=seller_refund&amp;act=to_apply&amp;order_id={$order.order_id}&ajax" dialog_title="{$lang.received_pay}" id="order{$order.order_id}_action_received_pay"{if ($order.status neq ORDER_PENDED and $order.status neq ORDER_ACCEPTED and $order.status neq ORDER_REQUEST and $order.status neq ORDER_RESPONSE and $order.status neq ORDER_SHIPPED) or $order.payment_code eq 'cod' } style="display:none"{/if} />
                         </div>
                     </div>
                 </div>
