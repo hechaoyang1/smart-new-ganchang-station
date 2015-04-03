@@ -54,7 +54,7 @@ class RefundModel extends BaseModel
                 'fields' => 'seller_id,buyer_id,buyer_name,seller_name,status,order_amount,order_sn' 
         ) );
         // 订单状态校验，只有已付款未发货的订单才可申请退款
-        if ($type == 1 && $order['status'] != ORDER_PENDED && $order['status'] != ORDER_ACCEPTED) {
+        if ($type == 1 && $order['status'] != ORDER_PENDED && $order['status'] != ORDER_ACCEPTED && $order['status'] != ORDER_REQUEST && $order['status'] != ORDER_RESPONSE && $order['status'] != ORDER_SHIPPED) {
             $this->error = '订单状态不能退款';
             return false;
         }
