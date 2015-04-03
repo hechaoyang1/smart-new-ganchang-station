@@ -65,7 +65,7 @@ class RefundModel extends BaseModel
                     'fields' => 'id' 
             ) );
             if ($has_one) {
-                $this->error = '该订单已经申请退款';
+                $this->error = '该订单已经申请过退款';
                 return false;
             }
         }
@@ -82,6 +82,7 @@ class RefundModel extends BaseModel
             $data['status'] = $type == 1 ? STATUS_APPLY : STATUS_AUDITD;
             $data['info'] = $param['info'];
             $data['type'] = $type;
+            $data['data'] = serialize(array('order_status'=>$order['status']));
             $data['ctime'] = gmtime ();
             $data['log'] = $this->create_log ( array (), $data['user_id'], $order['buyer_name'], '申请退款' );
             $res = $this->add ( $data );
@@ -193,7 +194,7 @@ class RefundModel extends BaseModel
     {
         $refund = $this->get ( array (
                 'conditions' => 'id=' . $param['id'],
-                'fields' => 'seller_id,status,type,order_id,log,type' 
+                'fields' => 'seller_id,status,type,order_id,log,type,data' 
         ) );
         if (empty ( $refund ) || $refund['seller_id'] != $param['user_id']) {
             $this->error = '非法操作';
@@ -210,8 +211,9 @@ class RefundModel extends BaseModel
                 'log' => $log 
         ) );
         if ($ret) {
+        	$data=unserialize($refund['data']);
             return m ( 'order' )->edit ( $refund['order_id'], array (
-                    'status' => ORDER_ACCEPTED 
+                    'status' =>  $data['order_status']
             ) );
         }
         return $ret;
@@ -241,8 +243,9 @@ class RefundModel extends BaseModel
                 'log' => $log 
         ) );
         if ($ret && !$approve && $refund['type'] == 1) {
+        	$data=unserialize($refund['data']);
             return m ( 'order' )->edit ( $refund['order_id'], array (
-                    'status' => ORDER_ACCEPTED 
+                    'status' => $data['order_status'] 
             ) );
         }
         return $ret;
