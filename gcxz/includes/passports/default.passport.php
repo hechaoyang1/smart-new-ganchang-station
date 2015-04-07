@@ -85,7 +85,7 @@ class DefaultPassportUser extends BasePassportUser
         //先判断是否为同一邮箱
         $model_member =& m('member');
         $user = $model_member->get("user_id='{$user_id}'");
-        if (!$this->check_email($items['email'], $user_id))
+        if (isset($items['email'])&&!$this->check_email($items['email'], $user_id))
         {
         	return false;
         }
