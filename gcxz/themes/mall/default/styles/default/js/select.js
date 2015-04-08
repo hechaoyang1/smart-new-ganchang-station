@@ -32,11 +32,13 @@ function block_fn()
 
 function mouseLocation(e)
 {
-    if (e.pageX < $('.select_js').position().left ||
-        e.pageX > $('.select_js').position().left + $('.select_js').outerWidth() ||
-        e.pageY < $('.select_js').position().top ||
-        e.pageY > $('.select_js').position().top + $('.select_js').outerHeight())
-    {
-        $('.select_js ul').hide();
-    }
+	if($('.select_js').length>0){
+		if (e.pageX < $('.select_js').position().left ||
+				e.pageX > $('.select_js').position().left + $('.select_js').outerWidth() ||
+				e.pageY < $('.select_js').position().top ||
+				e.pageY > $('.select_js').position().top + $('.select_js').outerHeight())
+		{
+			$('.select_js ul').hide();
+		}
+	}
 }
