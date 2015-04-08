@@ -111,8 +111,8 @@ $(function(){
                         <input type="button" value="{$lang.finish_order}" class="btn1" ectype="dialog" dialog_id="seller_order_finished"  dialog_title="{$lang.finish_order}" uri="index.php?app=seller_order&amp;act=finished&order_id={$order.order_id}&ajax" dialog_width="400"  id="order{$order.order_id}_action_finish"{if $order.payment_code neq 'cod' or $order.status neq ORDER_SHIPPED} style="display:none"{/if} />
                          -->
                         {if $order.status eq ORDER_SHIPPED and $order.source_type neq 2}<input type="button" value="{$lang.edit_invoice_no}" class="btn1" ectype="dialog" dialog_title="{$lang.edit_invoice_no}" uri="index.php?app=seller_order&amp;act=shipped&amp;order_id={$order.order_id}&ajax" dialog_id="seller_order_shipped" dialog_width="400" id="order{$order.order_id}_action_edit_invoice_no" />{/if}
-                        <!-- //不是取消和完成的订单就可以取消-->
-                        {if $order.status eq ORDER_SUBMITTED or $order.status eq ORDER_PENDING}<input type="button" value="{$lang.cancel_order}" class="btn1" ectype="dialog" uri="index.php?app=seller_order&amp;act=cancel_order&order_id={$order.order_id}&ajax" dialog_title="{$lang.cancel_order}" dialog_id="seller_order_cancel_order" dialog_width="400" id="order{$order.order_id}_action_cancel" />{/if}
+                        <!-- //等待卖家付款、货到付款时待发货状态 才能取消-->
+                        {if $order.status eq ORDER_SUBMITTED or $order.status eq ORDER_PENDING or ($order.payment_code eq 'cod' and $order.status eq ORDER_ACCEPTED)}<input type="button" value="{$lang.cancel_order}" class="btn1" ectype="dialog" uri="index.php?app=seller_order&amp;act=cancel_order&order_id={$order.order_id}&ajax" dialog_title="{$lang.cancel_order}" dialog_id="seller_order_cancel_order" dialog_width="400" id="order{$order.order_id}_action_cancel" />{/if}
                         <a class="btn1" href="{url app=seller_order&act=view&order_id=$order.order_id}" target="_blank">{$lang.view_order}</a>
                        </div> </td>
                     </tr>

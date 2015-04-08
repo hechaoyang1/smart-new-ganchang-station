@@ -432,7 +432,7 @@ class Seller_orderApp extends StoreadminbaseApp
         {
             echo Lang::get('no_such_order');
         }
-        $status = array(ORDER_SUBMITTED, ORDER_PENDING);
+        $status = array(ORDER_SUBMITTED, ORDER_PENDING, ORDER_ACCEPTED);
         $order_ids = explode(',', $order_id);
         if ($ext)
         {
@@ -448,9 +448,15 @@ class Seller_orderApp extends StoreadminbaseApp
         if (!$order_info)
         {
             echo Lang::get('no_such_order');
-
             return;
         }
+        //只有货到付款且状态为待发货时才能取消
+        if($order_info['payment_code'] != 'cod' && $order_info['status'] == ORDER_ACCEPTED)
+        {
+            echo Lang::get('no_such_order');
+            return;
+        }
+        
         if (!IS_POST)
         {
             header('Content-Type:text/html;charset=' . CHARSET);

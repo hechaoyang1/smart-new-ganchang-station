@@ -273,17 +273,17 @@ ul, ol { list-style-type:none; }
 .credited table { width: 100%; border-collapse: collapse; line-height: 26px; }
 .credited th, .credited td { border-bottom: 1px solid #e1efd6; }
 .credited_css { border-right: 1px solid #e1efd6; margin: 3px 0; font-weight: bold; }
-.new_size th { font-weight: normal; color: #a9a9a9; }
+.new_size th { font-weight: normal; color: #a9a9a9; text-align:center;}
 .credited td { text-align: center; color: #666; }
 
 
 .tab_table { width: 100%; border-collapse: collapse; table-layout: fixed; }
 .tab_table th { height: 25px; color: #a9a9a9; vertical-align:middle;}
-.tab_table th, .tab_table td { border-bottom: 1px solid #e2e2e2; }
+.tab_table th, .tab_table td { border-bottom: 1px solid #e2e2e2;text-align:center; }
 .tab_align { text-align: center; }
 .tab_align_right { text-align: right; }
 .font_bold { font-weight: bold;}
-.tab_table_con { line-height: 18px; color: #295ad0; padding: 10px 20px 10px 0; }
+.tab_table_con { line-height: 18px; color: #295ad0; padding: 10px 0 10px 0; }
 .money { color: #fd5500; font-weight: bold; font-size: 14px; }
 .ware_link { color: #666; text-decoration: none; line-height: 18px; }
 .ware_link:hover { color: #f60; text-decoration: underline; }
