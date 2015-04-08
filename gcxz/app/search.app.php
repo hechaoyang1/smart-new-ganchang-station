@@ -450,7 +450,7 @@ class SearchApp extends MallbaseApp
     		$this->assign ( 'priceOrder', $_GET ['priceOrder']=='asc'?'up  foucs':'down  foucs' );
     	}else{
     		$orderStr = 'gst.sales desc';
-    		$this->assign ( 'salesOrder', 'down foucs' );
+    		$this->assign ( 'salesOrder', 'foucs' );
     	}
     	return $orderStr;
     }
@@ -811,11 +811,15 @@ class SearchApp extends MallbaseApp
     	//获取父类cate_id
     	$in = db_create_in ( $cates, 'cate_id' );
     	$cateResult = $model->db->getAll ( 'SELECT * FROM ecm_gcategory WHERE cate_id IN ( SELECT DISTINCT parent_id FROM ecm_gcategory WHERE ' . $in.')' );
-    	foreach ($cateResult as &$cate){
-    		$parent_id = $cate['cate_id'];
-    		$children = $model->db->getAll ('SELECT * FROM ecm_gcategory WHERE parent_id='.$parent_id.' AND '.$in);
-    		$cate['children'] = $children;
-    	}
+    	if ($cateResult) {
+			foreach ( $cateResult as &$cate ) {
+				$parent_id = $cate ['cate_id'];
+				$children = $model->db->getAll ( 'SELECT * FROM ecm_gcategory WHERE parent_id=' . $parent_id . ' AND ' . $in );
+				$cate ['children'] = $children;
+			}
+		}else{
+			return  $model->db->getAll ( 'SELECT * FROM ecm_gcategory WHERE '. $in );
+		}
     	return $cateResult;
     }
 	function _get_gcategory_by_id($model,$cate_id) {
