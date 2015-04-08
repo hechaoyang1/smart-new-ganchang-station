@@ -564,6 +564,11 @@ class My_goodsApp extends StoreadminbaseApp
     
     function addShare()
     {
+        /* 检测支付方式、配送方式、商品数量等 */
+        if (!$this->_addible()) {
+            return;
+        }
+        
         if (!IS_POST)
         {
             $this->formData();
@@ -683,11 +688,6 @@ class My_goodsApp extends StoreadminbaseApp
     
     function addForeign()
     {
-        /* 检测支付方式、配送方式、商品数量等 */
-        if (!$this->_addible()) {
-            return;
-        }
-        
         if (!IS_POST)
         {
             $this->formData();
