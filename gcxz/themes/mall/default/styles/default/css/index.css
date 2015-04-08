@@ -87,7 +87,26 @@
   font-size: 14px;
   background-color: #fff; }
 
-.goods-list li > .mask {
+.goods-list li:hover  > .mask {
+  position: absolute;
+  width: 185px;
+  height: 100%;
+  padding: 10px 0;
+  z-index: 3;
+  border: 1px solid #e4b5bf;
+  background-color: rgba(253, 152, 145, 0.1);
+  left: 0; 
+  top: -1px;
+  box-sizing: border-box;
+}
+
+
+.goods-list li > .mask{
+ color: #000;
+ text-decoration:none;
+}
+
+/*.goods-list li > .mask {
   display: none;
   position: absolute;
   width: 100%;
@@ -99,14 +118,15 @@
   top: 0;
   box-sizing: border-box; }
 
-.goods-list li > .jdlogo {
+.goods-list li:hover > .mask {
+  display: block;}*/
+
+
+.goods-list li > a >.jdlogo {
   position: absolute;
   right: 0;
   top: 0;
   z-index: 2; }
-
-.goods-list li:hover > .mask {
-  display: block; }
 
 .goods-list li .thumb {
   max-width: 164px;
