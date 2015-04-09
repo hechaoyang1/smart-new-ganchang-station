@@ -1,0 +1,44 @@
+{include file="header.html"}
+<div id="rightTop">
+	<p>地区详情配置</p>
+	<ul class="subnav">
+		<li><a class="btn1"
+			href="index.php?app=regiongoods&id={$region.region_id|escape}">返回</a></li>
+	</ul>
+</div>
+
+<div class="info">
+	<form method="post" enctype="multipart/form-data">
+		<table class="infoTable">
+			<tr>
+				<th class="paddingT15">地区名称:</th>
+				<td><input type="hidden" name="id"
+					value="{$region.region_id|escape}" /> <label />{$region.region_name|escape}</label>
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">默认图片:</th>
+				<td><input id="default_image" name="default_image" type="file">
+					<label class="field_notice" style="display: none;">支持格式gif,jpg,jpeg,png</label>
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15"></th>
+				<td><image style="max-width:150px; max-height:100px;"
+						src="{$site_url}/{$region.default_image|escape}" /></td>
+			</tr>
+			<tr>
+				<th class="paddingT15">地区描述:</th>
+				<td><textarea id="description" name="description">{$region.description|escape} </textarea>
+				</td>
+			</tr>
+			<tr>
+				<th></th>
+				<td class="ptb20"><input class="formbtn" type="submit"
+					name="Submit" value="{$lang.submit}" /> <input class="formbtn"
+					type="reset" name="reset" value="{$lang.reset}" /></td>
+			</tr>
+		</table>
+	</form>
+</div>
+{include file="footer.html"}
