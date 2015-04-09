@@ -47,6 +47,7 @@ function flex(obj)
                  var str = '';
                  var add_child = '';
                  var res = eval('(' + data + ')');
+                 var if_show='';
                  for(var i = 0; i < res.length; i++)
                  {
                      if(res[i].switchs)
@@ -62,11 +63,20 @@ function flex(obj)
                      {
                          add_child = "<a href='index.php?app=region&amp;act=add&amp;pid="+res[i].region_id+"'>{$lang.add_child}</a>";
                      }
+                     if(res[i].if_show=='1'){
+                    	 if_show='<td class="table-center" title="可编辑"><img src="http://localhost/gcxz/admin/templates/style/images/positive_enabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="'+res[i].region_id+'" fieldvalue="1" title="是否激活"></td>';
+                     }else{
+                    	 if_show='<td class="table-center" title="可编辑"><img src="http://localhost/gcxz/admin/templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="'+res[i].region_id+'" fieldvalue="0" title="是否激活"></td>';
+                     }
                      var itd2 = td2html + src;
                      str+="<tr class='"+pid+" row"+id+"'><td class='align_center w30'></td>"+
-                        "<td class='node' width='50%'>" + itd2 + "</td>"+
+                        "<td class='node' width='20%'>" + itd2 + "</td>"+
+                        "<td class='align_center'><a href='index.php?app=regiongoods&amp;act=editDescription&amp;id=511421'>选择商品</a></td>"+
+                        "<td class='align_center'><a href='index.php?app=regiongoods&amp;act=editDescription&amp;id=511421'>编辑</a></td>"+
+                        "<td class='align_center'><a href='index.php?app=regiongoods&amp;act=editDescription&amp;id="+res[i].region_id+"'>编辑</a></td>"+
+                        if_show+
                         "<td class='align_center'><span ectype='inline_edit' fieldname='sort_order' fieldid='" + res[i].region_id + "' datatype='pint' maxvalue='255' title='{$lang.editable}' class='editable'>" + res[i].sort_order + "</span></td>"+
-                        "<td class='align_center'><span><a href='index.php?app=regiongoods&id=" + res[i].region_id + "'>配置商品</a></span></td>";
+                        "<td class='align_center'><span><a href='index.php?app=regiongoods&id=" + res[i].region_id + "'>配置背景图</a></span></td>";
                  }
                 pr.after(str);
                 change_background();
@@ -114,8 +124,8 @@ function updateOrder(obj){
 				<th align='center'>推荐商品</th>
 				<th align='center'>地区简介</th>
 				<th align='center'>是否激活</th>
-				<th>{$lang.sort_order}</th>
-				<th class="handler">背景图</th>
+				<th align='center'>{$lang.sort_order}</th>
+				<th align='center'>背景图</th>
 			</tr>
 		</thead>
 		<tbody id="treet1">
@@ -135,14 +145,14 @@ function updateOrder(obj){
 				<td class="align_center"><a>编辑</a></td>
 				<td class="align_center"><a href="index.php?app=regiongoods&act=editDescription&id={$region.region_id}">编辑</a></td>
 				<td class="table-center">
-					<!-- {if $goods.ttc} -->
+					<!-- {if $region.if_show} -->
 					<img src="{res file=style/images/positive_enabled.gif}"
-					ectype="inline_edit" fieldname="ttc" fieldid="{$goods.goods_id}"
-					fieldvalue="1" title="土特产" />
+					ectype="inline_edit" fieldname="if_show" fieldid="{$region.region_id}"
+					fieldvalue="1" title="是否激活" />
 				<!--{else}-->
 					<img src="{res file=style/images/positive_disabled.gif}"
-					ectype="inline_edit" fieldname="ttc" fieldid="{$goods.goods_id}"
-					fieldvalue="0" title="土特产" />
+					ectype="inline_edit" fieldname="if_show" fieldid="{$region.region_id}"
+					fieldvalue="0" title="是否激活" />
 				<!-- {/if} -->
 				</td>
 				<td class="align_center"><span ectype="inline_edit"

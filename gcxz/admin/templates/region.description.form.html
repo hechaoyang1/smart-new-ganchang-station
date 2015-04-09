@@ -25,7 +25,7 @@
 			<tr>
 				<th class="paddingT15"></th>
 				<td><image style="max-width:150px; max-height:100px;"
-						src="{$site_url}/{$region.default_image|escape}" /></td>
+						{if $region.default_image}src="{$site_url}/{$region.default_image|escape}"{/if} /></td>
 			</tr>
 			<tr>
 				<th class="paddingT15">地区描述:</th>

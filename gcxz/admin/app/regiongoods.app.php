@@ -10,7 +10,7 @@ class RegiongoodsApp extends BackendApp {
 	function index() {
 		/* 取得仁寿地区 */
 		$regionModel = & m ( 'region' );
-		$regions = $regionModel->get_list ( 511421 );
+		$regions = &m ( 'regiondescription' )->get_info ( 511421 );
 		foreach ( $regions as $key => $val ) {
 			$regions [$key] ['switchs'] = 0;
 			if ($regionModel->get_list ( $val ['region_id'] )) {
@@ -35,7 +35,8 @@ class RegiongoodsApp extends BackendApp {
 		$id = empty ( $_REQUEST ['id'] ) ? 0 : intval ( $_REQUEST ['id'] );
 		$rdModel = & m ( 'regiondescription' );
 		/* 是否存在 */
-		$region = $rdModel->get_info ( $id );
+		$result = $rdModel->get_info ( $id );
+		$region = $result [0];
 		if (! IS_POST) {
 			if (! $region) {
 				$this->show_warning ( 'region_empty' );
@@ -55,7 +56,7 @@ class RegiongoodsApp extends BackendApp {
 					'description' => $_POST ['description'],
 					'default_image' => $image 
 			);
-			if (! $region ['description']) {
+			if ($region ['description'] === NULL) {
 				$rdModel->add ( $data );
 			} else {
 				$rdModel->edit ( $region ['id'], $data );
@@ -95,6 +96,63 @@ class RegiongoodsApp extends BackendApp {
 		} else {
 			return false;
 		}
+	}
+	
+	/* 异步取下一级地区 */
+	function ajax_cate() {
+		if (! isset ( $_GET ['id'] ) || empty ( $_GET ['id'] )) {
+			echo ecm_json_encode ( false );
+			return;
+		}
+		$rdModel = & m ( 'regiondescription' );
+		$cate = $rdModel->get_list ( $_GET ['id'] );
+		foreach ( $cate as $key => $val ) {
+			$child = $rdModel->get_list ( $val ['region_id'] );
+			if (! $child || empty ( $child )) {
+				$cate [$key] ['switchs'] = 0;
+			} else {
+				$cate [$key] ['switchs'] = 1;
+			}
+		}
+		header ( "Content-Type:text/html;charset=" . CHARSET );
+		echo ecm_json_encode ( array_values ( $cate ) );
+		// $this->json_result($cate);
+		return;
+	}
+	
+	// 异步修改数据
+	function ajax_col() {
+		$id = empty ( $_GET ['id'] ) ? 0 : intval ( $_GET ['id'] );
+		$column = empty ( $_GET ['column'] ) ? '' : trim ( $_GET ['column'] );
+		$value = isset ( $_GET ['value'] ) ? trim ( $_GET ['value'] ) : '';
+		$data = array ();
+		
+		if (in_array ( $column, array (
+				'sort_order' 
+		) )) {
+			$data [$column] = $value;
+			$regionModel = & m ( 'region' );
+			$regionModel->edit ( $id, $data );
+			if (! $regionModel->has_error ()) {
+				echo ecm_json_encode ( true );
+			}
+		} else if ($column == 'if_show') {
+			$rdModel = & m ( 'regiondescription' );
+			$result = $rdModel->get_info ( $id );
+			$region = $result [0];
+			$data = array (
+					'region_id' => $id,
+					'description' => '' 
+			);
+			$data [$column] = $value;
+			if ($region ['description'] === NULL) {
+				$rdModel->add ( $data );
+			} else {
+				$rdModel->edit ( $region ['id'], $data );
+			}
+			echo ecm_json_encode ( true );
+		}
+		return;
 	}
 }
 
