@@ -120,15 +120,23 @@ class Buyer_orderApp extends MemberbaseApp
 
             return;
         }
+        $status = array(ORDER_SUBMITTED, ORDER_PENDING, ORDER_ACCEPTED);
         $model_order    =&  m('order');
         /* 只有待付款的订单可以取消 */
-        $order_info     = $model_order->get("order_id={$order_id} AND buyer_id=" . $this->visitor->get('user_id') . " AND status " . db_create_in(array(ORDER_PENDING, ORDER_SUBMITTED)));
+        $order_info     = $model_order->get("order_id={$order_id} AND buyer_id=" . $this->visitor->get('user_id') . " AND status " . db_create_in($status));
         if (empty($order_info))
         {
             echo Lang::get('no_such_order');
 
             return;
         }
+        //只有货到付款且状态为待发货时才能取消
+        if($order_info['payment_code'] != 'cod' && $order_info['status'] == ORDER_ACCEPTED)
+        {
+            echo Lang::get('no_such_order');
+            return;
+        }
+        
         if (!IS_POST)
         {
             header('Content-Type:text/html;charset=' . CHARSET);
