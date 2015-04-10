@@ -183,7 +183,7 @@
 	<div id="container"
 		style="position: relative; background: #FFF; overflow: hidden; height: auto; width: 928px; padding: 16px;">
 		{foreach from=$goods_list item=goods}
-		<div class="element type1">
+		<div class="element type1" onclick="javascript:window.location.href='index.php?app=goods&id={$goods.goods_id}';">
 			<div class="count">
 				<div class="comment">{$goods.add_time|date}</div>
 			</div>
