@@ -51,6 +51,10 @@
 	float: right;
 	margin: 10px 10px 0 0;
 }
+.text_email{
+	background-repeat: no-repeat;
+	background-position: -105px;
+}
 .text_word{
 	background-repeat: no-repeat;
 	background-position: -40px;

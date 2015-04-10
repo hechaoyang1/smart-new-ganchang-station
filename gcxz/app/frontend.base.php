@@ -134,12 +134,12 @@ class FrontendApp extends ECBaseApp
         }
         else
         {
-            if (Conf::get('captcha_status.login') && base64_decode($_SESSION['captcha']) != strtolower($_POST['captcha']))
-            {
-                $this->show_warning('captcha_failed');
+//             if (Conf::get('captcha_status.login') && base64_decode($_SESSION['captcha']) != strtolower($_POST['captcha']))
+//             {
+//                 $this->show_warning('captcha_failed');
 
-                return;
-            }
+//                 return;
+//             }
 
             $user_name = trim($_POST['user_name']);
             $password  = $_POST['password'];
