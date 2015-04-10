@@ -149,7 +149,7 @@ alt="QQ交流" border="0" />
 /* buy */
  
 $(function(){
-    $.extend({
+    /* $.extend({
         tipsBox: function(options) {
             options = $.extend({
                 obj:$("div"),
@@ -192,7 +192,7 @@ $(function(){
                 options.callback();
             });
         }
-    });
+    }); */
     
 	$('.shoppingCar').click(function(){
 	    if (goodsspec.getSpec() == null)
@@ -239,10 +239,10 @@ function add_to_cart(obj, spec_id, quantity)
     $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
         if (data.done)
         {
-    	    $.tipsBox({
+    	   /*  $.tipsBox({
     			obj: obj,
     			str: "+"+quantity,
-    	        callback: function() {
+    	        callback: function() { */
 		           /*  $('.bold_num').text(data.retval.cart.kinds);
 		            $('.bold_mly').html(price_format(data.retval.cart.amount));
 		            $('.ware_cen').slideDown('slow');
@@ -254,8 +254,9 @@ function add_to_cart(obj, spec_id, quantity)
 		            }else{
 		           		 _i.text(parseInt(_i.text())+parseInt(quantity));
 		            }
-    	        }
-    		});
+		            alert('添加到购物车成功');
+    	     /*    }
+    		}); */
         }
         else
         {
