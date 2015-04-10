@@ -1,5 +1,5 @@
 .fixedSearch {
-  background-color: #333;
+  background-color: white;
   padding: 5px 0;
   position: fixed;
   width: 100%;
@@ -11,7 +11,7 @@
 .fixedSearch form.pull-left {
   margin: 4px 0 0 50px; }
 
-.fixedSearch .key {
+/*.fixedSearch .key {
   width: 460px;
   border: none;
   background-color: #fff;
@@ -19,7 +19,18 @@
   height: 36px;
   line-height: 36px;
   text-indent: 10px;
-  float: left; }
+  float: left; }*/
+	
+.fixedSearch .key {
+    width: 460px;
+    background-color: #FFF;
+    padding: 0px;
+    height: 32px;
+    line-height: 36px;
+    text-indent: 10px;
+    float: left;
+    border: 2px solid #EF8200;
+}
 
 .fixedSearch .sub {
   font-size: 15px;
