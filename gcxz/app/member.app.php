@@ -134,8 +134,7 @@ class MemberApp extends MemberbaseApp
     {
         if ($this->visitor->has_login)
         {
-            $this->show_warning('has_login');
-
+             header("Location:".SITE_URL."/index.php");
             return;
         }
         if (!IS_POST)

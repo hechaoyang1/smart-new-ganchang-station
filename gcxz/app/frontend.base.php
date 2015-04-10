@@ -88,9 +88,8 @@ class FrontendApp extends ECBaseApp
     {
         if ($this->visitor->has_login)
         {
-            $this->show_warning('has_login');
-
-            return;
+           header("Location:".SITE_URL."/index.php");
+           return;
         }
         if (!IS_POST)
         {
