@@ -344,9 +344,9 @@ body {
 
 .rightTools {
   position: fixed;
-  left: 50%;
-  top: 30%;
-  margin-left: 490px; }
+  right: 5%;
+  z-index: 9999;
+  top: 30%; }
 
 .rightTools li > a {
   width: 48px;
@@ -402,8 +402,8 @@ body {
 .toolsShoppingCar {
   position: fixed;
   top: 100px;
-  left: 50%;
-  margin-left: 130px;
+  right: 5%;
+  margin-right: 60px;
   z-index: 99;
   width: 350px;
   border: 1px solid #e0e0e0;
@@ -520,13 +520,13 @@ body {
   position: fixed;
   width: 260px;
   padding: 20px;
-  left: 50%;
+  right: 5%;
+  margin-right: 60px;
   top: 20%;
   background-color: #ebebeb;
   border: 1px solid #808080;
   z-index: 99;
-  color: #b9aeae;
-  margin-left: 178px; }
+  color: #b9aeae; }
 
 .toolsLogin:before, .toolsLogin:after {
   content: "";
