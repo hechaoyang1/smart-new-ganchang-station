@@ -42,7 +42,7 @@ function change_quantity(store_id, rec_id, spec_id, input, orig){
     //暂存为局部变量，否则如果用户输入过快有可能造成前后值不一致的问题
     var _v = input.value;
     var oldv=$(input).attr('changed');
-    if(!/^\d+$/.test(_v)||_v==oldv){
+    if(_v.length>0&&!/^\d+$/.test(_v)||_v==oldv){
     	$(input).val(oldv);
     	return;
     }

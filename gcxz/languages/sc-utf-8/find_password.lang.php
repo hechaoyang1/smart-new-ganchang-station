@@ -4,11 +4,11 @@ return array(
     'your_email' => '您的电子邮箱',
     'emaill_explain' => '您在本站注册时填写的电子邮箱,如果忘记请您联系客服',
     'yangzheng' => '验证码',
-    'explain' => '请输入你的登录帐号和电子邮箱, 系统检查之后会发邮件到你的邮箱, 请按照邮件的提示操作',
+    'explain' => '请输入你的登录帐号和验证码, 系统检查之后会发邮件到你的邮箱, 请按照邮件的提示操作',
     'submit'  => '提交',
     'unsettled_required' => '有必填项未填写',
     'captcha_faild' => '验证码错误',
-    'not_exist' => '不存在符合此用户名与邮箱的用户',
+    'not_exist' => '不存在符合此用户名的用户',
     'sendmail_success'  => '邮件已经发送到您的邮箱，请您尽快查收',
     'back_index' => '回到首页',
     'request_error' => '错误的请求',
@@ -31,6 +31,7 @@ return array(
     'captcha_error' => '验证码错误',
     'password_length_error' => '密码长度错误，应在6到20位之间',
     'find_password' => '找回密码',
+	'to400'=>'你没有绑定邮箱，请拨打服务热线：400-7166-616联系管理员重置密码'
 );
 
 

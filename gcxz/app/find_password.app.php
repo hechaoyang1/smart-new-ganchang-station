@@ -31,7 +31,7 @@ class Find_passwordApp extends MallbaseApp
        else
        {
            $addr = $_SERVER['HTTP_REFERER'];
-           if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['captcha']))
+           if (empty($_POST['username']) || empty($_POST['captcha']))
            {
                $this->show_warning("unsettled_required",
                    'go_back', $addr);
@@ -44,12 +44,11 @@ class Find_passwordApp extends MallbaseApp
                return ;
            }
            $username = trim($_POST['username']);
-           $email = trim($_POST['email']);
 
            /* 简单验证是否是该用户 */
            $ms =& ms();     //连接用户系统
            $info = $ms->user->get($username, true);
-           if (empty($info) || $info['email'] != $email)
+           if (empty($info))
            {
                $this->show_warning('not_exist',
                    'go_back', $addr);
@@ -69,10 +68,15 @@ class Find_passwordApp extends MallbaseApp
             {
                 $this->_password_mod->edit($info['user_id'], array('activation' => "{$md5word}"));
             }
-            $mail = get_mail('touser_find_password', array('user' => $info, 'word' => $word));
-            $this->_mailto($email, addslashes($mail['subject']), addslashes($mail['message']),MAIL_PRIORITY_LOW,true);
-            $this->show_message("sendmail_success",
-                    'back_index', 'index.php');
+            if($info['email']){
+	            $mail = get_mail('touser_find_password', array('user' => $info, 'word' => $word));
+	            $this->_mailto($info['email'], addslashes($mail['subject']), addslashes($mail['message']),MAIL_PRIORITY_LOW,true);
+	            $this->show_message("邮件已经发送到您的邮箱:{$info['email']}，请您尽快查收",
+	                    'back_index', 'index.php');
+            }else{
+            	$this->show_warning("to400",
+            			'back_index', 'index.php');
+            }
 
             return;
        }
