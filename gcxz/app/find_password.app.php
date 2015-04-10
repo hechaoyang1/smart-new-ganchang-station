@@ -70,7 +70,7 @@ class Find_passwordApp extends MallbaseApp
                 $this->_password_mod->edit($info['user_id'], array('activation' => "{$md5word}"));
             }
             $mail = get_mail('touser_find_password', array('user' => $info, 'word' => $word));
-            $this->_mailto($email, addslashes($mail['subject']), addslashes($mail['message']));
+            $this->_mailto($email, addslashes($mail['subject']), addslashes($mail['message']),MAIL_PRIORITY_LOW,true);
             $this->show_message("sendmail_success",
                     'back_index', 'index.php');
 
