@@ -80,7 +80,9 @@ class SearchApp extends MallbaseApp
 		
 		// 商品全部分类
 		$this->assign('top_category', m('gcategory')->get_top_category());
-		
+		$this->import_resource(array(
+				'script' => 'search_goods.js',
+		));
 		$this->display ( 'search.goods.html' );
     }
 

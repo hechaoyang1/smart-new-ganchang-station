@@ -110,6 +110,7 @@ function replaceParam(key, value)
         value = transform_char(value);
         params.push(key + '=' + value);
     }
+    params[0] = 'app=search';
     location.assign(SITE_URL + '/index.php?' + params.join('&'));
 }
 
@@ -131,5 +132,6 @@ function dropParam(key)
             params.splice(i, 1);
         }
     }
+    params[0] = 'app=search';
     location.assign(SITE_URL + '/index.php?' + params.join('&'));
 }

@@ -54,7 +54,8 @@ class GoodsApp extends StorebaseApp
         
         $this->assign('guest_comment_enable', Conf::get('guest_comment'));
         $this->import_resource(array(
-        		'style' => 'res:css/goodsDetailed.css'
+        		'style' => 'res:css/goodsDetailed.css',
+        		'script' => 'search_goods.js',
         ));
         $this->display('goods.index.html');
     }
