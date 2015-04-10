@@ -32,7 +32,7 @@
 							</div>
 						</td>
 						<td class="price">{$goods.price|price}</td>
-						<td class="num"><a href="javascript:;" onclick="decrease_quantity({$goods.rec_id});" >-</a><input id="input_item_{$goods.rec_id}" value="{$goods.quantity}" orig="{$goods.quantity}" changed="{$goods.quantity}" onkeyup="change_quantity({$store_id}, {$goods.rec_id}, {$goods.spec_id}, this);" class="text1 width3" type="text" /><a href="javascript:;" onblur="add_quantity({$goods.rec_id});">+</a></td>
+						<td class="num"><a href="javascript:;" onclick="decrease_quantity({$goods.rec_id});" >-</a><input id="input_item_{$goods.rec_id}" value="{$goods.quantity}" orig="{$goods.quantity}" changed="{$goods.quantity}" onkeyup="change_quantity({$store_id}, {$goods.rec_id}, {$goods.spec_id}, this);" class="text1 width3" type="text" /><a href="javascript:;" onclick="add_quantity({$goods.rec_id});">+</a></td>
 						<td  id="item{$goods.rec_id}_subtotal">{$goods.subtotal|price}</td>
 						<td class="operation">
 							<div><a href="javascript:;" onclick="drop_cart_item({$store_id}, {$goods.rec_id});">{$lang.drop}</a></div>
