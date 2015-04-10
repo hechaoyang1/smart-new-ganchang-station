@@ -22,16 +22,14 @@
 				<div class="count">
 					<div class="comment">{$fixed_list[4].ctime}</div>
 				</div>
-				<div class="numbers">
+				<div class="numbers"  style="cursor:pointer;" onclick="javascript:window.location.href='{url app=search&goodsId=$fixed_list[4].goods_ids}'">
 					<div class="number-img">
 						<img src="{$fixed_list[4].picture}" alt="">
 					</div>
 					<div class="text">
-						<a href="{url app=search&goodsId=$fixed_list[4].goods_ids}">
 							<div>
 								{$fixed_list[4].description}
 							</div>
-						</a>
 					</div>
 				</div>
 			</div>
@@ -39,16 +37,14 @@
 				<div class="count">
 					<div class="comment">{$fixed_list[5].ctime}</div>
 				</div>
-				<div class="numbers">
+				<div class="numbers" style="cursor:pointer;" onclick="javascript:window.location.href='{url app=search&goodsId=$fixed_list[5].goods_ids}'">
 					<div class="number-img">
 						<img src="{$fixed_list[5].picture}" alt="">
 					</div>
 					<div class="text">
-						<a href="{url app=search&goodsId=$fixed_list[5].goods_ids}">
 							<div>
 								{$fixed_list[5].description}
 							</div>
-						</a>
 					</div>
 				</div>
 			</div>
@@ -56,16 +52,14 @@
 				<div class="count">
 					<div class="comment">{$fixed_list[2].ctime}</div>
 				</div>
-				<div class="numbers">
+				<div class="numbers"  style="cursor:pointer;" onclick="javascript:window.location.href='{url app=search&goodsId=$fixed_list[2].goods_ids}'">
 					<div class="number-img">
 						<img src="{$fixed_list[2].picture}" alt="">
 					</div>
 					<div class="text">
-						<a href="{url app=search&goodsId=$fixed_list[2].goods_ids}">
 							<div>
 								{$fixed_list[2].description}
 							</div>
-						</a>
 					</div>
 				</div>
 			</div>
@@ -80,14 +74,12 @@
 			<div class="count">
 				<div class="comment">{$product.ctime}</div>
 			</div>
-			<div class="numbers">
+			<div class="numbers" style="cursor:pointer;" onclick="javascript:window.location.href='{url app=search&goodsId=$product.goods_ids}';">
 				<div class="number-img">
 					<img src="{$product.picture}" alt="">
 				</div>
-				<div class="text">
-					<a href="{url app=search&goodsId=$product.goods_ids}">
+				<div class="text" >
 					{$product.description}
-					</a>
 				</div>
 			</div>
 			<div class="name">{$product.name}</div>
