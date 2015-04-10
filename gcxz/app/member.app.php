@@ -175,11 +175,11 @@ class MemberApp extends MemberbaseApp
 
                 return;
             }
-            if (Conf::get('captcha_status.register') && base64_decode($_SESSION['captcha']) != strtolower($_POST['captcha']))
-            {
-                $this->show_warning('captcha_failed');
-                return;
-            }
+//             if (Conf::get('captcha_status.register') && base64_decode($_SESSION['captcha']) != strtolower($_POST['captcha']))
+//             {
+//                 $this->show_warning('captcha_failed');
+//                 return;
+//             }
             if ($_POST['password'] != $_POST['password_confirm'])
             {
                 /* 两次输入的密码不一致 */
@@ -202,6 +202,7 @@ class MemberApp extends MemberbaseApp
             /* 注册并登陆 */
             $user_name = trim($_POST['user_name']);
             $password  = $_POST['password'];
+            $email     = trim($_POST['email']);
             $passlen = strlen($password);
             $user_name_len = strlen($user_name);
             if ($user_name_len < 3 || $user_name_len > 50)
@@ -216,9 +217,15 @@ class MemberApp extends MemberbaseApp
 
                 return;
             }
-
+            if (!is_email($email))
+            {
+            	$this->show_warning('email_error');
+            
+            	return;
+            }
             $ms =& ms(); //连接用户中心
-            $user_id = $ms->user->register_by_phone($user_name, $password, $phone);
+//             $user_id = $ms->user->register_by_phone($user_name, $password, $phone);
+            $user_id = $ms->user->register($user_name, $password, $email);
 
             if (!$user_id)
             {

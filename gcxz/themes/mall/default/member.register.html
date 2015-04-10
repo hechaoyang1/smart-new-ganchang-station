@@ -27,6 +27,15 @@
             </div>
             <div class="float"></div>
             <div class="form_field_uname">
+                <label><span>*</span>邮箱:</label>
+                <div class="form_field_uname_div">
+					<input type="text" id="email" name="email" class="" />
+					<div class="re_text_name text_email"></div>
+				</div>
+				<label class="uname_label">填写邮箱</label>
+            </div>
+            <div class="float"></div>
+            <div class="form_field_uname">
                 <label><span>*</span>密码:</label>
                 <div class="form_field_uname_div">
 					 <input type="password" id="password" name="password" class="" />
@@ -131,6 +140,10 @@
 	                    }
 	                }
 	            },
+	            email : {
+	                required : true,
+	                email    : true
+	            },
 	            password : {
 	                required : true,
 	                minlength: 6,
@@ -158,6 +171,10 @@
 	                required : '{$lang.user_name_required}',
 	                rangelength: '{$lang.user_name_limit}',
 	                remote   : '{$lang.user_already_taken}'
+	            },
+	            email : {
+	                required : '{$lang.email_required}',
+	                email    : '{$lang.email_invalid}'
 	            },
 	            password  : {
 	                required : '{$lang.password_required}',
