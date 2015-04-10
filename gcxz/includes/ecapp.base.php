@@ -1088,7 +1088,7 @@ EOT;
      *    @param     int    $priority
      *    @return    void
      */
-    function _mailto($to, $subject, $message, $priority = MAIL_PRIORITY_LOW)
+    function _mailto($to, $subject, $message, $priority = MAIL_PRIORITY_LOW,$is_asyn=false)
     {
         /* 加入邮件队列，并通知需要发送 */
         $model_mailqueue =& m('mailqueue');
@@ -1109,7 +1109,7 @@ EOT;
         $model_mailqueue->add($mails);
 
         /* 默认采用异步发送邮件，这样可以解决响应缓慢的问题 */
-        $this->_sendmail();
+        $this->_sendmail($is_asyn);
     }
 
     /**
