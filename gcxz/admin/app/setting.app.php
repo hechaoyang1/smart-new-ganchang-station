@@ -95,6 +95,7 @@ class SettingApp extends BackendApp
             $data['rewrite_enabled']            = ($_POST['rewrite_enabled'] == '1');
             $data['guest_comment']          = ($_POST['guest_comment'] == '1');
             $data['enable_radar']          = ($_POST['enable_radar'] == '1');//goods_radar
+            $data['version']          = $_POST['version'];
             if ($feed_enabled)
             {
                 $_default_feed_list = array();

@@ -171,6 +171,15 @@ $(function(){
             <input type="text" name="sitemap_frequency" value="{$setting.sitemap_frequency}" />
         </td>
       </tr>
+          	<tr id="version">
+        <th class="paddingT15">
+            版本号:
+        </th>
+        <td class="paddingT15">
+            <input type="text" name="version" value="{$setting.version}" />
+            <span class="grey">静态css、js版本号</span>
+        </td>
+      </tr>
       <tr>
         <th class="paddingT15">{$lang.session_type}:</th>
         <td class="paddingT15"><input id="mysql" type="radio" name="session_type" {if $setting.session_type eq 'mysql'}checked{/if} value="mysql" />
@@ -189,8 +198,6 @@ $(function(){
             <span class="grey">{$lang.session_memcached_note}</span>
         </td>
       </tr>
-
-
       <tr>
         <th class="paddingT15">{$lang.cache_server}:</th>
         <td class="paddingT15"><input id="c_default" type="radio" name="cache_server" {if $setting.cache_server eq 'default'}checked{/if} value="default" />
@@ -209,8 +216,6 @@ $(function(){
             <span class="grey">{$lang.cache_memcached_note}</span>
         </td>
       </tr>
-
-
       <tr>
         <th class="paddingT15">{$lang.enable_radar}:</th>
         <td class="paddingT15"><input id="radar_disabled" type="radio" name="enable_radar" {if !$setting.enable_radar}checked{/if} value="0" />
