@@ -1,4 +1,5 @@
 var showtimer;
+var show=false;
 $(function() {
 	$("div.tjsp").each(function() {
 		var $this = $(this);
@@ -11,6 +12,7 @@ $(function() {
 		}).show();
 	});
 	$("svg polygon.fil").mousemove(function() {
+		show=false;
 		clearTimeout(showtimer);
 		var rid = this.id.substr(2);
 		showtimer = setTimeout("showtj(" + rid + ",11" + ")", 400);
@@ -46,6 +48,7 @@ $(function() {
 	})
 })
 function showtj(rid, lc) {
+	show=true;
 	clearTimeout(showtimer);
 	var data = $("#tc_" + rid);
 	if (data.length > 0) {
@@ -60,7 +63,10 @@ function showtj(rid, lc) {
 						if(!$(e.toElement).is("#m_" + rid)){
 							$(this).hide();
 						}
-					}).show();
+					});
+					if(show){
+						$("#tc_" + rid).show();
+					}
 				}
 			});
 }
