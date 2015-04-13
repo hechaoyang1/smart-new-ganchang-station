@@ -389,15 +389,13 @@ EOT;
     function import_resource($resources, $spec_type = null)
     {
         $headtag = '';
-        $model_setting = &af('settings');
-        $setting = $model_setting->getAll();
         if (is_string($resources) || $spec_type)
         {
             !$spec_type && $spec_type = 'script';
             $resources = $this->_get_resource_data($resources);
             foreach ($resources as $params)
             {
-                $headtag .= $this->_get_resource_code($spec_type, $params, '?v='.$setting['version']) . "\r\n";
+                $headtag .= $this->_get_resource_code($spec_type, $params) . "\r\n";
             }
             $this->headtag($headtag);
         }
@@ -511,19 +509,19 @@ EOT;
      *    @param     array  $params
      *    @return    string
      */
-    function _get_resource_code($type, $params,$version)
+    function _get_resource_code($type, $params)
     {
         switch ($type)
         {
             case 'script':
                 $pre = '<script charset="utf-8" type="text/javascript"';
-                $path= ' src="' . $this->_get_resource_url($params['path']) . $version.'"';
+                $path= ' src="' . $this->_get_resource_url($params['path']) .'?v='. CSS_VERSION.'"';
                 $attr= ' ' . $params['attr'];
                 $tail= '></script>';
             break;
             case 'style':
                 $pre = '<link rel="stylesheet" type="text/css"';
-                $path= ' href="' . $this->_get_resource_url($params['path']) . $version. '"';
+                $path= ' href="' . $this->_get_resource_url($params['path']) .'?v='. CSS_VERSION. '"';
                 $attr= ' ' . $params['attr'];
                 $tail= ' />';
             break;
@@ -569,9 +567,7 @@ EOT;
             return;
         }
         $this->assign('site_url', SITE_URL);
-        $model_setting = &af('settings');
-        $setting = $model_setting->getAll();
-        $this->assign('version', $setting['version']);
+        $this->assign('version', CSS_VERSION);
         $this->assign('real_site_url', defined('IN_BACKEND') ? dirname(site_url()) : site_url());
         $this->assign('ecmall_version', VERSION);
         $this->assign('random_number', rand());

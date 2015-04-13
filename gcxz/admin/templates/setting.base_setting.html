@@ -171,15 +171,6 @@ $(function(){
             <input type="text" name="sitemap_frequency" value="{$setting.sitemap_frequency}" />
         </td>
       </tr>
-          	<tr id="version">
-        <th class="paddingT15">
-            版本号:
-        </th>
-        <td class="paddingT15">
-            <input type="text" name="version" value="{$setting.version}" />
-            <span class="grey">静态css、js版本号</span>
-        </td>
-      </tr>
       <tr>
         <th class="paddingT15">{$lang.session_type}:</th>
         <td class="paddingT15"><input id="mysql" type="radio" name="session_type" {if $setting.session_type eq 'mysql'}checked{/if} value="mysql" />
