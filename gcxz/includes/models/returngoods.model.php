@@ -145,7 +145,9 @@ class ReturngoodsModel extends BaseModel
                     'fields' => 'goods_number' 
             ) );
             $query = "&order_id={$return['order_id']}&return_order_sn={$return['return_order_sn']}&goods_number={$goods_num['goods_number']}&quantity={$return['quantity']}&invoice_no={$param['express_sn']}&remark={$return['remark']}";
-            sendPost ( WMS_URL . 'retreatOrder', $query );
+            $model_setting = &af('settings');
+            $setting = $model_setting->getAll(); //载入系统设置数据
+            sendPost ( $setting['warehouse'] . 'retreatOrder', $query );
         }
         return $ret;
     }
