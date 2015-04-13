@@ -69,9 +69,16 @@ function flex(obj)
                      }else{
                     	 if_show='<td class="table-center" title="可编辑"><img src="templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="'+res[i].region_id+'" fieldvalue="0" title="是否激活"></td>';
                      }
+                     //商品图片
+                     var goods_image = "";
+                     if(res[i].goods_image != "" && res[i].goods_image != null){
+                    	 goods_image = "<img height=30 width=30 src= '" + res[i].goods_image + "' />";
+                   	 }
+                     
                      var itd2 = td2html + src;
                      str+="<tr class='"+pid+" row"+id+"'><td class='align_center w30'></td>"+
                         "<td class='node' width='20%'>" + itd2 + "</td>"+
+                        "<td class='align_center'>" + goods_image + "</td>"+
                         "<td class='align_center'><a href='index.php?app=ttc&amp;act=topGoods&amp;rid="+res[i].region_id+"'>选择商品</a></td>"+
                         "<td class='align_center'><a href='index.php?app=ttc&amp;act=adGoods&amp;rid="+res[i].region_id+"'>编辑</a></td>"+
                         "<td class='align_center'><a href='index.php?app=regiongoods&amp;act=editDescription&amp;id="+res[i].region_id+"'>编辑</a></td>"+
@@ -121,7 +128,7 @@ function updateOrder(obj){
 			<tr>
 				<th class="w30"></th>
 				<th width="20%" align='left'>区域</th>
-				<th align='center'>置顶商品</th>
+				<th align='center' colspan="2">置顶商品</th>
 				<th align='center'>推荐商品</th>
 				<th align='center'>地区简介</th>
 				<th align='center'>是否激活</th>
@@ -142,6 +149,7 @@ function updateOrder(obj){
 					src="templates/style/images/treetable/tv-item.gif"> <!--{/if}-->
 					<span class="node_name">{$region.region_name|escape}</span>
 				</td>
+				<td class="align_center"></td>
 				<td class="align_center"></td>
 				<td class="align_center"></td>
 				<td class="align_center"></td>

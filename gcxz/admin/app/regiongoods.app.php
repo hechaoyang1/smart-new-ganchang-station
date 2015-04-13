@@ -11,12 +11,12 @@ class RegiongoodsApp extends BackendApp {
 		/* 取得仁寿地区 */
 		$regionModel = & m ( 'region' );
 		$regions = &m ( 'regiondescription' )->get_info ( 511421 );
-		foreach ( $regions as $key => $val ) {
-			$regions [$key] ['switchs'] = 0;
-			if ($regionModel->get_list ( $val ['region_id'] )) {
-				$regions [$key] ['switchs'] = 1;
+// 		foreach ( $regions as $key => $val ) {
+			$regions [0] ['switchs'] = 0;
+			if ($regionModel->get_list ( 511421 )) {
+				$regions [0] ['switchs'] = 1;
 			}
-		}
+// 		}
 		$this->assign ( 'regions', $regions );
 		
 		$this->assign ( 'max_layer', MAX_LAYER );

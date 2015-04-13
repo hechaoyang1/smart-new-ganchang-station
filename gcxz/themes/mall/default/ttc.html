@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>土特产专题</title>
+		<link rel="stylesheet" href="{res file=css/base.css}">
+		<link rel="stylesheet" type="text/css" href="{res file=css/localfeature.css}" />
+		<script type="text/javascript">
+		var SITE_URL = "{$site_url}";
+		var REAL_SITE_URL = "{$real_site_url}";
+		var PRICE_FORMAT = '{$price_format}';
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="main">
+				<ul id="cbp-bislideshow" class="cbp-bislideshow">
+				<!--{foreach from=$imgs item=v}-->
+				<li><img src="{$v.bg_image}" alt="{$v.description}"/></li>
+				<!--{/foreach}-->
+				</ul>
+			</div>
+		</div>
+		<div id="backg"><!--style="text-align:center;clear:both"-->
+		<div style="width:980px; margin:0 auto;">
+			<div class="native_logo">
+				<a href="{url app=default}" class="logo"><img src="{res file=img/logo.png}" width="195" height="55" alt=""></a>
+			</div>
+			<div class="native_search">
+				<form>
+	                <input type="hidden" name="act" value="index" />
+	                <input type="hidden" name="app" value="search" />
+					<input class="search_input1" type="text" placeholder="搜索"><input  class="search_input2" type="submit" value="">
+				</form>
+			</div>
+			<div class="native_jump">
+				<span class="jump_span0"><a href="{url app=default}">首页</a>&nbsp|&nbsp<a href="{url app=default&act=fcg}">逢场购</a>&nbsp|&nbsp<a href="{url app=nativegoods}">土特产</a></span>
+				<span class="jump_span jump_span1"></span>
+				<span class="jump_span jump_span2"></span>
+			</div>
+			<div style="clear: left;"></div>
+			<div id="cbp-bicontrols" class="cbp-bicontrols">
+				<span class="cbp-biprev"></span>
+				<span class="cbp-binext"></span>
+				<span class="cbp-a"><a href="#">{$imgs[0].description}</a></span>
+			</div>
+			</div>
+			<div class="native_map" style="position: relative;">
+				
+				<div id="container" style="position: relative">
+					{$map}
+					<div style="position: absolute;">
+					<!--{foreach from=$goods item=v}-->
+						<div id="tj_{$v.region_id}" class="tjsp" style="display:none;">
+							<div class="native_map_1" style="position: absolute; top:-112px; left:-6px;">
+								<a href="#" class="native_map_a">
+									<div class="map_a_div1">{$v.goods_name}</div>
+									<div class="map_a_div2"><img src="{$v.default_image}"  width="62" height="47"></div>
+								</a>
+							</div>
+						</div>
+					<!--{/foreach}-->
+					</div>
+				</div>
+		</div>
+		<div class="native_names" id="native_names">
+			{if $more}{
+			<div class="native_names0"></div>
+			{/if}
+			<div class="native_names1">
+			<ul>
+			<!--{foreach from=$regions item=v key=i}-->
+		    <li class="native_namesli1" id="r_{$v.region_id}">{$v.region_name}</li>
+			<li class="native_namesli"></li>
+			{if ($i+1)%10===0}
+			</ul>
+			</div>
+			<div class="native_names1">
+			<ul>
+			 {/if}
+			<!--{/foreach}-->
+			</ul>
+			</div>
+		</div>
+	</div>
+<div class="native_end">
+官方微博：赶场小站（新浪微博）2014@版权归赶场小站所有  ICP备案：蜀ICP14013997号
+</div>
+</body>
+<script src="{res file=js/modernizr.custom.js}"></script>
+<script src="{res file=js/jquery.min.js}"></script>
+<script src="{res file=js/jquery.imagesloaded.min.js}"></script>
+<script src="{res file=js/cbpBGSlideshow.min.js}"></script>
+<script src="{res file=js/ttc.js}"></script>
+</html>
