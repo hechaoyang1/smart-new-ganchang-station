@@ -78,6 +78,7 @@ define('GROUP_CANCEL_INTERVAL', 5);     // 团购结束后自动取消的间隔�
 /* 通知类型 */
 define('NOTICE_MAIL',   1); // 邮件通知
 define('NOTICE_MSG',    2); // 站内短消息
+define('CSS_VERSION',    20150414); // 站内短消息
 
 
 date_default_timezone_set('Asia/Shanghai');
