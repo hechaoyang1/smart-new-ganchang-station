@@ -341,6 +341,29 @@ class SettingApp extends BackendApp
             $this->show_message('edit_subdomain_setting_successed');
         }
     }
+    /**
+     *    仓储地址设置
+     *
+     *    @author    Hyber
+     *    @return    void
+     */
+    function warehouse_setting()
+    {
+    	$model_setting = &af('settings');
+    	$setting = $model_setting->getAll(); //载入系统设置数据
+    	if (!IS_POST)
+    	{
+    		$this->assign('setting', $setting);
+    		$this->display('setting.warehouse.html');
+    	}
+    	else
+    	{
+    		$data['warehouse']     = $_POST['warehouse'];
+    		$model_setting->setAll($data);
+    
+    		$this->show_message('修改成功');
+    	}
+    }
 
     /**
      *    上传默认商品图片、默认店铺标志、默认会员头像
