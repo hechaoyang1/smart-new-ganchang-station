@@ -53,9 +53,9 @@ class RegiongoodsApp extends BackendApp {
 			}
 			$data = array (
 					'region_id' => $id,
-					'description' => $_POST ['description'],
-					'default_image' => $image 
+					'description' => $_POST ['description'] 
 			);
+			$image && $data ['default_image'] = $image;
 			if ($region ['description'] === NULL) {
 				$rdModel->add ( $data );
 			} else {
@@ -65,6 +65,91 @@ class RegiongoodsApp extends BackendApp {
 		}
 	}
 	
+	/**
+	 * 管理背景图片
+	 */
+	function manageBg() {
+		$id = empty ( $_REQUEST ['id'] ) ? 0 : intval ( $_REQUEST ['id'] );
+		$bgModel = &m ( 'regionbg' );
+		$regionImage = $bgModel->get_List ( $id );
+		$this->assign ( 'region', $bgModel->get_info ( $id ) );
+		$this->assign ( 'images', $regionImage );
+		/* 导入jQuery的表单验证插件 */
+		$this->import_resource ( array (
+				'script' => 'jqtreetable.js,inline_edit.js',
+				'style' => 'res:style/jqtreetable.css' 
+		) );
+		$this->display ( 'region.bg.index.html' );
+	}
+	/**
+	 * 添加背景图片
+	 */
+	function addBg() {
+		$id = empty ( $_REQUEST ['id'] ) ? 0 : intval ( $_REQUEST ['id'] );
+		$imageId = $_REQUEST ['imageId'];
+		$bgModel = &m ( 'regionbg' );
+		if (! IS_POST) {
+			$this->assign ( 'region', $bgModel->get_info ( $id ) );
+			$this->import_resource ( array (
+					'script' => 'jquery.plugins/jquery.validate.js' 
+			) );
+			$this->display ( 'region.bg.add.html' );
+		} else {
+			$imageIdParam = '';
+			if ($imageId) {
+				$imageIdParam = '&imageId=' . $imageId;
+			}
+			$image = $this->_upload_bg_image ( $id );
+			if ($image === false) {
+				$this->show_warning ( '保存图片失败', 'go_back', 'index.php?app=regiongoods&amp;act=addBg&amp;id=' . $id . $imageIdParam );
+				return;
+			}
+			$data = array (
+					'region_id' => $id,
+					'description' => $_POST ['description'],
+					'bg_image' => $image,
+					'sort_order' => $_POST ['sort_order'] 
+			);
+			if (! $imageId) {
+				$bgModel->add ( $data );
+			} else {
+				$bgModel->edit ( $imageId, $data );
+			}
+			$this->show_message ( '保存成功', 'go_back', 'index.php?app=regiongoods&amp;act=manageBg&amp;id=' . $id );
+		}
+	}
+	/**
+	 * 删除背景图片
+	 */
+	function dropBg() {
+		$id = empty ( $_REQUEST ['id'] ) ? 0 : intval ( $_REQUEST ['id'] );
+		$imageId = $_REQUEST ['imageId'];
+		$bgModel = &m ( 'regionbg' );
+		$bgModel->drop ( $imageId );
+		$this->show_message ( '删除成功', 'go_back', 'index.php?app=regiongoods&amp;act=manageBg&amp;id=' . $id );
+	}
+	
+	function dropBgList()
+	{
+		$ids = isset($_GET['id']) ? trim($_GET['id']) : '';
+		if (!$ids)
+		{
+			$this->show_warning('no_such_brand');
+	
+			return;
+		}
+		$ids=explode(',',$ids);
+		$bgModel = &m ( 'regionbg' );
+		$bgModel->drop($ids);
+		if ($bgModel->has_error())    //删除
+		{
+			$this->show_warning($bgModel->get_error());
+	
+			return;
+		}
+	
+		$this->show_message('删除成功');
+	}
 	/**
 	 * 处理上传标志
 	 *
@@ -91,6 +176,40 @@ class RegiongoodsApp extends BackendApp {
 		
 		/* 上传 */
 		if ($file_path = $uploader->save ( 'data/files/mall/ttc', $id )) 		// 保存到指定目录，并以指定文件名$brand_id存储
+		{
+			return $file_path;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * 处理上传标志
+	 *
+	 * @author Hyber
+	 * @param int $brand_id        	
+	 * @return string
+	 */
+	function _upload_bg_image($id) {
+		$file = $_FILES ['bg_image'];
+		if ($file ['error'] == UPLOAD_ERR_NO_FILE) 		// 没有文件被上传
+		{
+			return '';
+		}
+		import ( 'uploader.lib' ); // 导入上传类
+		$uploader = new Uploader ();
+		$uploader->allowed_type ( IMAGE_FILE_TYPE ); // 限制文件类型
+		$uploader->addFile ( $_FILES ['bg_image'] ); // 上传logo
+		if (! $uploader->file_info ()) {
+			$this->show_warning ( $uploader->get_error (), 'go_back', 'index.php?app=regiongoods&amp;act=addBg&amp;id=' . $id );
+			exit ();
+		}
+		/* 指定保存位置的根目录 */
+		$uploader->root_dir ( ROOT_PATH );
+		
+		$rename = md5 ( 'addBg' . microtime () );
+		/* 上传 */
+		if ($file_path = $uploader->save ( 'data/files/mall/ttc', $rename )) 		// 保存到指定目录，并以指定文件名$brand_id存储
 		{
 			return $file_path;
 		} else {
@@ -151,7 +270,22 @@ class RegiongoodsApp extends BackendApp {
 				$rdModel->edit ( $region ['id'], $data );
 			}
 			echo ecm_json_encode ( true );
+		} else if ($column == 'bg.sort_order') {
+			$data ['sort_order'] = $value;
+			$regionModel = & m ( 'regionbg' );
+			$regionModel->edit ( $id, $data );
+			if (! $regionModel->has_error ()) {
+				echo ecm_json_encode ( true );
+			}
+		} else if ($column == 'bg.description') {
+			$data ['description'] = $value;
+			$regionModel = & m ( 'regionbg' );
+			$regionModel->edit ( $id, $data );
+			if (! $regionModel->has_error ()) {
+				echo ecm_json_encode ( true );
+			}
 		}
+		
 		return;
 	}
 }

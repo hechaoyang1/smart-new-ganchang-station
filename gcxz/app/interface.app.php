@@ -211,6 +211,27 @@ class InterfaceApp extends BaseApp {
 	}
 	
 	/**
+	 * 查询订单状态
+	 */
+	function queryOrderStatus() {
+		// 获取订单状态参数
+		$param = str_replace ( '\\', '', $_POST ['data']);
+		$data = json_decode ( $param );
+		$result ['code'] = 0;
+		if (is_array ( $data )) {
+			$conditions = db_create_in ( $data, 'order_id');
+			$orderModel = &m ( 'order' );
+			$sql = 'select order_id,status from ecm_order where '.$conditions;
+			$result ['code'] = 1;
+			$result ['msg'] = 'OK';
+			$result ['data'] = $orderModel->getAll($sql);
+			exit ( json_encode ( $result ) );
+		} else {
+			$result ['msg'] = '参数不合法.';
+			exit ( json_encode ( $result ) );
+		}
+	}
+	/**
 	 * 同步供应商信息
 	 */
 	function syncSupplier() {

@@ -76,7 +76,7 @@ function flex(obj)
                         "<td class='align_center'><a href='index.php?app=regiongoods&amp;act=editDescription&amp;id="+res[i].region_id+"'>编辑</a></td>"+
                         if_show+
                         "<td class='align_center'><span ectype='inline_edit' fieldname='sort_order' fieldid='" + res[i].region_id + "' datatype='pint' maxvalue='255' title='{$lang.editable}' class='editable'>" + res[i].sort_order + "</span></td>"+
-                        "<td class='align_center'><span><a href='index.php?app=regiongoods&id=" + res[i].region_id + "'>配置背景图</a></span></td>";
+                        "<td class='align_center'><span><a href='index.php?app=regiongoods&act=manageBg&id=" + res[i].region_id + "'>配置背景图</a></span></td>";
                  }
                 pr.after(str);
                 change_background();
@@ -160,7 +160,7 @@ function updateOrder(obj){
 					datatype="pint" maxvalue="255" title="{$lang.editable}"
 					class="editable">{$region.sort_order}</span></td>
 				<td style="text-align: center;"><span> <a
-						href="index.php?app=regiongoods&amp;id={$region.region_id}">配置背景图</a>
+						href="index.php?app=regiongoods&amp;act=manageBg&amp;id={$region.region_id}">配置背景图</a>
 				</span></td>
 			</tr>
 			<!--{foreachelse}-->

@@ -1,0 +1,49 @@
+{include file="header.html"}
+<div id="rightTop">
+	<p>{$region.0.region_name}背景配置</p>
+	<ul class="subnav">
+	<li><span>管理</span></li>
+			<li><a class="btn1"
+			href="index.php?app=regiongoods&act=addBg&id={$region.0.region_id|escape}">新增</a></li>
+		<li><a class="btn1"
+			href="index.php?app=regiongoods&id={$region.0.region_id|escape}">返回列表</a></li>
+	</ul>
+</div>
+
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $region}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td><span ectype="order_by" fieldname="name">图片名称</span></td>
+      <td>图片标识</td>
+      <td><span ectype="order_by" fieldname="sort">排序</span></td>
+      <td>{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$images item=image}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$image.id}"/></td>
+      <td><span ectype="inline_edit" fieldname="bg.description" fieldid="{$image.id}" required="1" class="editable" title="{$lang.editable}">{$image.description|escape}</span></td>
+      <td><img src="{$site_url}/{$image.bg_image}" height="30" /></td>
+      <td><span ectype="inline_edit" fieldname="bg.sort_order" fieldid="{$image.id}" required="1" datatype="pint" maxvalue="255"  class="editable" title="{$lang.editable}">{$image.sort_order|escape}</span></td>
+      <td><a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=regiongoods&amp;act=dropBg&amp;id={$region.0.region_id}&imageId={$image.id}');">{$lang.drop}</a></td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data info">
+      <td colspan="8">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $images}-->
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"> <!--{if !$smarty.get.closed}-->
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=regiongoods&act=dropBgList&ret_page={$page_info.curr_page}" presubmit="confirm('{$lang.drop_confirm}')" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+   <!--{/if}-->
+  </div>
+  <!--{/if}-->
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}
