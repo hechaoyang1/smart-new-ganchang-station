@@ -35,10 +35,10 @@
     </tr>
     <!--{/foreach}-->
   </table>
-  <!--{if $goods_list}-->
+  <!--{if $images}-->
   <div id="dataFuncs">
     <div id="batchAction" class="left paddingT15"> <!--{if !$smarty.get.closed}-->
-      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=goodsad&act=drop&ret_page={$page_info.curr_page}" presubmit="confirm('{$lang.drop_confirm}')" />
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=regiongoods&act=dropBgList&ret_page={$page_info.curr_page}" presubmit="confirm('{$lang.drop_confirm}')" />
     </div>
     <div class="pageLinks">{include file=page.bottom.html}</div>
    <!--{/if}-->

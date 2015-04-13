@@ -125,11 +125,30 @@ class RegiongoodsApp extends BackendApp {
 		$id = empty ( $_REQUEST ['id'] ) ? 0 : intval ( $_REQUEST ['id'] );
 		$imageId = $_REQUEST ['imageId'];
 		$bgModel = &m ( 'regionbg' );
-		$log = fopen ( 'e:/my.log', 'a' );
-		fwrite ( $log, $imageId );
-		fclose ( $log );
 		$bgModel->drop ( $imageId );
 		$this->show_message ( '删除成功', 'go_back', 'index.php?app=regiongoods&amp;act=manageBg&amp;id=' . $id );
+	}
+	
+	function dropBgList()
+	{
+		$ids = isset($_GET['id']) ? trim($_GET['id']) : '';
+		if (!$ids)
+		{
+			$this->show_warning('no_such_brand');
+	
+			return;
+		}
+		$ids=explode(',',$ids);
+		$bgModel = &m ( 'regionbg' );
+		$bgModel->drop($ids);
+		if ($bgModel->has_error())    //删除
+		{
+			$this->show_warning($bgModel->get_error());
+	
+			return;
+		}
+	
+		$this->show_message('删除成功');
 	}
 	/**
 	 * 处理上传标志
