@@ -655,6 +655,8 @@ class My_goodsApp extends StoreadminbaseApp
                 $this->show_warning($this->get_error());
                 return;
             }
+            $data['goods']['source_type'] = 1;    //标示为自营商品
+            $data['goods']['service_type'] = 1;    //标示为可退换货
             /* 保存数据 */
             if (!$this->_save_post_data($data, 0))
             {
