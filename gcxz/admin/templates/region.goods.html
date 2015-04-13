@@ -65,9 +65,9 @@ function flex(obj)
                          add_child = "<a href='index.php?app=region&amp;act=add&amp;pid="+res[i].region_id+"'>{$lang.add_child}</a>";
                      }
                      if(res[i].if_show=='1'){
-                    	 if_show='<td class="table-center" title="可编辑"><img src="http://localhost/gcxz/admin/templates/style/images/positive_enabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="'+res[i].region_id+'" fieldvalue="1" title="是否激活"></td>';
+                    	 if_show='<td class="table-center" title="可编辑"><img src="templates/style/images/positive_enabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="'+res[i].region_id+'" fieldvalue="1" title="是否激活"></td>';
                      }else{
-                    	 if_show='<td class="table-center" title="可编辑"><img src="http://localhost/gcxz/admin/templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="'+res[i].region_id+'" fieldvalue="0" title="是否激活"></td>';
+                    	 if_show='<td class="table-center" title="可编辑"><img src="templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="'+res[i].region_id+'" fieldvalue="0" title="是否激活"></td>';
                      }
                      var itd2 = td2html + src;
                      str+="<tr class='"+pid+" row"+id+"'><td class='align_center w30'></td>"+
