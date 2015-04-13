@@ -56,7 +56,7 @@ class RegiongoodsApp extends BackendApp {
 					'description' => $_POST ['description'] 
 			);
 			$image && $data ['default_image'] = $image;
-			if ($region ['description'] === NULL) {
+			if (!$region ['id']) {
 				$rdModel->add ( $data );
 			} else {
 				$rdModel->edit ( $region ['id'], $data );
