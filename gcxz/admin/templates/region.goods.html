@@ -71,8 +71,8 @@ function flex(obj)
                      var itd2 = td2html + src;
                      str+="<tr class='"+pid+" row"+id+"'><td class='align_center w30'></td>"+
                         "<td class='node' width='20%'>" + itd2 + "</td>"+
-                        "<td class='align_center'><a href='index.php?app=regiongoods&amp;act=editDescription&amp;id=511421'>选择商品</a></td>"+
-                        "<td class='align_center'><a href='index.php?app=regiongoods&amp;act=editDescription&amp;id=511421'>编辑</a></td>"+
+                        "<td class='align_center'><a href='index.php?app=ttc&amp;act=topGoods&amp;rid="+res[i].region_id+"'>选择商品</a></td>"+
+                        "<td class='align_center'><a href='index.php?app=ttc&amp;act=adGoods&amp;rid="+res[i].region_id+"'>编辑</a></td>"+
                         "<td class='align_center'><a href='index.php?app=regiongoods&amp;act=editDescription&amp;id="+res[i].region_id+"'>编辑</a></td>"+
                         if_show+
                         "<td class='align_center'><span ectype='inline_edit' fieldname='sort_order' fieldid='" + res[i].region_id + "' datatype='pint' maxvalue='255' title='{$lang.editable}' class='editable'>" + res[i].sort_order + "</span></td>"+
@@ -141,9 +141,9 @@ function updateOrder(obj){
 					src="templates/style/images/treetable/tv-item.gif"> <!--{/if}-->
 					<span class="node_name">{$region.region_name|escape}</span>
 				</td>
-				<td class="align_center"><a href="index.php?app=regiongoods&act=editDescription&id={$region.region_id}">选择商品</a></td>
-				<td class="align_center"><a>编辑</a></td>
-				<td class="align_center"><a href="index.php?app=regiongoods&act=editDescription&id={$region.region_id}">编辑</a></td>
+				<td class="align_center"></td>
+				<td class="align_center"></td>
+				<td class="align_center"></td>
 				<td class="table-center">
 					<!-- {if $region.if_show} -->
 					<img src="{res file=style/images/positive_enabled.gif}"

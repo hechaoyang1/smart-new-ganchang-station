@@ -1,0 +1,98 @@
+{include file="header.html"}
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    // multi-select mall_gcategory
+    $('#gcategory').length>0 && gcategoryInit("gcategory");
+});
+//]]>
+</script>
+<div id="rightTop">
+  <p>{$store.region_name}</p>
+  <ul class="subnav">
+  	<!--{if $smarty.get.binded}-->
+    <li><a class="btn1" href="index.php?app=fcg&amp;act=bindGoods&amp;id={$smarty.get.id}">未绑定</a></li>
+    <!--{else}-->
+    <li><span>未绑定</span></li>
+    <!--{/if}-->
+    <!--{if $smarty.get.binded}-->
+    <li><span>已绑定</span></li>
+    <!--{else}-->
+    <li><a class="btn1" href="index.php?app=fcg&amp;act=bindGoods&amp;id={$smarty.get.id}&amp;binded=1">已绑定</a></li>
+    <!--{/if}-->
+    <li><a class="btn1" href="javascript:history.back();">返回</a></li>
+  </ul>
+</div>
+<div class="mrightTop info">
+  <div class="fontl">
+    <form method="get">
+      <input type="hidden" name="app" value="fcg" />
+      <input type="hidden" name="act" value="bindGoods" />
+      <input type="hidden" name="id" value="{$smarty.get.id}" />
+      <input type="hidden" name="binded" value="{$smarty.get.binded}" />
+      	商品名称：
+      <input class="queryInput" type="text" name="goods_name" value="{$smarty.get.goods_name|escape}" />
+      	店铺名称:
+      <input class="queryInput" type="text" name="store_name" value="{$smarty.get.store_name|escape}" />
+	  <input type="submit" class="formbtn" value="{$lang.query}" />
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $goods_list}-->
+    <tr class="tatr1">
+      <td width="10%" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td width="30%"><span ectype="order_by" fieldname="goods_name">商品名称</span></td>
+      <td width="10%"><span ectype="order_by" fieldname="store_name">店铺名称</span></td>
+      <td><span ectype="order_by" fieldname="cate_id">分类</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="if_show">上架</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="is_red">首页推荐</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="is_fine">小站特色</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="closed">禁售</span></td>
+      <td>{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$goods_list item=goods}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$goods.goods_id}"/></td>
+      <td>{$goods.goods_name|escape}</td>
+      <td>{$goods.store_name|escape}</td>
+      <td>{$goods.cate_name|nl2br}</td>
+      <td class="table-center"><!-- {if $goods.if_show} --><img src="{res file=style/images/positive_enabled.gif}" /><!--{else}--><img src="{res file=style/images/positive_disabled.gif}" /><!-- {/if} --></td>
+      
+      <td class="table-center"><!-- {if $goods.is_red} --><img src="{res file=style/images/positive_enabled.gif}"/><!--{else}--><img src="{res file=style/images/positive_disabled.gif}"/><!-- {/if} --></td>
+      <td class="table-center"><!-- {if $goods.is_fine} --><img src="{res file=style/images/positive_enabled.gif}"/><!--{else}--><img src="{res file=style/images/positive_disabled.gif}"/><!-- {/if} --></td>
+      
+      <td class="table-center"><!-- {if $goods.closed} --><img src="{res file=style/images/negative_enabled.gif}"/><!--{else}--><img src="{res file=style/images/negative_disabled.gif}" /><!-- {/if} --></td>
+      <td>
+      	<!--{if $smarty.get.binded}-->
+        <a href="index.php?app=fcg&amp;act=unbind&amp;fid={$smarty.get.id}&amp;gid={$goods.goods_id}">解绑</a>
+        <!--{else}-->
+        <a href="index.php?app=fcg&amp;act=bind&amp;fid={$smarty.get.id}&amp;gid={$goods.goods_id}">绑定</a>
+        <!--{/if}-->
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data info">
+      <td colspan="8">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $goods_list}-->
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15">
+      {if !$smarty.get.binded}
+      &nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="绑定" name="id" uri="index.php?app=fcg&act=batch_bind&fid={$smarty.get.id}" presubmit="confirm('你确定要绑定这些商品吗？');" />
+      {else}
+      <input class="formbtn batchButton" type="button" value="解绑" name="id" uri="index.php?app=fcg&act=batch_unbind&fid={$smarty.get.id}" presubmit="confirm('你确定要解除绑定关系吗？');" />
+      <!--{/if}-->
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+   <!--{/if}-->
+  </div>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}
