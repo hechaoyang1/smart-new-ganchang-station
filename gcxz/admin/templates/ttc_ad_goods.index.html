@@ -8,22 +8,21 @@ $(function(){
 //]]>
 </script>
 <div id="rightTop">
-  <p>置顶商品【{$region.region_name}】</p>
+  <p>推荐商品【{$region.region_name}】</p>
   <ul class="subnav">
   	<!--{if $smarty.get.binded}-->
-    <li><a class="btn1" href="index.php?app=ttc&amp;act=topGoods&amp;rid={$smarty.get.rid}">未绑定</a></li>
+    <li><a class="btn1" href="index.php?app=ttc&amp;act=adGoods&amp;rid={$smarty.get.rid}">未绑定</a></li>
     <!--{else}-->
     <li><span>未绑定</span></li>
     <!--{/if}-->
     <!--{if $smarty.get.binded}-->
     <li><span>已绑定</span></li>
     <!--{else}-->
-    <li><a class="btn1" href="index.php?app=ttc&amp;act=topGoods&amp;rid={$smarty.get.rid}&amp;binded=1">已绑定</a></li>
+    <li><a class="btn1" href="index.php?app=ttc&amp;act=adGoods&amp;rid={$smarty.get.rid}&amp;binded=1">已绑定</a></li>
     <!--{/if}-->
     <li><a class="btn1" href="javascript:history.back();">返回</a></li>
   </ul>
 </div>
-{if !$smarty.get.binded}
 <div class="mrightTop info">
   <div class="fontl">
     <form method="get">
@@ -40,13 +39,12 @@ $(function(){
   </div>
   <div class="fontr">{include file=page.top.html}</div>
 </div>
-{/if}
 <div class="tdare">
   <table width="100%" cellspacing="0" class="dataTable">
     <!--{if $goods_list}-->
     <tr class="tatr1">
-      <td width="20%"><span ectype="order_by" fieldname="goods_name">商品名称</span></td>
-      <td width="10%">商品图片</td>
+      <td width="10%" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td width="30%"><span ectype="order_by" fieldname="goods_name">商品名称</span></td>
       <td width="10%"><span ectype="order_by" fieldname="store_name">店铺名称</span></td>
       <td><span ectype="order_by" fieldname="cate_id">分类</span></td>
       <td class="table-center"><span ectype="order_by" fieldname="if_show">上架</span></td>
@@ -58,8 +56,8 @@ $(function(){
     <!--{/if}-->
     <!--{foreach from=$goods_list item=goods}-->
     <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$goods.goods_id}"/></td>
       <td>{$goods.goods_name|escape}</td>
-      <td><img src="{$site_url}/{$goods.default_image|escape}" /></td>
       <td>{$goods.store_name|escape}</td>
       <td>{$goods.cate_name|nl2br}</td>
       <td class="table-center"><!-- {if $goods.if_show} --><img src="{res file=style/images/positive_enabled.gif}" /><!--{else}--><img src="{res file=style/images/positive_disabled.gif}" /><!-- {/if} --></td>
@@ -84,6 +82,14 @@ $(function(){
   </table>
   <!--{if $goods_list}-->
   <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15">
+      {if !$smarty.get.binded}
+      &nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="绑定" name="id" uri="index.php?app=ttc&act=batch_bind&type={$type}&rid={$smarty.get.rid}" presubmit="confirm('你确定要绑定这些商品吗？');" />
+      {else}
+      <input class="formbtn batchButton" type="button" value="解绑" name="id" uri="index.php?app=ttc&act=batch_unbind&type={$type}&rid={$smarty.get.rid}" presubmit="confirm('你确定要解除绑定关系吗？');" />
+      <!--{/if}-->
+    </div>
     <div class="pageLinks">{include file=page.bottom.html}</div>
    <!--{/if}-->
   </div>
