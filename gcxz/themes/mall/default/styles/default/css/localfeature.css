@@ -173,8 +173,9 @@
 	font-size: 15px;
 	color: #FFFFFF;
 	background-color: #FF6600;
-	width: 40px;
-	margin-left: 7px;
+	width: 80px;
+	text-align:left;
+	margin-left: 5px;
 }
 .native_namesli{
 	height:30px;
@@ -190,6 +191,7 @@
     position: fixed;
     right: -100px;
     top: 20%;
+	overflow: hidden;
 }
 
 .native_names0{

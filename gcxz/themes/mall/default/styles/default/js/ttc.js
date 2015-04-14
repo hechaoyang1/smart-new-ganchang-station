@@ -1,7 +1,8 @@
 var showtimer;
 var show = false;
 var mopt = {
-	tctimer : null
+	tctimer : null,
+	liheight : 46
 }
 $(function() {
 	$("div.tjsp").each(function() {
@@ -22,20 +23,21 @@ $(function() {
 	}).mouseover(function() {
 		clearTimeout(showtimer);
 		var rid = this.id.substr(2);
-		$("div.tjsp:not(#tj_"+rid+") .native_map_1").stop().animate({
+		$("div.tjsp:not(#tj_" + rid + ") .native_map_1").stop().animate({
 			opacity : "0"
 		}, 200, null, function() {
 			$(this).hide();
 		});
 		showMap(this);
-		$("#r_" + rid).toggleClass("active");
+		active(rid, true);
 	}).mouseout(
 			function(e) {
 				clearTimeout(showtimer);
 				var rid = this.id.substr(2);
 				hideMap(this);
 				if (!$(e.toElement).is(".native_map_2")
-						&&$(e.toElement).parents(".native_map_2").length==0&& !$(e.toElement).is(".native_map_1")) {
+						&& $(e.toElement).parents(".native_map_2").length == 0
+						&& !$(e.toElement).is(".native_map_1")) {
 					$("div.tjsp .native_map_1").stop().show().animate({
 						opacity : "1"
 					}, 500, null);
@@ -43,18 +45,18 @@ $(function() {
 					mopt.tctimer = setTimeout('$("#tc_' + rid + '").hide()',
 							800);
 				}
-				$("#r_" + rid).toggleClass("active");
+				active(rid, false);
 			}).click(function() {
 		window.location.href = SITE_URL + "/index.php?app=special&rid=" + rid;
 	});
 	$(".native_names1 .native_namesli1").mouseenter(function() {
 		var rid = this.id.substr(2);
-		$("#m_" + rid).css("fill", "#f18101");
-		$(this).toggleClass("active");
+		active(rid, false);
+		showMap($("#m_"+rid));
 	}).mouseleave(function() {
 		var rid = this.id.substr(2);
-		$("#m_" + rid).css("fill", "#dddddd");
-		$(this).toggleClass("active");
+		active(rid, false);
+		hideMap($("#m_"+rid));
 	});
 })
 function showtj(rid, lc) {
@@ -69,21 +71,20 @@ function showtj(rid, lc) {
 			function(data) {
 				if (data != 0) {
 					$("#tj_" + rid).append(data);
-					$("#tc_" + rid).mouseleave(
-							function(e) {
-//								if (!$(e.toElement).is("#m_" + rid)) {
-									$(this).hide();
-//									mopt.tctimer = setTimeout('$("#tc_' + rid
-//											+ '").hide()', 800);
-//								}
-							}).mouseover(function() {
-								clearTimeout(mopt.tctimer);
-								$("#tj_"+rid+" .native_map_1").stop().animate({
-									opacity : "0"
-								}, 200, null, function() {
-									$(this).hide();
-								});
-							});
+					$("#tc_" + rid).mouseleave(function(e) {
+						// if (!$(e.toElement).is("#m_" + rid)) {
+						$(this).hide();
+						// mopt.tctimer = setTimeout('$("#tc_' + rid
+						// + '").hide()', 800);
+						// }
+					}).mouseover(function() {
+						clearTimeout(mopt.tctimer);
+						$("#tj_" + rid + " .native_map_1").stop().animate({
+							opacity : "0"
+						}, 200, null, function() {
+							$(this).hide();
+						});
+					});
 					if (show) {
 						$("#tc_" + rid).show();
 					}
@@ -99,13 +100,21 @@ function showMap(obj) {
 function hideMap(obj) {
 	$(obj).css("opacity", "0");
 }
+function active(rid, flag) {
+	var r = $("#r_" + rid);
+	r.toggleClass("active");
+	if (flag) {
+		var order = r.attr("o");
+		if (order > 4) {
+			$(".native_names .native_names1").stop().animate({
+				marginTop : (-(order - 4) * mopt.liheight) + "px"
+			})
+		}
+	}
+}
 $(function() {
 	cbpBGSlideshow.init();
 });
 $(document).ready(function() {
-	if ($(".native_names ul").length > 1) {
-		$(".native_names0").click(function() {
-			$("#native_names").toggleClass("native_names-js");
-		});
-	}
+
 });
