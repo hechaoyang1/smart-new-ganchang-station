@@ -93,7 +93,7 @@ class TtcApp extends BackendApp {
 	    $goods_list = $this->_rg_model->getAll($sql);
 	    $this->assign('goods_list', $goods_list);
 	    
-	    $sql = "select COUNT(*) as c from ecm_goods g left join ecm_store s on g.store_id = s.store_id left join (select * from ecm_region_goods where fcg_id=$id) rg on g.goods_id = rg.goods_id where $conditions";
+	    $sql = "select COUNT(*) as c from ecm_goods g left join ecm_store s on g.store_id = s.store_id left join (select * from ecm_region_goods where region_id=$id) rg on g.goods_id = rg.goods_id where $conditions";
 	    $page['item_count'] = $this->_rg_model->getOne($sql);
 	    $this->_format_page($page);
 	    $this->assign('page_info', $page);

@@ -27,8 +27,8 @@ $(function(){
   <div class="fontl">
     <form method="get">
       <input type="hidden" name="app" value="ttc" />
-      <input type="hidden" name="act" value="bindGoods" />
-      <input type="hidden" name="id" value="{$smarty.get.id}" />
+      <input type="hidden" name="act" value="adGoods" />
+      <input type="hidden" name="rid" value="{$smarty.get.rid}" />
       <input type="hidden" name="binded" value="{$smarty.get.binded}" />
       	商品名称：
       <input class="queryInput" type="text" name="goods_name" value="{$smarty.get.goods_name|escape}" />
@@ -44,7 +44,8 @@ $(function(){
     <!--{if $goods_list}-->
     <tr class="tatr1">
       <td width="10%" class="firstCell"><input type="checkbox" class="checkall" /></td>
-      <td width="30%"><span ectype="order_by" fieldname="goods_name">商品名称</span></td>
+      <td width="20%"><span ectype="order_by" fieldname="goods_name">商品名称</span></td>
+      <td width="10%">商品图片</td>
       <td width="10%"><span ectype="order_by" fieldname="store_name">店铺名称</span></td>
       <td><span ectype="order_by" fieldname="cate_id">分类</span></td>
       <td class="table-center"><span ectype="order_by" fieldname="if_show">上架</span></td>
@@ -58,6 +59,7 @@ $(function(){
     <tr class="tatr2">
       <td class="firstCell"><input type="checkbox" class="checkitem" value="{$goods.goods_id}"/></td>
       <td>{$goods.goods_name|escape}</td>
+      <td><img height="30" width="30" src="{$site_url}/{$goods.default_image|escape}" /></td>
       <td>{$goods.store_name|escape}</td>
       <td>{$goods.cate_name|nl2br}</td>
       <td class="table-center"><!-- {if $goods.if_show} --><img src="{res file=style/images/positive_enabled.gif}" /><!--{else}--><img src="{res file=style/images/positive_disabled.gif}" /><!-- {/if} --></td>

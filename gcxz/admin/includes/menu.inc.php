@@ -205,7 +205,7 @@ return array (
 				'default' => 'monographic',
 				'children' => array (
 						'ad_region_goods' => array (
-								'text' => '土特产',
+								'text' => '家乡的味道',
 								'url' => 'index.php?app=regiongoods' 
 						) 
 				) 
