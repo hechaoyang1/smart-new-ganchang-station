@@ -1,5 +1,5 @@
 <?php
-define('MAX_LAYER', 6);
+define('MAX_LAYER', 7);
 
 /* 地区控制器 */
 class RegionApp extends BackendApp
