@@ -36,6 +36,10 @@ class NativegoodsApp extends MallbaseApp {
 		
 		// 商品全部分类
 		$this->assign('top_category', m('gcategory')->get_top_category());
+
+		$this->import_resource(array(
+		        'style' =>  'res:css/channel.css',
+		));
 		
 		$this->display ( 'nativegoods.index.html' );
 	}

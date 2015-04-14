@@ -88,10 +88,10 @@ class DefaultApp extends MallbaseApp
 		
         //赋值购物车数量
         $this->assign('cart_num', $this->get_cart_num());
-		
-// 		//新闻动态
-// 		$newsList = m('cmscontent')->getNewsList(9);
-// 		$this->assign('newsList', $newsList);
+
+        $this->import_resource(array(
+                'style' =>  'res:css/index.css',
+        ));
 		
         $this->display('index.html');
     }
@@ -178,6 +178,10 @@ class DefaultApp extends MallbaseApp
 		    $fcg['ctime'] = date('Y-m-d', strtotime($fcg['ctime']));
 		}
 		$this->assign('dynamic_list', $dynamic_list);
+		
+		$this->import_resource(array(
+		        'style' =>  'res:css/channel.css',
+		));
 		
         $this->display('fcg.html');
     }

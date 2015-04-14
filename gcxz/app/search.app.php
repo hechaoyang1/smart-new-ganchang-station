@@ -82,6 +82,7 @@ class SearchApp extends MallbaseApp
 		$this->assign('top_category', m('gcategory')->get_top_category());
 		$this->import_resource(array(
 				'script' => 'search_goods.js',
+		        'style' =>  'res:css/f-product.css',
 		));
 		$this->display ( 'search.goods.html' );
     }
