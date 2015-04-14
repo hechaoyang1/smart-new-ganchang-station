@@ -55,7 +55,7 @@
 					<!--{foreach from=$goods item=v}-->
 						<div id="tj_{$v.region_id}" class="tjsp" style="display:none;">
 							<div class="native_map_1" style="position: absolute; top:-112px; left:-6px;">
-								<a href="#" class="native_map_a">
+								<a href="{url app=goods&id=$v.goods_id}" class="native_map_a">
 									<div class="map_a_div1">{$v.goods_name}</div>
 									<div class="map_a_div2"><img src="{$v.default_image}"  width="62" height="47"></div>
 								</a>
