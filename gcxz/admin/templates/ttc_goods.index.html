@@ -59,7 +59,7 @@ $(function(){
     <!--{foreach from=$goods_list item=goods}-->
     <tr class="tatr2">
       <td>{$goods.goods_name|escape}</td>
-      <td><img src="{$site_url}/{$goods.default_image|escape}" /></td>
+      <td><img height="30" width="30" src="{$site_url}/{$goods.default_image|escape}" /></td>
       <td>{$goods.store_name|escape}</td>
       <td>{$goods.cate_name|nl2br}</td>
       <td class="table-center"><!-- {if $goods.if_show} --><img src="{res file=style/images/positive_enabled.gif}" /><!--{else}--><img src="{res file=style/images/positive_disabled.gif}" /><!-- {/if} --></td>

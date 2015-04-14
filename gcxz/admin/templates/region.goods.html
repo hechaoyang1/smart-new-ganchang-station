@@ -72,7 +72,7 @@ function flex(obj)
                      //商品图片
                      var goods_image = "";
                      if(res[i].goods_image != "" && res[i].goods_image != null){
-                    	 goods_image = "<img height=30 width=30 src= '" + res[i].goods_image + "' />";
+                    	 goods_image = "<img height=30 width=30 src= '" + SITE_URL + '/' + res[i].goods_image + "' />";
                    	 }
                      
                      var itd2 = td2html + src;
