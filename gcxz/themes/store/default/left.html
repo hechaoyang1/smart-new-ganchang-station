@@ -98,7 +98,7 @@
             </div>
         </div>
         
-        <!-- {if $smarty.get.app eq "store" and $smarty.get.act eq "index"} -->
+   <!--      {if $smarty.get.app eq "store" and $smarty.get.act eq "index"}
         <div class="module_common">
             <h2 class="common_title veins1">
                 <div class="ornament1"></div>
@@ -108,14 +108,14 @@
             <div class="wrap">
                 <div class="wrap_child">
                     <ul class="submenu">
-                        <!--{foreach from=$partners item=partner}-->
+                        {foreach from=$partners item=partner}
                         <li><a class="link_ico" href="{$partner.link}" target="_blank">{$partner.title|escape}</a></li>
-                        <!--{/foreach}-->
+                        {/foreach}
                     </ul>
                 </div>
             </div>
         </div>
-        <!-- {/if} -->
+        {/if} -->
         
         <!--{if $smarty.get.app eq "goods"}-->
         <div class="module_common">
