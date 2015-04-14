@@ -329,6 +329,10 @@ class GoodsApp extends StorebaseApp
         //赋值购物车数量
         $this->assign('cart_num', $this->get_cart_num());
         
+        //赋值物流配送信息
+        $shipInfo = &m('shipping')->find(array('conditions'=>'store_id='.$goods['store_id']));
+        $this->assign('shipInfo', $shipInfo);
+        
         $this->import_resource(array(
             'script' => 'jquery.jqzoom.js',
             'style' => 'res:jqzoom.css'

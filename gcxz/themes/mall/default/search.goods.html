@@ -26,6 +26,7 @@
 				</dd>
 				{/if} {/foreach}
 			</dl>
+			{if !$region_id}
 			<dl class="area">
 				<dt>产地：</dt>
 				{foreach from=$areaArr item=area}
@@ -38,7 +39,7 @@
 				{/foreach}
 
 			</dl>
-
+			{/if}
 		</div>
 		<div class="product">
 			<div class="title clr">
