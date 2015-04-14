@@ -119,8 +119,14 @@
 }
 .native_map{
 	width:750px;
-	height:675px;
-	margin:0 auto;
+	height:700px;
+	background-image: url(../img/dtbj.png);
+	background-repeat: no-repeat;
+	background-position: 118px 24px;
+	margin-top: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
 }
 .native_end{
 	width:100%;
@@ -163,7 +169,7 @@
 .native_namesli1{
 	cursor:pointer;
 }
-.native_namesli1:hover {
+.native_namesli1.active {
 	font-size: 15px;
 	color: #FFFFFF;
 	background-color: #FF6600;
@@ -341,4 +347,4 @@
 	font-weight: bold;
 }
 
- .fil {fill:#dddddd; stroke:#123ee2;stroke-width:1;opacity:1;cursor: pointer;}
+ .fil {fill:#dddddd;stroke-width:1;opacity:0;cursor: pointer;}
