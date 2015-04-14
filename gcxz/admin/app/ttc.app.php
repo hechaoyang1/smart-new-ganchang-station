@@ -57,7 +57,7 @@ class TtcApp extends BackendApp {
 	    }
 	    $this->assign('region', $region);
 	    
-	    $conditions = empty($_GET['binded']) ? "rg.id is null" : "rg.id is not null and rg.type = $type";
+	    $conditions = empty($_GET['binded']) ? "rg.id is null" : "rg.id is not null";
 	    $conditions .= " and g.region_id = $id";
 	    $conditions .= $this->_get_query_conditions(array(
 	            array(
@@ -89,11 +89,11 @@ class TtcApp extends BackendApp {
 	    
 	    $page = $this->_get_page();
 	    $limit = $page['limit'];
-	    $sql = "select g.*,s.store_name from ecm_goods g left join ecm_store s on g.store_id = s.store_id left join (select * from ecm_region_goods where region_id=$id) rg on g.goods_id = rg.goods_id where $conditions limit $limit";
+	    $sql = "select g.*,s.store_name from ecm_goods g left join ecm_store s on g.store_id = s.store_id left join (select * from ecm_region_goods where region_id=$id and type = $type) rg on g.goods_id = rg.goods_id where $conditions limit $limit";
 	    $goods_list = $this->_rg_model->getAll($sql);
 	    $this->assign('goods_list', $goods_list);
 	    
-	    $sql = "select COUNT(*) as c from ecm_goods g left join ecm_store s on g.store_id = s.store_id left join (select * from ecm_region_goods where region_id=$id) rg on g.goods_id = rg.goods_id where $conditions";
+	    $sql = "select COUNT(*) as c from ecm_goods g left join ecm_store s on g.store_id = s.store_id left join (select * from ecm_region_goods where region_id=$id and type = $type) rg on g.goods_id = rg.goods_id where $conditions";
 	    $page['item_count'] = $this->_rg_model->getOne($sql);
 	    $this->_format_page($page);
 	    $this->assign('page_info', $page);
