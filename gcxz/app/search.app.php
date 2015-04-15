@@ -529,7 +529,7 @@ class SearchApp extends MallbaseApp
         }
         if (isset($param['region_id']))
         {
-            $conditions .= " AND s.region_id = '" . $param['region_id'] . "'";
+            $conditions .= " AND g.region_id = '" . $param['region_id'] . "'";
         }
         if (isset($param['price']))
         {
