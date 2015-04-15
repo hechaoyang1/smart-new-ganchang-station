@@ -99,6 +99,7 @@ class SpecialApp extends MallbaseApp {
 					'end' => true 
 			);
 			$this->assign ( 'top', $tops );
+			$this->assign("level",1);
 			return;
 		}
 		$data = $this->m->db->getAll ( "SELECT r1.region_id as r1, r1.region_name as n1, r2.region_id as r2, r2.region_name as n2, r3.region_id as r3, r3.region_name as n3 FROM ecm_region r1 LEFT JOIN ecm_region r2 ON r1.parent_id = r2.region_id LEFT JOIN ecm_region r3 ON r2.parent_id = r3.region_id WHERE r1.region_id = $rid" );
@@ -115,6 +116,7 @@ class SpecialApp extends MallbaseApp {
 		if ($data ['r2'] == $this->renshou) {
 			$tops = array_reverse ( $tops );
 			$this->assign ( 'top', $tops );
+			$this->assign("level",2);
 			return;
 		}
 		$tops [] = array (
@@ -123,6 +125,7 @@ class SpecialApp extends MallbaseApp {
 				'end' => true 
 		);
 		$tops = array_reverse ( $tops );
+		$this->assign("level",3);
 		$this->assign ( 'top', $tops );
 	}
 	/**
