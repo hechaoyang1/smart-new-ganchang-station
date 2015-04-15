@@ -266,6 +266,8 @@
 	width:70px;
 	text-align: center;
 	color: #f3ecd0;
+	overflow: hidden;
+	text-overflow : ellipsis;
 }
 .native_names-js{
 	 right: 0px;
