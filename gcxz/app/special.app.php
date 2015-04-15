@@ -85,6 +85,7 @@ class SpecialApp extends MallbaseApp {
 		$region = current ( $region );
 		$this->assign ( "goods", $goods );
 		$this->assign ( "ids", json_encode($ids) );
+		$this->assign ( "level", intval($_GET['level']) );
 		$this->assign ( "region", $region );
 		$this->display ( "tc.html" );
 	}

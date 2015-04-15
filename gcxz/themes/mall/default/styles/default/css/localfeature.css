@@ -292,8 +292,6 @@
 	background-repeat: no-repeat;
 }
 .native_map_2{
-	background-image: url(../img/tuijie.png);
-	height: 412px;
 	width: 382px;
 	position: absolute;
 }
@@ -304,14 +302,16 @@
 
 .map2_a_div1{
 	position: absolute;
-	height: 278px;
+	border-radius: 10px 10px 0px 0px;
 	width: 370px;
 	background-color: #FF6600;
 }
 .map2_a_div2{
 	position: absolute;
 	width: 370px;
-	top:283px;
+	background-color: #FFFFFF;
+	border-radius: 0px 0px 10px 10px;
+
 }
 .map_a_div1{
 	position: absolute;
@@ -407,10 +407,9 @@
 	margin-top: 10px;
 }
 .map2_a_div2 p{
-	margin-right: 30px;
-	margin-left: 30px;
-	line-height: 25px;
-	margin-top: 10px;
+	margin-right: 10px;
+	margin-left: 10px;
+	line-height: 23px;
 }
 .recommend_div_p1{
 	padding: 5px;
