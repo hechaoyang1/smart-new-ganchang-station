@@ -33,6 +33,8 @@ class SpecialApp extends MallbaseApp {
 		$this->assign ( "regionsjson", json_encode ( $data ) );
 		$this->assign ( "goods", $goods );
 		$this->assign("region_id",$region_id);
+		//赋值购物车数量
+		$this->assign('cart_num', $this->get_cart_num());
 		$this->assign ( "imgs", $imgs );
 		if ($region_id == $this->renshou) {
 			$this->assign ( "is_area", true );

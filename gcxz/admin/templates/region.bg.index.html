@@ -24,7 +24,7 @@
     <!--{foreach from=$images item=image}-->
     <tr class="tatr2">
       <td class="firstCell"><input type="checkbox" class="checkitem" value="{$image.id}"/></td>
-      <td style=" overflow: hidden;  width: 300px;  white-space: nowrap;  text-overflow: ellipsis; display: block;"><span ectype="inline_edit" fieldname="bg.description" fieldid="{$image.id}" required="1" class="editable" title="{$lang.editable}">{$image.description|escape}33</span></td>
+      <td style=" overflow: hidden;  width: 300px;  white-space: nowrap;  text-overflow: ellipsis; display: block;"><span ectype="inline_edit" fieldname="bg.description" fieldid="{$image.id}" required="1" class="editable" title="{$lang.editable}">{$image.description|escape}</span></td>
       <td><img src="{$site_url}/{$image.bg_image}" height="30" /></td>
       <td><span ectype="inline_edit" fieldname="bg.sort_order" fieldid="{$image.id}" required="1" datatype="pint" maxvalue="255"  class="editable" title="{$lang.editable}">{$image.sort_order|escape}</span></td>
       <td><a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=regiongoods&amp;act=dropBg&amp;id={$region.0.region_id}&imageId={$image.id}');">{$lang.drop}</a></td>
