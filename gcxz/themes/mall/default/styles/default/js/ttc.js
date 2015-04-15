@@ -5,17 +5,7 @@ var mopt = {
 	liheight : 46
 }
 $(function() {
-	$("div.tjsp").each(function() {
-		var $this = $(this);
-		var id = "#m_" + this.id.substr(3);
-		var location = $(id).attr("lc").split(",");
-		$this.css({
-			position : "absolute",
-			top : location[0] + "px",
-			left : location[1] + "px"
-		}).show();
-	});
-	$("svg polygon.fil").mousemove(function() {
+	$("svg polygon.fil,circle").mousemove(function() {
 		show = false;
 		var rid = this.id.substr(2);
 		clearTimeout(showtimer);
@@ -58,9 +48,6 @@ $(function() {
 		hideMap($("#m_" + rid));
 		showtop();
 	});
-	$(".native_map_1").mouseenter(function(){
-		$(".native_map_1").not(this).hide();
-	})
 })
 function showtj(rid, lc) {
 	show = true;
@@ -113,7 +100,7 @@ function active(rid, flag) {
 	}
 }
 function showtop(){
-	$("div.tjsp .native_map_1").stop().show().animate({
+	$("div.tjsp:not(.not_active) .native_map_1").stop().show().animate({
 		opacity : "1"
 	}, 500);
 }
@@ -124,6 +111,9 @@ function hidetop(rid) {
 		}, 200, null, function() {
 			$(this).hide();
 		});
+		$("#tj_" + rid + ".not_active .native_map_1").stop().show().animate({
+			opacity : "1"
+		}, 500);
 	} else {
 		$("div.tjsp .native_map_1").stop().animate({
 			opacity : "0"
@@ -139,4 +129,28 @@ $(document).ready(function() {
 	for ( var k in regions) {
 		$("#m_" + regions[k].region_id).data("is_show", regions[k].if_show);
 	}
+	$("svg polygon.fil,circle").each(function(){
+		var $this=$(this);
+		var rid=this.id.substr("2");
+		if(!$this.data("is_show")){
+			$("#container>div").append('<div id="tj_'+rid+'" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-112px; left:-6px;"></div></div>');
+		}
+	});
+	$(".native_map_1").mouseenter(function(){
+		$(".native_map_1").not(this).hide();
+	}).mouseleave(function(e){
+		if($(e.toElement).is(":not(svg polygon)")){
+			hidetop();
+		}
+	});
+	$("div.tjsp").each(function() {
+		var $this = $(this);
+		var id = "#m_" + this.id.substr(3);
+		var location = $(id).attr("lc").split(",");
+		$this.css({
+			position : "absolute",
+			top : location[0] + "px",
+			left : location[1] + "px"
+		});
+	}).show();
 });
