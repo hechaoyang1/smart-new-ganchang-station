@@ -193,7 +193,7 @@ $(document)
 										}
 									});
 					$(".native_map_1").mouseenter(function() {
-						$(".native_map_1").not(this).hide();
+						$(".native_map_1").not(this).stop().hide();
 					}).mouseleave(function(e) {
 						if ($(e.toElement).is(":not(svg polygon)")) {
 							hidetop();
