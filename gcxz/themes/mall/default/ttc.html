@@ -48,10 +48,7 @@
 			<div style="clear: left;"></div>
 			<div id="cbp-bicontrols" class="cbp-bicontrols">
 				<p><img src="{res file=img/wzxx.png}">&nbsp<span>你的当前位置：</span>
-				<!--{foreach from=$top item=v}-->
-				<span><a href="{if $v.end}javascript:;{else}{url app=special&rid=$v.rid}{/if}"  class="bicontrols_span">{$v.name}</a></span>{if !$v.end}—{/if}
-				<!-- {/foreach} -->
-				</p>
+				{foreach from=$top item=v}<span><a href="{if $v.end}javascript:;{else}{url app=special&rid=$v.rid}{/if}"  class="bicontrols_span">{$v.name}</a></span>{if !$v.end}—{/if}{/foreach}</p>
 				<span class="cbp-biprev"></span>
 				<span class="cbp-binext"></span>
 			</div>
@@ -67,7 +64,7 @@
 					<!--{foreach from=$goods item=v}-->
 						<div id="tj_{$v.region_id}" class="tjsp" style="display:none;">
 							<div class="native_map_1" style="position: absolute; top:-112px; left:-6px;">
-								<a title="{$v.goods_name}" href="{url app=goods&id=$v.goods_id}" class="native_map_a">
+								<a title="{$v.goods_name}" href="{url app=goods&id=$v.goods_id}" target="_blank" class="native_map_a">
 									<div class="map_a_div1">{$v.goods_name}</div>
 									<div class="map_a_div2"><img src="{$v.default_image}"  width="62" height="47"></div>
 								</a>
@@ -78,6 +75,7 @@
 				</div>
 		</div>
 		<div class="native_names" id="native_names">
+			<div class="native_namesli0"><img src="{res file=img/top.png}"></div>
 			<div class="native_names1">
 			<ul>
 			<!--{foreach from=$regions item=v key=i}-->
@@ -86,6 +84,7 @@
 			<!--{/foreach}-->
 			</ul>
 			</div>
+			<div class="native_namesli3"><img src="{res file=img/down.png}"></div>
 		</div>
 	</div>
 <div class="native_end">

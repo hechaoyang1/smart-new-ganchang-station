@@ -88,7 +88,7 @@
 	border-right-style: none;
 	border-bottom-style: none;
 	border-left-style: none;
-	margin-left: 10px;
+	margin-left: 5px;
 	background-image: url(../img/sousuo.png);
 	background-repeat: no-repeat;
 	background-position: 7px 6px;
@@ -98,12 +98,16 @@
 .search_input1{
 	width:477px;
 	height: 48px;
+	margin-left: 3px;
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
 	border-left-style: none;
 	outline:none;
 	float:left;
+	font-size: 15px;
+	line-height: 48px;
+	color: #999999;
 }
 .native_jump{
 	float:left;
@@ -179,6 +183,36 @@
 }
 .native_namesli1{
 	cursor:pointer;
+	line-height: 20px;
+	height: 20px;
+}
+.native_namesli0{
+	font-size: 15px;
+	height: 30px;
+	border-bottom: 1px solid #bab8b5;
+	margin-bottom: 10px;	
+}
+.native_namesli3{
+	font-size: 15px;
+	height: 30px;
+	margin-top: 10px;
+	border-top:1px solid #bab8b5;
+}
+.native_namesli0 img{
+	margin-top:10px;
+	margin-left:25px;
+}
+.native_namesli3 img{
+	margin-top:10px;
+	margin-left:25px;
+}
+.native_namesli0:hover {
+	background-color: #f1a261;
+	cursor: pointer;
+}
+.native_namesli3:hover {
+	background-color: #f1a261;
+	cursor: pointer;
 }
 .native_namesli1.active {
 	font-size: 15px;
@@ -196,13 +230,13 @@
 }
 
 .native_names{
-    height: 430px;
-    width: 230px;
-    list-style-type: none;
-    position: fixed;
-    right: -160px;
-    top: 20%;
-	overflow: hidden;
+	height: 550px;
+	width: 70px;
+	list-style-type: none;
+	position: fixed;
+	right: 0px;
+	top: 10%;
+	background-image: url(../img/R_BG.png);
 }
 
 .native_names0{
@@ -221,17 +255,13 @@
 	background-image: url(../img/right.png);
 	background-repeat: no-repeat;
 	background-position: 6px 3px;
+	
 }
 .native_names1{
+	height: 470px;
 	width:70px;
-	background-image: url(../img/native_names1.png);
-	background-repeat: repeat-y;
-	background-position: left;
-	float: left;
-}
-
-.native_names1 ul{
-	background-image: url(../img/R_BG.png);
+	overflow: hidden;
+	
 }
 .native_names ul li{
 	width:70px;
@@ -292,6 +322,16 @@
 	left:17px;
 	height: 47px;
 	width: 62px;
+}
+.map_a_div3{
+	position: absolute;
+	top:14px;
+	height:80px;
+	width:100%;
+	text-align: center;
+	overflow: hidden;
+	font-size: 17px;
+	line-height: 24px;
 }
 .recommend1{
 	width:100px;
@@ -376,14 +416,18 @@
 	font-size: 18px;
 	font-weight: bold;
 }
-
+ 
 .native_map1{
 	background-image: url(../img/dtbj1.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+.native_map2{
+	background-image: url(../img/thevillagelevel.png);
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
 }
 .recommend_div a{
 	text-decoration:none;
 }
- .fil {fill:#dddddd;stroke-width:1;opacity:0;cursor: pointer;}
-svg circle{cursor:pointer}
+ .fil {fill:#dddddd;stroke-width:1;opacity:0;}

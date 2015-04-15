@@ -21,7 +21,7 @@ class SpecialApp extends MallbaseApp {
 		$data = $this->_get_regions ( $region_id );
 		// 置顶商品
 		$goods = $this->m->db->getAll ( "SELECT g.goods_name, g.default_image,g.goods_id,r.region_id FROM ecm_region_goods rg LEFT JOIN ecm_goods g ON rg.goods_id = g.goods_id LEFT JOIN ecm_region r ON rg.region_id = r.region_id join ecm_region_description rd on r.region_id=rd.region_id and rd.if_show=1 WHERE rg.type=2 and r.parent_id = {$region_id}" );
-		$imgs = $this->m->db->getAll ( "SELECT bg_image,description FROM ecm_region_bg_image where region_id={$region_id}" );
+		$imgs = $this->m->db->getAll ( "SELECT bg_image,description FROM ecm_region_bg_image where region_id={$region_id} order by sort_order asc" );
 		$file = ROOT_PATH . "/themes/mall/default/styles/default/svg/m_{$region_id}.svg";
 		if (file_exists ( $file )) {
 			$map = file_get_contents ( $file );
@@ -137,7 +137,7 @@ class SpecialApp extends MallbaseApp {
 		// $cache_server = & cache_server ();
 		// $data = $cache_server->get ( 'regions_pid_' . $rid );
 		// if ($data === false) {
-		$data = $this->m->db->getAll ( "select r.region_id,r.region_name,rd.if_show from ecm_region r left join ecm_region_description rd on rd.region_id =r.region_id where r.parent_id={$rid} and rd.if_show=1 order by sort_order desc" );
+		$data = $this->m->db->getAll ( "select r.region_id,r.region_name,rd.if_show from ecm_region r left join ecm_region_description rd on rd.region_id =r.region_id where r.parent_id={$rid} and rd.if_show=1 order by sort_order asc" );
 		// 缓存一天
 		// if ($data) {
 		// $cache_server->set ( 'regions_pid_' . $rid, $data, 24 * 60 * 60 );

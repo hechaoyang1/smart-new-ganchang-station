@@ -2,7 +2,7 @@ var showtimer;
 var show = false;
 var mopt = {
 	tctimer : new Array(),
-	liheight : 46
+	liheight : 50
 }
 $(function() {
 	$("svg circle")
@@ -54,6 +54,23 @@ $(function() {
 		active(rid, false);
 		showtop();
 	});
+	$(".native_names .native_namesli3").click(function(){
+		var top= $(".native_names .native_names1>ul").css("marginTop");
+		top=-parseInt(top);
+		var count=$(".native_names .native_names1>ul li.native_namesli1").size();
+		if(count*mopt.liheight-top<=mopt.liheight*10){
+			return false;
+		}
+		top+=mopt.liheight*10;
+//		if(count*mopt.liheight-top-mopt.liheight*10<mopt.liheight*10){
+//			top+=mopt.liheight;
+//		}else{
+//			top+=mopt.liheight*10;
+//		}
+		$(".native_names .native_names1>ul").stop().animate({
+			marginTop : -top + "px"
+		})
+	});
 })
 function showtj(rid, lc) {
 	if (!$("#m_" + rid).data("is_show")) {
@@ -96,7 +113,7 @@ function active(rid, flag) {
 	if (flag) {
 		var order = r.attr("o");
 		if (order > 4) {
-			$(".native_names .native_names1").stop().animate({
+			$(".native_names .native_names1>ul").stop().animate({
 				marginTop : (-(order - 4) * mopt.liheight) + "px"
 			})
 		}
@@ -146,6 +163,8 @@ $(document)
 															'<div id="tj_'
 																	+ rid
 																	+ '" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-112px; left:-6px;"></div></div>');
+										}else{
+											$(this).css("cursor","pointer");
 										}
 									});
 					$(".native_map_1").mouseenter(function() {
