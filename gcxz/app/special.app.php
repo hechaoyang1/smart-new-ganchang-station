@@ -138,7 +138,7 @@ class SpecialApp extends MallbaseApp {
 		// $cache_server = & cache_server ();
 		// $data = $cache_server->get ( 'regions_pid_' . $rid );
 		// if ($data === false) {
-		$data = $this->m->db->getAll ( "select r.region_id,r.region_name,rd.if_show from ecm_region r left join ecm_region_description rd on rd.region_id =r.region_id where r.parent_id={$rid} and rd.if_show=1" );
+		$data = $this->m->db->getAll ( "select r.region_id,r.region_name,rd.if_show from ecm_region r left join ecm_region_description rd on rd.region_id =r.region_id where r.parent_id={$rid} and rd.if_show=1 order by sort_order desc" );
 		// 缓存一天
 		// if ($data) {
 		// $cache_server->set ( 'regions_pid_' . $rid, $data, 24 * 60 * 60 );

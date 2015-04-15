@@ -102,11 +102,13 @@ function active(rid, flag) {
 	r.toggleClass("active");
 	if (flag) {
 		var order = r.attr("o");
-		if (order > 4) {
-			$(".native_names .native_names1").stop().animate({
-				marginTop : (-(order - 4) * mopt.liheight) + "px"
-			})
+		var top=(order - 4) * mopt.liheight;
+		if(top<0){
+			top=0;
 		}
+		$(".native_names .native_names1").stop().animate({
+			marginTop : -top + "px"
+		})
 	}
 }
 function showtop() {
