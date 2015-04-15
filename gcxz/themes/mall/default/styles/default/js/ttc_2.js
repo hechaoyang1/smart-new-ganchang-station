@@ -162,7 +162,7 @@ $(document)
 													.append(
 															'<div id="tj_'
 																	+ rid
-																	+ '" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-112px; left:-6px;"></div></div>');
+																	+ '" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-50px; left:-35px;"></div></div>');
 										}else{
 											$(this).css("cursor","pointer");
 										}

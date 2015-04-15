@@ -187,7 +187,7 @@ $(document)
 													.append(
 															'<div id="tj_'
 																	+ rid
-																	+ '" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-112px; left:-6px;"><a href="#" class="native_map_a"><div class="map_a_div3">该地区尚未开启</div></a></div></div>');
+																	+ '" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-50px; left:-35px;"><a href="#" class="native_map_a"><div class="map_a_div3">该地区尚未开启</div></a></div></div>');
 										}else{
 											$(this).css("cursor","pointer");
 										}
