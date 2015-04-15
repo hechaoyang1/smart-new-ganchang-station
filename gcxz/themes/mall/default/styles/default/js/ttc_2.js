@@ -88,7 +88,7 @@ function showtj(rid, lc) {
 		hidetop();
 		return;
 	}
-	$.get(SITE_URL + '/index.php?app=special&act=tj&rid=' + rid, null,
+	$.get(SITE_URL + '/index.php?app=special&act=tj&level='+level+'&rid=' + rid, null,
 			function(data) {
 				if (data != 0) {
 					$("#tj_" + rid).append(data);
