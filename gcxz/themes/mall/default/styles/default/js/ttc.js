@@ -1,7 +1,7 @@
 var showtimer;
 var show = false;
 var mopt = {
-	tctimer : null,
+	tctimer : new Array(),
 	liheight : 46
 }
 $(function() {
@@ -23,11 +23,7 @@ $(function() {
 	}).mouseover(function() {
 		clearTimeout(showtimer);
 		var rid = this.id.substr(2);
-		$("div.tjsp:not(#tj_" + rid + ") .native_map_1").stop().animate({
-			opacity : "0"
-		}, 200, null, function() {
-			$(this).hide();
-		});
+		hidetop(rid);
 		showMap(this);
 		active(rid, true);
 	}).mouseout(
@@ -36,28 +32,35 @@ $(function() {
 				var rid = this.id.substr(2);
 				hideMap(this);
 				if (!$(e.toElement).is(".native_map_2")
-						&& $(e.toElement).parents(".native_map_2").length == 0
-						&& !$(e.toElement).is(".native_map_1")) {
-					$("div.tjsp .native_map_1").stop().show().animate({
-						opacity : "1"
-					}, 500, null);
+						&& $(e.toElement).parents(".native_map_2").length == 0) {
+				showtop();
 					// $("#tc_"+rid).hide();
-					mopt.tctimer = setTimeout('$("#tc_' + rid + '").hide()',
+					mopt.tctimer[rid] = setTimeout('$("#tc_' + rid + '").hide()',
 							800);
 				}
 				active(rid, false);
-			}).click(function() {
-		window.location.href = SITE_URL + "/index.php?app=special&rid=" + rid;
-	});
+			}).click(
+			function() {
+				if ($(this).data("is_show")) {
+					var rid = this.id.substr(2);
+					window.location.href = SITE_URL
+							+ "/index.php?app=special&rid=" + rid;
+				}
+			});
 	$(".native_names1 .native_namesli1").mouseenter(function() {
 		var rid = this.id.substr(2);
 		active(rid, false);
-		showMap($("#m_"+rid));
+		showMap($("#m_" + rid));
+		hidetop(rid);
 	}).mouseleave(function() {
 		var rid = this.id.substr(2);
 		active(rid, false);
-		hideMap($("#m_"+rid));
+		hideMap($("#m_" + rid));
+		showtop();
 	});
+	$(".native_map_1").mouseenter(function(){
+		$(".native_map_1").not(this).hide();
+	})
 })
 function showtj(rid, lc) {
 	show = true;
@@ -65,6 +68,7 @@ function showtj(rid, lc) {
 	var data = $("#tc_" + rid);
 	if (data.length > 0) {
 		data.show();
+		hidetop();
 		return;
 	}
 	$.get(SITE_URL + '/index.php?app=special&act=tj&rid=' + rid, null,
@@ -78,12 +82,8 @@ function showtj(rid, lc) {
 						// + '").hide()', 800);
 						// }
 					}).mouseover(function() {
-						clearTimeout(mopt.tctimer);
-						$("#tj_" + rid + " .native_map_1").stop().animate({
-							opacity : "0"
-						}, 200, null, function() {
-							$(this).hide();
-						});
+						clearTimeout(mopt.tctimer[rid]);
+						hidetop();
 					});
 					if (show) {
 						$("#tc_" + rid).show();
@@ -112,9 +112,31 @@ function active(rid, flag) {
 		}
 	}
 }
+function showtop(){
+	$("div.tjsp .native_map_1").stop().show().animate({
+		opacity : "1"
+	}, 500);
+}
+function hidetop(rid) {
+	if (rid) {
+		$("div.tjsp:not(#tj_" + rid + ") .native_map_1").stop().animate({
+			opacity : "0"
+		}, 200, null, function() {
+			$(this).hide();
+		});
+	} else {
+		$("div.tjsp .native_map_1").stop().animate({
+			opacity : "0"
+		}, 200, null, function() {
+			$(this).hide();
+		});
+	}
+}
 $(function() {
 	cbpBGSlideshow.init();
 });
 $(document).ready(function() {
-
+	for ( var k in regions) {
+		$("#m_" + regions[k].region_id).data("is_show", regions[k].if_show);
+	}
 });

@@ -11,6 +11,7 @@
 		var SITE_URL = "{$site_url}";
 		var REAL_SITE_URL = "{$real_site_url}";
 		var PRICE_FORMAT = '{$price_format}';
+		var regions=eval('{$regionsjson}');
 		</script>
 	</head>
 	<body>
@@ -32,7 +33,7 @@
 				<form>
 	                <input type="hidden" name="act" value="index" />
 	                <input type="hidden" name="app" value="search" />
-					<input class="search_input1" type="text" placeholder="搜索"><input  class="search_input2" type="submit" value="">
+					<input class="search_input1" name="keyword" type="text" placeholder="搜索"><input  class="search_input2" type="submit" value="">
 				</form>
 			</div>
 			<div class="native_jump">
@@ -42,9 +43,9 @@
 			</div>
 			<div style="clear: left;"></div>
 			<div id="cbp-bicontrols" class="cbp-bicontrols">
+				<p><img src="{res file=img/wzxx.png}">&nbsp<span>你的当前位置：</span><span><a href="#"  class="bicontrols_span">仁寿县</a></span></p>
 				<span class="cbp-biprev"></span>
 				<span class="cbp-binext"></span>
-				<span class="cbp-a"><a href="#">{$imgs[0].description}</a></span>
 			</div>
 			</div>
 			<div class="native_map" style="position: relative;">

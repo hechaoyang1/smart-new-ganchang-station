@@ -42,6 +42,7 @@
 	width: 960px;
 	height: 25px;
 	margin: 43px auto 0;
+	overflow: hidden;
 }
 
 .cbp-biprev {
@@ -53,7 +54,7 @@
 	background-image: url(../img/search_updn.png);
 	background-repeat: no-repeat;
 	background-position: 2px;
-	margin-left: 83%;	
+	margin-left: 50%;	
 }
 
 .cbp-bicontrols span.cbp-binext {
@@ -76,28 +77,27 @@
 	margin-left:20px;
 	float: left;
 	margin-top: 30px;
-	height: 55px;
+	height: 50px;
 	width: 537px;
 	background-color: #FFFFFF;
 }
 .search_input2{
-	width:47px;
-	height:47px;
+	width:50px;
+	height:50px;
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
 	border-left-style: none;
 	margin-left: 10px;
-	margin-top: 4px;
 	background-image: url(../img/sousuo.png);
 	background-repeat: no-repeat;
-	background-position: 3px 5px;
+	background-position: 7px 6px;
 	background-color: #FF6600;
 	cursor:pointer;  
 }
 .search_input1{
-	width:473px;
-	height: 53px;
+	width:477px;
+	height: 48px;
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -137,11 +137,23 @@
 	line-height: 38px;
 	text-align: center;
 	color: #FFFFFF;
+	margin-top:11%;
+}
+.cbp-bicontrols p{
+	float:left;
+}
+.bicontrols_span{
+	color: #FF6600!important;;
+	
+}
+.cbp-bicontrols p span a{
+	text-decoration: none;
+	color:#000000;
 }
 .jump_span{
 	height: 25px;
 	width: 25px;
-	background-image: url(img/jump_span.png);
+	background-image: url(../img/jump_span.png);
 	float: left;
 	margin-left: 7px;
 }
@@ -173,8 +185,8 @@
 	font-size: 15px;
 	color: #FFFFFF;
 	background-color: #FF6600;
-	width: 80px;
-	text-align:left;
+	width: 60px;
+	text-align:center;
 	margin-left: 5px;
 }
 .native_namesli{
@@ -186,10 +198,10 @@
 
 .native_names{
     height: 430px;
-    width: 170px;
+    width: 230px;
     list-style-type: none;
     position: fixed;
-    right: -100px;
+    right: -160px;
     top: 20%;
 	overflow: hidden;
 }
@@ -200,9 +212,11 @@
 	height: 20px;
 	width: 20px;
 	background-repeat: no-repeat;
-	background-position: 5px 0px;
-	margin-top:140%;
+	background-position: 3px -3px;
+	margin-top:90%;
 	cursor:pointer;
+	background-color: #666666;
+	opacity:0.5;
 }
 .native_names0-js{
 	background-image: url(../img/right.png);
@@ -210,16 +224,18 @@
 	background-position: 6px 3px;
 }
 .native_names1{
-	width:50px;
+	width:70px;
 	background-image: url(../img/native_names1.png);
 	background-repeat: repeat-y;
 	background-position: left;
 	float: left;
 }
 
-
+.native_names1 ul{
+	background-image: url(../img/R_BG.png);
+}
 .native_names ul li{
-	width:50px;
+	width:70px;
 	text-align: center;
 	color: #f3ecd0;
 }
@@ -257,8 +273,10 @@
 .map_a_div1{
 	position: absolute;
 	top:14px;
+	height:16px;
 	width:100%;
 	text-align: center;
+	overflow: hidden;
 }
 .map_a_div2{
 	position: absolute;
@@ -326,6 +344,7 @@
 	width: 298px;
 	height:123px;
 	float:left;
+	overflow: hidden;
 }
 .map2_a_div2 h1{
 	font-size: 18px;
@@ -349,4 +368,9 @@
 	font-weight: bold;
 }
 
+.native_map1{
+	background-image: url(../img/dtbj1.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
  .fil {fill:#dddddd;stroke-width:1;opacity:0;cursor: pointer;}

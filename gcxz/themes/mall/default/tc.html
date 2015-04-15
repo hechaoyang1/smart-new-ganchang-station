@@ -5,7 +5,8 @@
 											<div class="recommend_div">
 												<a href="{url app=goods&id=$v.goods_id}">
 													<img src="{$v.default_image}" width="60" height="59">
-													<div class="recommend_div_p">{$v.goods_name}
+													<div class="recommend_div_p">
+													<div style="width:167px; height:20px; overflow:hidden;">{$v.goods_name}</div>
 													<p class="recommend_div_p1"><span class="recommend_div_p1_span">￥{$v.price}</span>{if $v.unit}<span>/{$v.unit}</span>{/if}</p>
 													</div>
 													<input  class="recommend_input" type="submit" value="购买">
