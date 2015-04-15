@@ -19,7 +19,7 @@ class SpecialApp extends MallbaseApp {
 		// 地区数据
 		$data = $this->_get_regions ( $region_id );
 		// 置顶商品
-		$goods = $this->m->db->getAll ( "SELECT g.goods_name, g.default_image,g.goods_id,r.region_id FROM ecm_region_goods rg LEFT JOIN ecm_goods g ON rg.goods_id = g.goods_id LEFT JOIN ecm_region r ON rg.region_id = r.region_id WHERE rg.type=2 and r.parent_id = {$region_id}" );
+		$goods = $this->m->db->getAll ( "SELECT g.goods_name, g.default_image,g.goods_id,r.region_id FROM ecm_region_goods rg LEFT JOIN ecm_goods g ON rg.goods_id = g.goods_id LEFT JOIN ecm_region r ON rg.region_id = r.region_id join ecm_region_description rd on r.region_id=rd.region_id and rd.if_show=1 WHERE rg.type=2 and r.parent_id = {$region_id}" );
 		$imgs = $this->m->db->getAll ( "SELECT bg_image,description FROM ecm_region_bg_image where region_id={$region_id}" );
 		$file = ROOT_PATH . "/themes/mall/default/styles/default/svg/m_{$region_id}.svg";
 		if (file_exists ( $file )) {
@@ -28,6 +28,7 @@ class SpecialApp extends MallbaseApp {
 		}
 		$this->assign("more",count($data)>10);
 		$this->assign ( "regions", $data );
+		$this->assign("regionsjson",json_encode($data));
 		$this->assign ( "goods", $goods );
 		$this->assign ( "imgs", $imgs );
 		$this->display ( "ttc.html" );
@@ -59,7 +60,7 @@ class SpecialApp extends MallbaseApp {
 			echo 0;
 			return;
 		}
-		$goods = $this->m->db->getAll ( "SELECT g.goods_name, g.default_image, g.goods_id, g.unit, g.price FROM ecm_region_goods rg LEFT JOIN ecm_goods g ON rg.goods_id = g.goods_id LEFT JOIN ecm_goods_spec gs ON g.goods_id = gs.goods_id WHERE rg.type = 1 AND rg.region_id = {$region_id} order by rg.sort_order asc limit 3" );
+		$goods = $this->m->db->getAll ( "SELECT g.goods_name, g.default_image, g.goods_id, g.unit, g.price FROM ecm_region_goods rg LEFT JOIN ecm_goods g ON rg.goods_id = g.goods_id LEFT JOIN ecm_goods_spec gs ON g.goods_id = gs.goods_id LEFT JOIN ecm_region_description rd ON rg.region_id = rd.region_id WHERE rg.region_id ={$region_id} AND rd.if_show = 1 AND rg.type = 1 order by rg.sort_order asc limit 3" );
 		if (! $goods) {
 			echo 0;
 			return;
@@ -77,15 +78,15 @@ class SpecialApp extends MallbaseApp {
 	 * @return Ambigous <boolean, unknown>
 	 */
 	function _get_regions($rid) {
-		$cache_server = & cache_server ();
-		$data = $cache_server->get ( 'regions_pid_' . $rid );
-		if ($data === false) {
-			$data = $this->m->db->getAll ( "select r.region_id,r.region_name from ecm_region r left join ecm_region_description rd on rd.region_id =r.region_id where r.parent_id={$rid} and rd.if_show=1" );
+// 		$cache_server = & cache_server ();
+// 		$data = $cache_server->get ( 'regions_pid_' . $rid );
+// 		if ($data === false) {
+			$data = $this->m->db->getAll ( "select r.region_id,r.region_name,rd.if_show from ecm_region r left join ecm_region_description rd on rd.region_id =r.region_id where r.parent_id={$rid} and rd.if_show=1" );
 			// 缓存一天
-			if ($data) {
-				$cache_server->set ( 'regions_pid_' . $rid, $data, 24 * 60 * 60 );
-			}
-		}
+// 			if ($data) {
+// 				$cache_server->set ( 'regions_pid_' . $rid, $data, 24 * 60 * 60 );
+// 			}
+// 		}
 		return $data;
 	}
 }
