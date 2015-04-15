@@ -49,7 +49,7 @@
 			<div id="cbp-bicontrols" class="cbp-bicontrols">
 				<p><img src="{res file=img/wzxx.png}">&nbsp<span>你的当前位置：</span>
 				<!--{foreach from=$top item=v}-->
-				<span><a href="{url app=special&rid=$v.rid}"  class="bicontrols_span">{$v.name}</a></span>{if !$v.end}—{/if}
+				<span><a href="{if $v.end}javascript:;{else}{url app=special&rid=$v.rid}{/if}"  class="bicontrols_span">{$v.name}</a></span>{if !$v.end}—{/if}
 				<!-- {/foreach} -->
 				</p>
 				<span class="cbp-biprev"></span>

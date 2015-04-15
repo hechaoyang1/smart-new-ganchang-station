@@ -121,8 +121,7 @@ class SpecialApp extends MallbaseApp {
 		}
 		$tops [] = array (
 				"rid" => $data ['r3'],
-				"name" => $data ['n3'],
-				'end' => true 
+				"name" => $data ['n3']
 		);
 		$tops = array_reverse ( $tops );
 		$this->assign("level",3);
