@@ -5,38 +5,41 @@ var mopt = {
 	liheight : 46
 }
 $(function() {
-	$("svg polygon.fil,circle").mousemove(function() {
-		show = false;
-		var rid = this.id.substr(2);
-		clearTimeout(showtimer);
-		showtimer = setTimeout("showtj(" + rid + ",11" + ")", 400);
-	}).mouseover(function() {
-		clearTimeout(showtimer);
-		var rid = this.id.substr(2);
-		hidetop(rid);
-		showMap(this);
-		active(rid, true);
-	}).mouseout(
-			function(e) {
+	$("svg polygon.fil")
+			.mousemove(function() {
+				show = false;
+				var rid = this.id.substr(2);
+				clearTimeout(showtimer);
+				showtimer = setTimeout("showtj(" + rid + ",11" + ")", 400);
+			})
+			.mouseover(function() {
 				clearTimeout(showtimer);
 				var rid = this.id.substr(2);
-				hideMap(this);
-				if (!$(e.toElement).is(".native_map_2")
-						&& $(e.toElement).parents(".native_map_2").length == 0) {
-				showtop();
-					// $("#tc_"+rid).hide();
-					mopt.tctimer[rid] = setTimeout('$("#tc_' + rid + '").hide()',
-							800);
-				}
-				active(rid, false);
-			}).click(
-			function() {
-				if ($(this).data("is_show")) {
-					var rid = this.id.substr(2);
-					window.location.href = SITE_URL
-							+ "/index.php?app=special&rid=" + rid;
-				}
-			});
+				hidetop(rid);
+				showMap(this);
+				active(rid, true);
+			})
+			.mouseout(
+					function(e) {
+						clearTimeout(showtimer);
+						var rid = this.id.substr(2);
+						hideMap(this);
+						if (!$(e.toElement).is(".native_map_2")
+								&& $(e.toElement).parents(".native_map_2").length == 0) {
+							showtop();
+							// $("#tc_"+rid).hide();
+							mopt.tctimer[rid] = setTimeout('$("#tc_' + rid
+									+ '").hide()', 800);
+						}
+						active(rid, false);
+					}).click(
+					function() {
+						if ($(this).data("is_show")) {
+							var rid = this.id.substr(2);
+							window.location.href = SITE_URL
+									+ "/index.php?app=special&rid=" + rid;
+						}
+					});
 	$(".native_names1 .native_namesli1").mouseenter(function() {
 		var rid = this.id.substr(2);
 		active(rid, false);
@@ -99,7 +102,7 @@ function active(rid, flag) {
 		}
 	}
 }
-function showtop(){
+function showtop() {
 	$("div.tjsp:not(.not_active) .native_map_1").stop().show().animate({
 		opacity : "1"
 	}, 500);
@@ -125,32 +128,41 @@ function hidetop(rid) {
 $(function() {
 	cbpBGSlideshow.init();
 });
-$(document).ready(function() {
-	for ( var k in regions) {
-		$("#m_" + regions[k].region_id).data("is_show", regions[k].if_show);
-	}
-	$("svg polygon.fil,circle").each(function(){
-		var $this=$(this);
-		var rid=this.id.substr("2");
-		if(!$this.data("is_show")){
-			$("#container>div").append('<div id="tj_'+rid+'" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-112px; left:-6px;"></div></div>');
-		}
-	});
-	$(".native_map_1").mouseenter(function(){
-		$(".native_map_1").not(this).hide();
-	}).mouseleave(function(e){
-		if($(e.toElement).is(":not(svg polygon)")){
-			hidetop();
-		}
-	});
-	$("div.tjsp").each(function() {
-		var $this = $(this);
-		var id = "#m_" + this.id.substr(3);
-		var location = $(id).attr("lc").split(",");
-		$this.css({
-			position : "absolute",
-			top : location[0] + "px",
-			left : location[1] + "px"
-		});
-	}).show();
-});
+$(document)
+		.ready(
+				function() {
+					for ( var k in regions) {
+						$("#m_" + regions[k].region_id).data("is_show",
+								regions[k].if_show);
+					}
+					$("svg polygon.fil")
+							.each(
+									function() {
+										var $this = $(this);
+										var rid = this.id.substr("2");
+										if (!$this.data("is_show")) {
+											$("#container>div")
+													.append(
+															'<div id="tj_'
+																	+ rid
+																	+ '" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-112px; left:-6px;"></div></div>');
+										}
+									});
+					$(".native_map_1").mouseenter(function() {
+						$(".native_map_1").not(this).hide();
+					}).mouseleave(function(e) {
+						if ($(e.toElement).is(":not(svg polygon)")) {
+							hidetop();
+						}
+					});
+					$("div.tjsp").each(function() {
+						var $this = $(this);
+						var id = "#m_" + this.id.substr(3);
+						var location = $(id).attr("lc").split(",");
+						$this.css({
+							position : "absolute",
+							top : location[0].trim() + "px",
+							left : location[1].trim() + "px"
+						});
+					}).show();
+				});

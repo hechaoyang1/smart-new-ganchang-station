@@ -12,6 +12,7 @@
 		var REAL_SITE_URL = "{$real_site_url}";
 		var PRICE_FORMAT = '{$price_format}';
 		var regions=eval('{$regionsjson}');
+		var level='{$level}';
 		</script>
 	</head>
 	<body>
@@ -92,5 +93,9 @@
 <script src="{res file=js/jquery.min.js}"></script>
 <script src="{res file=js/jquery.imagesloaded.min.js}"></script>
 <script src="{res file=js/cbpBGSlideshow.min.js}"></script>
+{if $level===1}
 <script src="{res file=js/ttc.js}"></script>
+{else}
+<script src="{res file=js/ttc_2.js}"></script>
+{/if}
 </html>

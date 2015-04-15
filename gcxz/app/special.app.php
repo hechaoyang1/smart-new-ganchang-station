@@ -66,14 +66,23 @@ class SpecialApp extends MallbaseApp {
 			echo 0;
 			return;
 		}
-		$goods = $this->m->db->getAll ( "SELECT g.goods_name, g.default_image, g.goods_id, g.unit, g.price FROM ecm_region_goods rg LEFT JOIN ecm_goods g ON rg.goods_id = g.goods_id LEFT JOIN ecm_goods_spec gs ON g.goods_id = gs.goods_id LEFT JOIN ecm_region_description rd ON rg.region_id = rd.region_id WHERE rg.region_id ={$region_id} AND rd.if_show = 1 AND rg.type = 1 order by rg.sort_order asc limit 3" );
+		$goods = $this->m->db->getAll ( "SELECT g.goods_name, g.default_image, g.goods_id, g.unit, g.price FROM ecm_region_goods rg LEFT JOIN ecm_goods g ON rg.goods_id = g.goods_id LEFT JOIN ecm_goods_spec gs ON g.goods_id = gs.goods_id LEFT JOIN ecm_region_description rd ON rg.region_id = rd.region_id WHERE rg.region_id ={$region_id} AND rd.if_show = 1 AND rg.type = 1 order by rg.sort_order asc " );
 		if (! $goods) {
 			echo 0;
 			return;
 		}
+		if(count($goods)>3){
+			$this->assign ( "has_more", true );
+		}
+		$ids = getSubByKey($goods,'goods_id');
+		foreach ($ids as &$id){
+			$id=intval($id);
+		}
+		$goods = array_slice($goods, 0,3);
 		$region = $this->m->db->getAll ( "select rd.description,rd.default_image,r.region_name,r.region_id from ecm_region_description rd left join ecm_region r on rd.region_id =r.region_id where rd.region_id={$region_id} limit 1" );
 		$region = current ( $region );
 		$this->assign ( "goods", $goods );
+		$this->assign ( "ids", json_encode($ids) );
 		$this->assign ( "region", $region );
 		$this->display ( "tc.html" );
 	}
@@ -88,6 +97,7 @@ class SpecialApp extends MallbaseApp {
 					'end' => true 
 			);
 			$this->assign ( 'top', $tops );
+			$this->assign("level",1);
 			return;
 		}
 		$data = $this->m->db->getAll ( "SELECT r1.region_id as r1, r1.region_name as n1, r2.region_id as r2, r2.region_name as n2, r3.region_id as r3, r3.region_name as n3 FROM ecm_region r1 LEFT JOIN ecm_region r2 ON r1.parent_id = r2.region_id LEFT JOIN ecm_region r3 ON r2.parent_id = r3.region_id WHERE r1.region_id = $rid" );
@@ -104,6 +114,7 @@ class SpecialApp extends MallbaseApp {
 		if ($data ['r2'] == $this->renshou) {
 			$tops = array_reverse ( $tops );
 			$this->assign ( 'top', $tops );
+			$this->assign("level",2);
 			return;
 		}
 		$tops [] = array (
@@ -112,6 +123,7 @@ class SpecialApp extends MallbaseApp {
 				'end' => true 
 		);
 		$tops = array_reverse ( $tops );
+		$this->assign("level",3);
 		$this->assign ( 'top', $tops );
 	}
 	/**
