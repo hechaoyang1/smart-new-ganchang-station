@@ -31,7 +31,7 @@ $(function() {
 							mopt.tctimer[rid] = setTimeout('$("#tc_' + rid
 									+ '").hide()', 800);
 						}
-						if (!$(e.toElement).is(".native_map_1")&&!$(e.toElement).is(".native_map_2")) {
+						if (!$(e.toElement).is(".native_map_1")&&$(e.toElement).parents(".native_map_1").length==0&&!$(e.toElement).is(".native_map_2")) {
 							$("div.tjsp.not_active .native_map_1").stop().animate({
 								opacity : "0"
 							}, 200, null, function() {
