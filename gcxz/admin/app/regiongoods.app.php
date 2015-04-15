@@ -261,10 +261,10 @@ class RegiongoodsApp extends BackendApp {
 			$region = $result [0];
 			$data = array (
 					'region_id' => $id,
-					'description' => '' 
+					'if_show' => $value 
 			);
 			$data [$column] = $value;
-			if ($region ['description'] === NULL) {
+			if (!$region ['id']) {
 				$rdModel->add ( $data );
 			} else {
 				$rdModel->edit ( $region ['id'], $data );

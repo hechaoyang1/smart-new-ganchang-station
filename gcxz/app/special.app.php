@@ -68,7 +68,7 @@ class SpecialApp extends MallbaseApp {
 			echo 0;
 			return;
 		}
-		$goods = $this->m->db->getAll ( "SELECT g.goods_name, g.default_image, g.goods_id, g.unit, g.price FROM ecm_region_goods rg LEFT JOIN ecm_goods g ON rg.goods_id = g.goods_id LEFT JOIN ecm_goods_spec gs ON g.goods_id = gs.goods_id LEFT JOIN ecm_region_description rd ON rg.region_id = rd.region_id WHERE rg.region_id ={$region_id} AND rd.if_show = 1 AND rg.type = 1 order by rg.sort_order asc " );
+		$goods = $this->m->db->getAll ( "SELECT g.goods_name, g.default_image, g.goods_id, g.unit, g.price FROM ecm_region_goods rg LEFT JOIN ecm_goods g ON rg.goods_id = g.goods_id LEFT JOIN ecm_goods_spec gs ON g.goods_id = gs.goods_id LEFT JOIN ecm_region_description rd ON rg.region_id = rd.region_id WHERE rg.region_id ={$region_id} AND g.region_id={$region_id} AND rd.if_show = 1 AND rg.type = 1 order by rg.sort_order asc " );
 		if (! $goods) {
 			echo 0;
 			return;
