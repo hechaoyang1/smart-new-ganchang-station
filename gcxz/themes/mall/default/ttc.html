@@ -5,8 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 		<title>土特产专题</title>
-		<link rel="stylesheet" href="{res file=css/base.css}">
-		<link rel="stylesheet" type="text/css" href="{res file=css/localfeature.css}" />
+		<link rel="stylesheet" href="{res file=css/base.css}?v={$version}">
+		<link rel="stylesheet" type="text/css" href="{res file=css/localfeature.css}?v={$version}" />
 		<script type="text/javascript">
 		var SITE_URL = "{$site_url}";
 		var REAL_SITE_URL = "{$real_site_url}";
@@ -47,7 +47,7 @@
 			</div>
 			<div style="clear: left;"></div>
 			<div id="cbp-bicontrols" class="cbp-bicontrols">
-				<p><img src="{res file=img/wzxx.png}">&nbsp<span>你的当前位置：</span>
+				<p><img src="{res file=img/wzxx.png}">&nbsp<span>您的当前位置：</span>
 				{foreach from=$top item=v}<span><a href="{if $v.end}javascript:;{else}{url app=special&rid=$v.rid}{/if}"  class="bicontrols_span">{$v.name}</a></span>{if !$v.end}—{/if}{/foreach}</p>
 				<span class="cbp-biprev"></span>
 				<span class="cbp-binext"></span>
@@ -63,7 +63,7 @@
 					{/if}
 					<!--{foreach from=$goods item=v}-->
 						<div id="tj_{$v.region_id}" class="tjsp" style="display:none;">
-							<div class="native_map_1" style="position: absolute; top:-112px; left:-6px;">
+							<div class="native_map_1" style="position: absolute; top:-95px; left:-6px;">
 								<a title="{$v.goods_name}" href="{url app=goods&id=$v.goods_id}" target="_blank" class="native_map_a">
 									<div class="map_a_div1">{$v.goods_name}</div>
 									<div class="map_a_div2"><img src="{$v.default_image}"  width="62" height="47"></div>
@@ -79,7 +79,7 @@
 			<div class="native_names1">
 			<ul>
 			<!--{foreach from=$regions item=v key=i}-->
-		    <li class="native_namesli1" id="r_{$v.region_id}" o="{$i}">{$v.region_name}</li>
+		    <li class="native_namesli1" title="{$v.region_name}" id="r_{$v.region_id}" o="{$i}">{$v.region_name}</li>
 			<li class="native_namesli"></li>
 			<!--{/foreach}-->
 			</ul>
@@ -91,13 +91,13 @@
 官方微博：赶场小站（新浪微博）2014@版权归赶场小站所有  ICP备案：蜀ICP14013997号
 </div>
 </body>
-<script src="{res file=js/modernizr.custom.js}"></script>
-<script src="{res file=js/jquery.min.js}"></script>
-<script src="{res file=js/jquery.imagesloaded.min.js}"></script>
-<script src="{res file=js/cbpBGSlideshow.min.js}"></script>
+<script src="{res file=js/modernizr.custom.js}?v={$version}"></script>
+<script src="{res file=js/jquery.min.js}?v={$version}"></script>
+<script src="{res file=js/jquery.imagesloaded.min.js}?v={$version}"></script>
+<script src="{res file=js/cbpBGSlideshow.min.js}?v={$version}"></script>
 {if $level===1}
-<script src="{res file=js/ttc.js}"></script>
+<script src="{res file=js/ttc.js}?v={$version}"></script>
 {else}
-<script src="{res file=js/ttc_2.js}"></script>
+<script src="{res file=js/ttc_2.js}?v={$version}"></script>
 {/if}
 </html>

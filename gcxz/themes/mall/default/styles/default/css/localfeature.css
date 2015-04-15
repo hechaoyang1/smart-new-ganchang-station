@@ -54,7 +54,7 @@
 	background-image: url(../img/search_updn.png);
 	background-repeat: no-repeat;
 	background-position: 2px;
-	margin-left: 50%;	
+	left:700px;
 }
 
 .cbp-bicontrols span.cbp-binext {
@@ -66,7 +66,7 @@
 	background-image: url(../img/search_updn.png);
 	background-repeat: no-repeat;
 	background-position: -24px;
-	margin-left: -3px;
+	left:700px;
 }
 
 .native_logo {
@@ -258,15 +258,16 @@
 	
 }
 .native_names1{
-	height: 470px;
 	width:70px;
-	overflow: hidden;
-	
+	height: 470px;
+	overflow:hidden;
 }
 .native_names ul li{
 	width:70px;
 	text-align: center;
 	color: #f3ecd0;
+	overflow: hidden;
+	text-overflow : ellipsis;
 }
 .native_names-js{
 	 right: 0px;
@@ -278,15 +279,15 @@
 }
 .native_map_1{
 	background-image: url(../img/native_map_a.png);
-	height: 127px;
-	width: 95px;
+	height: 110px;
+	width: 80px;
 	position: absolute;
 	background-repeat: no-repeat;
 }
 .native_map_1_no{
 	background-image: url(../img/native_map_a_on.png);
-	height: 127px;
-	width: 95px;
+	height: 55px;
+	width: 100px;
 	position: absolute;
 	background-repeat: no-repeat;
 }
@@ -310,28 +311,27 @@
 }
 .map_a_div1{
 	position: absolute;
-	top:14px;
-	height:16px;
+	top:10px;
 	width:100%;
+	height:16px;
 	text-align: center;
 	overflow: hidden;
 }
 .map_a_div2{
 	position: absolute;
-	top:45px;
-	left:17px;
+	top:36px;
+	left:10px;
 	height: 47px;
 	width: 62px;
 }
 .map_a_div3{
 	position: absolute;
-	top:14px;
-	height:80px;
+	height:40px;
 	width:100%;
 	text-align: center;
 	overflow: hidden;
-	font-size: 17px;
-	line-height: 24px;
+	font-size: 12px;
+	line-height: 40px;
 }
 .recommend1{
 	width:100px;
@@ -416,7 +416,7 @@
 	font-size: 18px;
 	font-weight: bold;
 }
- 
+
 .native_map1{
 	background-image: url(../img/dtbj1.png);
 	background-repeat: no-repeat;

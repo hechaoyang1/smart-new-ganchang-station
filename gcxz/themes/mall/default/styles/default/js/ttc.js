@@ -24,14 +24,15 @@ $(function() {
 						clearTimeout(showtimer);
 						var rid = this.id.substr(2);
 						hideMap(this);
-						if (!$(e.toElement).is(".native_map_2")
-								&& $(e.toElement).parents(".native_map_2").length == 0) {
+						var target=e.toElement||e.relatedTarget;
+						if (!$(target).is(".native_map_2")
+								&& $(target).parents(".native_map_2").length == 0) {
 							showtop();
 							// $("#tc_"+rid).hide();
 							mopt.tctimer[rid] = setTimeout('$("#tc_' + rid
 									+ '").hide()', 800);
 						}
-						if (!$(e.toElement).is(".native_map_1")&&!$(e.toElement).is(".native_map_2")) {
+						if (!$(target).is(".native_map_1")&&$(target).parents(".native_map_1").length==0&&!$(target).is(".native_map_2")) {
 							$("div.tjsp.not_active .native_map_1").stop().animate({
 								opacity : "0"
 							}, 200, null, function() {
@@ -187,15 +188,16 @@ $(document)
 													.append(
 															'<div id="tj_'
 																	+ rid
-																	+ '" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-112px; left:-6px;"><a href="#" class="native_map_a"><div class="map_a_div3">该地区尚未开启</div></a></div></div>');
+																	+ '" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-50px; left:-35px;"><a href="#" class="native_map_a"><div class="map_a_div3">该地区尚未开启</div></a></div></div>');
 										}else{
 											$(this).css("cursor","pointer");
 										}
 									});
 					$(".native_map_1").mouseenter(function() {
-						$(".native_map_1").not(this).hide();
+						$(".native_map_1").not(this).stop().hide();
 					}).mouseleave(function(e) {
-						if ($(e.toElement).is(":not(svg polygon)")) {
+						var target=e.toElement||e.relatedTarget;
+						if ($(target).is(":not(svg polygon)")) {
 							hidetop();
 						}
 						showtop();
