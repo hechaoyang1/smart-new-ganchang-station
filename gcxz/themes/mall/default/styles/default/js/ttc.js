@@ -2,7 +2,7 @@ var showtimer;
 var show = false;
 var mopt = {
 	tctimer : new Array(),
-	liheight : 46
+	liheight : 50
 }
 $(function() {
 	$("svg polygon.fil")
@@ -58,6 +58,33 @@ $(function() {
 		hideMap($("#m_" + rid));
 		showtop();
 	});
+	$(".native_names .native_namesli0").click(function(){
+		var top= $(".native_names .native_names1>ul").css("marginTop");
+		top=parseInt(top)+mopt.liheight*10;
+		if(top>0){
+			top=0;
+		}
+		$(".native_names .native_names1>ul").stop().animate({
+			marginTop : top + "px"
+		})
+	});
+	$(".native_names .native_namesli3").click(function(){
+		var top= $(".native_names .native_names1>ul").css("marginTop");
+		top=-parseInt(top);
+		var count=$(".native_names .native_names1>ul li.native_namesli1").size();
+		if(count*mopt.liheight-top<=mopt.liheight*10){
+			return false;
+		}
+		top+=mopt.liheight*10;
+//		if(count*mopt.liheight-top-mopt.liheight*10<mopt.liheight*10){
+//			top+=mopt.liheight;
+//		}else{
+//			top+=mopt.liheight*10;
+//		}
+		$(".native_names .native_names1>ul").stop().animate({
+			marginTop : -top + "px"
+		})
+	});
 })
 function showtj(rid, lc) {
 	show = true;
@@ -106,15 +133,21 @@ function active(rid, flag) {
 		if(top<0){
 			top=0;
 		}
-		$(".native_names .native_names1").stop().animate({
+		$(".native_names .native_names1>ul").stop().animate({
 			marginTop : -top + "px"
 		})
 	}
 }
-function showtop() {
-	$("div.tjsp:not(.not_active) .native_map_1").stop().show().animate({
-		opacity : "1"
-	}, 500);
+function showtop(delay) {
+	if(delay){
+		$("div.tjsp:not(.not_active) .native_map_1").stop().delay(500).show().animate({
+			opacity : "1"
+		}, 500);
+	}else{
+		$("div.tjsp:not(.not_active) .native_map_1").stop().show().animate({
+			opacity : "1"
+		}, 500);
+	}
 }
 function hidetop(rid) {
 	if (rid) {
@@ -154,7 +187,9 @@ $(document)
 													.append(
 															'<div id="tj_'
 																	+ rid
-																	+ '" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-112px; left:-6px;"></div></div>');
+																	+ '" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-112px; left:-6px;"><a href="#" class="native_map_a"><div class="map_a_div3">该地区尚未开启</div></a></div></div>');
+										}else{
+											$(this).css("cursor","pointer");
 										}
 									});
 					$(".native_map_1").mouseenter(function() {

@@ -3,7 +3,7 @@
 									<div class="map2_a_div1">
 									<!--{foreach from=$goods item=v}-->
 											<div class="recommend_div">
-												<a href="{url app=goods&id=$v.goods_id}">
+												<a href="{url app=goods&id=$v.goods_id}" target="_blank">
 													<img src="{$v.default_image}" width="60" height="59">
 													<div class="recommend_div_p">
 													<div title="{$v.goods_name}" style="width:167px; height:20px; overflow:hidden;">{$v.goods_name}</div>
@@ -14,14 +14,14 @@
 											</div>
 											<!--{/foreach}-->
 											{if $has_more}
-											<a href='{url app=search&goodsId=}{$ids}' class="recommend_a">更多{$ids}>></a>
+											<a href='{url app=search&goodsId=}{$ids}' class="recommend_a">更多>></a>
 											{/if}
 									</div>
 									<div class="map2_a_div2">
 										<div class="div2_div1"><img src="{$region.default_image}" width="54" height="76"></div>
 										<div class="div2_div2">
 											<h1>{$region.region_name}</h1>
-											<p>{$region.description}</p>
+											<p title="{$region.description}">{$region.description}</p>
 											</div>
 										</div>
 								</div>
