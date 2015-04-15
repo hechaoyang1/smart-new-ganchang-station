@@ -58,7 +58,7 @@ function set_cover(file_id){
 }
 
 $(function(){
-	 var original_price = $('input[name=price1]').val();
+	 //var original_price = $('input[name=price1]').val();
 	
      $('#goods_form').validate({
         errorPlacement: function(error, element){
@@ -80,7 +80,7 @@ $(function(){
                 number     : true,
                 required : true,
                 min : 0.01,
-                max : original_price
+                //max : original_price
             },
 			price1      : {
                 number     : true,
@@ -115,7 +115,7 @@ $(function(){
                 number     : '{$lang.number_only}',
                 required : '{$lang.price_empty}',
                 min : '{$lang.price_ge_0}',
-                max : '促销价不能大于原价'
+                //max : '促销价不能大于原价'
             },
 			price1       : {
                 number     : '{$lang.number_only}',
@@ -138,9 +138,9 @@ $(function(){
     // init spec
     spec_update();
     
-    $('input[name=price1]').change(function(){
+    /*$('input[name=price1]').change(function(){
 	    $('input[name=price]').rules("add", { max : $(this).val(), messages: { max: "促销价不能大于原价"} });
-    });
+    });*/
 });
 //]]>
 </script>
