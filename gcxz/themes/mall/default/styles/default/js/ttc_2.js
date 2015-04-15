@@ -22,14 +22,15 @@ $(function() {
 					function(e) {
 						clearTimeout(showtimer);
 						var rid = this.id.substr(2);
-						if (!$(e.toElement).is(".native_map_2")
-								&& $(e.toElement).parents(".native_map_2").length == 0) {
+						var target=e.toElement||e.relatedTarget;
+						if (!$(target).is(".native_map_2")
+								&& $(target).parents(".native_map_2").length == 0) {
 							showtop();
 							// $("#tc_"+rid).hide();
 							mopt.tctimer[rid] = setTimeout('$("#tc_' + rid
 									+ '").hide()', 800);
 						}
-						if (!$(e.toElement).is(".native_map_1")&&$(e.toElement).parents(".native_map_1").length==0&&!$(e.toElement).is(".native_map_2")) {
+						if (!$(target).is(".native_map_1")&&$(target).parents(".native_map_1").length==0&&!$(target).is(".native_map_2")) {
 							$("div.tjsp.not_active .native_map_1").stop().animate({
 								opacity : "0"
 							}, 200, null, function() {
@@ -171,7 +172,8 @@ $(document)
 					$(".native_map_1").mouseenter(function() {
 						$(".native_map_1").not(this).hide();
 					}).mouseleave(function(e) {
-						if ($(e.toElement).is(":not(svg circle)")) {
+						var target=e.toElement||e.relatedTarget;
+						if ($(target).is(":not(svg circle)")) {
 							hidetop();
 						}
 						showtop();
