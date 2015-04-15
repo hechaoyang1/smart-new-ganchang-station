@@ -13,7 +13,9 @@
 												</a>
 											</div>
 											<!--{/foreach}-->
-											<a href="{url app=search&region_id=$region.region_id}" class="recommend_a">更多>></a>
+											{if $has_more}
+											<a href='{url app=search&goodsId=}{$ids}' class="recommend_a">更多{$ids}>></a>
+											{/if}
 									</div>
 									<div class="map2_a_div2">
 										<div class="div2_div1"><img src="{$region.default_image}" width="54" height="76"></div>

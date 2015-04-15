@@ -66,14 +66,23 @@ class SpecialApp extends MallbaseApp {
 			echo 0;
 			return;
 		}
-		$goods = $this->m->db->getAll ( "SELECT g.goods_name, g.default_image, g.goods_id, g.unit, g.price FROM ecm_region_goods rg LEFT JOIN ecm_goods g ON rg.goods_id = g.goods_id LEFT JOIN ecm_goods_spec gs ON g.goods_id = gs.goods_id LEFT JOIN ecm_region_description rd ON rg.region_id = rd.region_id WHERE rg.region_id ={$region_id} AND rd.if_show = 1 AND rg.type = 1 order by rg.sort_order asc limit 3" );
+		$goods = $this->m->db->getAll ( "SELECT g.goods_name, g.default_image, g.goods_id, g.unit, g.price FROM ecm_region_goods rg LEFT JOIN ecm_goods g ON rg.goods_id = g.goods_id LEFT JOIN ecm_goods_spec gs ON g.goods_id = gs.goods_id LEFT JOIN ecm_region_description rd ON rg.region_id = rd.region_id WHERE rg.region_id ={$region_id} AND rd.if_show = 1 AND rg.type = 1 order by rg.sort_order asc " );
 		if (! $goods) {
 			echo 0;
 			return;
 		}
+		if(count($goods)>3){
+			$this->assign ( "has_more", true );
+		}
+		$ids = getSubByKey($goods,'goods_id');
+		foreach ($ids as &$id){
+			$id=intval($id);
+		}
+		$goods = array_slice($goods, 0,3);
 		$region = $this->m->db->getAll ( "select rd.description,rd.default_image,r.region_name,r.region_id from ecm_region_description rd left join ecm_region r on rd.region_id =r.region_id where rd.region_id={$region_id} limit 1" );
 		$region = current ( $region );
 		$this->assign ( "goods", $goods );
+		$this->assign ( "ids", json_encode($ids) );
 		$this->assign ( "region", $region );
 		$this->display ( "tc.html" );
 	}
