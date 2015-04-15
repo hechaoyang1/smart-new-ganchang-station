@@ -175,7 +175,7 @@ class RegiongoodsApp extends BackendApp {
 		$uploader->root_dir ( ROOT_PATH );
 		
 		/* 上传 */
-		if ($file_path = $uploader->save ( 'data/files/mall/ttc', $id )) 		// 保存到指定目录，并以指定文件名$brand_id存储
+		if ($file_path = $uploader->save ( 'data/files/mall/ttc', time() )) 		// 保存到指定目录，并以指定文件名$brand_id存储
 		{
 			return $file_path;
 		} else {
