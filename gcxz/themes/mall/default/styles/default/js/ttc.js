@@ -1,62 +1,55 @@
 var showtimer;
 var show = false;
 var mopt = {
-	tctimer : null,
+	tctimer : new Array(),
 	liheight : 46
 }
 $(function() {
-	$("div.tjsp").each(function() {
-		var $this = $(this);
-		var id = "#m_" + this.id.substr(3);
-		var location = $(id).attr("lc").split(",");
-		$this.css({
-			position : "absolute",
-			top : location[0] + "px",
-			left : location[1] + "px"
-		}).show();
-	});
-	$("svg polygon.fil").mousemove(function() {
-		show = false;
-		var rid = this.id.substr(2);
-		clearTimeout(showtimer);
-		showtimer = setTimeout("showtj(" + rid + ",11" + ")", 400);
-	}).mouseover(function() {
-		clearTimeout(showtimer);
-		var rid = this.id.substr(2);
-		$("div.tjsp:not(#tj_" + rid + ") .native_map_1").stop().animate({
-			opacity : "0"
-		}, 200, null, function() {
-			$(this).hide();
-		});
-		showMap(this);
-		active(rid, true);
-	}).mouseout(
-			function(e) {
+	$("svg polygon.fil")
+			.mousemove(function() {
+				show = false;
+				var rid = this.id.substr(2);
+				clearTimeout(showtimer);
+				showtimer = setTimeout("showtj(" + rid + ",11" + ")", 400);
+			})
+			.mouseover(function() {
 				clearTimeout(showtimer);
 				var rid = this.id.substr(2);
-				hideMap(this);
-				if (!$(e.toElement).is(".native_map_2")
-						&& $(e.toElement).parents(".native_map_2").length == 0
-						&& !$(e.toElement).is(".native_map_1")) {
-					$("div.tjsp .native_map_1").stop().show().animate({
-						opacity : "1"
-					}, 500, null);
-					// $("#tc_"+rid).hide();
-					mopt.tctimer = setTimeout('$("#tc_' + rid + '").hide()',
-							800);
-				}
-				active(rid, false);
-			}).click(function() {
-		window.location.href = SITE_URL + "/index.php?app=special&rid=" + rid;
-	});
+				hidetop(rid);
+				showMap(this);
+				active(rid, true);
+			})
+			.mouseout(
+					function(e) {
+						clearTimeout(showtimer);
+						var rid = this.id.substr(2);
+						hideMap(this);
+						if (!$(e.toElement).is(".native_map_2")
+								&& $(e.toElement).parents(".native_map_2").length == 0) {
+							showtop();
+							// $("#tc_"+rid).hide();
+							mopt.tctimer[rid] = setTimeout('$("#tc_' + rid
+									+ '").hide()', 800);
+						}
+						active(rid, false);
+					}).click(
+					function() {
+						if ($(this).data("is_show")) {
+							var rid = this.id.substr(2);
+							window.location.href = SITE_URL
+									+ "/index.php?app=special&rid=" + rid;
+						}
+					});
 	$(".native_names1 .native_namesli1").mouseenter(function() {
 		var rid = this.id.substr(2);
 		active(rid, false);
-		showMap($("#m_"+rid));
+		showMap($("#m_" + rid));
+		hidetop(rid);
 	}).mouseleave(function() {
 		var rid = this.id.substr(2);
 		active(rid, false);
-		hideMap($("#m_"+rid));
+		hideMap($("#m_" + rid));
+		showtop();
 	});
 })
 function showtj(rid, lc) {
@@ -65,6 +58,7 @@ function showtj(rid, lc) {
 	var data = $("#tc_" + rid);
 	if (data.length > 0) {
 		data.show();
+		hidetop();
 		return;
 	}
 	$.get(SITE_URL + '/index.php?app=special&act=tj&rid=' + rid, null,
@@ -78,12 +72,8 @@ function showtj(rid, lc) {
 						// + '").hide()', 800);
 						// }
 					}).mouseover(function() {
-						clearTimeout(mopt.tctimer);
-						$("#tj_" + rid + " .native_map_1").stop().animate({
-							opacity : "0"
-						}, 200, null, function() {
-							$(this).hide();
-						});
+						clearTimeout(mopt.tctimer[rid]);
+						hidetop();
 					});
 					if (show) {
 						$("#tc_" + rid).show();
@@ -112,9 +102,67 @@ function active(rid, flag) {
 		}
 	}
 }
+function showtop() {
+	$("div.tjsp:not(.not_active) .native_map_1").stop().show().animate({
+		opacity : "1"
+	}, 500);
+}
+function hidetop(rid) {
+	if (rid) {
+		$("div.tjsp:not(#tj_" + rid + ") .native_map_1").stop().animate({
+			opacity : "0"
+		}, 200, null, function() {
+			$(this).hide();
+		});
+		$("#tj_" + rid + ".not_active .native_map_1").stop().show().animate({
+			opacity : "1"
+		}, 500);
+	} else {
+		$("div.tjsp .native_map_1").stop().animate({
+			opacity : "0"
+		}, 200, null, function() {
+			$(this).hide();
+		});
+	}
+}
 $(function() {
 	cbpBGSlideshow.init();
 });
-$(document).ready(function() {
-
-});
+$(document)
+		.ready(
+				function() {
+					for ( var k in regions) {
+						$("#m_" + regions[k].region_id).data("is_show",
+								regions[k].if_show);
+					}
+					$("svg polygon.fil")
+							.each(
+									function() {
+										var $this = $(this);
+										var rid = this.id.substr("2");
+										if (!$this.data("is_show")) {
+											$("#container>div")
+													.append(
+															'<div id="tj_'
+																	+ rid
+																	+ '" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-112px; left:-6px;"></div></div>');
+										}
+									});
+					$(".native_map_1").mouseenter(function() {
+						$(".native_map_1").not(this).hide();
+					}).mouseleave(function(e) {
+						if ($(e.toElement).is(":not(svg polygon)")) {
+							hidetop();
+						}
+					});
+					$("div.tjsp").each(function() {
+						var $this = $(this);
+						var id = "#m_" + this.id.substr(3);
+						var location = $(id).attr("lc").split(",");
+						$this.css({
+							position : "absolute",
+							top : location[0].trim() + "px",
+							left : location[1].trim() + "px"
+						});
+					}).show();
+				});

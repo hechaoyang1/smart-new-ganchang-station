@@ -11,6 +11,8 @@
 		var SITE_URL = "{$site_url}";
 		var REAL_SITE_URL = "{$real_site_url}";
 		var PRICE_FORMAT = '{$price_format}';
+		var regions=eval('{$regionsjson}');
+		var level='{$level}';
 		</script>
 	</head>
 	<body>
@@ -32,26 +34,35 @@
 				<form>
 	                <input type="hidden" name="act" value="index" />
 	                <input type="hidden" name="app" value="search" />
-					<input class="search_input1" type="text" placeholder="搜索"><input  class="search_input2" type="submit" value="">
+					<input class="search_input1" name="keyword" type="text" placeholder="搜索"><input  class="search_input2" type="submit" value="">
 				</form>
 			</div>
 			<div class="native_jump">
 				<span class="jump_span0"><a href="{url app=default}">首页</a>&nbsp|&nbsp<a href="{url app=default&act=fcg}">逢场购</a>&nbsp|&nbsp<a href="{url app=nativegoods}">土特产</a></span>
-				<span class="jump_span jump_span1"></span>
+				<a href="index.php?app=cart"><span class="jump_span jump_span1">
+					{if $cart_num}<div style="  border-radius: 8px;background-color: #FF6600; width: 16px;height: 16px; margin-left: 17px; margin-top: -8px;line-height: 16px;text-align: center;">{$cart_num}</div>{/if}
+				</span></a>
 				<span class="jump_span jump_span2"></span>
 			</div>
 			<div style="clear: left;"></div>
 			<div id="cbp-bicontrols" class="cbp-bicontrols">
+				<p><img src="{res file=img/wzxx.png}">&nbsp<span>你的当前位置：</span>
+				<!--{foreach from=$top item=v}-->
+				<span><a href="{url app=special&rid=$v.rid}"  class="bicontrols_span">{$v.name}</a></span>{if !$v.end}—{/if}
+				<!-- {/foreach} -->
+				</p>
 				<span class="cbp-biprev"></span>
 				<span class="cbp-binext"></span>
-				<span class="cbp-a"><a href="#">{$imgs[0].description}</a></span>
 			</div>
 			</div>
-			<div class="native_map" style="position: relative;">
+			<div class="native_map" style="position: relative;background-image: url({$site_url}/themes/mall/default/styles/default/img/dtbj_{$region_id}.png);">
 				
 				<div id="container" style="position: relative">
 					{$map}
 					<div style="position: absolute;">
+					{if $is_area}
+					<div style="position: absolute; top:286px; left:298px;"><img src="{res file=img/zuobiao.png}"></div>
+					{/if}
 					<!--{foreach from=$goods item=v}-->
 						<div id="tj_{$v.region_id}" class="tjsp" style="display:none;">
 							<div class="native_map_1" style="position: absolute; top:-112px; left:-6px;">
@@ -84,5 +95,9 @@
 <script src="{res file=js/jquery.min.js}"></script>
 <script src="{res file=js/jquery.imagesloaded.min.js}"></script>
 <script src="{res file=js/cbpBGSlideshow.min.js}"></script>
+{if $level===1}
 <script src="{res file=js/ttc.js}"></script>
+{else}
+<script src="{res file=js/ttc_2.js}"></script>
+{/if}
 </html>
