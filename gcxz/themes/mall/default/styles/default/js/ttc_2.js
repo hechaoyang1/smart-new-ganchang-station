@@ -46,6 +46,15 @@ $(function() {
 									+ "/index.php?app=special&rid=" + rid;
 						}
 					});
+	$(".native_names1 .native_namesli1").mouseenter(function() {
+		var rid = this.id.substr(2);
+		active(rid, false);
+		hidetop(rid);
+	}).mouseleave(function() {
+		var rid = this.id.substr(2);
+		active(rid, false);
+		showtop();
+	});
 	$(".native_names .native_namesli0").click(function(){
 		$(".native_names .native_names1>ul").stop(false,true);
 		var top= $(".native_names .native_names1>ul").css("marginTop");
