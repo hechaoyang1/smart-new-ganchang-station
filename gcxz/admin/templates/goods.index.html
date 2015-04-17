@@ -24,8 +24,6 @@ $(function(){
       <input class="queryInput" type="text" name="goods_name" value="{$smarty.get.goods_name|escape}" />
       {$lang.store_name}:
       <input class="queryInput" type="text" name="store_name" value="{$smarty.get.store_name|escape}" />
-      {$lang.brand}:
-      <input class="queryInput" type="text" name="brand" value="{$smarty.get.brand|escape}" /><br />
       <span style="position: relative; top: 5px;">
       <div class="left">
           {$lang.gcategory}:
@@ -52,10 +50,10 @@ $(function(){
     <tr class="tatr1">
       <td width="10%" class="firstCell"><input type="checkbox" class="checkall" /></td>
 	  {if $enable_radar}<td width="10%">{$lang.enable_radar}</td>{/if}
-      <td width="30%"><span ectype="order_by" fieldname="goods_name">{$lang.goods_name}</span></td>
+      <td width="20%"><span ectype="order_by" fieldname="goods_name">{$lang.goods_name}</span></td>
       <td width="10%"><span ectype="order_by" fieldname="store_name">{$lang.store_name}</span></td>
-      <td><span ectype="order_by" fieldname="brand">{$lang.brand}</span></td>
       <td><span ectype="order_by" fieldname="cate_id">{$lang.gcategory}</span></td>
+      <td><span ectype="order_by" fieldname="region_name">所在地区</span></td>
       <td class="table-center"><span ectype="order_by" fieldname="if_show">{$lang.if_show}</span></td>
       <td class="table-center"><span ectype="order_by" fieldname="is_red">首页推荐</span></td>
       <td class="table-center"><span ectype="order_by" fieldname="is_fine">小站特色</span></td>
@@ -75,8 +73,8 @@ $(function(){
     {/if}
       <td><span ectype="inline_edit" fieldname="goods_name" fieldid="{$goods.goods_id}" required="1" class="editable" title="{$lang.editable}">{$goods.goods_name|escape}</span></td>
       <td>{$goods.store_name|escape}</td>
-      <td>{$goods.brand|escape}</td>
       <td>{$goods.cate_name|nl2br}</td>
+      <td>{$goods.region_name|escape}</td>
       <td class="table-center"><!-- {if $goods.if_show} --><img src="{res file=style/images/positive_enabled.gif}" /><!--{else}--><img src="{res file=style/images/positive_disabled.gif}" /><!-- {/if} --></td>
       
       <td class="table-center"><!-- {if $goods.is_red} --><img src="{res file=style/images/positive_enabled.gif}" ectype="inline_edit" fieldname="is_red" fieldid="{$goods.goods_id}" fieldvalue="1" title="首页推荐"/><!--{else}--><img src="{res file=style/images/positive_disabled.gif}" ectype="inline_edit" fieldname="is_red" fieldid="{$goods.goods_id}" fieldvalue="0" title="首页推荐"/><!-- {/if} --></td>
