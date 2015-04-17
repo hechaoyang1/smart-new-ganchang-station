@@ -269,6 +269,12 @@
 	overflow: hidden;
 	text-overflow : ellipsis;
 }
+.native_names ul li a{
+	width:70px;
+	text-align: center;
+	color: #f3ecd0;
+	text-decoration:none;
+}
 .native_names-js{
 	 right: 0px;
 }
@@ -379,6 +385,7 @@
 	border-left-style: none;
 	background-color: #ff5c00;
 	color: #FFFFFF;
+	cursor: pointer;
 }
 .recommend_a{
 	margin-left:310px;

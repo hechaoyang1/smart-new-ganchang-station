@@ -79,7 +79,7 @@
 			<div class="native_names1">
 			<ul>
 			<!--{foreach from=$regions item=v key=i}-->
-		    <li class="native_namesli1" title="{$v.region_name}" id="r_{$v.region_id}" o="{$i}">{$v.region_name}</li>
+		    <li class="native_namesli1" title="{$v.region_name}" id="r_{$v.region_id}" o="{$i}">{if $level!=3}<a href="{url app=special&rid=$v.region_id}">{$v.region_name}</a>{else}{$v.region_name}{/if}</li>
 			<li class="native_namesli"></li>
 			<!--{/foreach}-->
 			</ul>
