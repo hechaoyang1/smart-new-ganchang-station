@@ -97,9 +97,9 @@
 
 				if (isNaN(scalex) | isNaN(scaley)) {
 
-					var scalex = (bigwidth / imageWidth);
+					var scalex = (bigwidth / imageWidth) < 1 ? 1 : (bigwidth / imageWidth);
 
-					var scaley = (bigheight / imageHeight);
+					var scaley = (bigheight / imageHeight) < 1 ? 1 : (bigheight / imageHeight);
 
 
 
