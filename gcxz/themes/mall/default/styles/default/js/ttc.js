@@ -60,16 +60,18 @@ $(function() {
 		showtop();
 	});
 	$(".native_names .native_namesli0").click(function(){
+		$(".native_names .native_names1>ul").stop(false,true);
 		var top= $(".native_names .native_names1>ul").css("marginTop");
 		top=parseInt(top)+mopt.liheight*10;
 		if(top>0){
 			top=0;
 		}
-		$(".native_names .native_names1>ul").stop().animate({
+		$(".native_names .native_names1>ul").animate({
 			marginTop : top + "px"
 		})
 	});
 	$(".native_names .native_namesli3").click(function(){
+		$(".native_names .native_names1>ul").stop(false,true);
 		var top= $(".native_names .native_names1>ul").css("marginTop");
 		top=-parseInt(top);
 		var count=$(".native_names .native_names1>ul li.native_namesli1").size();
@@ -82,7 +84,7 @@ $(function() {
 //		}else{
 //			top+=mopt.liheight*10;
 //		}
-		$(".native_names .native_names1>ul").stop().animate({
+		$(".native_names .native_names1>ul").animate({
 			marginTop : -top + "px"
 		})
 	});
@@ -96,7 +98,7 @@ function showtj(rid, lc) {
 		hidetop();
 		return;
 	}
-	$.get(SITE_URL + '/index.php?app=special&act=tj&rid=' + rid, null,
+	$.get(SITE_URL + '/index.php?app=special&act=tj&level='+level+'&rid=' + rid, null,
 			function(data) {
 				if (data != 0) {
 					$("#tj_" + rid).append(data);
@@ -191,6 +193,9 @@ $(document)
 																	+ '" class="tjsp not_active" style="display:none;"><div class="native_map_1 native_map_1_no" style="display:none;position: absolute; top:-50px; left:-35px;"><a href="#" class="native_map_a"><div class="map_a_div3">该地区尚未开启</div></a></div></div>');
 										}else{
 											$(this).css("cursor","pointer");
+										}
+										if($("#tj_"+rid).length==0){
+											$("#container>div").append('<div id="tj_'+rid+'" class="tjsp" style="display:none;"></div>')
 										}
 									});
 					$(".native_map_1").mouseenter(function() {
