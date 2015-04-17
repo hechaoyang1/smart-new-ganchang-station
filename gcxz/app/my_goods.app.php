@@ -1746,10 +1746,10 @@ class My_goodsApp extends StoreadminbaseApp
                     'name' => 'goods_list',
                     'url'  => 'index.php?app=my_goods',
                 ),
-                array(
-                    'name' => 'brand_apply_list',
-                    'url' => 'index.php?app=my_goods&amp;act=brand_list'
-                ),
+//                 array(
+//                     'name' => 'brand_apply_list',
+//                     'url' => 'index.php?app=my_goods&amp;act=brand_list'
+//                 ),
             );
         }
         else
