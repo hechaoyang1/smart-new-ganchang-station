@@ -5,7 +5,7 @@ var mopt = {
 	liheight : 50
 }
 $(function() {
-	$("svg circle")
+	$("svg rect")
 			.mousemove(function() {
 				show = false;
 				var rid = this.id.substr(2);
@@ -104,7 +104,7 @@ function showtj(rid, lc) {
 					$("#tc_" + rid).mouseleave(function(e) {
 						// if (!$(e.toElement).is("#m_" + rid)) {
 						$(this).hide();
-						if ($(e.toElement).is(":not(svg circle)")) {
+						if ($(e.toElement).is(":not(svg rect)")) {
 							showtop();
 						}
 						// mopt.tctimer = setTimeout('$("#tc_' + rid
@@ -167,7 +167,7 @@ $(document)
 						$("#m_" + regions[k].region_id).data("is_show",
 								regions[k].if_show);
 					}
-					$("svg circle")
+					$("svg rect")
 							.each(
 									function() {
 										var $this = $(this);
@@ -190,7 +190,7 @@ $(document)
 						$(".native_map_1").not(this).hide();
 					}).mouseleave(function(e) {
 						var target=e.toElement||e.relatedTarget;
-						if ($(target).is(":not(svg circle)")) {
+						if ($(target).is(":not(svg rect)")) {
 							hidetop();
 						}
 						showtop();
