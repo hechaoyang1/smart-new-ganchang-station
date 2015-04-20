@@ -43,12 +43,12 @@ $(function(){
 
                     <!--{foreach from=$order.order_goods item=goods}-->
                     <div class="con">
-                        <p class="ware_pic"><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.goods_image}" width="50" height="50"  /></a></p>
-                        <p class="ware_text"><a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a><br /><span class="attr">{$goods.specification|escape}</span></p>
+                        <p class="ware_pic"><a href="{url app=goods&id=$goods.goods_id}"><img src="{$goods.goods_image}" width="50" height="50"  /></a></p>
+                        <p class="ware_text"><a href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name|escape}</a><br /><span class="attr">{$goods.specification|escape}</span></p>
                         <p class="price">{$lang.price}: <span>{$goods.price|price}</span></p>
                         <p class="amount">{$lang.quantity}: <span>{$goods.quantity}</span></p>
                         <!-- {if $order.status eq ORDER_FINISHED} -->
-                        <p style="float: right;padding-top: 15px;padding-right:10px;"><a target="_blank" href="index.php?app=buyer_returngoods&act=view&order_id={$order.order_id}&rec_id={$goods.rec_id}">申请退货</a></p>
+                        <p style="float: right;padding-top: 15px;padding-right:10px;"><a href="index.php?app=buyer_returngoods&act=view&order_id={$order.order_id}&rec_id={$goods.rec_id}">申请退货</a></p>
                     	<!-- {/if} -->
                     </div>
                     <!--{/foreach}-->
