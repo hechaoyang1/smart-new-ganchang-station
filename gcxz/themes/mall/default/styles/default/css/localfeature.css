@@ -49,24 +49,24 @@
 	float: left;
 	width: 25px;
 	height: 25px;
-	position: relative;
+	position: absolute;
 	cursor: pointer;
 	background-image: url(../img/search_updn.png);
 	background-repeat: no-repeat;
 	background-position: 2px;
-	left: 700px;
+	right: 250px;
 }
 
 .cbp-bicontrols span.cbp-binext {
 	float: left;
 	width: 25px;
 	height: 25px;
-	position: relative;
+	position: absolute;
 	cursor: pointer;
 	background-image: url(../img/search_updn.png);
 	background-repeat: no-repeat;
 	background-position: -24px;
-	left: 700px;
+	right: 225px;
 }
 
 .native_logo {
