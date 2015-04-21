@@ -121,7 +121,7 @@ function showtj(rid, lc) {
 function showMap(obj) {
 	$(obj).css({
 		fill : "#f18101",
-		opacity : "1"
+		opacity : "0.5"
 	});
 }
 function hideMap(obj) {

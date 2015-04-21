@@ -40,7 +40,7 @@
 
 .cbp-bicontrols {
 	width: 960px;
-	height: 25px;
+	height: 26px;
 	margin: 43px auto 0;
 	overflow: hidden;
 }
@@ -145,10 +145,15 @@
 }
 .cbp-bicontrols p{
 	float:left;
+	padding: 4px 0 0 0;
 }
 .bicontrols_span{
-	color: #FF6600!important;;
-	
+	color: #FF6600!important;
+}
+.bicontrols_s{
+	padding: 5px 10px 5px 10px;
+	border: 1px solid #ff6d00;
+	background-color: #FFFFFF;
 }
 .cbp-bicontrols p span a{
 	text-decoration: none;
