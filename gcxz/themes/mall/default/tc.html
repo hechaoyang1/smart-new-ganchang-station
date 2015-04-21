@@ -16,7 +16,7 @@
 											<a href='{url app=search&goodsId=}{$ids}' class="recommend_a">{if $has_more}更多>>{/if}</a>
 											
 									<div class="map2_a_div2">
-										<div class="div2_div1"><img src="{$region.default_image}" width="54" height="76"></div>
+										<div class="div2_div1">{if $region.default_image}<img src="{$region.default_image}" width="54" height="76">{/if}</div>
 										<div class="div2_div2">
 											<h1>{$region.region_name}</h1>
 											<p title="{$region.description}">{$region.description}</p>
