@@ -326,9 +326,6 @@ class GoodsApp extends StorebaseApp
         $this->_assign_goods_comment($this->_get_goods_comment($_GET['id'], 1));
         $this->assign('id', $_GET['id']);
         
-        //赋值购物车数量
-        $this->assign('cart_num', $this->get_cart_num());
-        
         //赋值物流配送信息
         $shipInfo = &m('shipping')->find(array('conditions'=>'store_id='.$goods['store_id']));
         $this->assign('shipInfo', $shipInfo);
