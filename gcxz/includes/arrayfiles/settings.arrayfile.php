@@ -114,5 +114,21 @@ class SettingsArrayfile extends BaseArrayfile
             '12'=>'(GMT +12:00) Auckland, Wellington, Fiji, Marshall Island',
         );
     }
+    
+    function getAll(){
+    	$key='sys_set';
+    	$cache=&cache_server();
+    	$setting=$cache->get($key);
+    	if(empty($setting)){
+	    	$setting=parent::getAll();
+	    	$cache->set($key, $setting);
+    	}
+    	return $setting;
+    }
+    
+    function clearAll(){
+    	$cache=&cache_server();
+    	$cache->delete('sys_set');
+    }
 }
 ?>
