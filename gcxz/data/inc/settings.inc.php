@@ -17,6 +17,6 @@ return array (
   'email_pass' => 'youaresb1',
   'email_test' => 'xucaibing@incito.com.cn',
   'warehouse' => 'aaaa',
-  'site_qq' => '2342',
+  'site_qq' => '',
 );
 ?>

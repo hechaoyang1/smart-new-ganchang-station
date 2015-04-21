@@ -47,6 +47,9 @@ class FrontendApp extends ECBaseApp
         $this->assign('navs', $this->_get_navs());  // 自定义导航
         //赋值购物车数量
         $this->assign('cart_num', $this->get_cart_num());
+        //赋值全站qq
+        $model_setting = &af('settings');
+        $this->assign('site_qq', $model_setting->getOne('site_qq'));
         $this->assign('acc_help', ACC_HELP);        // 帮助中心分类code
         $this->assign('site_title', Conf::get('site_title'));
         $this->assign('site_logo', Conf::get('site_logo'));
