@@ -113,9 +113,15 @@ class BaseArrayfile extends Object
 
     function _savetofile($data)
     {
-        return file_put_contents($this->_filename, "<?php \nreturn " . var_export($data , true) . ";\n?>");
+    	
+        $ret=file_put_contents($this->_filename, "<?php \nreturn " . var_export($data , true) . ";\n?>");
+        $this->clearAll();
+        return $ret;
     }
-
+    
+    function clearAll(){
+    	
+    }
         /**
      *  验证数据合法性，当只验证vrule中指定的字段，并且只当$data中设置了其值时才验证
      *
