@@ -44,6 +44,12 @@ $(function(){
                 required : check_phone,
                 minlength:6,
                 digits : true
+            },
+            zipcode : {
+                required : false,
+                maxlength:6,
+                minlength : 6,
+                number:true
             }
         },
         messages : {
@@ -66,6 +72,10 @@ $(function(){
                 required : '{$lang.phone_required}. ',
                 minlength: '{$lang.phone_mob_error}. ',
                 digits : '{$lang.phone_mob_error}. '
+            },
+            zipcode : {
+                maxlength: '邮箱只能是6位数字',
+                minlength :'邮箱只能是6位数字',
             }
         },
         groups:{
