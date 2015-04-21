@@ -342,23 +342,24 @@ class SettingApp extends BackendApp
         }
     }
     /**
-     *    仓储地址设置
+     *    运营设置
      *
      *    @author    Hyber
      *    @return    void
      */
-    function warehouse_setting()
+    function other_setting()
     {
     	$model_setting = &af('settings');
     	$setting = $model_setting->getAll(); //载入系统设置数据
     	if (!IS_POST)
     	{
     		$this->assign('setting', $setting);
-    		$this->display('setting.warehouse.html');
+    		$this->display('setting.other.html');
     	}
     	else
     	{
     		$data['warehouse']     = $_POST['warehouse'];
+    		$data['site_qq']     = $_POST['site_qq'];
     		$model_setting->setAll($data);
     
     		$this->show_message('修改成功');

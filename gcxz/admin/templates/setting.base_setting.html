@@ -52,7 +52,7 @@ $(function(){
     <li><a class="btn1" href="index.php?app=setting&amp;act=store_setting">{$lang.store_setting}</a></li>
     <li><a class="btn1" href="index.php?app=setting&amp;act=credit_setting">{$lang.credit_setting}</a></li>
     <li><a class="btn1" href="index.php?app=setting&amp;act=subdomain_setting">{$lang.subdomain_setting}</a></li>
- 	<li><a class="btn1" href="index.php?app=setting&amp;act=warehouse_setting">仓储地址</a></li>
+ 	<li><a class="btn1" href="index.php?app=setting&amp;act=other_setting">运营配置</a></li>
   </ul>
 </div>
 <div class="info">
@@ -214,12 +214,6 @@ $(function(){
           <input type="radio" id="enable_radar" name="enable_radar" {if $setting.enable_radar}checked{/if} value="1" />
           <label for="enable_radar">{$lang.yes}</label>&nbsp;&nbsp;&nbsp;&nbsp;
           <span class="grey">{$lang.enable_radar_note}</span>
-        </td>
-      </tr>
-      <tr>
-        <th></th>
-        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
-          <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
         </td>
       </tr>
     </table>
