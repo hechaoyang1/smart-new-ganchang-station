@@ -1,0 +1,66 @@
+.supportcenter_top{
+	height:1200px;
+}
+.leftsidebar{
+	width:1200px;
+	margin:20px auto 0;
+}
+
+.leftsidebar_box{
+	width: 185px;
+	height: auto !important;
+	overflow: visible !important;
+	height: 100% !important;
+	border: 1px solid #f3f3f3;
+	text-align: center;
+	float: left;
+}
+.leftsidebar_box dt{
+    padding-right: 10px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    font-size: 15px;
+    position: relative;
+    line-height: 48px;
+	cursor: pointer;
+}
+.leftsidebar_box dt i{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+	width:5px;
+	height:8px;
+	background-image: url(../img/xyjt.png)
+}
+.leftsidebar_box dt i.cl{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+	width:8px;
+	height:5px;
+	background-image: url(../img/xxjt.png)
+}
+.leftsidebar_box dd{
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    font-size: 13px;
+    position: relative;
+    line-height: 30px;
+	cursor: pointer;
+	overflow: hidden;
+}
+.leftsidebar_box dd a{
+	color: #666666;
+	text-decoration: none;
+}
+.leftsidebar_box dd a:hover{
+	color: #e57f10;
+}
+.leftsidebar_right{
+	width:1013px;
+	float: left;
+}
+img.loading{
+	margin:200px 50%;
+	vertical-align: bottom;
+}

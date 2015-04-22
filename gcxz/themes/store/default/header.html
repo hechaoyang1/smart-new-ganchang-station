@@ -26,23 +26,13 @@ var PRICE_FORMAT = '{$price_format}';
 </head>
 
 <body>
-
 <div class="top-tools">
 		<div class="wrap relative">
 			<div class="absolute left">
-				欢迎来到赶场小站!{$visitor.user_name|escape}
-        		<!--{if !$visitor.user_id}-->
-        		<a href="{url app=member&act=login&ret_url=$ret_url}">登录</a>&nbsp;|&nbsp;<a href="{url app=member&act=register&ret_url=$ret_url}">免费注册</a>
-		        <!--{else}-->
-		        <span class="H_gan_top"><a href="{url app=member&act=logout}">{$lang.logout}</a></span>
-		        <!--{/if}-->
-			</div>
-			<div class="mid">
-				服务热线：400-7166-616
+				欢迎来到赶场小站!&nbsp;&nbsp;&nbsp;<!--{if !$visitor.user_id}--><a href="{url app=member&act=login&ret_url=$ret_url}">登录</a> &nbsp;&nbsp;<a href="{url app=member&act=register&ret_url=$ret_url}">注册</a> <!--{else}-->{$visitor.user_name|escape}&nbsp;&nbsp;<a href="{url app=member&act=logout}">退出</a><!-- {/if} -->&nbsp;&nbsp;|&nbsp;&nbsp; 服务热线：  400-7166-616
 			</div>
 			<div class="absolute right">
-				<a class="shoppingCar" target="_blank" href="{url app=cart}">购物车</a>
-				<!--{if $visitor.has_store}-->
+				<a class="shoppingCar" target="_blank" href="{url app=cart}">购物车{if $cart_num}<span>({$cart_num}件)</span>{/if}</a> <!--{if $visitor.has_store}-->
 	        	<a href="{url app=seller_order}">我的小站</a>
 	            <!--{else}-->
 	            <a href="{url app=buyer_order}">我的小站</a>
@@ -57,13 +47,12 @@ var PRICE_FORMAT = '{$price_format}';
 			</div>
 			<div class="pull-left search">
 				<form>
-	                <input type="hidden" name="act" value="index" />
-	                <input type="hidden" name="app" value="search" />
-					<input type="text" name="keyword" placeholder="搜索" class="key"><input type="submit" value="搜索" class="sub">
+					<input type="text" placeholder="搜索" class="key"><input type="submit" value="搜索" class="sub">
 				</form>
 				<!--{foreach from=$hot_keywords item=keyword}-->
-	             <a href="{url app=search&keyword=$keyword}">{$keyword}</a>
+	             <a href="{url app=search&keyword=$keyword}">{$keyword}</a>|
 	            <!--{/foreach}-->
 			</div>
+			<div class="pull-left advertisement"><img src="upload/gg2.jpg" width="200" height="57"></div>
 		</div>
 	</div>
