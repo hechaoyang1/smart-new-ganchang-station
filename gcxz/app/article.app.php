@@ -33,7 +33,7 @@ class ArticleApp extends MallbaseApp {
 		) );
 		$this->assign ( 'tab', 'help' );
 		$this->assign ( 'acategory', $as );
-		$this->display ( "article.index.new.html" );
+		$this->display ( "article.index.html" );
 	}
 	function view() {
 		$aid = intval ( $_GET ['aid'] );

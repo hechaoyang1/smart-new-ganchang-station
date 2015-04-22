@@ -1,66 +1,68 @@
-{include file=header.html}
-{include file=curlocal.html}
-<div class="content">
-    <div class="left">
-        <div class="module_sidebar">
-            <h2><b>{$lang.acategory}</b></h2>
-            <div class="wrap">
-                <div class="wrap_child">
-                    <div class="classify_list">
-                        <ul>
-                            <!-- {foreach from=$acategories item=acategory} -->
-                            <li><a href="{url app=article&cate_id=$acategory.cate_id}">{$acategory.cate_name|escape}</a></li>
-                            <!-- {/foreach} -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <h2><b>{$lang.new_article}</b></h2>
-            <div class="wrap">
-                <div class="wrap_child">
-                    <div class="side_textlist">
-                        <ul>
-                            <!-- {foreach from=$new_articles item=new_article} -->
-                            <li><a {if $new_article.link}target="_blank"{/if} href="{url app=article&act=view&article_id=$new_article.article_id}">{$new_article.title|escape}</a></li>
-                            <!-- {foreachelse} -->
-                            <li>{$lang.no_new_article}</li>
-                            <!-- {/foreach} -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="right">
-        <div class="shop_text_list">
-            <div class="ornament1"></div>
-            <div class="ornament2"></div>
-            <table>
-                <tr>
-                    <th class="align1" colspan="2">
-                        <div class="table_title">
-                        </div>
-                        <div class="top_page">
-                            {include file=page.top2.html}
-                        </div>
-                    </th>
-                </tr>
-                <!-- {foreach from=$articles item=article} -->
-                <tr>
-                    <td><a {if $article.link}target="_blank"{/if} href="{url app=article&act=view&article_id=$article.article_id}" class="lebioa">{$article.title|escape}</a></td>
-                    <td class="width9">{$article.add_time|date:Y-m-d H:i}</td>
-                </tr>
-                <!-- {foreachelse} -->
-                <tr>
-                  <td align="center" colspan="2">{$lang.no_records}</td>
-                </tr>
-                <!-- {/foreach} -->
-            </table>
-        </div>
-
-        {include file=page.bottom.html}
-    </div>
-</div>
-{include file=footer.html}
+{include file=header.new.html}
+{include file=top.html}	
+	<div class="supportcenter_top">
+		<div class="leftsidebar">
+		 
+			 <div class="leftsidebar_box">	
+				{foreach from=$acategory item=v key=k}
+				<dl>
+				  <dt>{$k}<i></i></dt>
+				  {foreach from=$v item=art }
+				  <dd style="display:none;" title="{$art.title}" ><a href="javascript:;" onclick="switch_article({$art.article_id})">{$art.title}</a></dd>
+				  {/foreach}
+				</dl>
+				{/foreach}
+			  </div>
+		  	  <div class="leftsidebar_right">
+		  	  {if $article}{$article.content}{/if}
+		  	  </div>
+		</div>
+	</div>
+	
+	
+	<div class="footer">
+	  <div class="wrap clearfix">
+			<ul>
+				<li>
+					<p class="wrap_ul_li_p">帮扶中心</p>
+					<p>购物指南</p>
+					<p>注册流程</p>
+					<p>开店流程</p>
+					<p>常见问题</p>
+					<p>联系客服</p>
+				</li>
+				<li>
+					<p class="wrap_ul_li_p">售后服务</p>
+					<p>售后政策</p>
+					<p>退款说明</p>
+					<p>返修/退换货</p>
+					<p>在线投诉</p>
+				</li>
+				<li>
+					<p class="wrap_ul_li_p">关于小站</p>
+					<p>赶场官网</p>
+					<p>赶场动态</p>
+					<p>赶场故事</p>
+					<p>农村创业</p>
+					<p>小站介绍</p>
+				</li>
+				<li>
+					<p class="wrap_ul_li_p">友情链接</p>
+					<p>京东商城</p>
+					<p>淘宝网</p>
+					<p>苏宁易购</p>
+					<p>优购网</p>
+				</li>
+				<li>
+					<p class="wrap_ul_li_p">二维码</p>
+					<p><img src="img/ewm.png"></p>
+				</li>
+			</ul>
+		</div>
+		<div class="base_end">
+		2014 Copyright Reserved 2014<br>
+@版权归赶场小站所有ICP备案：蜀ICP备14013997号
+		</div>
+	</div>
+</body>
+</html>

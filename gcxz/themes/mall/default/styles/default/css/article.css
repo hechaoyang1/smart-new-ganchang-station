@@ -51,6 +51,7 @@
 }
 .leftsidebar_box dd a{
 	color: #666666;
+	white-space: nowrap;
 	text-decoration: none;
 }
 .leftsidebar_box dd a:hover{
