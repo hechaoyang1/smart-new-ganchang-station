@@ -60,7 +60,7 @@ $(function(){
       <td><span ectype="inline_edit" fieldname="name" fieldid="{$goods.id}" required="1" class="editable" title="{$lang.editable}">{$goods.name|escape}</span></td>
       <td><span ectype="inline_edit" fieldname="url" fieldid="{$goods.id}" required="1" class="editable" title="{$lang.editable}">{$goods.url|escape}</span></td>
       <td><span fieldname="postion" fieldid="{$goods.position}" title="{$lang.editable}">{$goods.position}</span></td>
-      <td>{if $goods.path}<a href="{$goods.path}" target="_bank"><img src="{$goods.path}" height="30" /></a>{/if}</td>
+      <td>{if $goods.path}<a href="{$goods.path}" target="_bank"><img src="{$goods.path}?{$random_number}" height="30" /></a>{/if}</td>
       <td><span ectype="inline_edit" fieldname="sort" fieldid="{$goods.id}" required="1" class="editable" title="{$lang.editable}">{$goods.sort|escape}</span></td>
       <td><a href="index.php?app=goodsad&amp;act=edit&amp;id={$goods.id}">{$lang.edit}</a>  |  <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=goodsad&amp;act=drop&amp;id={$goods.id}');">{$lang.drop}</a></td>
     </tr>

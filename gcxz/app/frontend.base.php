@@ -62,8 +62,23 @@ class FrontendApp extends ECBaseApp
         $this->assign('hot_keywords', $this->_get_hot_keywords());
 		
 		$this->assign('store_gcategor', $store_gcategor=$this->_get_store_gcategory(0));//全部分类
-        parent::display($tpl);
+        //头部广告
+        $this->_assign_top_ad();
+		parent::display($tpl);
     }
+    
+    /**
+     * 填充头部广告
+     */
+    function _assign_top_ad()
+    {
+        $ad_mod = m('goodsad');
+        $pos_value = $ad_mod->get_pos_value();
+		$ad_pos = $pos_value['site_top'];
+		$ad_list = $ad_mod->get_list($ad_pos, 1);
+		$this->assign('site_top_ad',$ad_list);
+    }
+    
 	/* 取得店铺分类 */
     function _get_store_gcategory($cate_id=0)
     {
