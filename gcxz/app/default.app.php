@@ -256,6 +256,11 @@ class DefaultApp extends MallbaseApp
 		
         $this->display('fcg.html');
     }
+    
+    function rspf()
+    {
+        $this->display('rspf.html');
+    }
 }
 
 ?>

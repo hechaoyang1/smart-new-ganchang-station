@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>赶场小站</title>
+	<script type="text/javascript" src="{lib file=jquery-1.7.2.min.js}" charset="utf-8"></script>
+	<script type="text/javascript">
+		var SITE_URL = "{$site_url}";
+		function switch1(obj)
+		{
+			$(obj).attr('src', SITE_URL+'/themes/mall/default/styles/default/img/rspf_2.jpg');
+		}
+	</script>
+</head>
+<body>
+	<img id="iuii" alt="" src="{res file=img/rspf.jpg}" onclick="javascript:switch1(this);" />
+</body>
+</html>
