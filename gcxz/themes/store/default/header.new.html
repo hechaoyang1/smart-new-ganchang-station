@@ -48,6 +48,8 @@
 	             <a href="{url app=search&keyword=$keyword}">{$keyword}</a>|
 	            <!--{/foreach}-->
 			</div>
-			<div class="pull-left advertisement"><img src="upload/gg2.jpg" width="200" height="57"></div>
+			{foreach from=$site_top_ad item=goods}
+			<div class="pull-left advertisement"><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="200" height="57"></a></div>
+			{/foreach}
 		</div>
 	</div>
