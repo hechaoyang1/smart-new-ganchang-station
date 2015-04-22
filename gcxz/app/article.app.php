@@ -13,7 +13,7 @@ class ArticleApp extends MallbaseApp {
 		$this->_acategory_mod = &m ( 'acategory' );
 	}
 	function index() {
-		$acategory = $this->_acategory_mod->db->getAll ( 'SELECT ag.cate_id, ag.cate_name, a.title,a.article_id FROM ecm_article a LEFT JOIN ecm_acategory ag ON a.cate_id = ag.cate_id WHERE a.if_show AND (ag.`code` is null or ag.`code` =\'\') ORDER BY ag.sort_order, ag.cate_id, a.sort_order' );
+		$acategory = $this->_acategory_mod->db->getAll ( "SELECT ag.cate_id, ag.cate_name, a.title, a.article_id FROM ecm_article a LEFT JOIN ecm_acategory ag ON a.cate_id = ag.cate_id JOIN ecm_acategory agp ON ag.parent_id = agp.cate_id AND agp.`code` = 'help' WHERE a.if_show ORDER BY ag.sort_order, ag.cate_id, a.sort_order" );
 // 		$aid = intval ( $_GET ['aid'] );
 // 		if (! $aid) {
 // 			$first=current($acategory);
