@@ -5,9 +5,9 @@
 class GoodsadApp extends BackendApp
 {
     var $_goods_mod;
-    
-    var $_position = array(1 => '首页', 2 => '土特产', 3 => '首页分会场');
 
+    var $_position;
+    
     function __construct()
     {
         $this->GoodsadApp();
@@ -17,6 +17,7 @@ class GoodsadApp extends BackendApp
         parent::BackendApp();
 
         $this->_goods_mod =& m('goodsad');
+        $this->_position = $this->_goods_mod->get_position();
     }
 
     /* 商品列表 */

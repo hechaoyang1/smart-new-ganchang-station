@@ -1,14 +1,20 @@
 <div class="rightTools">
-	<ul>
-		<!-- <li><a href="javascript:;" title="我要反馈" class="rt1">我要反馈</a></li> -->
-		<li><a href="javascript:;" onclick="gcxz.favorite(this)" title="收藏夹" class="rt2">收藏夹</a></li>
-		<li style="position: relative;">
-			<i class="number" {if !$cart_num} style="display: none;" {/if}>{$cart_num}</i>
-			<a href="javascript:;" onclick="gcxz.shoppingCar(this)" title="购物车"
-			class="rt3">购物车</a>
+	<ul style="height:100%;">
+		<li style="height:10%;"></li>
+		<li style="height:15%;">
+			<a href="javascript:;" onclick="gcxz.favorite(this)" title="收藏夹" class="rt2">收藏夹</a>
+			<a href="javascript:;" title="客服QQ" class="rt5">客服QQ</a>
 		</li>
-		<li><a href="javascript:;" onclick="gcxz.backTop()" title="Top"
-			class="rt4">Top</a>
+		<li style="height:10%;"></li>
+		<li style="height:30%;   position: relative;">
+			
+			<a href="javascript:;" onClick="gcxz.shoppingCar(this)" title="购物车" class="rt3">{if $cart_num}<div>{$cart_num}</div>{/if}购物车</a>
+		</li>
+		<li style="height:15%;"></li>
+		
+		
+		<li style="height:20%;">
+			<a href="javascript:;" onClick="gcxz.backTop()" title="Top" class="rt4">Top</a>
 		</li>
 	</ul>
 </div>

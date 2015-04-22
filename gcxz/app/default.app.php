@@ -52,14 +52,17 @@ class DefaultApp extends MallbaseApp
         // 商品分类
 // 		$gcategory_list=$this->_get_site_gcategory();
 // 		$this->assign('gcategory_list',$gcategory_list);
-		//轮播的广告商品
-		$ad_goods_list = m('goodsad')->get_list(1, 8);
-		$this->assign('ad_goods_list',$ad_goods_list);
 		//小站特色
+		$xztc_pic = '/data/files/mall/settings/xztc.png';
+		if(!file_exists(ROOT_PATH.$xztc_pic)){
+		    $xztc_pic = '/themes/mall/default/styles/default/img/wa.png';
+		}
+		$this->assign('xztc_pic',$xztc_pic);
+
 		$fine_list = $goods_mod->get_list(array(
             'conditions' => "closed = 0 AND if_show = 1 AND is_fine=1",
             'order'      => 'views desc,g.add_time desc',
-            'limit'      => 12,
+            'limit'      => 15,
         ));
 		$this->assign('fine_list',$fine_list);
 		//楼层Q
@@ -78,22 +81,90 @@ class DefaultApp extends MallbaseApp
 		$this->assign('top_cate_goods',$top_cate_goods);
 		$this->assign('top_cate_children',$top_cate_children);
 		
-		//分会场
-	    $list = m('goodsad')->get_list(3, 13);
-	    foreach ($list as $id=>$goods)
-	    {
-	        $sub_places[$goods['sort']] = $goods;
-	    }
-		$this->assign('sub_places',$sub_places);
+        $this->_assign_ad_data();
 		
-        //赋值购物车数量
-        $this->assign('cart_num', $this->get_cart_num());
-
         $this->import_resource(array(
                 'style' =>  'res:css/index.css',
         ));
 		
         $this->display('index.html');
+    }
+    
+    /**
+     * 填充广告位数据
+     */
+    function _assign_ad_data()
+    {
+		$ad_mod = m('goodsad');
+		$pos_value = $ad_mod->get_pos_value();
+		//轮播的广告商品
+		$ad_pos = $pos_value['index_center'];
+		$ad_list = $ad_mod->get_list($ad_pos, 8);
+		$this->assign('index_center_ad',$ad_list);
+		//分会场
+		$ad_pos = $pos_value['index_branch'];
+	    $list = $ad_mod->get_list($ad_pos);
+	    foreach ($list as $id=>$goods)
+	    {
+	        $sub_places[$goods['sort']] = $goods;
+	    }
+		$this->assign('sub_places',$sub_places);
+		//底部广告
+		$ad_pos = $pos_value['index_footer'];
+		$ad_list = m('goodsad')->get_list($ad_pos, 1);
+		$this->assign('index_footer_ad',$ad_list);
+		//楼层广告
+        $ad_pos = $pos_value['first_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('first_floor_ad', $ad_list);
+
+        $ad_pos = $pos_value['second_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('second_floor_ad', $ad_list);
+
+        $ad_pos = $pos_value['third_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('third_floor_ad', $ad_list);
+
+        $ad_pos = $pos_value['fourth_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('fourth_floor_ad', $ad_list);
+
+        $ad_pos = $pos_value['fifth_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('fifth_floor_ad', $ad_list);
+
+        $ad_pos = $pos_value['sixth_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('sixth_floor_ad', $ad_list);
+
+        $ad_pos = $pos_value['seventh_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('seventh_floor_ad', $ad_list);
+
+        $ad_pos = $pos_value['eighth_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('eighth_floor_ad', $ad_list);
+
+        $ad_pos = $pos_value['ninth_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('ninth_floor_ad', $ad_list);
+
+        $ad_pos = $pos_value['tenth_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('tenth_floor_ad', $ad_list);
+
+        $ad_pos = $pos_value['eleventh_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('eleventh_floor_ad', $ad_list);
+
+        $ad_pos = $pos_value['twelfth_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('twelfth_floor_ad', $ad_list);
+
+        $ad_pos = $pos_value['thirteenth_floor'];
+        $ad_list = $ad_mod->get_list($ad_pos);
+        $this->assign('thirteenth_floor_ad', $ad_list);
     }
 	
 	/* 取得最新商品 */
