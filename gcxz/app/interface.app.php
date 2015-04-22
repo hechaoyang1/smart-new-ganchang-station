@@ -537,6 +537,11 @@ class InterfaceApp extends BaseApp {
 	 * 添加商品
 	 */
 	function addGood() {
+		if(!$_POST){
+			$result ['code'] = 0;
+			$result ['msg'] = 'POST is null.';
+			exit ( json_encode ( $result ) );
+		}
 		$user_id = intval ( $_POST ['user_id'] );
 		$userprivModel = &m ( 'userpriv' );
 		$info = $userprivModel->find ( array (
@@ -604,7 +609,7 @@ class InterfaceApp extends BaseApp {
 					$imageData ['tmp_name'] = $images ['tmp_name'] [$k];
 					$imageData ['mime'] = $images ['type'] [$k];
 					$imageData ['size'] = $images ['size'] [$k];
-					if (! $this->saveImg ( $imageData, $paths )) {
+					if (empty($imageData ['tmp_name']) || ! $this->saveImg ( $imageData, $paths )) {
 						$goodModel->drop ( $goods_id );
 						$result ['code'] = 0;
 						$result ['msg'] = 'Image upload failed.';
