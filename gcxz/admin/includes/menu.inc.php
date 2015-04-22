@@ -56,6 +56,10 @@ return array (
 						'mailtemplate' => array (
 								'text' => Lang::get ( 'noticetemplate' ),
 								'url' => 'index.php?app=mailtemplate' 
+						),
+						'index_setting' => array (
+								'text' => '首页配置',
+								'url' => 'index.php?app=indexsetting' 
 						) 
 				) 
 		),
