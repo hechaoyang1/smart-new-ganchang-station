@@ -1,0 +1,48 @@
+{include file="header.html"}
+
+<div id="rightTop">
+    <p>专题管理</p>
+    <ul class="subnav">
+       <li><a class="btn1" href="index.php?app=zhuanti">专题列表</a></li>
+       <li><span>{if $content}修改{else}新增{/if}专题</span></li>
+    </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="user_form">
+  <!-- {if $content} -->
+  <input type="hidden" name="id" value="{$content.id}">
+  <!-- {/if} -->
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> 专题类型:</th>
+        <td class="paddingT15 wordSpacing5">
+                    <select id="type_code" name="type_code">
+                     <!--{foreach from=$codes item=vo key=k}-->
+                     <option value="{$k}"  <!-- {if $content.type_code eq $k} --> selected<!-- {/if} -->>{$vo}</option>
+                     <!--{/foreach}-->
+                    </select> <label class="field_notice">专题类型</label>               </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> 专题内容:</th>
+        <td class="paddingT15 wordSpacing5">
+         <textarea name="page" id="myEditor">{if $content}{$content.page}{else}请在这里添入内容{/if}</textarea>
+				<script type="text/javascript">
+				    var editor = new UE.ui.Editor({  maximumWords:50000,initialFrameHeight:250,initialFrameWidth:800});
+				    editor.render("myEditor");
+				    //1.2.4以后可以使用一下代码实例化编辑器
+				    //UE.getEditor('myEditor')
+				</script>  
+		<label class="field_notice">专题管理</label>   
+        </td>
+      </tr>
+       <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="reset" value="{$lang.reset}" />            </td>
+        </tr>
+       
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

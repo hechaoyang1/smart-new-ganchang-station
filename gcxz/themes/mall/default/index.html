@@ -15,38 +15,58 @@
 		<div class="wrap clearfix">
 			<div class="slide">
 				<ul class="imgList">
-					<!--{foreach from=$ad_goods_list item=goods}-->
-					<li><a href="{$goods.url}"><img src="{$goods.path}" alt=""></a></li>
+					<?php $end_index = 0; ?>
+					<!--{foreach from=$index_center_ad item=goods}-->
+					<?php $end_index++; ?>
+					<li><a target="_blank" href="{$goods.url}"><img src="{$site_url}/{$goods.path}" alt=""></a></li>
 					<!--{/foreach}-->
 				</ul>
 				<ul class="slide-btn clearfix">
-					<!--{foreach from=$ad_goods_list item=goods}-->
-					<li>{$goods.name}</li>
-					<!--{/foreach}-->
+					<?php for($i = 1; $i <= $end_index; $i++){ ?>
+					<li><?php echo $i; ?></li>
+					<?php } ?>
+				</ul>
+			</div>
+			<div class="convenient-servicea">
+				<ul>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">6</a></li>
+					<li><a href="#">7</a></li>
+					<li><a href="#">8</a></li>
+					<li><a href="#">9</a></li>
+					<li><a href="#">10</a></li>
+					<li><a href="#">11</a></li>
+					<li><a href="#">12</a></li>
+					<li><a href="#">13</a></li>
 				</ul>
 			</div>
 			<div class="convenient-service">
 				<div class="title">
+					<i class="icon6"></i>
 					便民服务
 				</div>
 				<div class="list">
-					<a href="http://www.kuaidi100.com/">
+					<a target="_blank" href="http://www.kuaidi100.com/">
 						<i class="icon1"></i>
 						快递查询
 					</a>
-					<a href="http://chongzhi.jd.com/">
+					<a target="_blank" href="http://chongzhi.jd.com/">
 						<i class="icon2"></i>
 						话费充值
 					</a>
-					<a href="http://sc.189.cn/cms/udw/0133/internet/index.php">
+					<a target="_blank" href="http://sc.189.cn/cms/udw/0133/internet/index.php">
 						<i class="icon3"></i>
 						宽带缴费
 					</a>
-					<a href="http://hotels.ctrip.com/">
+					<a target="_blank" href="http://hotels.ctrip.com/">
 						<i class="icon4"></i>
 						酒店预定
 					</a>
-					<a href="http://trains.ctrip.com/">
+					<a target="_blank" href="http://trains.ctrip.com/">
 						<i class="icon5"></i>
 						票务信息
 					</a>
@@ -72,28 +92,33 @@
 		</div>
 		<div class="characteristicBox">
 			<div class="characteristic">
-				<div class="title">小站特色</div>
-				<div class="clearfix ptb10">
-					<a href="javascript:;" class="leftbtn slide-left"></a>
+				<div class="title"><img src="{$site_url}{$xztc_pic}" height="30" width="1200" /></div>
+				<div class="clearfix ptb10 index_xzts">
+					<div class="xzts_div">小站特色
+					</div>
+					<div class="xzts_div2">
+						<a href="javascript:;" class="leftbtn slide-left">上一批</a>|
+						<a href="javascript:;" class="rightbtn slide-right">下一批</a>|
+						<a href="#">更多</a>
+					</div>
 					<div class="mid">
 						<ul class="scrollGoods clearfix imgList">
-							<!--{foreach from=$fine_list item=goods}-->				
+							<!--{foreach from=$fine_list item=goods}-->		
 							<li>
-								<a href="{url app=goods&id=$goods.goods_id}">
-									<img src="{$goods.default_image}" height="160" width="210" alt="" class="thumb">
+								<a target="_blank" href="{url app=goods&id=$goods.goods_id}">
+									<img src="{$goods.default_image}" height="180" width="190" alt="" class="laimg1">
 									<span class="name">{$goods.goods_name}</span>
 								</a>
 								<div class="clearfix tool">
-									<span class="price">{$goods.price|price}</span>
-									<a href="{url app=goods&id=$goods.goods_id}" class="buy">
-										<img src="{res file=img/buybtn2.jpg}" width="79" height="26" alt="">
+									<span class="price">{$goods.price|price}</span>{if $goods.unit}<span class="price1">/&nbsp;{$goods.unit}</span>{/if}
+									<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="buy">
+										<img src="{res file=img/buybtn2.jpg}" width="72" height="26" style="margin-right: 10px;">
 									</a>
 								</div>
 							</li>
 							<!--{/foreach}-->
 						</ul>
 					</div>
-					<a href="javascript:;" class="rightbtn slide-right"></a>
 				</div>
 			</div>
 		</div>
@@ -102,7 +127,7 @@
 				<div class="index-box-left goods f1" id="f1">
 					<div class="floor">1F</div>
 					<div class="title">
-						<i></i>{$top_category[1].cate_name}
+						{$top_category[1].cate_name}
 					</div>
 					<ul class="list">
 						<!--{foreach from=$top_cate_children[1] item=cate}-->	
@@ -110,29 +135,43 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[1].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[1].url}" target="_blank"><img src="{$sub_places[1].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[1].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[1] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								<span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
+					</ul>
+				</div>
+				<div class="index-box-lb" id="1f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$first_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -148,29 +187,43 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[2].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[2].url}" target="_blank"><img src="{$sub_places[2].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[2].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[2] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								 <span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
+					</ul>
+				</div>
+				<div class="index-box-lb" id="2f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$second_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -186,29 +239,43 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[3].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[3].url}" target="_blank"><img src="{$sub_places[3].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[3].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[3] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								 <span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
+					</ul>
+				</div>
+				<div class="index-box-lb" id="3f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$third_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -224,29 +291,43 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[4].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[4].url}" target="_blank"><img src="{$sub_places[4].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[4].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[4] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								 <span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
+					</ul>
+				</div>
+				<div class="index-box-lb" id="4f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$fourth_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -262,29 +343,43 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[5].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[5].url}" target="_blank"><img src="{$sub_places[5].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[5].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[5] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								 <span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
+					</ul>
+				</div>
+				<div class="index-box-lb" id="5f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$fifth_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -300,29 +395,43 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[6].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[6].url}" target="_blank"><img src="{$sub_places[6].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[6].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[6] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								 <span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
+					</ul>
+				</div>
+				<div class="index-box-lb" id="6f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$sixth_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -338,29 +447,43 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[7].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[7].url}" target="_blank"><img src="{$sub_places[7].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[7].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[7] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								 <span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
+					</ul>
+				</div>
+				<div class="index-box-lb" id="7f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$seventh_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -376,29 +499,43 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[8].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[8].url}" target="_blank"><img src="{$sub_places[8].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[8].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[8] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								 <span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
+					</ul>
+				</div>
+				<div class="index-box-lb" id="8f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$eighth_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -414,29 +551,43 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[9].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[9].url}" target="_blank"><img src="{$sub_places[9].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[9].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[9] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								 <span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
+					</ul>
+				</div>
+				<div class="index-box-lb" id="9f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$ninth_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -452,29 +603,43 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[10].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[10].url}" target="_blank"><img src="{$sub_places[10].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[10].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[10] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								 <span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
+					</ul>
+				</div>
+				<div class="index-box-lb" id="10f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$tenth_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -490,29 +655,43 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[11].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[11].url}" target="_blank"><img src="{$sub_places[11].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[11].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[11] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								 <span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
+					</ul>
+				</div>
+				<div class="index-box-lb" id="11f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$eleventh_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -528,29 +707,43 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[12].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[12].url}" target="_blank"><img src="{$sub_places[12].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[12].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[12] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								 <span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
+					</ul>
+				</div>
+				<div class="index-box-lb" id="12f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$twelfth_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -566,33 +759,51 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<div class="absolute ">
-							<h3>{$sub_places[13].name}</h3>
-							分会场
-						</div>
 						<a href="{$sub_places[13].url}" target="_blank"><img src="{$sub_places[13].path}" alt=""></a>
+					</div>
+					<div class="absolute1">
+						<h3>{$sub_places[13].name}</h3>
+						<h4>分会场</h4>
 					</div>
 				</div>
 				<div class="index-box-right">
 					<ul class="goods-list">
 						<!--{foreach from=$top_cate_goods[13] item=goods}-->	
 						<li>
-							<a href="{url app=goods&id=$goods.goods_id}" class="mask">
+							<a target="_blank" href="{url app=goods&id=$goods.goods_id}" class="mask">
 							{if $goods.source_type==3}
 							<img src="{res file=img/jdlogo.png}" class="jdlogo" width="50" height="50" alt="">
 							{/if}
 							<img height="152" width="168" src="{$goods.default_image}" alt="" class="thumb">
 							<div class="goods-info">
 								<h3>{$goods.goods_name}</h3>
-								价格: <span class="red">{$goods.price|price}</span>
+								 <span class="red">{$goods.price|price}</span>
 							</div>
 							</a>
 						</li>
 						<!--{/foreach}-->
 					</ul>
 				</div>
+				<div class="index-box-lb" id="13f">
+					<ul>
+						<?php $end_index = 0; ?>
+						<!--{foreach from=$thirteenth_floor_ad item=goods}-->
+						<?php $end_index++; ?>
+						<li><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="203" height="421"></a></li>
+						<!--{/foreach}-->
+					</ul>
+					<ul class="index_num" id="idNum1">   
+						<?php for($i = 1; $i <= $end_index; $i++){ ?>
+						<li class="" value="0"><?php echo $i; ?></li>
+						<?php } ?>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
+	{foreach from=$index_footer_ad item=goods}
+	<div class="index_endgg"><img src="{$goods.path}" width="100%" height="100%" /></div>
+	{/foreach}
 	<script src="{res file=js/index.js}"></script>
+	<script src="{res file=js/index-advertising.js}"></script>
 	{include file=footer.new.html}

@@ -1,0 +1,43 @@
+{include file="header.html"}
+<style>
+tr td.handler, th.handler { text-align: center; width: 180px; }
+</style>
+<div id="rightTop">
+    <p>专题管理</p>
+    <ul class="subnav">
+       <li><span>专题列表</span></li>
+       <li><a class="btn1" href="index.php?app=zhuanti&amp;act=addcontent">新增专题</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>专题类型</td>
+      <td>添加时间</td>
+      <td>最后修改时间</td>
+      <td class="handler">操作</td>
+    </tr>
+    <!--{foreach from=$list item=vo}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$vo.id}" /></td>
+      <td>{$vo.type_name}</td>
+      <td>{$vo.ctime}</td>
+      <td>{$vo.last_modify_time}</td>
+      <td class="handler">
+      <span style="width: 100px">
+      <a href="index.php?app=zhuanti&amp;act=addcontent&amp;id={$vo.id}">{$lang.edit}</a> | <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=zhuanti&amp;act=delete&amp;id={$vo.id}');">{$lang.drop}</a>
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,70 @@
+{include file="header.html"}
+
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $(".show_image").mouseover(function(){
+        $(this).next("div").show();
+    });
+    $(".show_image").mouseout(function(){
+        $(this).next("div").hide();
+    });
+    {if $setting.sitemap_enabled}
+    $('#sitemap_frequency_setting').show();
+    {/if}
+    $('#sitemap_disabled').click(function(){
+        $('#sitemap_frequency_setting').hide();
+    });
+    $('#sitemap_enabled').click(function(){
+        $('#sitemap_frequency_setting').show();
+    });
+
+    {if $setting.session_type eq 'memcached'}
+    $('#session_memcached').show();
+    {/if}
+    $('#mysql').click(function(){
+        $('#session_memcached').hide();
+    });
+    $('#memcached').click(function(){
+        $('#session_memcached').show();
+    });
+
+    {if $setting.cache_server eq 'memcached'}
+    $('#cache_memcached').show();
+    {/if}
+    $('#c_default').click(function(){
+        $('#cache_memcached').hide();
+    });
+    $('#c_memcached').click(function(){
+        $('#cache_memcached').show();
+    });
+});
+//]]>
+</script>
+
+<div class="info">
+  <form method="post" enctype="multipart/form-data">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> <label for="default_goods_image">小站特色LOGO:</label></th>
+        <td class="paddingT15 wordSpacing5">
+        	<input class="infoTableFile" id="xztc_logo" type="file" name="xztc_logo" />
+			<label class="field_notice">只支持格式png</label>
+        </td>
+      </tr>
+      <!--{if $picture}-->
+      <tr>
+        <td colspan="2" class="paddingT15 wordSpacing5">
+          <img src="{$site_url}{$picture}?{$random_number}" width="1200" height="30" />
+        </td>
+      </tr>
+      <!--{/if}-->
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}
