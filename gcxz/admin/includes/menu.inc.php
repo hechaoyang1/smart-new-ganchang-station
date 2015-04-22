@@ -211,7 +211,11 @@ return array (
 						'ad_region_goods' => array (
 								'text' => '家乡的味道',
 								'url' => 'index.php?app=regiongoods' 
-						) 
+						) ,
+						'zhuanti'=>array(
+								'text'=>'专题管理',
+								'url'=>'index.php?app=zhuanti'
+						)
 				) 
 		),
 		// 扩展
