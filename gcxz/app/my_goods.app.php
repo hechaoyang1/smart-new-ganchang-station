@@ -1039,14 +1039,20 @@ class My_goodsApp extends StoreadminbaseApp
         }
 
         $ids = explode(',', $id);
-        $this->_goods_mod->drop_data($ids);
+        //不删除图片
+//         $this->_goods_mod->drop_data($ids);
+		//查询需要删除商品的信息
+        $goods = $this->_goods_mod->db->getAll('select * from ecm_goods where store_id = '.$this->_store_id.' and '.db_create_in($ids,'goods_id'));
         $rows = $this->_goods_mod->drop($ids);
         if ($this->_goods_mod->has_error())
         {
             $this->show_warning($this->_goods_mod->get_error());
             return;
         }
-
+		$delModel = &m('goodsdel');
+		foreach ($goods as $good){
+			$delModel->add($good);
+		}
         $this->show_message('drop_ok');
     }
 

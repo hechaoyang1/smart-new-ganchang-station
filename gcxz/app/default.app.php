@@ -111,7 +111,7 @@ class DefaultApp extends MallbaseApp
 		$this->assign('sub_places',$sub_places);
 		//底部广告
 		$ad_pos = $pos_value['index_footer'];
-		$ad_list = m('goodsad')->get_list($ad_pos, 1);
+		$ad_list = $ad_mod->get_list($ad_pos, 1);
 		$this->assign('index_footer_ad',$ad_list);
 		//楼层广告
         $ad_pos = $pos_value['first_floor'];
@@ -255,6 +255,11 @@ class DefaultApp extends MallbaseApp
 		));
 		
         $this->display('fcg.html');
+    }
+    
+    function rspf()
+    {
+        $this->display('rspf.html');
     }
 }
 
