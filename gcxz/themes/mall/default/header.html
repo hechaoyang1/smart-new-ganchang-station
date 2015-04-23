@@ -57,8 +57,8 @@ var PRICE_FORMAT = '{$price_format}';
 	             <a href="{url app=search&keyword=$keyword}">{$keyword}</a>|
 	            <!--{/foreach}-->
 			</div>
-			{foreach from=$site_top_ad item=goods}
-			<div class="pull-left advertisement"><a target="_blank" href="{$goods.url}"><img src="{$goods.path}" width="200" height="57"></a></div>
+				{foreach from=$site_top_ad item=top_goods}
+			<div class="pull-left advertisement"><a target="_blank" href="{$top_goods.url}"><img src="{$top_goods.path}" width="200" height="57"></a></div>
 			{/foreach}
 		</div>
 	</div>
