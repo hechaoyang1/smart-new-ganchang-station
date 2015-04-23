@@ -6,7 +6,7 @@ define('MAX_HIT_RATE', 0.05);      // 最大命中率（满足条件的记录数
 define('MAX_STAT_PRICE', 10000);   // 最大统计价格
 define('PRICE_INTERVAL_NUM', 5);   // 价格区间个数
 define('MIN_STAT_STEP', 50);       // 价格区间最小间隔
-define('NUM_PER_PAGE', 15);        // 每页显示数量
+define('NUM_PER_PAGE', 16);        // 每页显示数量
 define('ENABLE_SEARCH_CACHE', false); // 启用商品搜索缓存
 define('SEARCH_CACHE_TTL', 3600);  // 商品搜索缓存时间
 
@@ -45,7 +45,10 @@ class SearchApp extends MallbaseApp
 				'count' => true 
 		) );
 		if($param['keyword'] && !$goods_list){
-			$this->show_warning ( '没有找到相关商品' );
+			$this->import_resource(array(
+					'style' =>  'res:css/f-product.css',
+			));
+			$this->display('no.search.goods.html');
 			return;
 		}
 		$page ['item_count'] = $goods_mod->_last_query_count;
