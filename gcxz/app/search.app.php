@@ -406,10 +406,10 @@ class SearchApp extends MallbaseApp
             }
     
             // region_id
-            if (isset($_GET['region_id']) && intval($_GET['region_id']) > 0)
+            if (isset($_GET['region_id']))
             {
-                $res['region_id'] = intval($_GET['region_id']);
-                $this->assign('region_id', $res['region_id']);
+                $res['region_id'] = db_create_in(json_decode($_GET['region_id']),'g.region_id');
+                $this->assign('region_id', json_decode($_GET['region_id']));
             }
     
             // price
@@ -442,15 +442,15 @@ class SearchApp extends MallbaseApp
 	 * 获取排序顺序
 	 */
     function _get_query_order(){
-    	$this->assign ( 'timeOrder', 'down' );
-    	$this->assign ( 'priceOrder', 'down' );
+    	$this->assign ( 'timeOrder', 'down2' );
+    	$this->assign ( 'priceOrder', 'down2' );
     	if ($_GET ['timeOrder']) {
     		$orderStr = 'g.add_time '.$_GET ['timeOrder'];
-    		$this->assign ( 'timeOrder', $_GET ['timeOrder']=='asc'?'up foucs':'down  foucs' );
+    		$this->assign ( 'timeOrder', $_GET ['timeOrder']=='asc'?'down1 foucs':'down2  foucs' );
     	}
     	else if ($_GET ['priceOrder']) {
     		$orderStr = 'g.price '.$_GET ['priceOrder'];
-    		$this->assign ( 'priceOrder', $_GET ['priceOrder']=='asc'?'up  foucs':'down  foucs' );
+    		$this->assign ( 'priceOrder', $_GET ['priceOrder']=='asc'?'down1  foucs':'down2  foucs' );
     	}else{
     		$orderStr = 'gst.sales desc';
     		$this->assign ( 'salesOrder', 'foucs' );
@@ -529,7 +529,7 @@ class SearchApp extends MallbaseApp
         }
         if (isset($param['region_id']))
         {
-            $conditions .= " AND g.region_id = '" . $param['region_id'] . "'";
+            $conditions .= " AND " . $param['region_id'] ;
         }
         if (isset($param['price']))
         {
