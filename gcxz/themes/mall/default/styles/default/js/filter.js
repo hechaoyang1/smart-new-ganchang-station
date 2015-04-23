@@ -10,20 +10,25 @@ function reLocate() {
 		condition += "&cate_id=" + $('#cate_id').val();
 	}
 	// 获取地域条件
-	$area = $('dd.area');
-	if ($area.length == 1) {
-		condition += '&region_id=' + $area.attr('attr_id');
+	$area = $('.wrap_with_dm1 ul li span');
+	if ($area.length > 0) {
+		condition +='&region_id=[';
+		for(var i=0;i<$area.length;i++){
+			condition += $area.eq(i).attr('attr_id')+',';
+		}
+		condition = condition.substring(0,condition.length-1);
+		condition += ']';
 	}
 	var order = 'asc';
 	if ($('.title.clr a.foucs').text() == '新品') {
 		condition += '&timeOrder=';
-		if ($('.title.clr a.foucs').attr("class").indexOf("down") >= 0) {
+		if ($('.title.clr a.foucs').attr("class").indexOf("down2") >= 0) {
 			order = 'desc';
 		}
 		condition += order;
 	} else if ($('.title.clr a.foucs').text() == '价格') {
 		condition += '&priceOrder=';
-		if ($('.title.clr a.foucs').attr("class").indexOf("down") >= 0) {
+		if ($('.title.clr a.foucs').attr("class").indexOf("down2") >= 0) {
 			order = 'desc';
 		}
 		condition += order;
@@ -85,14 +90,26 @@ $(function() {
 				});
 				reLocate();
 			});
+	$('.wrap_with_dm1 ul li img').click(function(){
+		$(this).parent('li').remove();
+		reLocate();
+	});
+	$('.wrap_with_dm li a').click(function(){
+		var _this = $(this);
+		var _li = $('<li><span attr_id="{$area.region_id}">{$area.region_name}</span><img src="themes/mall/default/styles/default/img/qxss.png"></li> ');
+		_li.find('span').attr('attr_id',_this.attr('attr_id'));
+		_li.find('span').text(_this.text());
+		$('.wrap_with_dm1 ul').append(_li);
+		reLocate();
+	});
 
 	// 排序方式操作
 	$(".title a").click(function() {
 		if ($(this).text() == '价格' || $(this).text() == '新品') {
-			if ($(this).attr("class").indexOf("up") == 0) {
-				$(this).removeClass("up").addClass("down");
+			if ($(this).attr("class").indexOf("down1") == 0) {
+				$(this).removeClass("down1").addClass("down2");
 			} else {
-				$(this).removeClass("down").addClass("up");
+				$(this).removeClass("down2").addClass("down1");
 			}
 		}
 
@@ -121,6 +138,17 @@ $(function() {
 		var patrn = /^[0-9]+(.[0-9]{1,2})?$/;
 		if (!patrn.test($(this).val())) {
 			$(this).val('');
+		}
+	});
+	
+	$('.wrap_all_dt').click(function(){
+		var _this = $(this);
+		if(_this.next('div').is(':hidden')){
+			_this.next('div').show();
+			_this.find('em').removeClass('v01').addClass('v02');
+		}else{
+			_this.next('div').hide();
+			_this.find('em').removeClass('v02').addClass('v01');
 		}
 	});
 
