@@ -99,7 +99,7 @@ class DefaultApp extends MallbaseApp
 		$pos_value = $ad_mod->get_pos_value();
 		//轮播的广告商品
 		$ad_pos = $pos_value['index_center'];
-		$ad_list = $ad_mod->get_list($ad_pos, 8);
+		$ad_list = $ad_mod->get_list($ad_pos, 6);
 		$this->assign('index_center_ad',$ad_list);
 		//分会场
 		$ad_pos = $pos_value['index_branch'];

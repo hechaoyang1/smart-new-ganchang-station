@@ -1,4 +1,3 @@
-
 gcxz.Slide = function (options) {
 	var _t = this;
 	_t.dom = options.dom;
@@ -81,7 +80,7 @@ gcxz.Slide.prototype.animate = function(i) {
 	// 小站特色
 	new gcxz.Slide({
 		dom:$('.characteristic'),
-		step:4
+		step:5
 	});
 
 	var f1 = $("#f1");
@@ -115,3 +114,98 @@ gcxz.Slide.prototype.animate = function(i) {
 		}
 	});
 })();
+
+//楼层广告切换
+$(function() {
+                $("#1f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+
+                $("#2f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+				
+				$("#3f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+
+                $("#4f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+
+                $("#5f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+
+                $("#6f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+
+                $("#7f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+
+                $("#8f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+
+                $("#9f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+
+                $("#10f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+
+                $("#11f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+
+                $("#12f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+
+                $("#13f").ggqh({
+                    
+                    slideshow_window_width: '203',
+                    slideshow_window_height: '421',
+                    slideshow_button_current_background_color: '#666',
+                });
+
+            });

@@ -22,26 +22,9 @@
 					<!--{/foreach}-->
 				</ul>
 				<ul class="slide-btn clearfix">
-					<?php for($i = 1; $i <= $end_index; $i++){ ?>
-					<li><?php echo $i; ?></li>
-					<?php } ?>
-				</ul>
-			</div>
-			<div class="convenient-servicea">
-				<ul>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li><a href="#">9</a></li>
-					<li><a href="#">10</a></li>
-					<li><a href="#">11</a></li>
-					<li><a href="#">12</a></li>
-					<li><a href="#">13</a></li>
+					<!--{foreach from=$index_center_ad item=goods}-->
+					<li>{$goods.name}</li>
+					<!--{/foreach}-->
 				</ul>
 			</div>
 			<div class="convenient-service">
@@ -92,7 +75,7 @@
 		</div>
 		<div class="characteristicBox">
 			<div class="characteristic">
-				<div class="title"><img src="{$site_url}{$xztc_pic}" height="30" width="1200" /></div>
+				<div><img src="{$site_url}{$xztc_pic}" height="30" width="1200" /></div>
 				<div class="clearfix ptb10 index_xzts">
 					<div class="xzts_div">小站特色
 					</div>
@@ -135,11 +118,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[1].url}" target="_blank"><img src="{$sub_places[1].path}" alt=""></a>
+						<img src="{$sub_places[1].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[1].url}" target="_blank">
 						<h3>{$sub_places[1].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
@@ -187,11 +172,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[2].url}" target="_blank"><img src="{$sub_places[2].path}" alt=""></a>
+						<img src="{$sub_places[2].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[2].url}" target="_blank">
 						<h3>{$sub_places[2].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
@@ -239,11 +226,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[3].url}" target="_blank"><img src="{$sub_places[3].path}" alt=""></a>
+						<img src="{$sub_places[3].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[3].url}" target="_blank">
 						<h3>{$sub_places[3].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
@@ -291,11 +280,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[4].url}" target="_blank"><img src="{$sub_places[4].path}" alt=""></a>
+						<img src="{$sub_places[4].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[4].url}" target="_blank">
 						<h3>{$sub_places[4].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
@@ -343,11 +334,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[5].url}" target="_blank"><img src="{$sub_places[5].path}" alt=""></a>
+						<img src="{$sub_places[5].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[5].url}" target="_blank">
 						<h3>{$sub_places[5].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
@@ -395,11 +388,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[6].url}" target="_blank"><img src="{$sub_places[6].path}" alt=""></a>
+						<img src="{$sub_places[6].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[6].url}" target="_blank">
 						<h3>{$sub_places[6].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
@@ -447,11 +442,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[7].url}" target="_blank"><img src="{$sub_places[7].path}" alt=""></a>
+						<img src="{$sub_places[7].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[7].url}" target="_blank">
 						<h3>{$sub_places[7].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
@@ -499,11 +496,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[8].url}" target="_blank"><img src="{$sub_places[8].path}" alt=""></a>
+						<img src="{$sub_places[8].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[8].url}" target="_blank">
 						<h3>{$sub_places[8].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
@@ -551,11 +550,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[9].url}" target="_blank"><img src="{$sub_places[9].path}" alt=""></a>
+						<img src="{$sub_places[9].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[9].url}" target="_blank">
 						<h3>{$sub_places[9].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
@@ -603,11 +604,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[10].url}" target="_blank"><img src="{$sub_places[10].path}" alt=""></a>
+						<img src="{$sub_places[10].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[10].url}" target="_blank">
 						<h3>{$sub_places[10].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
@@ -655,11 +658,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[11].url}" target="_blank"><img src="{$sub_places[11].path}" alt=""></a>
+						<img src="{$sub_places[11].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[11].url}" target="_blank">
 						<h3>{$sub_places[11].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
@@ -707,11 +712,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[12].url}" target="_blank"><img src="{$sub_places[12].path}" alt=""></a>
+						<img src="{$sub_places[12].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[12].url}" target="_blank">
 						<h3>{$sub_places[12].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
@@ -759,11 +766,13 @@
 						<!--{/foreach}-->
 					</ul>
 					<div class="img">
-						<a href="{$sub_places[13].url}" target="_blank"><img src="{$sub_places[13].path}" alt=""></a>
+						<img src="{$sub_places[13].path}" alt="">
 					</div>
 					<div class="absolute1">
+						<a href="{$sub_places[13].url}" target="_blank">
 						<h3>{$sub_places[13].name}</h3>
 						<h4>分会场</h4>
+						</a>
 					</div>
 				</div>
 				<div class="index-box-right">
