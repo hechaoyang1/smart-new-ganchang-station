@@ -9,11 +9,18 @@
 		var SITE_URL = "{$site_url}";
 		function switch1(obj)
 		{
-			$(obj).attr('src', SITE_URL+'/themes/mall/default/styles/default/img/rspf_2.jpg');
+			var img = $(obj).attr('img');
+			$('img').attr('src', SITE_URL+'/themes/mall/default/styles/default/img/'+img);
 		}
 	</script>
 </head>
 <body>
-	<img id="iuii" alt="" src="{res file=img/rspf.jpg}" onclick="javascript:switch1(this);" />
+	<img alt="" src="{res file=img/rspf.jpg}" />
+	<div img="rspf_1.jpg" onclick="switch1(this);"
+		style="margin-top: -893px; width: 187px; height: 99px;position:absolute; z-index: 999;"></div>
+	<div img="rspf_2.jpg" onclick="javascript:switch1(this);"
+		style="margin-top: -794px;width: 187px; height: 107px;position:absolute;  z-index: 999;"></div>
+	<div img="rspf_3.jpg" onclick="javascript:switch1(this);"
+		style="margin-top: -686px;width: 187px; height: 107px;position:absolute;  z-index: 999;"></div>
 </body>
 </html>
