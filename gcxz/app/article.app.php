@@ -45,6 +45,101 @@ class ArticleApp extends MallbaseApp {
 			echo 0;
 		}
 	}
+	function system()
+	{
+		$code = empty($_GET['code']) ? '' : trim($_GET['code']);
+		if (!$code)
+		{
+			$this->show_warning('no_such_article');
+			return;
+		}
+		$article = $this->_article_mod->get("code='" . $code . "'");
+		if (!$article)
+		{
+			$this->show_warning('no_such_article');
+			return;
+		}
+		if ($article['link']){ //外链文章跳转
+			header("HTTP/1.1 301 Moved Permanently");
+			header('location:'.$article['link']);
+			return;
+		}
+	
+		/*当前位置*/
+		$curlocal[] =array('text' => $article['title']);
+		$this->_curlocal($curlocal);
+		/*文章分类*/
+		$acategories = $this->_get_acategory('');
+		/* 新文章 */
+		$new = $this->_get_article('new');
+		$new_articles = $new['articles'];
+		$this->assign('acategories', $acategories);
+		$this->assign('new_articles', $new_articles);
+		$this->assign('article', $article);
+	
+		$this->_config_seo('title', $article['title'] . ' - ' . Conf::get('site_title'));
+		$this->display('article.view.html');
+	
+	}
+	
+	function _get_article_curlocal($cate_id)
+	{
+		$parents = array();
+		if ($cate_id)
+		{
+			$acategory_mod = &m('acategory');
+			$acategory_mod->get_parents($parents, $cate_id);
+		}
+		foreach ($parents as $category)
+		{
+			$curlocal[] = array('text' => $category['cate_name'], 'ACC' => $category['code'], 'url' => 'index.php?app=article&amp;cate_id=' . $category['cate_id']);
+		}
+		return $curlocal;
+	}
+	function _get_acategory($cate_id)
+	{
+		$acategories = $this->_acategory_mod->get_list($cate_id);
+		if ($acategories){
+			unset($acategories[$this->_ACC[ACC_SYSTEM]]);
+			return $acategories;
+		}
+		else
+		{
+			$parent = $this->_acategory_mod->get($cate_id);
+			if (isset($parent['parent_id']))
+			{
+				return $this->_get_acategory($parent['parent_id']);
+			}
+		}
+	}
+	function _get_article($type='')
+	{
+		$conditions = '';
+		$per = '';
+		switch ($type)
+		{
+			case 'new' : $sort_order = 'add_time DESC,sort_order ASC';
+			$per=5;
+			break;
+			case 'all' : $sort_order = 'sort_order ASC,add_time DESC';
+			$per=10;
+			break;
+		}
+		$page = $this->_get_page($per);   //获取分页信息
+		!empty($this->_cate_ids)&& $conditions = ' AND cate_id ' . db_create_in($this->_cate_ids);
+		$articles = $this->_article_mod->find(array(
+				'conditions'  => 'if_show=1 AND store_id=0 AND code = ""' . $conditions,
+				'limit'   => $page['limit'],
+				'order'   => $sort_order,
+				'count'   => true   //允许统计
+		)); //找出所有符合条件的文章
+		$page['item_count'] = $this->_article_mod->getCount();
+		foreach ($articles as $key => $article)
+		{
+			$articles[$key]['target'] = $article[link] ? '_blank' : '_self';
+		}
+		return array('page'=>$page, 'articles'=>$articles);
+	}
 }
 
 ?>
