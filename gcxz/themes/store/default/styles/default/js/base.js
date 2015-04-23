@@ -29,7 +29,7 @@ gcxz.shoppingCar = function(ele){
 			appendHtml = $(data).hide().appendTo('body'),
 			appendHtmlHeight = appendHtml.height();
 		appendHtml.css({
-			top:centerHeight - appendHtmlHeight/2-20
+			top:centerHeight - appendHtmlHeight/2+30
 		}).show();
 
 		setTimeout(function(){
@@ -62,7 +62,7 @@ gcxz.favorite = function(ele){
 			appendHtml = $(data).hide().appendTo('body'),
 			appendHtmlHeight = appendHtml.height();
 		appendHtml.css({
-			top:centerHeight - appendHtmlHeight/2-20
+			top:centerHeight - appendHtmlHeight/2+40
 		}).show();
 
 		setTimeout(function(){
