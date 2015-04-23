@@ -63,7 +63,7 @@ body {
   font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti;}
 
 .wrap {
-  width: 1200px;
+  width: 100%;
   margin: 0 auto; }
 
 .bold {
@@ -484,8 +484,8 @@ body {
 .toolsShoppingCar {
   position: fixed;
   top: 100px;
-  right: 6px;
-  margin-right:50px;
+  right: 0%;
+  margin-right:60px;
   z-index: 99;
   width: 350px;
   border: 1px solid #e0e0e0;
@@ -609,6 +609,7 @@ body {
   z-index: 99;
   color: #b9aeae;
   margin-right: 60px; }
+  /*
 .toolsShoppingCar:before, .toolsShoppingCar:after{
   content: "";
   position: absolute;
@@ -624,8 +625,8 @@ body {
   right: -14px;
   border-style: solid;
   border-width: 7px;
-  top: 45%;
-  border-color: transparent transparent transparent #808080; }
+  top: 20%;
+  border-color: transparent transparent transparent #808080; }*/
 
 .toolsLogin:after {
   right: -13px;

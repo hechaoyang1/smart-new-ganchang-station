@@ -62,7 +62,7 @@ gcxz.favorite = function(ele){
 			appendHtml = $(data).hide().appendTo('body'),
 			appendHtmlHeight = appendHtml.height();
 		appendHtml.css({
-			top:centerHeight - appendHtmlHeight/2+40
+			top:centerHeight - appendHtmlHeight/2+70
 		}).show();
 
 		setTimeout(function(){

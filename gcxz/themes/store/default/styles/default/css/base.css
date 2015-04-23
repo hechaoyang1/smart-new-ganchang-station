@@ -63,7 +63,7 @@ body {
   font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti;}
 
 .wrap {
-  width: 1200px;
+  width: 100%;
   margin: 0 auto; }
 
 .bold {
@@ -609,13 +609,14 @@ body {
   z-index: 99;
   color: #b9aeae;
   margin-right: 60px; }
+  /*
 .toolsShoppingCar:before, .toolsShoppingCar:after{
   content: "";
   position: absolute;
   right: -14px;
   border-style: solid;
   border-width: 7px;
-  top: 32%;
+  top: 45%;
   border-color: transparent transparent transparent #B2ADAD;
 }
 .toolsLogin:before, .toolsLogin:after {
@@ -625,7 +626,7 @@ body {
   border-style: solid;
   border-width: 7px;
   top: 20%;
-  border-color: transparent transparent transparent #808080; }
+  border-color: transparent transparent transparent #808080; }*/
 
 .toolsLogin:after {
   right: -13px;

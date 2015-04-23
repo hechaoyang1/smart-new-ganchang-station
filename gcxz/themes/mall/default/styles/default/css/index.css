@@ -46,7 +46,7 @@
   cursor: pointer; }
 
 .slide {
-  width: 1200px;
+  width: 100%;
   overflow: hidden;
   height: 410px;
   float: left;
@@ -54,15 +54,14 @@
 
 .slide ul.imgList li {
   height: 370px;
-  width: 1200px;
-  float: left; }
+  width: 100%;}
 
 .slide ul.imgList li img {
   height: 100%;
   width: 100%; }
 
 .slide ul.imgList {
-  width: 9999px; }
+  width: 100%; }
 
 .slide .slide-btn {
   position: absolute;
@@ -208,7 +207,7 @@
 
 .goods .list {
   overflow: hidden;
-  padding: 20px 0 0 0; }
+  height: 127px; }
 
 .goods .list li {
   float: left;
@@ -230,7 +229,7 @@
   font-size: 22px;
   width: 100%; }
 
-.goods .img img{
+.goods .img a img{
 	width: 100%;
 	height: 100%;}
 	
@@ -253,7 +252,7 @@
   font-weight: bold; }
 
 .absolute1 h4{
-	font-size: 20px;
+	font-size: 18px;
 }
 .goods.f1 {
   background-color: #82a757; }
@@ -346,7 +345,7 @@
 
 .characteristicBox {
   background-color: #fff;
-  padding: 40px 0 20px; }
+  padding: 60px 0 20px; }
 
 .characteristic .title {
 	width: 1200px;
@@ -459,7 +458,8 @@
 
 .convenient-service {
 	float: left;
-	
+	z-index: 9999;
+	top: 163px;
 	background-color: #FFFFFF;
 	height: 408px;
 	width: 118px;
@@ -645,7 +645,8 @@
   box-shadow: 0 0 8px #eee; }
 
 .box {
-  margin: 20px 0 0 0;
+  margin:20px auto 0 auto;
+  width: 1200px; 
   height: 421px; }
 
 .index-box-left {
@@ -689,4 +690,61 @@
 	height: 115px;
 	margin:29px auto;
 	border: 1px solid #808080;
+}
+
+
+
+
+
+
+
+
+#bn {
+	height: 370px;
+	overflow: hidden;
+	margin-right: auto;
+	margin-left: auto;
+}
+#bn .tu {
+	text-align: center;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#bn #hao .xu {
+	float: left;
+	height: 38px;
+	width: 96px;
+	margin: 0 2px 0;
+	line-height: 40px;
+	color: #66645B;
+	font-size: 16px;
+	cursor:pointer;
+	text-align:center;
+	border: 1px solid #A0A0A4;
+	overflow: hidden;
+}
+
+#bn #hao {
+	position: absolute;
+	left:263px;
+	height: 40px;
+	z-index: 3;
+	top: 534px;
+}
+#bn .txt {
+	display: block;
+	position: absolute;
+	top: 423px;
+	height: 53px;
+	width: 385px;
+	right: 50px;
+	z-index: 3;
+}
+
+
+#bn .tu .lianjie {
+	display: block;
+	height: 370px;
 }
