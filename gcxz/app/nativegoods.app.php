@@ -19,7 +19,7 @@ class NativegoodsApp extends MallbaseApp {
 		$this->assign ( 'top_list', $top_list );
 		// 获取土特产
 		/* 分页信息 */
-		$page = $this->_get_page ( 40 );
+		$page = $this->_get_page ( 20 );
 		$goods_list = $goodsModel->get_list ( array (
 				'conditions' => 'g.native=1',
 				'limit' => $page ['limit'],
@@ -28,7 +28,7 @@ class NativegoodsApp extends MallbaseApp {
 		foreach ($goods_list as &$good){
 			$good['default_image'] = str_replace('small_', '', $good['default_image']);
 		}
-		$page ['item_count'] = $goods_mod->_last_query_count;
+		$page ['item_count'] = $goodsModel->_last_query_count;
 		$this->_format_page ( $page );
 		$this->assign ( 'page_info', $page );
 		$this->assign ( 'goods_list', $goods_list );
