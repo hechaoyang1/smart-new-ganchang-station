@@ -120,7 +120,7 @@ class BackendApp extends ECBaseApp
      *    @param    none
      *    @return    void
      */
-    function jslang($lang)
+    function jslang($lang=array())
     {
         $lang = Lang::fetch(lang_file('admin/jslang'));
         parent::jslang($lang);
