@@ -484,19 +484,19 @@ class My_goodsApp extends StoreadminbaseApp
                 'if_multirow' => 1,
         )));
         
-        /* 编辑器图片批量上传器 */
-        $this->assign('editor_upload', $this->_build_upload(array(
-                'obj' => 'EDITOR_SWFU',
-                'belong' => BELONG_GOODS,
-                'item_id' => 0,
-                'button_text' => Lang::get('bat_upload'),
-                'button_id' => 'editor_upload_button',
-                'progress_id' => 'editor_upload_progress',
-                'upload_url' => 'index.php?app=swfupload&instance=desc_image',
-                'if_multirow' => 1,
-                'ext_js' => false,
-                'ext_css' => false,
-        )));
+//         /* 编辑器图片批量上传器 */
+//         $this->assign('editor_upload', $this->_build_upload(array(
+//                 'obj' => 'EDITOR_SWFU',
+//                 'belong' => BELONG_GOODS,
+//                 'item_id' => 0,
+//                 'button_text' => Lang::get('bat_upload'),
+//                 'button_id' => 'editor_upload_button',
+//                 'progress_id' => 'editor_upload_progress',
+//                 'upload_url' => 'index.php?app=swfupload&instance=desc_image',
+//                 'if_multirow' => 1,
+//                 'ext_js' => false,
+//                 'ext_css' => false,
+//         )));
         
         $this->import_resource(array(
                 'script' => array(
@@ -520,16 +520,18 @@ class My_goodsApp extends StoreadminbaseApp
                                 'attr' => 'id="dialog_js" charset="utf-8"',
                                 'path' => 'dialog/dialog.js',
                         ),
+                        array('path'=>'ueditor/ueditor.config.js'),
+                        array('path'=>'ueditor/ueditor.all.min.js'),
                 ),
                 'style' =>  'jquery.ui/themes/ui-lightness/jquery.ui.css',
         ));
          
-        /* 所见即所得编辑器 */
-        extract($this->_get_theme());
-        $this->assign('build_editor', $this->_build_editor(array(
-                'name' => 'description',
-                'content_css' => SITE_URL . "/themes/store/{$template_name}/styles/{$style_name}" . '/shop.css', // for preview
-        )));
+//         /* 所见即所得编辑器 */
+//         extract($this->_get_theme());
+//         $this->assign('build_editor', $this->_build_editor(array(
+//                 'name' => 'description',
+//                 'content_css' => SITE_URL . "/themes/store/{$template_name}/styles/{$style_name}" . '/shop.css', // for preview
+//         )));
     }
     
     function findShareGoods()
@@ -830,6 +832,8 @@ class My_goodsApp extends StoreadminbaseApp
                         'attr' => 'id="dialog_js" charset="utf-8"',
                         'path' => 'dialog/dialog.js',
                     ),
+                	array('path'=>'ueditor/ueditor.config.js'),
+                	array('path'=>'ueditor/ueditor.all.min.js'),
                 ),
                 'style' =>  'jquery.ui/themes/ui-lightness/jquery.ui.css',
             ));
@@ -859,12 +863,12 @@ class My_goodsApp extends StoreadminbaseApp
                 'ext_css' => false,
             )));
 
-            /* 所见即所得编辑器 */
-            extract($this->_get_theme());
-            $this->assign('build_editor', $this->_build_editor(array(
-                'name' => 'description',
-                'content_css' => SITE_URL . "/themes/store/{$template_name}/styles/{$style_name}" . '/shop.css', // for preview
-            )));
+//             /* 所见即所得编辑器 */
+//             extract($this->_get_theme());
+//             $this->assign('build_editor', $this->_build_editor(array(
+//                 'name' => 'description',
+//                 'content_css' => SITE_URL . "/themes/store/{$template_name}/styles/{$style_name}" . '/shop.css', // for preview
+//             )));
              
             if ($goods['source_type'] == 1)
             {
