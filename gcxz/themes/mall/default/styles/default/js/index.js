@@ -10,12 +10,12 @@ gcxz.Slide.prototype.bindEvent = function() {
 	_t.index = 0;
 	_t.btn = _t.dom.find('.slide-btn>li');
 	_t.imgList = _t.dom.find('.imgList');
-	_t.lrbtn = _t.dom.find('.slide-left,.slide-bottom');
+	_t.lrbtn = _t.dom.find('.slide-left,.slide-right');
 	_t.lrbtn.on('click',function () {
 		var t = $(this);
-		if(t.hasClass('slide-top')){
+		if(t.hasClass('slide-left')){
 			--_t.index;
-		}else if(t.hasClass('slide-bottom')){
+		}else if(t.hasClass('slide-right')){
 			++_t.index;
 		}
 		var max = _t.imgList.find('li').length / _t.step;

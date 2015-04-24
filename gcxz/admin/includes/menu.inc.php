@@ -202,9 +202,9 @@ return array (
 		// 专题
 		'monographic' => array (
 				'text' => '专题',
-				'default' => 'monographic',
+				'default' => 'jxwd',
 				'children' => array (
-						'ad_region_goods' => array (
+						'jxwd' => array (
 								'text' => '家乡的味道',
 								'url' => 'index.php?app=regiongoods' 
 						) ,
