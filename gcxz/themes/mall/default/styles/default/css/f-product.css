@@ -34,6 +34,7 @@
 	height: 100% !important;
 	text-align: center;
 	float: left;
+	min-height:600px;
 }
 .wrap_all_dt{
 	padding-right: 10px;
