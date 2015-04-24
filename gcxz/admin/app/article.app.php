@@ -103,20 +103,19 @@ class ArticleApp extends BackendApp
 
             $this->assign("id", 0);
             $this->assign('belong', BELONG_ARTICLE);
-
-            $this->import_resource(array('script' => 'jquery.plugins/jquery.validate.js,change_upload.js'));
+            $this->import_resource(array('script' => 'jquery.plugins/jquery.validate.js,change_upload.js,ueditor/ueditor.config.js,ueditor/ueditor.all.min.js'));
             $this->assign('article', $article);
             $this->assign('files_belong_article', $files_belong_article);
             $this->assign('parents', $this->_get_options()); //分类树
             
             $template_name = $this->_get_template_name();
             $style_name    = $this->_get_style_name();
-            $this->assign('build_editor', $this->_build_editor(array(
-                'name' => 'content',
-                'content_css' => SITE_URL . "/themes/mall/{$template_name}/styles/{$style_name}/css/ecmall.css"
-            )));
+//             $this->assign('build_editor', $this->_build_editor(array(
+//                 'name' => 'content',
+//                 'content_css' => SITE_URL . "/themes/mall/{$template_name}/styles/{$style_name}/css/ecmall.css"
+//             )));
             
-            $this->assign('build_upload', $this->_build_upload(array('belong' => BELONG_ARTICLE, 'item_id' => 0))); // 构建swfupload上传组件
+//             $this->assign('build_upload', $this->_build_upload(array('belong' => BELONG_ARTICLE, 'item_id' => 0))); // 构建swfupload上传组件
             $this->display('article.form.html');
         }
         else
@@ -185,19 +184,19 @@ class ArticleApp extends BackendApp
             $article['link'] = $article['link'] ? $article['link'] : '';
             $this->assign("id", $article_id);
             $this->assign("belong", BELONG_ARTICLE);
-            $this->import_resource(array('script' => 'jquery.plugins/jquery.validate.js,change_upload.js'));
+            $this->import_resource(array('script' => 'jquery.plugins/jquery.validate.js,change_upload.js,ueditor/ueditor.config.js,ueditor/ueditor.all.min.js'));
             $this->assign('parents', $this->_get_options());
             $this->assign('files_belong_article', $files_belong_article);
             $this->assign('article', $article);
             
             $template_name = $this->_get_template_name();
             $style_name    = $this->_get_style_name();
-            $this->assign('build_editor', $this->_build_editor(array(
-                'name' => 'content',
-                'content_css' => SITE_URL . "/themes/mall/{$template_name}/styles/{$style_name}/css/ecmall.css"
-            )));
+//             $this->assign('build_editor', $this->_build_editor(array(
+//                 'name' => 'content',
+//                 'content_css' => SITE_URL . "/themes/mall/{$template_name}/styles/{$style_name}/css/ecmall.css"
+//             )));
             
-            $this->assign('build_upload', $this->_build_upload(array('belong' => BELONG_ARTICLE, 'item_id' => $article_id))); // 构建swfupload上传组件
+//             $this->assign('build_upload', $this->_build_upload(array('belong' => BELONG_ARTICLE, 'item_id' => $article_id))); // 构建swfupload上传组件
             $this->display('article.form.html');
         }
         else
