@@ -36,6 +36,11 @@
 							</div>
 							<div>原价格：<del><i>￥</i>{$goods.price1}</del>{if $goods.unit neq ''}/{$goods.unit}{/if}</div>
 						</div>
+							{if $shipInfo}
+							<div>
+								配送：   <span class="red">{$shipInfo.shipping_name} </span>￥{$shipInfo.first_price}
+							</div>
+							{/if}
 						<div class="salesVolume">
 								<span>月销量:<span class="red">{$goods.sales}</span></span>
 								<span>累计评价:<span class="red">{$comments_num}</span></span>
