@@ -15,8 +15,14 @@
 		<div class="wrap clearfix">
 			<div id="bn"> 
 				<span class="tu"> 
+					<?php $end_index = 0; ?>
 					<!--{foreach from=$index_center_ad item=goods}-->
-					<a target="_blank" href="{$goods.url}" class="lianjie" style="width: 100%;"><img src="{$site_url}/{$goods.path}" height="370" width="100%" border="0"/></a> 
+					<?php $end_index++; ?>
+					<?php if($end_index > 1){  ?>
+						<a target="_blank" href="{$goods.url}" class="lianjie"  style="display:none;"><img src="{$site_url}/{$goods.path}" height="370" width="100%" border="0"/></a>
+					<?php }else{ ?>
+						<a target="_blank" href="{$goods.url}" class="lianjie"><img src="{$site_url}/{$goods.path}" height="370" width="100%" border="0"/></a> 
+					<?php } ?>
 					<!--{/foreach}-->
 				</span> 
 				<div id="hao">

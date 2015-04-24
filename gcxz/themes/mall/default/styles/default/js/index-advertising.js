@@ -30,7 +30,7 @@
         var F=a(this);
         var G=F.find("ul:first").children("li").length;
         if(F.find("ul").length==0||F.find("li").length==0){
-            a.append("Require content");
+            //a.append("Require content");
             return null
         }
         F.show();
