@@ -458,12 +458,13 @@
 
 .convenient-service {
 	float: left;
-	z-index: 9999;
+	z-index: 9990;
 	top: 163px;
+	left: 50%;
 	background-color: #FFFFFF;
 	height: 408px;
 	width: 118px;
-	margin-left: 1080px;
+	margin-left: 407px;
 	border: 1px solid #F6EBE2;
   position: absolute;
 }
@@ -728,7 +729,8 @@
 
 #bn #hao {
 	position: absolute;
-	left:263px;
+	left: 50%;
+	margin-left:-410px;
 	height: 40px;
 	z-index: 3;
 	top: 534px;
