@@ -1,147 +1,105 @@
 {include file=header.new.html} {include file=top.html}
 <script type="text/javascript">
 	$('body').attr('id','main');
-	function schange(elmt) {
-		$(elmt).hover(function() {
-			$(this).find('.number-img').css("display", "none");
-			$(this).find('.text').css("display", "block");
-		}, function() {
-			$(this).find('.number-img').css("display", "block");
-			$(this).find('.text').css("display", "none");
-		});
-	}
-	$(document).ready(function() {
-		schange(".type1");
-		schange(".type3");
-
-	});
 </script>
 <script type="text/javascript">
-	$(function() {
-		var $banner = $('.banner');
-		var $banner_ul = $('.banner-img');
-		var $btn = $('.banner-btn');
-		var $btn_a = $btn.find('a')
-		var v_width = $banner.width();
+$(function(){
+        var $banner=$('.banner');
+        var $banner_ul=$('.banner-img');
+        var $btn=$('.banner-btn');
+        var $btn_a=$btn.find('a')
+        var v_width=$banner.width();
+        
+        var page=1;
+        
+        var timer=null;
+        var btnClass=null;
 
-		var page = 1;
+        var page_count=$banner_ul.find('li').length;//把这个值赋给小圆点的个数
+        
+        var banner_cir="<li class='selected' href='#'><a></a></li>";
+        for(var i=1;i<page_count;i++){
+                //动态添加小圆点
+                banner_cir+="<li><a href='#'></a></li>";
+                }
+        $('.banner-circle').append(banner_cir);
+        
+        var cirLeft=$('.banner-circle').width()*(0);
+        $('.banner-circle').css({'marginLeft':cirLeft});
+        
+        $banner_ul.width(page_count*v_width);
+        
+        function move(obj,classname){
+                //手动及自动播放
+        if(!$banner_ul.is(':animated')){
+                if(classname=='prevBtn'){
+                        if(page==1){
+                                        $banner_ul.animate({left:-v_width*(page_count-1)});
+                                        page=page_count; 
+                                        cirMove();
+                        }
+                        else{
+                                        $banner_ul.animate({left:'+='+v_width},"slow");
+                                        page--;
+                                        cirMove();
+                        }        
+                }
+                else{
+                        if(page==page_count){
+                                        $banner_ul.animate({left:0});
+                                        page=1;
+                                        cirMove();
+                                }
+                        else{
+                                        $banner_ul.animate({left:'-='+v_width},"slow");
+                                        page++;
+                                        cirMove();
+                                }
+                        }
+                }
+        }
+        
+        function cirMove(){
+                //检测page的值，使当前的page与selected的小圆点一致
+                $('.banner-circle li').eq(page-1).addClass('selected')
+                                                                                                .siblings().removeClass('selected');
+        }
+        
+        $banner.mouseover(function(){
+                $btn.css({'display':'block'});
+                clearInterval(timer);
+                                }).mouseout(function(){
+                $btn.css({'display':'none'});                
+                clearInterval(timer);
+                timer=setInterval(move,3000);
+                                }).trigger("mouseout");//激活自动播放
 
-		var timer = null;
-		var btnClass = null;
-
-		var page_count = $banner_ul.find('li').length;//把这个值赋给小圆点的个数
-
-		var banner_cir = "<li class='selected' href='#'><a></a></li>";
-		for ( var i = 1; i < page_count; i++) {
-			//动态添加小圆点
-			banner_cir += "<li><a href='#'></a></li>";
-		}
-		$('.banner-circle').append(banner_cir);
-
-		var cirLeft = $('.banner-circle').width() * (-0.5);
-		$('.banner-circle').css({
-			'marginLeft' : cirLeft
-		});
-
-		$banner_ul.width(page_count * v_width);
-
-		function move(obj, classname) {
-			//手动及自动播放
-			if (!$banner_ul.is(':animated')) {
-				if (classname == 'prevBtn') {
-					if (page == 1) {
-						$banner_ul.animate({
-							left : -v_width * (page_count - 1)
-						});
-						page = page_count;
-						cirMove();
-					} else {
-						$banner_ul.animate({
-							left : '+=' + v_width
-						}, "slow");
-						page--;
-						cirMove();
-					}
-				} else {
-					if (page == page_count) {
-						$banner_ul.animate({
-							left : 0
-						});
-						page = 1;
-						cirMove();
-					} else {
-						$banner_ul.animate({
-							left : '-=' + v_width
-						}, "slow");
-						page++;
-						cirMove();
-					}
-				}
-			}
-		}
-
-		function cirMove() {
-			//检测page的值，使当前的page与selected的小圆点一致
-			$('.banner-circle li').eq(page - 1).addClass('selected').siblings()
-					.removeClass('selected');
-		}
-
-		$banner.mouseover(function() {
-			$btn.css({
-				'display' : 'block'
-			});
-			clearInterval(timer);
-		}).mouseout(function() {
-			$btn.css({
-				'display' : 'none'
-			});
-			clearInterval(timer);
-			timer = setInterval(move, 3000);
-		}).trigger("mouseout");//激活自动播放
-
-		$btn_a.mouseover(function() {
-			//实现透明渐变，阻止冒泡
-			$(this).animate({
-				opacity : 0.6
-			}, 'fast');
-			$btn.css({
-				'display' : 'block'
-			});
-			return false;
-		}).mouseleave(function() {
-			$(this).animate({
-				opacity : 0.3
-			}, 'fast');
-			$btn.css({
-				'display' : 'none'
-			});
-			return false;
-		}).click(function() {
-			//手动点击清除计时器
-			btnClass = this.className;
-			clearInterval(timer);
-			timer = setInterval(move, 3000);
-			move($(this), this.className);
-		});
-
-		$('.banner-circle li').live('click', function() {
-			var index = $('.banner-circle li').index(this);
-			$banner_ul.animate({
-				left : -v_width * index
-			}, 'slow');
-			page = index + 1;
-			cirMove();
-		});
-	});
+        $btn_a.mouseover(function(){
+                //实现透明渐变，阻止冒泡
+                        $(this).animate({opacity:0.6},'fast');
+                        $btn.css({'display':'block'});
+                         return false;
+                }).mouseleave(function(){
+                        $(this).animate({opacity:0.3},'fast');
+                        $btn.css({'display':'none'});
+                         return false;
+                }).click(function(){
+                        //手动点击清除计时器
+                        btnClass=this.className;
+                        clearInterval(timer);
+                        timer=setInterval(move,3000);
+                        move($(this),this.className);
+                });
+                
+        $('.banner-circle li').live('click',function(){
+                        var index=$('.banner-circle li').index(this);
+                        $banner_ul.animate({left:-v_width*index},'slow');
+                        page=index+1;
+                        cirMove();
+                });
+});
 </script>
-<style>
-#container .type1 {
-	background: url("{res file=img/@lihongyang/type3.gif}") no-repeat scroll
-		0 0 rgba(0, 0, 0, 0);
-	height: 174px;
-	width: 228px;
-}
-</style>
+
 <nav>
 	<div id="gnb">
 		<div class="banner">
@@ -151,21 +109,10 @@
 			</div>
 			<ul class="banner-img">
 				{foreach from=$ads item=ad}
-				<li><a href="{$ad.url}"><img src="{$ad.path}"></a></li>
+				<li><a href="{$ad.url}"><img src="{$ad.path}" width="1200" height="280"></a></li>
 				{/foreach}
 			</ul>
 			<ul class="banner-circle"></ul>
-		</div>
-		<div class="banner-right">
-			<ul>
-				{foreach name=gname from=$top_list item=good}
-				<li><a href="index.php?app=goods&id={$good.goods_id}">
-						<p>{$good.goods_name}</p>
-						<img src="{$good.default_image}" />
-				</a></li> {if $smarty.foreach.gname.index eq 2}
-				<div class="clearfix"></div>
-				{/if} {/foreach}
-			</ul>
 		</div>
 		<div class="clearfix"></div>
 	</div>
@@ -179,28 +126,32 @@
 
 	<!-- contents -->
 
-	<div id="container"
-		style="position: relative; background: #FFF; overflow: hidden; height: auto; width: 928px; padding: 16px;">
+	<div id="container" style="position: relative; background:#FFF; overflow: hidden; height: auto; width: 1168px; padding:16px;">
 		{foreach from=$goods_list item=goods}
-		<div class="element type1" style="cursor:pointer;" onclick="javascript:window.location.href='index.php?app=goods&id={$goods.goods_id}';">
-			<div class="count">
-				<div class="comment">{$goods.add_time|date}</div>
-			</div>
+		<div class="element type1">
 			<div class="numbers">
-				<div class="number-img">
-					<img src="{$goods.default_image}" alt="">
-				</div>
-				<div class="text">
-					<a href="index.php?app=goods&id={$goods.goods_id}">
-						<p>[{$goods.goods_name}]</p>
-					</a>
-				</div>
+				<a href="index.php?app=goods&id={$goods.goods_id}">
+					<div class="number-img">
+						<img src="{$goods.default_image}" alt="">
+					</div>
+				</a>
 			</div>
-			<div class="name">{$goods.goods_name}</div>
+			<div class="name">
+				<h1 title="{$goods.goods_name}">{$goods.goods_name}</h1>
+				<span title="{$goods.sub_goods_name|escape}" class="name_span1">{$goods.sub_goods_name|escape}</span>
+				<p>
+					<span class="name_span2">￥{$goods.price}</span> <span
+						class="name_span3">已售<a>{$goods.sales}</a>件
+					</span>
+				</p>
+				<div class="qc"></div>
+			</div>
 		</div>
+
 		{/foreach}
 	</div>
-
+	<div style="clear:both"></div>
+				<div style="float:right">{include file=page.bottom.html}</div>
 	<!-- //contents -->
 
 </div>
