@@ -88,10 +88,6 @@ return array (
 								'text' => '广告商品',
 								'url' => 'index.php?app=goodsad' 
 						),
-						'fcg' => array (
-								'text' => '逢场购',
-								'url' => 'index.php?app=fcg&act=fixed' 
-						) 
 				) 
 		)
 		,
