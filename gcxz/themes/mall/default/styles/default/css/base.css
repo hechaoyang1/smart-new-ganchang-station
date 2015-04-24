@@ -62,10 +62,13 @@ body {
   font-size: 12px;
   font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti;}
 
+
 .wrap {
+  width: 1200px;
+  margin: 0 auto; }
+.index_wrap{
   width: 100%;
   margin: 0 auto; }
-
 .bold {
   font-weight: bold; }
 
