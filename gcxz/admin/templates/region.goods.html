@@ -123,7 +123,7 @@ function updateOrder(obj){
 
 <div class="info2">
 	<table class="distinction">
-		<!-- {if $regions} -->
+	
 		<thead>
 			<tr>
 				<th class="w30"></th>
@@ -137,17 +137,16 @@ function updateOrder(obj){
 			</tr>
 		</thead>
 		<tbody id="treet1">
-			<!-- {/if} -->
-			<!--{foreach from=$regions item=region}-->
+			<!-- {if $regions} -->
 			<tr class="">
 				<td class="align_center w30"></td>
 				<td class="node" width="20%">
-					<!--{if $region.switchs}--> <img
+					<!--{if $regions.0.switchs}--> <img
 					src="templates/style/images/treetable/tv-expandable.gif"
-					ectype="flex" status="open" fieldid="{$region.region_id}"
+					ectype="flex" status="open" fieldid="{$regions.0.region_id}"
 					onclick="flex($(this))"> <!--{else}--> <img
 					src="templates/style/images/treetable/tv-item.gif"> <!--{/if}-->
-					<span class="node_name">{$region.region_name|escape}</span>
+					<span class="node_name">{$regions.0.region_name|escape}</span>
 				</td>
 				<td class="align_center"></td>
 				<td class="align_center"></td>
@@ -157,17 +156,15 @@ function updateOrder(obj){
 				</td>
 				<td class="align_center"></td>
 				<td style="text-align: center;"><span> <a
-						href="index.php?app=regiongoods&amp;act=manageBg&amp;id={$region.region_id}">配置背景图</a>
+						href="index.php?app=regiongoods&amp;act=manageBg&amp;id={$regions.0.region_id}">配置背景图</a>
 				</span></td>
 			</tr>
-			<!--{foreachelse}-->
+			<!--{else}-->
 			<tr class="no_data">
 				<td colspan="4">{$lang.no_data}</td>
 			</tr>
-			<!--{/foreach}-->
-			<!-- {if $regions} -->
-		</tbody>
 		<!-- {/if} -->
+		</tbody>
 		<tfoot>
 			<tr class="tr_pt10">
 			</tr>
