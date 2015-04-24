@@ -221,39 +221,8 @@ class DefaultApp extends MallbaseApp
 
     function fcg()
     {
-		$this->assign('tab', 'fcg');
-        // 商品分类
-		$this->assign('top_category', m('gcategory')->get_top_category());
-		
-		$_fcg_mod = m('fcg');
-		$_fcg_goods_mod = m('fcggoods');
-		//固定区域
-		$fixed_list = $_fcg_mod->find(array(
-		        'conditions' => 'type = 1',
-		        'order' => 'id asc'
-		));
-		foreach ($fixed_list as $key => & $fcg)
-		{
-		    $fcg['goods_ids'] = $_fcg_goods_mod->get_goods_ids($fcg['id']);
-		    $fcg['ctime'] = date('Y-m-d', strtotime($fcg['ctime']));
-		}
-		$this->assign('fixed_list', $fixed_list);
-		//动态
-		$dynamic_list = $_fcg_mod->find(array(
-		        'conditions' => 'type = 2',
-		        'order' => 'id asc'
-		));
-		foreach ($dynamic_list as $key => & $fcg)
-		{
-		    $fcg['goods_ids'] = $_fcg_goods_mod->get_goods_ids($fcg['id']);
-		    $fcg['ctime'] = date('Y-m-d', strtotime($fcg['ctime']));
-		}
-		$this->assign('dynamic_list', $dynamic_list);
-		
-		$this->import_resource(array(
-		        'style' =>  'res:css/channel.css',
-		));
-		
+    	$m=m("zhuanti");
+		$this->assign('page', $m->get_page(ZT_FCG));
         $this->display('fcg.html');
     }
     
