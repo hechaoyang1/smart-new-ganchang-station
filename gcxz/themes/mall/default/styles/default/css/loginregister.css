@@ -240,12 +240,13 @@
 	left: 660px;
 }
 .registration_box .form_field_uname label.error{
-	width: 90px;
-  	padding-top: 6px;
+	width: 165px;
+  	padding-top: 0;
   	font-size: 14px;
   	text-align: left;
   	float: left;
   	margin-left: 20px;
+	line-height: 18px;
 	color:red;
 }
 .left{
