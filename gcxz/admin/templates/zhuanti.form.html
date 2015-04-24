@@ -27,7 +27,7 @@
         <td class="paddingT15 wordSpacing5">
          <textarea name="page" id="myEditor">{if $content}{$content.page}{else}请在这里添入内容{/if}</textarea>
 				<script type="text/javascript">
-				    var editor = new UE.ui.Editor({  maximumWords:50000,initialFrameHeight:250,initialFrameWidth:800});
+				    var editor = new UE.ui.Editor({  maximumWords:50000,initialFrameHeight:250,initialFrameWidth:800,maxImageSideLength:10000});
 				    editor.render("myEditor");
 				    //1.2.4以后可以使用一下代码实例化编辑器
 				    //UE.getEditor('myEditor')
