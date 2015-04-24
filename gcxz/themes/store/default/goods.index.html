@@ -247,12 +247,17 @@ function add_to_cart(obj, spec_id, quantity)
 		            $('.bold_mly').html(price_format(data.retval.cart.amount));
 		            $('.ware_cen').slideDown('slow');
 		            setTimeout(slideUp_fn, 5000); */
-		            var _i =  $('.rightTools li:eq(1)').find('i');
-		            if(_i.text()=='' || _i.text()=='0'){
-		            	 _i.show();
-		            	 _i.text(quantity);
+		            var _i =  $('.rightTools li:eq(3) a').find('div');
+		            if(_i.length == 0){
+		            	$('.rightTools li:eq(3) a').append('<div>'+quantity+'</div>')
 		            }else{
 		           		 _i.text(parseInt(_i.text())+parseInt(quantity));
+		            }
+		            var _j =  $('.shoppingCar:first').find('span');
+		            if(_j.length == 0){
+		            	$('.shoppingCar:first').append('<span>('+quantity+'件)</span>')
+		            }else{
+		            	_j.text('('+_i.text()+'件)');
 		            }
 		            alert('添加到购物车成功');
     	     /*    }
