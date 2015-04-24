@@ -42,10 +42,10 @@
 				<a href="index.php" class="logo"><img src="{res file=img/logo.png}" alt=""></a>
 			</div>
 			<div class="pull-left search">
-				<form>
+				<form style="float: none;">
 					<input type="hidden" name="act" value="index" />
 	                <input type="hidden" name="app" value="search" />
-					<input type="text" name="keyword" placeholder="搜索" class="key"><input type="submit" value="搜索" class="sub">
+					<input type="text" name="keyword" placeholder="搜索" class="key"><input type="submit" value="搜索" class="sub"><div style="clear: both;"></div>
 				</form>
 				<!--{foreach from=$hot_keywords item=keyword}-->
 	             <a href="{url app=search&keyword=$keyword}">{$keyword}</a>|
