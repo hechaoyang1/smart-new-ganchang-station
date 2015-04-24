@@ -2,7 +2,7 @@
 	{include file=top.html}
  	{include file=right.tool.html}
 	<div class="fixedSearch">
-		<div class="wrap clearfix">
+		<div class="wrap clearfix" style="width:1200px;">
 			<a href="#" class="pull-left"><img src="{res file=img/logo.png}" width="144px" alt=""></a>
 			<form class="pull-left">
                 <input type="hidden" name="act" value="index" />
@@ -19,9 +19,9 @@
 					<!--{foreach from=$index_center_ad item=goods}-->
 					<?php $end_index++; ?>
 					<?php if($end_index > 1){  ?>
-						<a target="_blank" href="{$goods.url}" class="lianjie"  style="display:none;"><img src="{$site_url}/{$goods.path}" height="370" width="100%" border="0"/></a>
+						<a target="_blank" href="{$goods.url}" class="lianjie"  style="display:none;"><img src="{$site_url}/{$goods.path}" border="0"/></a>
 					<?php }else{ ?>
-						<a target="_blank" href="{$goods.url}" class="lianjie"><img src="{$site_url}/{$goods.path}" height="370" width="100%" border="0"/></a> 
+						<a target="_blank" href="{$goods.url}" class="lianjie"><img src="{$site_url}/{$goods.path}" border="0"/></a> 
 					<?php } ?>
 					<!--{/foreach}-->
 				</span> 
