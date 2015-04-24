@@ -45,10 +45,7 @@ class SearchApp extends MallbaseApp
 				'count' => true 
 		) );
 		if($param['keyword'] && !$goods_list){
-			$this->import_resource(array(
-					'style' =>  'res:css/f-product.css',
-			));
-			$this->display('no.search.goods.html');
+			$this->show_warning ( '没有找到与"'. $_GET['keyword'].'"相关商品');
 			return;
 		}
 		$page ['item_count'] = $goods_mod->_last_query_count;
