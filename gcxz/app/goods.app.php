@@ -327,7 +327,8 @@ class GoodsApp extends StorebaseApp
         $this->assign('id', $_GET['id']);
         
         //赋值物流配送信息
-        $shipInfo = &m('shipping')->get(array('conditions'=>'store_id='.$goods['store_id']));
+        $shipCondition= '';
+        $shipInfo = &m('shipping')->get(array('conditions'=>'store_id='.$goods['store_id'].' AND enabled=1'));
         $this->assign('shipInfo', $shipInfo);
         
         $this->import_resource(array(
