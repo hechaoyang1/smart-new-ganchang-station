@@ -52,7 +52,7 @@
 				<div class="wrap_with_dm">
 					<ul>
 					{foreach from=$areaArr item=area}
-						<li><a attr_id="{$area.region_id}">{$area.region_name}</a></li>
+						<li><a attr_id="{$area.region_id}" href="#">{$area.region_name}</a></li>
 					{/foreach}
 					</ul>
 				</div>
@@ -60,7 +60,7 @@
 			</div>
 			<div class="wrap_with_px">
 				<div class="title clr">
-					 <a class="down2 {$salesOrder}">销量</a> 
+					 <a class="{$salesOrder}">销量</a> 
 					 <a class="{$timeOrder}">新品</a> 
 					 <a class="{$priceOrder}">价格</a>
 					 <p>
@@ -84,7 +84,7 @@
 								<p title="{$good.sub_goods_name}" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{$good.sub_goods_name}</p>
 								<h4>
 									<span class="wrap_with_red">￥{$good.price}</span>
-									<span class="wrap_withspan">/斤</span>
+									<span class="wrap_withspan">{if $good.unit}/{$good.unit}{else}/件{/if}</span>
 									<span class="wrap_withspan" style="float: right;">已成交{$good.sales}笔</span>
 								</h4>
 							</div>

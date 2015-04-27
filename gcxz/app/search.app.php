@@ -442,8 +442,9 @@ class SearchApp extends MallbaseApp
 	 * 获取排序顺序
 	 */
     function _get_query_order(){
-    	$this->assign ( 'timeOrder', 'down2' );
-    	$this->assign ( 'priceOrder', 'down2' );
+    	$this->assign ( 'timeOrder', '' );
+    	$this->assign ( 'priceOrder', '' );
+    	$this->assign ( 'salesOrder', '' );
     	if ($_GET ['timeOrder']) {
     		$orderStr = 'g.add_time '.$_GET ['timeOrder'];
     		$this->assign ( 'timeOrder', $_GET ['timeOrder']=='asc'?'down1 foucs':'down2  foucs' );
@@ -453,7 +454,7 @@ class SearchApp extends MallbaseApp
     		$this->assign ( 'priceOrder', $_GET ['priceOrder']=='asc'?'down1  foucs':'down2  foucs' );
     	}else{
     		$orderStr = 'gst.sales desc';
-    		$this->assign ( 'salesOrder', 'foucs' );
+    		$this->assign ( 'salesOrder', 'down2 foucs' );
     	}
     	return $orderStr;
     }
